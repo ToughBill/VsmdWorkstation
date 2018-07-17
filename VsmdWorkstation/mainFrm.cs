@@ -10,12 +10,16 @@ using System.Windows.Forms;
 
 using CefSharp;
 using CefSharp.WinForms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VsmdWorkstation
 {
     public partial class MainFrm : Form
     {
         private ChromiumWebBrowser m_browser;
+        private BridgeObject m_externalObj = new BridgeObject();
+        private BoardSettings m_curBoardSettings;
 
         public MainFrm()
         {
@@ -25,10 +29,11 @@ namespace VsmdWorkstation
 
         private void mainFrm_Load(object sender, EventArgs e)
         {
-
+            InitBoardSettings();
         }
         private void InitBrowser()
         {
+            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
             Cef.Initialize(new CefSettings());
             string url = Application.StartupPath + @"\..\..\..\html\main.html";
             m_browser = new ChromiumWebBrowser(url);
@@ -39,7 +44,34 @@ namespace VsmdWorkstation
             m_browser.Top = toolStrip.Bottom;
             m_browser.Height = statusStrip.Top - toolStrip.Bottom;
             m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+            BindingOptions opt = new BindingOptions();
+            opt.CamelCaseJavascriptNames = false;
+            m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
+        }
 
+        private void InitBoardSettings()
+        {
+            m_curBoardSettings = new BoardSettings();
+        }
+        public class BridgeObject
+        {
+            public void getSelectedTubes()
+            {
+
+            }
+
+            public void Move(string args)
+            {
+                JArray jsArr = (JArray)JsonConvert.DeserializeObject(args);
+                for (int i = 0; i < jsArr.Count; i++)
+                {
+                    JObject obj = (JObject)jsArr[i];
+                    int row = int.Parse(obj["row"].ToString());
+                    int col = int.Parse(obj["column"].ToString());
+                }
+
+                MessageBox.Show(args);
+            }
         }
     }
 }
