@@ -7,8 +7,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VsmdLib;
 
 namespace VsmdWorkstation
 {
@@ -16,6 +18,10 @@ namespace VsmdWorkstation
     {
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj = new BridgeObject();
+        Vsmd vsmd = null;
+        VsmdInfo axisX = null;
+        VsmdInfo axisY = null;
+        VsmdInfo axisZ = null;
 
         public BoardSettingFrm()
         {
@@ -39,5 +45,27 @@ namespace VsmdWorkstation
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
         }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            vsmd = new Vsmd();
+            axisX = vsmd.createVsmdInfo(1);
+            bool ret = vsmd.openSerailPort("COM3", 9600);
+            axisX.flgAutoUpdate = false;
+            axisX.enable();
+            axisX.cfgSpd(128000);
+            axisX.cfgCur(1.6f, 1.4f, 0.8f);
+        }
+
+        private void BoardSettingFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Left)
+            {
+                //ParameterizedThreadStart MyImpDelegate = new ParameterizedThreadStart(this, this.mythread);
+                //Thread MyimpThread = new Thread(MyImpDelegate);
+                //MyimpThread.IsBackground = true;
+                //MyimpThread.Start(yourparam);
+            }
+        }                                                                                          
     }
 }
