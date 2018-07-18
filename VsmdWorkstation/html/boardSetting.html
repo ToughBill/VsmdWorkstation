@@ -1,31 +1,34 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <link rel="stylesheet" type="text/css" href="css/boardSetting.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/contextMenu.css">
     <link rel="stylesheet" type="text/css" href="css/tubeGrid.css">
 </head>
 <body>
-    <div id="tubesContainer"></div>
-    <div>
-        <button id="move" class="btn btn-primary">Move</button>
+    <div id="actions">
+        <div style="margin-bottom: 10px;">
+            <button id="setFirstTubePos" class="btn btn-default">设置第一个孔坐标</button>
+            <button id="setTubeDistance" class="btn btn-default">设置孔间距</button>
+        </div>
+
+        <label id="tips"></label>
     </div>
+    <div id="tubesContainer"></div>
 
 </body>
+
     <script src="js/jquery-1.12.4.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-ui.js"></script>
 
-    <script src="js/contextMenu.js"></script>
     <script src="js/box-selection.js"></script>
     <script src="js/tubeGrid.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/boardSetting.js"></script>
 </html>

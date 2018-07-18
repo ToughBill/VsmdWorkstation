@@ -53,25 +53,11 @@ namespace VsmdWorkstation
         {
             m_curBoardSettings = new BoardSettings();
         }
-        public class BridgeObject
+
+        private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
-            public void getSelectedTubes()
-            {
-
-            }
-
-            public void Move(string args)
-            {
-                JArray jsArr = (JArray)JsonConvert.DeserializeObject(args);
-                for (int i = 0; i < jsArr.Count; i++)
-                {
-                    JObject obj = (JObject)jsArr[i];
-                    int row = int.Parse(obj["row"].ToString());
-                    int col = int.Parse(obj["column"].ToString());
-                }
-
-                MessageBox.Show(args);
-            }
+            BoardSettingFrm frm = new BoardSettingFrm();
+            frm.ShowDialog();
         }
     }
 }

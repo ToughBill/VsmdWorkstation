@@ -74,9 +74,19 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VsmdLib">
+      <HintPath>sdk\VsmdLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BoardSettingFrm.Designer.cs">
+      <DependentUpon>BoardSettingFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BoardSettings.cs" />
+    <Compile Include="BridgeObject.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +95,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BoardSettingFrm.resx">
+      <DependentUpon>BoardSettingFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
