@@ -1,55 +1,43 @@
 window.TubeGrid = (function () {
     var defaultSettings = {
-		blockCount: 1,
         tubeWidth: 20,
         tubeHeight: 20
     }
-    const CHAR_CODE_A = 65;
+
     function TubeGrid(container, options_) {
         this.container = container;
         this.options = options_ || {};
 
         this.tubeWidth = options_.tubeWidth || defaultSettings.tubeWidth;
         this.tubeHeight = options_.tubeHeight || defaultSettings.tubeHeight;
-        this.blockCount = options_.blockCount || defaultSettings.blockCount;
         this.rowCount = options_.rowCount;
         this.columnCount = options_.columnCount;
         this.tubeEleArr = [];
 
-
-        this.renderHeaders = function($table) {
-			var $headerRow = $("<div class='grid-headers'></div>");
-			for(let i = 0; i < this.columnCount; i++){
-				let $headerCell = $("<div class='grid-header'>" + String.fromCharCode(CHAR_CODE_A + i) + "</div>");
-				$headerRow.append($headerCell);
-			}
-			$(this.container).append($headerRow);
-		}
         this.render = function() {
             if (!this.rowCount || !this.columnCount) {
                 return;
             }
             let $con = $(this.container);
-            //let conWidth = this.tubeWidth * this.columnCount + parseInt($con.css('padding-left')) + parseInt($con.css('padding-right'));
+            let conWidth = this.tubeWidth * this.columnCount + parseInt($con.css('padding-left')) + parseInt($con.css('padding-right'));
             //$con.width(conWidth);
             $con.addClass("tubeGrid");
-
-            let $table = $('<table class="table"></table>');
-			this.renderHeaders($table);
-
-
-
-            // for (let i = 0; i < this.rowCount; i++) {
-            //     let $rowEle = $("<div class='grid-row'></div>");
-            //     for (let j = 0; j < this.columnCount; j++) {
-            //         let posClass = "r" + (i+1) + " c" + (j+1);
-            //         let $cell = $("<div class = 'grid-cell tube " + posClass + "' title=" + (i+1) + "," + (j+1) + "></div>");
-            //         $cell.data("options", {row: i+1, column: j+1});
-            //         $rowEle.append($cell);
-            //     }
-            //     $con.append($rowEle);
-            // }
-            // this.enableBoxSelection();
+			var $rowEle = $("<div class='grid-headers'></div>");
+			for(let i = 0; i < this.columnCount; i++){
+			    let $headerCell = $("<div class='grid-header'></div>");
+				$rowEle.append($headerCell);
+            }
+            for (let i = 0; i < this.rowCount; i++) {
+                let $rowEle = $("<div class='grid-row'></div>");
+                for (let j = 0; j < this.columnCount; j++) {
+                    let posClass = "r" + (i+1) + " c" + (j+1);
+                    let $cell = $("<div class = 'grid-cell tube " + posClass + "' title=" + (i+1) + "," + (j+1) + "></div>");
+                    $cell.data("options", {row: i+1, column: j+1});
+                    $rowEle.append($cell);
+                }
+                $con.append($rowEle);
+            }
+            this.enableBoxSelection();
         }
 
         this.enableBoxSelection = function() {
