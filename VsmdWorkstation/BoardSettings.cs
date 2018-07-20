@@ -8,6 +8,7 @@ namespace VsmdWorkstation
 {
     public class BoardSettings
     {
+        public int BlockCount { get; set; }
         public int RowCount { get; set; }
         public int ColumnCount { get; set; }
         public int FirstTubeX1 { get; set; }

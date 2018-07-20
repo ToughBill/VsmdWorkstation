@@ -1,7 +1,11 @@
 .tubeGrid{
-    margin: 10px;
+    margin: 0 auto;
     padding: 10px;
     border: 2px solid;
+    text-align: center;
+}
+.tubeGrid>table{
+    display: inline-block !important;
 }
 .grid-row{
     /*display: inline-block;*/
@@ -11,8 +15,15 @@
 .grid-header{
     height: 20px;
     width: 20px;
-    display: inline-block;
+    /*display: inline-block;*/
     margin-left: 5px;
+    border-bottom: 0 !important;
+    text-align: center;
+}
+.grid-row-number{
+    padding: 0 !important;
+    border-top: 0 !important;
+    text-align: center;
 }
 .grid-cell{
     height: 20px;
@@ -21,8 +32,15 @@
     border: 2px solid silver;
     display: inline-block;
     margin-left: 5px;
-}
 
+}
+.table>tbody>tr>td{
+    padding: 0 !important;
+    border-top: 0 !important;
+}
+.table>thead>tr>th{
+    border-bottom: 0 !important;
+}
 .grid-cell:hover{
     outline: 2px solid blue;
     border-radius: 50%;

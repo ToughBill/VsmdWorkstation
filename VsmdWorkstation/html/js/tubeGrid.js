@@ -17,13 +17,37 @@ window.TubeGrid = (function () {
         this.tubeEleArr = [];
 
 
-        this.renderHeaders = function($table) {
-			var $headerRow = $("<div class='grid-headers'></div>");
+        this.renderHeaders = function($table, blockNum) {
+			let $header = $("<thead class='grid-headers'></thead>");
+			let $hrow = $("<tr></tr>");
+			if(blockNum == 0){
+				let $numCell = $("<th  class = 'grid-row-number'></th>");
+				$hrow.append($numCell);
+            }
+			$header.append($hrow);
 			for(let i = 0; i < this.columnCount; i++){
-				let $headerCell = $("<div class='grid-header'>" + String.fromCharCode(CHAR_CODE_A + i) + "</div>");
-				$headerRow.append($headerCell);
+				let $headerCell = $("<th class='grid-header'>" + String.fromCharCode(CHAR_CODE_A + i + (blockNum * this.columnCount)) + "</th>");
+				$hrow.append($headerCell);
 			}
-			$(this.container).append($headerRow);
+			$table.append($header);
+		}
+		this.renderRows = function ($table, blockNum) {
+            let $rows = $("<tbody></tbody>");
+            for(let i = 0; i < this.rowCount; i++){
+                let $row = $("<tr></tr>");
+                if(blockNum == 0){
+					let $numCell = $("<th  class = 'grid-row-number'>" + (i + 1) + "</th>");
+					$row.append($numCell);
+                }
+                for(let j = 0; j < this.columnCount; j++){
+					let posClass = "r" + (i+1) + " c" + (j+1);
+					let titleVal = (i+1) + "," + (j+1);
+                    let $cell = $("<td><div class = 'grid-cell tube " + posClass + "' title='" + titleVal + "'></div></td>");
+					$row.append($cell);
+                }
+				$rows.append($row);
+            }
+			$table.append($rows);
 		}
         this.render = function() {
             if (!this.rowCount || !this.columnCount) {
@@ -34,8 +58,13 @@ window.TubeGrid = (function () {
             //$con.width(conWidth);
             $con.addClass("tubeGrid");
 
-            let $table = $('<table class="table"></table>');
-			this.renderHeaders($table);
+            for(let i = 0; i < this.blockCount; i++){
+				let $table = $('<table class="table"></table>');
+				this.renderHeaders($table, i);
+				this.renderRows($table, i);
+				$table.width(250);
+				$con.append($table);
+            }
 
 
 
@@ -49,7 +78,7 @@ window.TubeGrid = (function () {
             //     }
             //     $con.append($rowEle);
             // }
-            // this.enableBoxSelection();
+             this.enableBoxSelection();
         }
 
         this.enableBoxSelection = function() {
