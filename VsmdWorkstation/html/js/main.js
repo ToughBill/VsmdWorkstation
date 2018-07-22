@@ -73,9 +73,11 @@ $(function () {
         },
         beforeMove: function () {
             grid.enterMoveMode();
+            $("#move").attr("disabled", true);
         },
         afterMove: function () {
             grid.leaveMoveMode();
+            $("#move").attr("disabled", false);
         }
     }
 });

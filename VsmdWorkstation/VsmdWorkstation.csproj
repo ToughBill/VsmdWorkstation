@@ -99,8 +99,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="StatusBarEx.Designer.cs" />
-    <Compile Include="StatusMessage.cs" />
+    <Compile Include="StatusBar.cs" />
     <Compile Include="VsmdController.cs" />
+    <Compile Include="VsmdSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VsmdSettingFrm.Designer.cs">
+      <DependentUpon>VsmdSettingFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BoardSettingFrm.resx">
       <DependentUpon>BoardSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +122,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VsmdSettingFrm.resx">
+      <DependentUpon>VsmdSettingFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,6 +160,7 @@
     <Content Include="html\js\main.js" />
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\main.html" />
+    <Content Include="html\vsmdSetting.html" />
     <Content Include="Readme.txt" />
     <Content Include="sdk\VsmdLib.dll" />
   </ItemGroup>

@@ -93,5 +93,11 @@ namespace VsmdWorkstation
         {
             m_browser.ShowDevTools();
         }
+
+        private void tsmVsmdSetting_Click(object sender, EventArgs e)
+        {
+            VsmdSettingFrm frm = new VsmdSettingFrm();
+            frm.ShowDialog();
+        }
     }
 }

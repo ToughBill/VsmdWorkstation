@@ -32,11 +32,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBoardSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDevTools = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusBarEx = new VsmdWorkstation.StatusBarEx();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDevTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVsmdSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmVsmdSetting,
             this.tsmBoardSetting});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
@@ -66,6 +68,21 @@
             this.tsmBoardSetting.Size = new System.Drawing.Size(152, 22);
             this.tsmBoardSetting.Text = "载物架设置";
             this.tsmBoardSetting.Click += new System.EventHandler(this.tsmBoardSetting_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmDevTools});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // tsmDevTools
+            // 
+            this.tsmDevTools.Name = "tsmDevTools";
+            this.tsmDevTools.Size = new System.Drawing.Size(152, 22);
+            this.tsmDevTools.Text = "Dev Tools";
+            this.tsmDevTools.Click += new System.EventHandler(this.tsmDevTools_Click);
             // 
             // toolStrip
             // 
@@ -94,20 +111,12 @@
             this.statusBarEx.TabIndex = 3;
             this.statusBarEx.Text = "statusBarEx1";
             // 
-            // toolsToolStripMenuItem
+            // tsmVsmdSetting
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmDevTools});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // tsmDevTools
-            // 
-            this.tsmDevTools.Name = "tsmDevTools";
-            this.tsmDevTools.Size = new System.Drawing.Size(152, 22);
-            this.tsmDevTools.Text = "Dev Tools";
-            this.tsmDevTools.Click += new System.EventHandler(this.tsmDevTools_Click);
+            this.tsmVsmdSetting.Name = "tsmVsmdSetting";
+            this.tsmVsmdSetting.Size = new System.Drawing.Size(152, 22);
+            this.tsmVsmdSetting.Text = "控制器设置";
+            this.tsmVsmdSetting.Click += new System.EventHandler(this.tsmVsmdSetting_Click);
             // 
             // MainFrm
             // 
@@ -142,6 +151,7 @@
         private StatusBarEx statusBarEx;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmDevTools;
+        private System.Windows.Forms.ToolStripMenuItem tsmVsmdSetting;
     }
 }
 

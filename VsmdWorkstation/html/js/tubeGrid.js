@@ -180,6 +180,7 @@ window.TubeGrid = (function () {
                     if (gridEditor.mode != GridMode.Idle) {
                         return;
                     }
+                    $(".grid-cell.moveDone").removeClass("moveDone");
                     if(ev.ctrlKey) {
                         $(this).toggleClass('selected');
                     } else {
