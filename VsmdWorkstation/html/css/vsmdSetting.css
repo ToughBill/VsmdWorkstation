@@ -1,0 +1,12 @@
+fieldset{
+    border: 1px solid silver;
+    border-radius: 5px;
+    width: 100%;
+}
+.axisGroup{
+    display: inline-block;
+    padding: 0 10px;
+}
+#axisInfo{
+    margin: 0;
+}
