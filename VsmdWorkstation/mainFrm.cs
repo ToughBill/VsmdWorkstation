@@ -31,7 +31,7 @@ namespace VsmdWorkstation
         {
             InitBoardSettings();
             InitVsmdController();
-            StatusMessage.Init(statusBarEx);
+            StatusBar.Init(statusBarEx);
         }
         private void InitBrowser()
         {
