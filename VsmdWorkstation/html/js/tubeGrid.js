@@ -5,6 +5,10 @@ window.TubeGrid = (function () {
         tubeHeight: 20
     }
     const CHAR_CODE_A = 65;
+    var GridMode = {
+        Idle: 0,
+        Move: 1
+    }
     function TubeGrid(container, options_) {
         this.container = container;
         this.options = options_ || {};
@@ -15,7 +19,8 @@ window.TubeGrid = (function () {
         this.rowCount = options_.rowCount;
         this.columnCount = options_.columnCount;
         this.tubeEleArr = [];
-
+        this.mode = GridMode.Idle;
+        let gridEditor = this;
 
         this.renderHeaders = function($table, blockNum) {
 			let $header = $("<thead class='grid-headers'></thead>");
@@ -97,7 +102,10 @@ window.TubeGrid = (function () {
             }
             var $container = $(this.container);
             $container
-                .on('mousedown', function(eventDown) {
+                .on('mousedown', function (eventDown) {
+                    if (gridEditor.mode != GridMode.Idle) {
+                        return;
+                    }
                     //  设置选择的标识
                     var isSelect = true;
                     //  创建选框节点
@@ -168,7 +176,10 @@ window.TubeGrid = (function () {
                         // }
                     });
                 })
-                .on('click', '.grid-cell', function(ev) {
+                .on('click', '.grid-cell', function (ev) {
+                    if (gridEditor.mode != GridMode.Idle) {
+                        return;
+                    }
                     if(ev.ctrlKey) {
                         $(this).toggleClass('selected');
                     } else {
@@ -181,6 +192,16 @@ window.TubeGrid = (function () {
 
         this.getCell= function (row, col) {
             return $(".grid-cell" + ".r" + row + ".c" + col);
+        }
+        this.enterMoveMode = function () {
+            gridEditor.mode = GridMode.Move;
+        }
+        this.leaveMoveMode = function () {
+            gridEditor.mode = GridMode.Idle;
+        }
+        this.resetTube = function () {
+            $(".grid-cell.selected").removeClass("selected");
+            $(".grid-cell.moveDone").removeClass("moveDone");
         }
         this.render();
     }

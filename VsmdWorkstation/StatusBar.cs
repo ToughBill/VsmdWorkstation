@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VsmdWorkstation
 {
-    public class StatusMessage
+    public class StatusBar
     {
         private static StatusBarEx m_StatusBar;
         public static void Init(StatusBarEx bar)

@@ -56,9 +56,26 @@ $(function () {
 			selectedTubes.push(obj);
         });
 		window.externalObj.Move(JSON.stringify(selectedTubes));
-
     });
-    window.moveCallBack = function(row, col) {
-        grid.getCell(row, col).addClass("moveDone");
+    $("#reset").click(function (e) {
+        grid.resetTube();
+    });
+    $("#stop").click(function (e) {
+        if(!window.externalObj){
+            return;
+        }
+        window.externalObj.StopMove();
+    })
+
+    window.JsExecutor = {
+        moveCallBack: function(row, col) {
+            grid.getCell(row, col).addClass("moveDone");
+        },
+        beforeMove: function () {
+            grid.enterMoveMode();
+        },
+        afterMove: function () {
+            grid.leaveMoveMode();
+        }
     }
 });

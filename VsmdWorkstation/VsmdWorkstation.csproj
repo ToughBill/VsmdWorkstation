@@ -152,6 +152,7 @@
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\main.html" />
     <Content Include="Readme.txt" />
+    <Content Include="sdk\VsmdLib.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="html\icon\" />
