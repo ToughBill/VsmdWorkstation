@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VsmdController.cs" />
     <EmbeddedResource Include="BoardSettingFrm.resx">
       <DependentUpon>BoardSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +142,7 @@
     <Content Include="html\js\main.js" />
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\main.html" />
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="html\icon\" />

@@ -62,7 +62,7 @@
             // tsmBoardSetting
             // 
             this.tsmBoardSetting.Name = "tsmBoardSetting";
-            this.tsmBoardSetting.Size = new System.Drawing.Size(152, 22);
+            this.tsmBoardSetting.Size = new System.Drawing.Size(136, 22);
             this.tsmBoardSetting.Text = "载物架设置";
             this.tsmBoardSetting.Click += new System.EventHandler(this.tsmBoardSetting_Click);
             // 
@@ -113,6 +113,7 @@
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.mainFrm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

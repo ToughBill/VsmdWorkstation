@@ -26,12 +26,13 @@ namespace VsmdWorkstation
         public BoardSettingFrm()
         {
             InitializeComponent();
+            InitBrowser();
         }
 
         private void InitBrowser()
         {
             CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            Cef.Initialize(new CefSettings());
+            //Cef.Initialize(new CefSettings());
             string url = Application.StartupPath + @"\..\..\..\html\boardSetting.html";
             m_browser = new ChromiumWebBrowser(url);
             this.Controls.Add(m_browser);

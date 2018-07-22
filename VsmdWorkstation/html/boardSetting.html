@@ -14,32 +14,74 @@
 <body>
     <div id="container">
         <div id="actions">
-            <form>
-                <div class="form-group row">
-                    <label for="boardName" class="col-sm-2 col-form-label">载物架名称:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="boardName" placeholder="请输入载物架名称">
+            <div class="row">
+                <label class="col-sm-2 centerAlignText" style="text-align: right">载物架名称:</label>
+                <div class="col-sm-3">
+                    <!--<select class="form-control" id="boardName" >-->
+                        <!--<option value="-1">添加</option>-->
+                    <!--</select>-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="boardName" placeholder="请输入载物架名称" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">选择</button>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="spec" class="col-sm-2 col-form-label">规格</label>
-                    <div class="col-sm-10">
-                        <input class=" col-sm-1" type="text" id="spec" placeholder="1">
-                        <label class=" col-sm-1">组</label>
-                        <input class=" col-sm-1" type="text" >
-                        <label class=" col-sm-1">行</label>
-                        <input class=" col-sm-1" type="text"  >
-                        <label class=" col-sm-1">列</label>
-                    </div>
+            </div>
+            <div class="row marginTop10px">
+                <div class="col-sm-2" style="text-align: right">
+                    <label class="centerAlignText">规格:</label>
                 </div>
-            </form>
-            <div style="margin-bottom: 10px;">
-                <button id="setFirstTubePos" class="btn btn-default">设置第一个孔坐标</button>
-                <button id="setTubeDistance" class="btn btn-default">设置孔间距</button>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control input1" id="blockCount" placeholder="1" />
+                    <label class="centerAlignText">组</label>
+                </div>
+
+                <div class="col-sm-1">
+                    <input class="form-control input1" type="text" id="rowCount" />
+                    <label class="centerAlignText">行</label>
+                </div>
+                <div class="col-sm-1">
+                    <input class="form-control input1" type="text" id="columnCount"/>
+                    <label class="centerAlignText">列</label>
+                </div>
+            </div>
+            <div class="row marginTop10px">
+                <label class="col-sm-2 centerAlignText titleLabel">首孔位置:</label>
+                <div class="col-sm-1">
+                    <label class="centerAlignText">X:</label>
+                    <input type="text" class="form-control input1" id="FirstTubeX1" />
+                </div>
+                <div class="col-sm-1">
+                    <label class="centerAlignText">Y:</label>
+                    <input type="text" class="form-control input1" id="FirstTubeY1" />
+                </div>
+                <!--<div class="col-sm-1">-->
+                    <!--<button class="btn btn-default">手动设置</button>-->
+                <!--</div>-->
+                <!--<div class="col-sm-1">-->
+                    <!--<button class="btn btn-default">停止</button>-->
+                <!--</div>-->
+            </div>
+            <div class="row marginTop10px">
+                <label class="col-sm-2 centerAlignText titleLabel">孔距:</label>
+                <div class="col-sm-1">
+                    <label class="centerAlignText">X:</label>
+                    <input type="text" class="form-control input1" id="TubeDistanceX1" />
+                </div>
+                <div class="col-sm-1">
+                    <label class="centerAlignText">Y:</label>
+                    <input type="text" class="form-control input1" id="TubeDistanceY1" />
+                </div>
+            </div>
+            <div class="row marginTop10px">
+                <button class="btn btn-default col-sm-offset-5 col-sm-1">确定</button>
+                <button class="btn btn-default col-sm-1 ">取消</button>
             </div>
 
-            <label id="tips"></label>
+
         </div>
+
         <div id="tubesContainer"></div>
     </div>
 

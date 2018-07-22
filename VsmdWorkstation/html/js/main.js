@@ -2,7 +2,7 @@ $(function () {
     var opt = {
         rowCount: 12,
         columnCount: 8,
-		blockCount: 2
+		blockCount: 3
     }
     var grid = new TubeGrid(document.getElementById("tubesContainer"), opt);
 

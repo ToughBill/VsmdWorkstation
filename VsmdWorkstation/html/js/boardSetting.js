@@ -5,8 +5,4 @@ $(function () {
     }
     var grid = new TubeGrid(document.getElementById("tubesContainer"), opt);
 
-
-    $("#setFirstTubePos").click(function (e) {
-        $("#tips").text('Please use "←" and "→" to move the axis')
-    })
 });

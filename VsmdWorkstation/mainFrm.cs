@@ -30,6 +30,7 @@ namespace VsmdWorkstation
         private void mainFrm_Load(object sender, EventArgs e)
         {
             InitBoardSettings();
+            InitVsmdController();
         }
         private void InitBrowser()
         {
@@ -52,12 +53,30 @@ namespace VsmdWorkstation
         private void InitBoardSettings()
         {
             m_curBoardSettings = new BoardSettings();
+            m_curBoardSettings.BlockCount = 3;
+            m_curBoardSettings.RowCount = 12;
+            m_curBoardSettings.ColumnCount = 8;
+            m_curBoardSettings.FirstTubeX = 300;
+            m_curBoardSettings.FirstTubeY = 300;
+            m_curBoardSettings.TubeDistanceX = 200;
+            m_curBoardSettings.TubeDistanceY = 200;
+            m_curBoardSettings.TubeDiameter = 200;
+            BoardSettings.SetCurrentBoardSetting(m_curBoardSettings);
+        }
+        private void InitVsmdController()
+        {
+            VsmdController.GetVsmdController().Init("COM3", 9600);
         }
 
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
             BoardSettingFrm frm = new BoardSettingFrm();
             frm.ShowDialog();
+        }
+
+        private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            VsmdController.GetVsmdController().Dispose();
         }
     }
 }
