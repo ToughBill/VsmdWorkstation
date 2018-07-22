@@ -20,6 +20,7 @@ namespace VsmdWorkstation
         private VsmdInfo m_axisX = null;
         private VsmdInfo m_axisY = null;
         private VsmdInfo m_axisZ = null;
+        private bool initialized = false;
          
         public bool Init(string port, int baudrate)
         {
@@ -30,9 +31,12 @@ namespace VsmdWorkstation
                 return false;
             }
             m_axisX = m_vsmd.createVsmdInfo(1);
+            m_axisX.enable();
             m_axisY = m_vsmd.createVsmdInfo(2);
+            m_axisY.enable();
             m_axisZ = m_vsmd.createVsmdInfo(3);
-
+            m_axisZ.enable();
+            initialized = true;
             //m_axisX.flgAutoUpdate = false;
             //m_axisX.enable();
             //m_axisX.cfgSpd(128000);
@@ -40,7 +44,10 @@ namespace VsmdWorkstation
 
             return true;
         }
-
+        public bool IsInitialized()
+        {
+            return initialized;
+        }
         public VsmdInfo GetAxis(VsmdAxis axis)
         {
             VsmdInfo ret = null;

@@ -50,6 +50,7 @@
             this.Name = "BoardSettingFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "载物架设置";
+            this.Load += new System.EventHandler(this.BoardSettingFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoardSettingFrm_KeyDown);
             this.ResumeLayout(false);
 

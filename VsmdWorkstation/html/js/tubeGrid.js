@@ -40,8 +40,8 @@ window.TubeGrid = (function () {
 					$row.append($numCell);
                 }
                 for(let j = 0; j < this.columnCount; j++){
-					let posClass = "r" + (i+1) + " c" + (j+1);
-					let titleVal = (i+1) + "," + (j+1);
+					let posClass = "r" + (i + 1) + " c" + (j + 1 + blockNum * this.columnCount);
+					let titleVal = (i + 1) + "," + (j + 1 + blockNum * this.columnCount);
                     let $cell = $("<td><div class = 'grid-cell tube " + posClass + "' title='" + titleVal + "'></div></td>");
 					$row.append($cell);
                 }
@@ -179,6 +179,9 @@ window.TubeGrid = (function () {
                 });
         }
 
+        this.getCell= function (row, col) {
+            return $(".grid-cell" + ".r" + row + ".c" + col);
+        }
         this.render();
     }
 

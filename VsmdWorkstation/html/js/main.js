@@ -58,5 +58,7 @@ $(function () {
 		window.externalObj.Move(JSON.stringify(selectedTubes));
 
     });
-
+    window.moveCallBack = function(row, col) {
+        grid.getCell(row, col).addClass("moveDone");
+    }
 });

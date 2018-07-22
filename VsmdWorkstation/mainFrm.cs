@@ -18,7 +18,7 @@ namespace VsmdWorkstation
     public partial class MainFrm : Form
     {
         private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj = new BridgeObject();
+        private BridgeObject m_externalObj;
         private BoardSettings m_curBoardSettings;
 
         public MainFrm()
@@ -31,11 +31,14 @@ namespace VsmdWorkstation
         {
             InitBoardSettings();
             InitVsmdController();
+            StatusMessage.Init(statusBarEx);
         }
         private void InitBrowser()
         {
             CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            Cef.Initialize(new CefSettings());
+            CefSettings setting = new CefSettings();
+            setting.RemoteDebuggingPort = 7073;
+            Cef.Initialize(setting);
             string url = Application.StartupPath + @"\..\..\..\html\main.html";
             m_browser = new ChromiumWebBrowser(url);
             this.Controls.Add(m_browser);
@@ -43,8 +46,11 @@ namespace VsmdWorkstation
             m_browser.Left = 0;
             m_browser.Width = this.Width;
             m_browser.Top = toolStrip.Bottom;
-            m_browser.Height = statusStrip.Top - toolStrip.Bottom;
+            m_browser.Height = statusBarEx.Top - toolStrip.Bottom;
             m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+
+            m_externalObj = new BridgeObject(m_browser);
+
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
@@ -65,7 +71,11 @@ namespace VsmdWorkstation
         }
         private void InitVsmdController()
         {
-            VsmdController.GetVsmdController().Init("COM3", 9600);
+            bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
+            if (!ret)
+            {
+                statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
+            }
         }
 
         private void tsmBoardSetting_Click(object sender, EventArgs e)
@@ -77,6 +87,11 @@ namespace VsmdWorkstation
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             VsmdController.GetVsmdController().Dispose();
+        }
+
+        private void tsmDevTools_Click(object sender, EventArgs e)
+        {
+            m_browser.ShowDevTools();
         }
     }
 }

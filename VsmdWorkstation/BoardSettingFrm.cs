@@ -17,7 +17,7 @@ namespace VsmdWorkstation
     public partial class BoardSettingFrm : Form
     {
         private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj = new BridgeObject();
+        private BridgeObject m_externalObj;
         Vsmd vsmd = null;
         VsmdInfo axisX = null;
         VsmdInfo axisY = null;
@@ -67,6 +67,11 @@ namespace VsmdWorkstation
                 //MyimpThread.IsBackground = true;
                 //MyimpThread.Start(yourparam);
             }
-        }                                                                                          
+        }
+
+        private void BoardSettingFrm_Load(object sender, EventArgs e)
+        {
+            m_externalObj = new BridgeObject(m_browser);
+        }
     }
 }
