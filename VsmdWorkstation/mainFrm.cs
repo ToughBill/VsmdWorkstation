@@ -30,7 +30,7 @@ namespace VsmdWorkstation
         private void mainFrm_Load(object sender, EventArgs e)
         {
             InitBoardSettings();
-            InitVsmdController();
+            //InitVsmdController();
             StatusBar.Init(statusBarEx);
         }
         private void InitBrowser()
