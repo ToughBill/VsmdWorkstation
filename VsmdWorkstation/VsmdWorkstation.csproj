@@ -167,8 +167,10 @@
     <Content Include="html\js\jquery-1.12.4.js" />
     <Content Include="html\js\jquery-ui.js" />
     <Content Include="html\js\main.js" />
+    <Content Include="html\js\page.js" />
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\main.html" />
+    <Content Include="html\tubeGrid.html" />
     <Content Include="html\vsmdSetting.html" />
     <Content Include="Readme.txt" />
     <Content Include="sdk\VsmdLib.dll" />

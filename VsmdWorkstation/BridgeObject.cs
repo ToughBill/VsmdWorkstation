@@ -87,7 +87,10 @@ namespace VsmdWorkstation
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-
+        public void DomLoaded()
+        {
+            BuildGrid(BoardSettings.GetCurrentBoardSetting());
+        }
         private void BeforeMove()
         {
             CallJS("JsExecutor.beforeMove();");

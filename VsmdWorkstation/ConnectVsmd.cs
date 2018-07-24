@@ -32,10 +32,6 @@ namespace VsmdWorkstation
             {
                 this.IsConnected = true;
                 this.DialogResult = DialogResult.OK;
-            } 
-            else
-            {
-                this.DialogResult = DialogResult.Retry;
             }
 
         }

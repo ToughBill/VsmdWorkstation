@@ -43,13 +43,13 @@ namespace VsmdWorkstation
             Cef.Initialize(setting);
             string url = Application.StartupPath + @"\..\..\..\html\tubeGrid.html";
             m_browser = new ChromiumWebBrowser(url);
-            this.Controls.Add(m_browser);
-
-            m_browser.Left = 0;
-            m_browser.Width = this.Width;
-            m_browser.Top = toolStrip.Bottom;
-            m_browser.Height = statusBarEx.Top - toolStrip.Bottom;
-            m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
+            panelGrid.Controls.Add(m_browser);
+            m_browser.Dock = DockStyle.Fill;
+            //m_browser.Left = 0;
+            //m_browser.Width = this.Width;
+            //m_browser.Top = toolStrip.Bottom;
+            //m_browser.Height = statusBarEx.Top - toolStrip.Bottom;
+            //m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
 
             m_externalObj = new BridgeObject(m_browser);
 
@@ -73,6 +73,7 @@ namespace VsmdWorkstation
             BoardSettings.SetCurrentBoardSetting(m_curBoardSettings);
 
             cmbBoards.Items.Add(m_curBoardSettings.Name);
+            cmbBoards.SelectedIndex = 0;
         }
         private void InitVsmdController()
         {
@@ -84,8 +85,9 @@ namespace VsmdWorkstation
         }
         private void InitTubeGrid()
         {
-            BoardSettings curBoard = BoardSettings.GetCurrentBoardSetting();
-            m_externalObj.BuildGrid(curBoard);
+            //BoardSettings curBoard = BoardSettings.GetCurrentBoardSetting();
+            //System.Threading.Thread.Sleep(2000);
+            //m_externalObj.BuildGrid(curBoard);
         }
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
@@ -116,7 +118,7 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+            m_externalObj.Move("");
         }
     }
 }

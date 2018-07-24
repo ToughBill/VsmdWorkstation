@@ -1,6 +1,6 @@
 $(function () {
 	window.JsExecutor = {
-		buildGrid: function (options) {
+	    buildGrid: function (options) {
 			window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
 		},
 		moveCallBack: function(row, col) {
@@ -16,4 +16,8 @@ $(function () {
 			return window.__grid.getSelectedTubes();
 		}
 	}
+	if (window.externalObj && window.externalObj.DomLoaded) {
+	    window.externalObj.DomLoaded();
+	}
+	
 })
