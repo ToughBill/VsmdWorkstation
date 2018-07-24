@@ -73,5 +73,10 @@ namespace VsmdWorkstation
         {
             m_externalObj = new BridgeObject(m_browser);
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -31,7 +31,9 @@ namespace VsmdWorkstation
         {
             InitBoardSettings();
             //InitVsmdController();
+            
             StatusBar.Init(statusBarEx);
+            InitTubeGrid();
         }
         private void InitBrowser()
         {
@@ -39,7 +41,7 @@ namespace VsmdWorkstation
             CefSettings setting = new CefSettings();
             setting.RemoteDebuggingPort = 7073;
             Cef.Initialize(setting);
-            string url = Application.StartupPath + @"\..\..\..\html\main.html";
+            string url = Application.StartupPath + @"\..\..\..\html\tubeGrid.html";
             m_browser = new ChromiumWebBrowser(url);
             this.Controls.Add(m_browser);
 
@@ -59,6 +61,7 @@ namespace VsmdWorkstation
         private void InitBoardSettings()
         {
             m_curBoardSettings = new BoardSettings();
+            m_curBoardSettings.Name = "3 X 8 X 12";
             m_curBoardSettings.BlockCount = 3;
             m_curBoardSettings.RowCount = 12;
             m_curBoardSettings.ColumnCount = 8;
@@ -68,6 +71,8 @@ namespace VsmdWorkstation
             m_curBoardSettings.TubeDistanceY = 200;
             m_curBoardSettings.TubeDiameter = 200;
             BoardSettings.SetCurrentBoardSetting(m_curBoardSettings);
+
+            cmbBoards.Items.Add(m_curBoardSettings.Name);
         }
         private void InitVsmdController()
         {
@@ -77,7 +82,11 @@ namespace VsmdWorkstation
                 statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
             }
         }
-
+        private void InitTubeGrid()
+        {
+            BoardSettings curBoard = BoardSettings.GetCurrentBoardSetting();
+            m_externalObj.BuildGrid(curBoard);
+        }
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
             BoardSettingFrm frm = new BoardSettingFrm();
@@ -98,6 +107,16 @@ namespace VsmdWorkstation
         {
             VsmdSettingFrm frm = new VsmdSettingFrm();
             frm.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

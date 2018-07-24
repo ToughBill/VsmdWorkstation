@@ -204,6 +204,22 @@ window.TubeGrid = (function () {
             $(".grid-cell.selected").removeClass("selected");
             $(".grid-cell.moveDone").removeClass("moveDone");
         }
+        this.getSelectedTubes = function () {
+			let selectedTubes = [];
+			$.each($(gridEditor.container).find(".grid-cell.selected"), (idx, val) => {
+				let classArr = val.className.split(' ');
+				let obj = {};
+				classArr.forEach((val2, idx2) => {
+					if(val2.match(/^r\d+$/)){
+						obj.row = parseInt(val2.substr(1));
+					} else if(val2.match(/^c\d+$/)){
+						obj.column = parseInt(val2.substr(1));
+					}
+				});
+				selectedTubes.push(obj);
+			});
+			return selectedTubes;
+		}
         this.render();
     }
 
