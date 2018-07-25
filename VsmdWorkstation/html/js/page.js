@@ -14,6 +14,11 @@ $(function () {
 		},
 		getSelectedTubes: function () {
 			return window.__grid.getSelectedTubes();
+		},
+		startDrip: function () {
+		    if (window.externalObj) {
+		        window.externalObj.StartDrip(JSON.stringify(JsExecutor.getSelectedTubes()));
+		    }
 		}
 	}
 	if (window.externalObj && window.externalObj.DomLoaded) {

@@ -19,7 +19,7 @@ namespace VsmdWorkstation
         {
             m_browser = browser;
         }
-        public void Move(string args)
+        public void Move()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();
             if (!vsmdController.IsInitialized())
@@ -27,7 +27,11 @@ namespace VsmdWorkstation
                 StatusBar.DisplayMessage(MessageType.Error, "未初始化控制器！");
                 return;
             }
-            if(m_moveThread != null && m_moveThread.IsAlive)
+            CallJS("JsExecutor.startDrip()");
+        }
+        public void StartDrip(string args)
+        {
+            if (m_moveThread != null && m_moveThread.IsAlive)
             {
                 m_moveThread.Abort();
             }
@@ -51,41 +55,25 @@ namespace VsmdWorkstation
 
             CallJS("JsExecutor.buildGrid(" + opts.ToString() + ");");
         }
-        //public string GetSelectedTubes()
-        //{
-        //    string ret = CallJSWithResult("JsExecutor.getSelectedTubes()");
-        //    MessageBox.Show("call CallJSWithResult ");
-        //    return ret;
-        //}
         private void MoveThread(object args)
         {
-            string jsCode = "JsExecutor.getSelectedTubes()";
-            var task = m_browser.GetBrowser().MainFrame.EvaluateScriptAsync(jsCode);
-            task.ContinueWith(t =>
+            BoardSettings curBoardSetting = BoardSettings.GetCurrentBoardSetting();
+            JArray jsArr = (JArray)JsonConvert.DeserializeObject(args.ToString());
+            BeforeMove();
+            VsmdController vsmdController = VsmdController.GetVsmdController();
+            vsmdController.MoveTo(VsmdAxis.X, 0);
+            vsmdController.MoveTo(VsmdAxis.Y, 0);
+            for (int i = 0; i < jsArr.Count; i++)
             {
-                if (!t.IsFaulted)
-                {
-                    var response = t.Result;
-                    var result = response.Success ? (response.Result ?? "null") : response.Message;
-                    BoardSettings curBoardSetting = BoardSettings.GetCurrentBoardSetting();
-                    JArray jsArr = (JArray)JsonConvert.DeserializeObject(result.ToString());
-                    BeforeMove();
-                    VsmdController vsmdController = VsmdController.GetVsmdController();
-                    vsmdController.MoveTo(VsmdAxis.X, 0);
-                    vsmdController.MoveTo(VsmdAxis.Y, 0);
-                    for (int i = 0; i < jsArr.Count; i++)
-                    {
-                        JObject obj = (JObject)jsArr[i];
-                        int row = int.Parse(obj["row"].ToString());
-                        int col = int.Parse(obj["column"].ToString());
-                        vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                        vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
-                        MoveCallBack(row, col);
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    AfterMove();
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+                JObject obj = (JObject)jsArr[i];
+                int row = int.Parse(obj["row"].ToString());
+                int col = int.Parse(obj["column"].ToString());
+                vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+                vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                MoveCallBack(row, col);
+                System.Threading.Thread.Sleep(1000);
+            }
+            AfterMove();
         }
         public void DomLoaded()
         {
@@ -106,10 +94,6 @@ namespace VsmdWorkstation
         public void CallJS(string jsCode)
         {
             m_browser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(jsCode);
-        }
-        public void CallJSWithResult(string jsCode)
-        {
-            
         }
     }
 }

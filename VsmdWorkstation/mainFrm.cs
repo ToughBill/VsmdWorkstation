@@ -118,7 +118,7 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            m_externalObj.Move("");
+            m_externalObj.Move();
         }
     }
 }
