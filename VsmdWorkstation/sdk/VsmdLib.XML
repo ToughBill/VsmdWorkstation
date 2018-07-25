@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VsmdLib</name>
+    </assembly>
+    <members>
+        <member name="F:VsmdLib.Vsmd.objList">
+            <summary>
+            device list
+            </summary>
+        </member>
+        <member name="F:VsmdLib.Vsmd.retryCnt">
+            <summary>
+            retry counter
+            </summary>
+        </member>
+        <member name="F:VsmdLib.Vsmd.com_port">
+            <summary>
+            serial port object
+            </summary>
+        </member>
+        <member name="M:VsmdLib.Vsmd.openSerailPort(System.String,System.Int32)">
+            <summary>
+            open serail port
+            </summary>
+            <param name="port"></param>
+            <param name="baudrate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.Vsmd.closeSerailPort">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:VsmdLib.Vsmd.serial_port_thread">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:VsmdLib.Vsmd.serialPortSendProcess">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:VsmdLib.Vsmd.serial_port_thread_process(System.Object)">
+            <summary>
+            serial port thread process
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="F:VsmdLib.Vsmd.serial_port_recieve_thread">
+            <summary>
+            serial port recieve thread
+            </summary>
+        </member>
+        <member name="M:VsmdLib.Vsmd.serialPortRecieveProcess">
+            <summary>
+            serial port recieve process
+            </summary>
+        </member>
+        <member name="F:VsmdLib.Vsmd.recieveBuffer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:VsmdLib.Vsmd.parse(System.Byte)">
+            <summary>
+            parse response data
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:VsmdLib.Vsmd.bcc_checksum(System.Byte[])">
+            <summary>
+            bcc check
+            </summary>
+            <param name="res"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.Vsmd.serial_port_recieve_thread_process(System.Object)">
+            <summary>
+            serial port recieve thread process
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:VsmdLib.Vsmd.createVsmdInfo(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="cid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.Vsmd.removeVsmdInfo(VsmdLib.VsmdInfo)">
+            <summary>
+            remove VsmdInfo object
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.cmdList">
+            <summary>
+            command list
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.#ctor(System.Int32)">
+            <summary>
+            constructor
+            </summary>
+            <param name="cid">slave device id</param>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.com_port">
+            <summary>
+            serail port
+            </summary>
+        </member>
+        <member name="P:VsmdLib.VsmdInfo.flgAutoUpdate">
+            <summary>
+            flag for automatically updating (sending command sts)
+            </summary>
+        </member>
+        <member name="P:VsmdLib.VsmdInfo.isOnline">
+            <summary>
+            check device is online
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.addCommand(System.String)">
+            <summary>
+            add command to list
+            </summary>
+            <param name="cmd">command string</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.sendCmdProcess">
+            <summary>
+            send command process from cmdList
+            </summary>
+        </member>
+        <member name="T:VsmdLib.VsmdInfo.TokenValue">
+            <summary>
+            value definition
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.convertFloat(System.Byte[])">
+            <summary>
+            convert a stream data to float
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.convertUint(System.Byte[])">
+            <summary>
+            convert a stream data to uint
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.convertInt(System.Byte[])">
+            <summary>
+            convert a stream data to int
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.parse(System.Byte[])">
+            <summary>
+            parse response
+            </summary>
+            <param name="res">response data</param>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.devInfo">
+            <summary>
+            dev info
+            </summary>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.cur_spd">
+            <summary>
+            current speed
+            </summary>
+        </member>
+        <member name="P:VsmdLib.VsmdInfo.curSpd">
+            <summary>
+            current speed
+            </summary>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.cur_pos">
+            <summary>
+            current position
+            </summary>
+        </member>
+        <member name="P:VsmdLib.VsmdInfo.curPos">
+            <summary>
+            current position
+            </summary>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.cur_status">
+            <summary>
+            current status bits
+            </summary>
+        </member>
+        <member name="P:VsmdLib.VsmdInfo.curStatus">
+            <summary>
+            current status bits
+            </summary>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.bdr">
+            <summary>
+            param baudrate
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgBdr(System.Int32)">
+            <summary>
+            config baudrate
+            </summary>
+            <param name="bdr">baudrate (2400 - 921600)</param>
+        </member>
+        <member name="F:VsmdLib.VsmdInfo.cid">
+            <summary>
+            slave device id
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgCid(System.Int32)">
+            <summary>
+            config slave device id
+            </summary>
+            <param name="cid">slave device id, 0 for vsmd102, (1 - 254) for vsmd103</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgMcs(System.Int32)">
+            <summary>
+            config microstep
+            </summary>
+            <param name="mcs">microstep (0-5)</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgSpd(System.Single)">
+            <summary>
+            config target speed
+            </summary>
+            <param name="spd">target speed (-192000,192000)</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgAcc(System.Single)">
+            <summary>
+            config acceleration
+            </summary>
+            <param name="acc">acceleration (0,19200000)</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgDec(System.Single)">
+            <summary>
+            config deceleration
+            </summary>
+            <param name="dec">deceleration (0,19200000)</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgCur(System.Single,System.Single,System.Single)">
+            <summary>
+            config current
+            </summary>
+            <param name="cra">current in acceleration-state</param>
+            <param name="crn">current in normal-state</param>
+            <param name="crh">current in stop-state</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS1f(System.Int32)">
+            <summary>
+            config s1 falling-edge function
+            </summary>
+            <param name="s1f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS1r(System.Int32)">
+            <summary>
+            config s1 raising-edge function
+            </summary>
+            <param name="s1r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS2f(System.Int32)">
+            <summary>
+            config s2 falling-edge function
+            </summary>
+            <param name="s2f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS2r(System.Int32)">
+            <summary>
+            config s2 raising-edge function
+            </summary>
+            <param name="s2r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS3f(System.Int32)">
+            <summary>
+            config s3 falling-edge function
+            </summary>
+            <param name="s3f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS3r(System.Int32)">
+            <summary>
+            config s3 raising-edge function
+            </summary>
+            <param name="s3r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS4f(System.Int32)">
+            <summary>
+            config s4 falling-edge function
+            </summary>
+            <param name="s4f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS4r(System.Int32)">
+            <summary>
+            config s4 raising-edge function
+            </summary>
+            <param name="s4r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS5f(System.Int32)">
+            <summary>
+            config s5 falling-edge function
+            </summary>
+            <param name="s5f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS5r(System.Int32)">
+            <summary>
+            config s5 raising-edge function
+            </summary>
+            <param name="s5r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS6f(System.Int32)">
+            <summary>
+            config s6 falling-edge function
+            </summary>
+            <param name="s6f"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS6r(System.Int32)">
+            <summary>
+            config s6 raising-edge function
+            </summary>
+            <param name="s6r"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgZero(System.Int32,System.Int32,System.Int32,System.Single,System.Int32)">
+            <summary>
+            config zero parameters
+            </summary>
+            <param name="zmd">zero mode</param>
+            <param name="osv">open-state level</param>
+            <param name="snr">sensor number</param>
+            <param name="zsd">zero speed</param>
+            <param name="zsp">safe position</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.enable">
+            <summary>
+            enable motor
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.disable">
+            <summary>
+            disable motor
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.move">
+            <summary>
+            speed move
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.rmove(System.Int32)">
+            <summary>
+            relative move
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.moveto(System.Int32)">
+            <summary>
+            position move
+            </summary>
+            <param name="pos"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.stop(System.Int32)">
+            <summary>
+            stop
+            </summary>
+            <param name="mode"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.org">
+            <summary>
+            set current position as 0 position
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S3On">
+            <summary>
+            s3 on (high level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S3Off">
+            <summary>
+            s3 off (low level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S4On">
+            <summary>
+            s4 on (high level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S4Off">
+            <summary>
+            s4 off (low level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S5On">
+            <summary>
+            s5 on (high level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S5Off">
+            <summary>
+            s5 off (low level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S6On">
+            <summary>
+            s6 on (high level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.S6Off">
+            <summary>
+            s6 off (low level)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.pps(System.Int32)">
+            <summary>
+            pre-position (set position)
+            </summary>
+            <param name="pos"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.pps">
+            <summary>
+            pre-position (moveto position)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.sts">
+            <summary>
+            get status (speed, position, status bits)
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.zeroStart">
+            <summary>
+            start zero function
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.zeroStop">
+            <summary>
+            stop zero function
+            </summary>
+        </member>
+        <member name="F:VsmdLib.VsmdTimer.lastTick">
+            <summary>
+            for internal timer.
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="us"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.start(System.Int64)">
+            <summary>
+            start a timer
+            </summary>
+            <param name="us"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.restart">
+            <summary>
+            restart timer using last interval
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.wait(System.Int64)">
+            <summary>
+            wait for timeout
+            </summary>
+            <param name="us"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.stop">
+            <summary>
+            stop timer.
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdTimer.isTimeout">
+            <summary>
+            check timeout
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

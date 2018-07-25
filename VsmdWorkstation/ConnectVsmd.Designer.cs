@@ -47,6 +47,7 @@
             // 
             // cmbPort
             // 
+            this.cmbPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPort.FormattingEnabled = true;
             this.cmbPort.Location = new System.Drawing.Point(87, 29);
             this.cmbPort.Name = "cmbPort";
@@ -64,6 +65,7 @@
             // 
             // cmbBaudrate
             // 
+            this.cmbBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBaudrate.FormattingEnabled = true;
             this.cmbBaudrate.Items.AddRange(new object[] {
             "2400",

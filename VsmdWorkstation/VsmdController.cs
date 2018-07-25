@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using VsmdLib;
@@ -14,6 +15,7 @@ namespace VsmdWorkstation
         Y,
         Z
     }
+    public delegate void VsmdInitCallback(bool isOnline,List<string> errAxis);
     public class VsmdController
     {
         private Vsmd m_vsmd = null;
@@ -22,7 +24,7 @@ namespace VsmdWorkstation
         private VsmdInfo m_axisZ = null;
         private bool initialized = false;
          
-        public bool Init(string port, int baudrate)
+        public bool Init(string port, int baudrate, VsmdInitCallback callback = null)
         {
             m_vsmd = new Vsmd();
             bool ret = m_vsmd.openSerailPort(port, baudrate);
@@ -32,11 +34,44 @@ namespace VsmdWorkstation
             }
             m_axisX = m_vsmd.createVsmdInfo(1);
             m_axisX.enable();
+            m_axisX.flgAutoUpdate = true;
+
             m_axisY = m_vsmd.createVsmdInfo(2);
             m_axisY.enable();
+            m_axisY.flgAutoUpdate = true;
+
             m_axisZ = m_vsmd.createVsmdInfo(3);
             m_axisZ.enable();
-            initialized = true;
+            m_axisZ.flgAutoUpdate = true;
+
+            Thread thread = new Thread(() => {
+                Thread.Sleep(1500);
+                List<string> errAxis = new List<string>();
+                if (!m_axisX.isOnline)
+                {
+                    errAxis.Add("X");
+                }
+                if (!m_axisY.isOnline)
+                {
+                    errAxis.Add("Y");
+                }
+                if (!m_axisZ.isOnline)
+                {
+                    errAxis.Add("Z");
+                }
+                initialized = (errAxis.Count == 0);
+                
+                
+                if (callback != null)
+                {
+                    callback(initialized, errAxis);
+                }
+            });
+            thread.Start();
+
+            
+
+
             //m_axisX.flgAutoUpdate = false;
             //m_axisX.enable();
             //m_axisX.cfgSpd(128000);
