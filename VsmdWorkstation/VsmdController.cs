@@ -15,6 +15,11 @@ namespace VsmdWorkstation
         Y,
         Z
     }
+    public class InitResult
+    {
+        public bool IsSuccess;
+        public string ErrorMsg;
+    }
     public delegate void VsmdInitCallback(bool isOnline,List<string> errAxis);
     public class VsmdController
     {
@@ -22,16 +27,17 @@ namespace VsmdWorkstation
         private VsmdInfo m_axisX = null;
         private VsmdInfo m_axisY = null;
         private VsmdInfo m_axisZ = null;
-        private bool initialized = false;
+        private bool m_initialized = false;
          
-        public bool Init(string port, int baudrate, VsmdInitCallback callback = null)
+        public async Task<InitResult> Init(string port, int baudrate)
         {
             m_vsmd = new Vsmd();
             bool ret = m_vsmd.openSerailPort(port, baudrate);
             if (!ret)
             {
-                return false;
+                return new InitResult() { ErrorMsg="打开串口失败!", IsSuccess = false };
             }
+
             m_axisX = m_vsmd.createVsmdInfo(1);
             m_axisX.enable();
             m_axisX.flgAutoUpdate = true;
@@ -44,9 +50,12 @@ namespace VsmdWorkstation
             m_axisZ.enable();
             m_axisZ.flgAutoUpdate = true;
 
-            Thread thread = new Thread(() => {
-                Thread.Sleep(1500);
-                List<string> errAxis = new List<string>();
+            int tryCount = 3;
+            List<string> errAxis = new List<string>();
+            while (tryCount > 0)
+            {
+                await Task.Delay(1000);
+                errAxis.Clear();
                 if (!m_axisX.isOnline)
                 {
                     errAxis.Add("X");
@@ -59,29 +68,44 @@ namespace VsmdWorkstation
                 {
                     errAxis.Add("Z");
                 }
-                initialized = (errAxis.Count == 0);
-                
-                
-                if (callback != null)
+                if(errAxis.Count > 0)
                 {
-                    callback(initialized, errAxis);
+                    tryCount--;
+                    continue;
                 }
-            });
-            thread.Start();
-
-            
-
+                else
+                {
+                    m_initialized = true;
+                    break;
+                }
+            }
+            string errMsg = "";
+            if(errAxis.Count > 0)
+            {
+                errMsg = "驱动器 ";
+                for (int i = 0; i < errAxis.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        errMsg += ", ";
+                    }
+                    errMsg += errAxis[i];
+                }
+                errMsg += "连接失败！";
+            }
+            m_vsmd.closeSerailPort();
+            m_vsmd = null;
+            return new InitResult() { IsSuccess = m_initialized, ErrorMsg = errMsg };
 
             //m_axisX.flgAutoUpdate = false;
             //m_axisX.enable();
             //m_axisX.cfgSpd(128000);
             //m_axisX.cfgCur(1.6f, 1.4f, 0.8f);
-
-            return true;
+            
         }
         public bool IsInitialized()
         {
-            return initialized;
+            return m_initialized;
         }
         public VsmdInfo GetAxis(VsmdAxis axis)
         {
@@ -103,6 +127,10 @@ namespace VsmdWorkstation
             return ret;
         }
 
+        public float GetSpeed(VsmdAxis axis)
+        {
+            return GetAxis(axis).curSpd;
+        }
         public void SetSpeed(VsmdAxis axis, float speed)
         {
             GetAxis(axis).cfgSpd(speed);
@@ -116,10 +144,35 @@ namespace VsmdWorkstation
         {
             GetAxis(axis).moveto(pos);
         }
-        public void MoveTo(int xpox, int ypox)
+        public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
-            GetAxis(VsmdAxis.X).moveto(xpox);
-            GetAxis(VsmdAxis.Y).moveto(ypox);
+            VsmdInfo vsmdAxis = GetAxis(axis);
+            vsmdAxis.moveto(pos);
+            int tryCount = 0;
+            while(tryCount < 50)
+            {
+                await Task.Delay(20);
+                if(vsmdAxis.curPos == pos)
+                {
+                    break;
+                }
+                tryCount++;
+            }
+            if(tryCount >= 50)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public async void MoveTo(int xpox, int ypox)
+        {
+            await MoveToSync(VsmdAxis.X, xpox);
+            await MoveToSync(VsmdAxis.Y, ypox);
+            //GetAxis(VsmdAxis.X).moveto(xpox);
+            //GetAxis(VsmdAxis.Y).moveto(ypox);
         }
         public void Dispose()
         {

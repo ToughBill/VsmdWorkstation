@@ -16,46 +16,20 @@ namespace VsmdWorkstation
 {
     public partial class BoardSettingFrm : Form
     {
-        private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj;
-        Vsmd vsmd = null;
-        VsmdInfo axisX = null;
-        VsmdInfo axisY = null;
-        VsmdInfo axisZ = null;
-
         public BoardSettingFrm()
         {
             InitializeComponent();
-            InitBrowser();
-        }
-
-        private void InitBrowser()
-        {
-            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            //Cef.Initialize(new CefSettings());
-            string url = Application.StartupPath + @"\..\..\..\html\boardSetting.html";
-            m_browser = new ChromiumWebBrowser(url);
-            this.Controls.Add(m_browser);
-            m_browser.Dock = DockStyle.Fill;
-            //m_browser.Left = 0;
-            //m_browser.Width = this.Width;
-            //m_browser.Top = toolStrip.Bottom;
-            //m_browser.Height = statusStrip.Top - toolStrip.Bottom;
-            //m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-            BindingOptions opt = new BindingOptions();
-            opt.CamelCaseJavascriptNames = false;
-            m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
         }
 
         private void btnMove_Click(object sender, EventArgs e)
         {
-            vsmd = new Vsmd();
-            axisX = vsmd.createVsmdInfo(1);
-            bool ret = vsmd.openSerailPort("COM3", 9600);
-            axisX.flgAutoUpdate = false;
-            axisX.enable();
-            axisX.cfgSpd(128000);
-            axisX.cfgCur(1.6f, 1.4f, 0.8f);
+            //vsmd = new Vsmd();
+            //axisX = vsmd.createVsmdInfo(1);
+            //bool ret = vsmd.openSerailPort("COM3", 9600);
+            //axisX.flgAutoUpdate = false;
+            //axisX.enable();
+            //axisX.cfgSpd(128000);
+            //axisX.cfgCur(1.6f, 1.4f, 0.8f);
         }
 
         private void BoardSettingFrm_KeyDown(object sender, KeyEventArgs e)
@@ -71,12 +45,46 @@ namespace VsmdWorkstation
 
         private void BoardSettingFrm_Load(object sender, EventArgs e)
         {
-            m_externalObj = new BridgeObject(m_browser);
+            
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             
+        }
+        private BoardSetting GetTempBoardSetting()
+        {
+            BoardSetting temp = new BoardSetting();
+            temp.Name = txtName.Text.Trim();
+            temp.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
+            temp.RowCount = int.Parse(txtRowCnt.Text.Trim());
+            temp.ColumnCount = int.Parse(txtColCnt.Text.Trim());
+
+            return temp;
+        }
+        private void btnSetFX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtFirstTubePosX, VsmdAxis.X);
+        }
+        private void btnSetFY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtFirstTubePosY, VsmdAxis.Y);
+        }
+        private void btnSetTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtTubeDistX, VsmdAxis.X);
+        }
+        private void btnSetTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtTubeDistY, VsmdAxis.Y);
+        }
+        private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
+        {
+            SetTubePosiion frm = new SetTubePosiion(axisType, GetTempBoardSetting());
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                textbox.Text = frm.PositionVal.ToString();
+            }
         }
     }
 }

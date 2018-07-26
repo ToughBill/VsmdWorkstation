@@ -11,8 +11,10 @@ using System.Windows.Forms;
 
 namespace VsmdWorkstation
 {
+    public delegate void GridPageDomLoaded();
     public class BridgeObject
     {
+        public event GridPageDomLoaded onGridPageDomLoaded = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
         public BridgeObject(ChromiumWebBrowser browser)
@@ -46,7 +48,7 @@ namespace VsmdWorkstation
                 AfterMove();
             }
         }
-        public void BuildGrid(BoardSettings board)
+        public void BuildGrid(BoardSetting board)
         {
             JObject opts = new JObject();
             opts.Add("blockCount", board.BlockCount);
@@ -55,29 +57,34 @@ namespace VsmdWorkstation
 
             CallJS("JsExecutor.buildGrid(" + opts.ToString() + ");");
         }
-        private void MoveThread(object args)
+        private async void MoveThread(object args)
         {
-            BoardSettings curBoardSetting = BoardSettings.GetCurrentBoardSetting();
+            BoardSetting curBoardSetting = BoardSetting.GetCurrentBoardSetting();
             JArray jsArr = (JArray)JsonConvert.DeserializeObject(args.ToString());
             BeforeMove();
             VsmdController vsmdController = VsmdController.GetVsmdController();
-            vsmdController.MoveTo(VsmdAxis.X, 0);
-            vsmdController.MoveTo(VsmdAxis.Y, 0);
+            await vsmdController.MoveToSync(VsmdAxis.X, 0);
+            await vsmdController.MoveToSync(VsmdAxis.Y, 0);
             for (int i = 0; i < jsArr.Count; i++)
             {
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
-                vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+                await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
                 MoveCallBack(row, col);
                 System.Threading.Thread.Sleep(1000);
+                //await Task.Delay(1000);
             }
             AfterMove();
         }
         public void DomLoaded()
         {
-            BuildGrid(BoardSettings.GetCurrentBoardSetting());
+            if(onGridPageDomLoaded != null)
+            {
+                onGridPageDomLoaded();
+            }
+            //BuildGrid(BoardSettings.GetCurrentBoardSetting());
         }
         private void BeforeMove()
         {

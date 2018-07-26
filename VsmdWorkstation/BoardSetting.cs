@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VsmdWorkstation
 {
-    public class BoardSettings
+    public class BoardSetting
     {
         public string Name { get; set; }
         public int BlockCount { get; set; }
@@ -55,13 +59,30 @@ namespace VsmdWorkstation
             }
             return fpox;
         }
+        public void LoadBoardSettings()
+        {
+            string configFile = Application.StartupPath + "\\boardSettings.json";
+            if (!File.Exists(configFile))
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "载物架配置文件未找到，请重新配置载物架信息！");
+                return;
+            }
+            string str = File.ReadAllText(configFile);
+            if (string.IsNullOrWhiteSpace(str.Trim()))
+            {
+                StatusBar.DisplayMessage(MessageType.Warming, "载物架配置文件为空！");
+                return;
+            }
+            JArray jsArr = (JArray)JsonConvert.DeserializeObject(str);
 
-        private static BoardSettings m_curBoardSetting = null;
-        public static void SetCurrentBoardSetting(BoardSettings setting)
+        }
+
+        private static BoardSetting m_curBoardSetting = null;
+        public static void SetCurrentBoardSetting(BoardSetting setting)
         {
             m_curBoardSetting = setting;
         }
-        public static BoardSettings GetCurrentBoardSetting()
+        public static BoardSetting GetCurrentBoardSetting()
         {
             return m_curBoardSetting;
         }

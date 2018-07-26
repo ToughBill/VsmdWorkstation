@@ -19,7 +19,7 @@ namespace VsmdWorkstation
     {
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
-        private BoardSettings m_curBoardSettings;
+        private BoardSetting m_curBoardSettings;
 
         public MainFrm()
         {
@@ -52,7 +52,7 @@ namespace VsmdWorkstation
             //m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
 
             m_externalObj = new BridgeObject(m_browser);
-
+            m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
@@ -60,7 +60,7 @@ namespace VsmdWorkstation
 
         private void InitBoardSettings()
         {
-            m_curBoardSettings = new BoardSettings();
+            m_curBoardSettings = new BoardSetting();
             m_curBoardSettings.Name = "3 X 8 X 12";
             m_curBoardSettings.BlockCount = 3;
             m_curBoardSettings.RowCount = 12;
@@ -70,18 +70,22 @@ namespace VsmdWorkstation
             m_curBoardSettings.TubeDistanceX = 200;
             m_curBoardSettings.TubeDistanceY = 200;
             m_curBoardSettings.TubeDiameter = 200;
-            BoardSettings.SetCurrentBoardSetting(m_curBoardSettings);
+            BoardSetting.SetCurrentBoardSetting(m_curBoardSettings);
 
             cmbBoards.Items.Add(m_curBoardSettings.Name);
             cmbBoards.SelectedIndex = 0;
         }
         private void InitVsmdController()
         {
-            bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
-            if (!ret)
-            {
-                statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
-            }
+            //bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
+            //if (!ret)
+            //{
+            //    statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
+            //}
+        }
+        private void OnGridPageDomLoaded()
+        {
+            m_externalObj.BuildGrid(BoardSetting.GetCurrentBoardSetting());
         }
         private void InitTubeGrid()
         {

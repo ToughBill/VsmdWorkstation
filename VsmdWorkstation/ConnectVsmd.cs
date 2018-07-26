@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using VsmdLib;
 
 namespace VsmdWorkstation
 {
@@ -26,36 +27,23 @@ namespace VsmdWorkstation
             cmbBaudrate.SelectedIndex = 2;
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
-            if(!VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()), VsmdInitCB))
-            {
-                MessageBox.Show("打开串口失败", "连接控制器", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //this.DialogResult = DialogResult.No;
-            }
-        }
-        private void VsmdInitCB(bool isOnline, List<string> errAxis)
-        {
-            if (isOnline)
+            //Vsmd m_vsmd = new Vsmd();
+            //bool ret = m_vsmd.openSerailPort("COM1", 9600);
+            //m_vsmd.closeSerailPort();
+            //Vsmd m_vsmd2 = new Vsmd();
+            //m_vsmd2.openSerailPort("COM1", 9600);
+            InitResult initRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
+            if (initRet.IsSuccess)
             {
                 this.IsConnected = true;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else if(errAxis.Count > 0)
+            else
             {
-                string errMsg = "驱动器 ";
-                for(int i = 0; i < errAxis.Count; i++)
-                {
-                    if(i > 0)
-                    {
-                        errMsg += ", ";
-                    }
-                    errMsg += errAxis[i];
-                }
-                errMsg += "连接失败！";
-                MessageBox.Show(errMsg, "连接控制器", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //this.DialogResult = DialogResult.No;
+                MessageBox.Show(initRet.ErrorMsg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
