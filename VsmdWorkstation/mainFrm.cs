@@ -72,6 +72,7 @@ namespace VsmdWorkstation
             newBoard.TubeDistanceY = 200;
             newBoard.TubeDiameter = 200;
             BoardSetting.GetInstance().AddNewBoard(newBoard);
+            BoardSetting.GetInstance().CurrentBoard = newBoard;
 
             cmbBoards.Items.Add(newBoard.Name);
             cmbBoards.SelectedIndex = 0;

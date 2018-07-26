@@ -21,7 +21,7 @@ namespace VsmdWorkstation
     }
     public partial class SetTubePosiion : Form
     {
-        private const float MOVE_SPEED = 200.0f;
+        private const float MOVE_SPEED = 500.0f;
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
         private VsmdAxis m_axisType;
@@ -51,6 +51,11 @@ namespace VsmdWorkstation
         private void SetTubePosiion_Load(object sender, EventArgs e)
         {
             m_preAxisSpeed = VsmdController.GetVsmdController().GetSpeed(m_axisType);
+            if(m_axisType == VsmdAxis.X)
+            {
+                lblTip.Text = "请通过键盘上\"←\"和、\"→\"来操作。";
+            }
+            this.KeyPreview = true;
         }
         private void OnGridPageDomLoaded()
         {
@@ -90,6 +95,36 @@ namespace VsmdWorkstation
 
         private void SetTubePosiion_KeyUp(object sender, KeyEventArgs e)
         {
+            if(e.KeyCode == Keys.Left ||
+                e.KeyCode == Keys.Right ||
+                e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Down)
+            if (m_axisType == VsmdAxis.X)
+            {
+                VsmdController.GetVsmdController().Stop(m_axisType);
+            }
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            //switch (keyData)
+            //{
+            //    case Keys.Tab:
+            //        label1.Text = "1";
+            //        break;
+            //    case Keys.Left:
+            //        label1.Text = "2";
+            //        break;
+            //    case Keys.Right:
+            //        label1.Text = "3";
+
+            //        break;
+            //}
+            if (keyData == Keys.Up || keyData == Keys.Down ||
+                keyData == Keys.Left || keyData == Keys.Right)
+                return false;
+            else
+                return base.ProcessDialogKey(keyData);
 
         }
 
@@ -98,8 +133,19 @@ namespace VsmdWorkstation
             if (String.IsNullOrWhiteSpace(txtCurPos.Text.Trim()))
             {
                 MessageBox.Show("值不能为空！", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             PositionVal = float.Parse(txtCurPos.Text);
+        }
+
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            VsmdController.GetVsmdController().ZeroStart(m_axisType);
+        }
+
+        private void btnZeroStop_Click(object sender, EventArgs e)
+        {
+            VsmdController.GetVsmdController().ZeroStop(m_axisType);
         }
     }
 }

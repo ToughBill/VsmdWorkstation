@@ -106,6 +106,10 @@ namespace VsmdWorkstation
         }
         public static BoardSetting GetInstance()
         {
+            if(m_curBoardSetting == null)
+            {
+                m_curBoardSetting = new BoardSetting();
+            }
             return m_curBoardSetting;
         }
     }

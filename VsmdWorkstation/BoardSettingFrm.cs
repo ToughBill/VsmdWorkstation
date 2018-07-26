@@ -64,10 +64,20 @@ namespace VsmdWorkstation
             temp.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
             temp.RowCount = int.Parse(txtRowCnt.Text.Trim());
             temp.ColumnCount = int.Parse(txtColCnt.Text.Trim());
-            temp.FirstTubeX = int.Parse(txtFirstTubePosX.Text.Trim());
-            temp.FirstTubeY = int.Parse(txtFirstTubePosY.Text.Trim());
-            temp.TubeDistanceX = int.Parse(txtTubeDistX.Text.Trim());
-            temp.TubeDistanceY = int.Parse(txtTubeDistY.Text.Trim());
+            int val = 0;
+            int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
+            temp.FirstTubeX = val;
+
+            val = 0;
+            int.TryParse(txtFirstTubePosY.Text.Trim(), out val);
+        
+            val = 0;
+            int.TryParse(txtTubeDistX.Text.Trim(), out val);
+            temp.TubeDistanceX = val;
+
+            val = 0;
+            int.TryParse(txtTubeDistY.Text.Trim(), out val);
+            temp.TubeDistanceX = val;
 
             return temp;
         }

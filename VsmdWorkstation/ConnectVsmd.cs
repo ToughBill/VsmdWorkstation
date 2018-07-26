@@ -46,5 +46,10 @@ namespace VsmdWorkstation
                 MessageBox.Show(initRet.ErrorMsg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

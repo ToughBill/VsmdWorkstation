@@ -65,6 +65,7 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             await vsmdController.MoveToSync(VsmdAxis.X, 0);
             await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+
             for (int i = 0; i < jsArr.Count; i++)
             {
                 JObject obj = (JObject)jsArr[i];

@@ -93,8 +93,12 @@ namespace VsmdWorkstation
                 }
                 errMsg += "连接失败！";
             }
-            m_vsmd.closeSerailPort();
-            m_vsmd = null;
+            if (!m_initialized)
+            {
+                m_vsmd.closeSerailPort();
+                m_vsmd = null;
+            }
+            
             return new InitResult() { IsSuccess = m_initialized, ErrorMsg = errMsg };
 
             //m_axisX.flgAutoUpdate = false;
@@ -140,16 +144,28 @@ namespace VsmdWorkstation
         {
             GetAxis(axis).move();
         }
+        public void Stop(VsmdAxis axis)
+        {
+            GetAxis(axis).stop((int)GetAxis(axis).curSpd);
+        }
         public void MoveTo(VsmdAxis axis, int pos)
         {
             GetAxis(axis).moveto(pos);
+        }
+        public void ZeroStart(VsmdAxis axis)
+        {
+            GetAxis(axis).zeroStart();
+        }
+        public void ZeroStop(VsmdAxis axis)
+        {
+            GetAxis(axis).zeroStop();
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
             VsmdInfo vsmdAxis = GetAxis(axis);
             vsmdAxis.moveto(pos);
             int tryCount = 0;
-            while(tryCount < 50)
+            while(tryCount < 3)
             {
                 await Task.Delay(20);
                 if(vsmdAxis.curPos == pos)
