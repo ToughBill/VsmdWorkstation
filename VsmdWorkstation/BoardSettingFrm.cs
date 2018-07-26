@@ -1,10 +1,12 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -50,15 +52,22 @@ namespace VsmdWorkstation
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            BoardMeta meta = GetTempBoardSetting();
             
+            BoardSetting.GetInstance().AddNewBoard(meta);
+            BoardSetting.GetInstance().Save();
         }
-        private BoardSetting GetTempBoardSetting()
+        private BoardMeta GetTempBoardSetting()
         {
-            BoardSetting temp = new BoardSetting();
+            BoardMeta temp = new BoardMeta();
             temp.Name = txtName.Text.Trim();
             temp.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
             temp.RowCount = int.Parse(txtRowCnt.Text.Trim());
             temp.ColumnCount = int.Parse(txtColCnt.Text.Trim());
+            temp.FirstTubeX = int.Parse(txtFirstTubePosX.Text.Trim());
+            temp.FirstTubeY = int.Parse(txtFirstTubePosY.Text.Trim());
+            temp.TubeDistanceX = int.Parse(txtTubeDistX.Text.Trim());
+            temp.TubeDistanceY = int.Parse(txtTubeDistY.Text.Trim());
 
             return temp;
         }

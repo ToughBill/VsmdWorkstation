@@ -60,19 +60,20 @@ namespace VsmdWorkstation
 
         private void InitBoardSettings()
         {
-            m_curBoardSettings = new BoardSetting();
-            m_curBoardSettings.Name = "3 X 8 X 12";
-            m_curBoardSettings.BlockCount = 3;
-            m_curBoardSettings.RowCount = 12;
-            m_curBoardSettings.ColumnCount = 8;
-            m_curBoardSettings.FirstTubeX = 300;
-            m_curBoardSettings.FirstTubeY = 300;
-            m_curBoardSettings.TubeDistanceX = 200;
-            m_curBoardSettings.TubeDistanceY = 200;
-            m_curBoardSettings.TubeDiameter = 200;
-            BoardSetting.SetCurrentBoardSetting(m_curBoardSettings);
+            BoardMeta newBoard = new BoardMeta();
+            newBoard = new BoardMeta();
+            newBoard.Name = "3 X 8 X 12";
+            newBoard.BlockCount = 3;
+            newBoard.RowCount = 12;
+            newBoard.ColumnCount = 8;
+            newBoard.FirstTubeX = 300;
+            newBoard.FirstTubeY = 300;
+            newBoard.TubeDistanceX = 200;
+            newBoard.TubeDistanceY = 200;
+            newBoard.TubeDiameter = 200;
+            BoardSetting.GetInstance().AddNewBoard(newBoard);
 
-            cmbBoards.Items.Add(m_curBoardSettings.Name);
+            cmbBoards.Items.Add(newBoard.Name);
             cmbBoards.SelectedIndex = 0;
         }
         private void InitVsmdController()
@@ -85,7 +86,7 @@ namespace VsmdWorkstation
         }
         private void OnGridPageDomLoaded()
         {
-            m_externalObj.BuildGrid(BoardSetting.GetCurrentBoardSetting());
+            m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
         }
         private void InitTubeGrid()
         {

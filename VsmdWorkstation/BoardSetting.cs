@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VsmdWorkstation
 {
-    public class BoardSetting
+    public class BoardMeta
     {
         public string Name { get; set; }
         public int BlockCount { get; set; }
@@ -40,6 +40,11 @@ namespace VsmdWorkstation
         /// 圆孔直径
         /// </summary>
         public int TubeDiameter { get; set; }
+    }
+    public class BoardSetting
+    {
+        private List<BoardMeta> m_boardSettings = new List<BoardMeta>();
+        public BoardMeta CurrentBoard { get; set; }
 
         public int Convert2PhysicalPos(VsmdAxis axis, int coord)
         {
@@ -47,21 +52,25 @@ namespace VsmdWorkstation
             switch (axis)
             {
                 case VsmdAxis.X:
-                    int blockIdx = (coord - 1) / ColumnCount;
-                    fpox = FirstTubeX + BlockDistanceX * blockIdx + TubeDistanceX * (blockIdx * (ColumnCount - 1) + (coord - 1) % ColumnCount);
+                    int blockIdx = (coord - 1) / CurrentBoard.ColumnCount;
+                    fpox = CurrentBoard.FirstTubeX + CurrentBoard.BlockDistanceX * blockIdx + CurrentBoard.TubeDistanceX * (blockIdx * (CurrentBoard.ColumnCount - 1) + (coord - 1) % CurrentBoard.ColumnCount);
                     //fpox = FirstTubeX + (coord - 1) * TubeDistanceX;
                     break;
                 case VsmdAxis.Y:
-                    fpox = FirstTubeY + (coord - 1) * TubeDistanceY;
+                    fpox = CurrentBoard.FirstTubeY + (coord - 1) * CurrentBoard.TubeDistanceY;
                     break;
                 default:
                     break;
             }
             return fpox;
         }
+        public string GetBoardMetaFilePath()
+        {
+            return Application.StartupPath + "\\boardSettings.json";
+        }
         public void LoadBoardSettings()
         {
-            string configFile = Application.StartupPath + "\\boardSettings.json";
+            string configFile = GetBoardMetaFilePath();
             if (!File.Exists(configFile))
             {
                 StatusBar.DisplayMessage(MessageType.Error, "载物架配置文件未找到，请重新配置载物架信息！");
@@ -73,16 +82,29 @@ namespace VsmdWorkstation
                 StatusBar.DisplayMessage(MessageType.Warming, "载物架配置文件为空！");
                 return;
             }
-            JArray jsArr = (JArray)JsonConvert.DeserializeObject(str);
-
+            m_boardSettings = JsonConvert.DeserializeObject<List<BoardMeta>>(str);
         }
-
+        public void AddNewBoard(BoardMeta board)
+        {
+            m_boardSettings.Add(board);
+        }
+        public void Save()
+        {
+            string configFile = GetBoardMetaFilePath();
+            if (File.Exists(configFile))
+            {
+                File.Delete(configFile);
+            }
+            File.Create(configFile);
+            string str = JsonConvert.SerializeObject(m_boardSettings);
+            File.WriteAllText(configFile, str);
+        }
         private static BoardSetting m_curBoardSetting = null;
         public static void SetCurrentBoardSetting(BoardSetting setting)
         {
             m_curBoardSetting = setting;
         }
-        public static BoardSetting GetCurrentBoardSetting()
+        public static BoardSetting GetInstance()
         {
             return m_curBoardSetting;
         }

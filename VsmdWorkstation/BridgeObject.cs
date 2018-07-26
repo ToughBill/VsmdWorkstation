@@ -48,7 +48,7 @@ namespace VsmdWorkstation
                 AfterMove();
             }
         }
-        public void BuildGrid(BoardSetting board)
+        public void BuildGrid(BoardMeta board)
         {
             JObject opts = new JObject();
             opts.Add("blockCount", board.BlockCount);
@@ -59,7 +59,7 @@ namespace VsmdWorkstation
         }
         private async void MoveThread(object args)
         {
-            BoardSetting curBoardSetting = BoardSetting.GetCurrentBoardSetting();
+            BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = (JArray)JsonConvert.DeserializeObject(args.ToString());
             BeforeMove();
             VsmdController vsmdController = VsmdController.GetVsmdController();

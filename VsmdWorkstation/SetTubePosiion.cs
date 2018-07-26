@@ -25,10 +25,10 @@ namespace VsmdWorkstation
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
         private VsmdAxis m_axisType;
-        private BoardSetting m_boardSetting;
+        private BoardMeta m_boardSetting;
         private float m_preAxisSpeed;
         public float PositionVal { get; set; }
-        public SetTubePosiion(VsmdAxis type, BoardSetting boardSetting)
+        public SetTubePosiion(VsmdAxis type, BoardMeta boardSetting)
         {
             InitializeComponent();
             m_axisType = type;
