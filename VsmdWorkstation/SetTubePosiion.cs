@@ -55,6 +55,10 @@ namespace VsmdWorkstation
             {
                 lblTip.Text = "请通过键盘上\"←\"和、\"→\"来操作。";
             }
+            else if(m_axisType == VsmdAxis.Y)
+            {
+                lblTip.Text = "请通过键盘上\"↑\"和、\"↓\"来操作。";
+            }
             this.KeyPreview = true;
         }
         private void OnGridPageDomLoaded()
@@ -102,6 +106,7 @@ namespace VsmdWorkstation
             if (m_axisType == VsmdAxis.X)
             {
                 VsmdController.GetVsmdController().Stop(m_axisType);
+                txtCurPos.Text = VsmdController.GetVsmdController().GetAxis(m_axisType).curPos.ToString();
             }
         }
 

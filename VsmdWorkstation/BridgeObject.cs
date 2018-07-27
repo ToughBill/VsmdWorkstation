@@ -48,6 +48,10 @@ namespace VsmdWorkstation
                 AfterMove();
             }
         }
+        public void PauseMove()
+        {
+
+        }
         public void BuildGrid(BoardMeta board)
         {
             JObject opts = new JObject();

@@ -126,5 +126,15 @@ namespace VsmdWorkstation
         {
             m_externalObj.Move();
         }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            m_externalObj.StopMove();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
