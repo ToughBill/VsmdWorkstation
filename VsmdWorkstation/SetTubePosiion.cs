@@ -27,6 +27,7 @@ namespace VsmdWorkstation
         private VsmdAxis m_axisType;
         private BoardMeta m_boardSetting;
         private float m_preAxisSpeed;
+        private bool m_inMoving;
         public float PositionVal { get; set; }
         public SetTubePosiion(VsmdAxis type, BoardMeta boardSetting)
         {
@@ -34,6 +35,7 @@ namespace VsmdWorkstation
             m_axisType = type;
             m_boardSetting = boardSetting;
             InitBrowser();
+            m_inMoving = false;
         }
         private void InitBrowser()
         {
@@ -67,6 +69,10 @@ namespace VsmdWorkstation
         }
         private void SetTubePosiion_KeyDown(object sender, KeyEventArgs e)
         {
+            if (m_inMoving)
+            {
+                return;
+            }
             if(m_axisType == VsmdAxis.X)
             {
                 if (e.KeyCode == Keys.Right)

@@ -34,6 +34,13 @@ namespace VsmdWorkstation
             //m_vsmd.closeSerailPort();
             //Vsmd m_vsmd2 = new Vsmd();
             //m_vsmd2.openSerailPort("COM1", 9600);
+            MaskLayer layer = new MaskLayer();
+            layer.Left = 0;
+            layer.Top = 0;
+            layer.Width = this.Width;
+            layer.Height = this.Height;
+            this.Controls.Add(layer);
+            layer.BringToFront();
             InitResult initRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
             if (initRet.IsSuccess)
             {
@@ -43,6 +50,9 @@ namespace VsmdWorkstation
             }
             else
             {
+                this.Controls.Remove(layer);
+                layer.Dispose();
+                layer = null;
                 MessageBox.Show(initRet.ErrorMsg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

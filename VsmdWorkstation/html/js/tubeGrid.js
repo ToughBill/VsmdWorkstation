@@ -206,7 +206,7 @@ window.TubeGrid = (function () {
         }
         this.getSelectedTubes = function () {
 			let selectedTubes = [];
-			$.each($(gridEditor.container).find(".grid-cell.selected"), (idx, val) => {
+			$.each($(gridEditor.container).find(".grid-cell.selected").not(".moveDone"), (idx, val) => {
 				let classArr = val.className.split(' ');
 				let obj = {};
 				classArr.forEach((val2, idx2) => {

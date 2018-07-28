@@ -99,11 +99,14 @@ namespace VsmdWorkstation
         }
         private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
         {
-            SetTubePosiion frm = new SetTubePosiion(axisType, GetTempBoardSetting());
-            if (frm.ShowDialog() == DialogResult.OK)
-            {
-                textbox.Text = frm.PositionVal.ToString();
-            }
+            //SetTubePosiion frm = new SetTubePosiion(axisType, GetTempBoardSetting());
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    textbox.Text = frm.PositionVal.ToString();
+            //}
+            SetTubePositionFrm frm = new SetTubePositionFrm(axisType);
+            frm.ShowDialog();
+            textbox.Text = VsmdController.GetVsmdController().GetAxis(axisType).curPos.ToString();
         }
     }
 }

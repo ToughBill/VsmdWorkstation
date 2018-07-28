@@ -17,6 +17,7 @@ namespace VsmdWorkstation
         public event GridPageDomLoaded onGridPageDomLoaded = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
+        private bool isDriping = false;
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
@@ -33,20 +34,21 @@ namespace VsmdWorkstation
         }
         public void StartDrip(string args)
         {
-            if (m_moveThread != null && m_moveThread.IsAlive)
-            {
-                m_moveThread.Abort();
-            }
-            m_moveThread = new Thread(new ParameterizedThreadStart(MoveThread));
+            //if (m_moveThread != null && m_moveThread.IsAlive)
+            //{
+            //    m_moveThread.Abort();
+            //}
+            m_moveThread = new Thread(new ParameterizedThreadStart(DripThread));
             m_moveThread.Start(args);
         }
         public void StopMove()
         {
-            if (m_moveThread != null && m_moveThread.IsAlive)
-            {
-                m_moveThread.Abort();
-                AfterMove();
-            }
+            isDriping = false;
+            //if (m_moveThread != null)
+            //{
+            //    m_moveThread.Abort();
+            //    AfterMove();
+            //}
         }
         public void PauseMove()
         {
@@ -61,7 +63,7 @@ namespace VsmdWorkstation
 
             CallJS("JsExecutor.buildGrid(" + opts.ToString() + ");");
         }
-        private async void MoveThread(object args)
+        private async void DripThread(object args)
         {
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = (JArray)JsonConvert.DeserializeObject(args.ToString());
@@ -72,6 +74,8 @@ namespace VsmdWorkstation
 
             for (int i = 0; i < jsArr.Count; i++)
             {
+                if (!isDriping)
+                    break;
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
@@ -93,6 +97,7 @@ namespace VsmdWorkstation
         }
         private void BeforeMove()
         {
+            isDriping = true;
             CallJS("JsExecutor.beforeMove();");
         }
         private void AfterMove()

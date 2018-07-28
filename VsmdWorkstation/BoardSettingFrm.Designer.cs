@@ -68,7 +68,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(89, 12);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(219, 21);
             this.txtName.TabIndex = 2;
@@ -86,7 +86,7 @@
             // txtBlockCnt
             // 
             this.txtBlockCnt.Location = new System.Drawing.Point(89, 43);
-            this.txtBlockCnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBlockCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtBlockCnt.Name = "txtBlockCnt";
             this.txtBlockCnt.Size = new System.Drawing.Size(50, 21);
             this.txtBlockCnt.TabIndex = 4;
@@ -114,7 +114,7 @@
             // txtRowCnt
             // 
             this.txtRowCnt.Location = new System.Drawing.Point(164, 45);
-            this.txtRowCnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRowCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtRowCnt.Name = "txtRowCnt";
             this.txtRowCnt.Size = new System.Drawing.Size(50, 21);
             this.txtRowCnt.TabIndex = 6;
@@ -132,7 +132,7 @@
             // txtColCnt
             // 
             this.txtColCnt.Location = new System.Drawing.Point(238, 45);
-            this.txtColCnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtColCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtColCnt.Name = "txtColCnt";
             this.txtColCnt.Size = new System.Drawing.Size(50, 21);
             this.txtColCnt.TabIndex = 8;
@@ -140,7 +140,7 @@
             // txtFirstTubePosX
             // 
             this.txtFirstTubePosX.Location = new System.Drawing.Point(105, 73);
-            this.txtFirstTubePosX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFirstTubePosX.Margin = new System.Windows.Forms.Padding(2);
             this.txtFirstTubePosX.Name = "txtFirstTubePosX";
             this.txtFirstTubePosX.Size = new System.Drawing.Size(76, 21);
             this.txtFirstTubePosX.TabIndex = 11;
@@ -168,7 +168,7 @@
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(71, 195);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
             this.btnOK.TabIndex = 14;
@@ -179,7 +179,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(184, 195);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
             this.btnCancel.TabIndex = 15;
@@ -209,7 +209,7 @@
             // txtFirstTubePosY
             // 
             this.txtFirstTubePosY.Location = new System.Drawing.Point(105, 102);
-            this.txtFirstTubePosY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFirstTubePosY.Margin = new System.Windows.Forms.Padding(2);
             this.txtFirstTubePosY.Name = "txtFirstTubePosY";
             this.txtFirstTubePosY.Size = new System.Drawing.Size(76, 21);
             this.txtFirstTubePosY.TabIndex = 17;
@@ -227,7 +227,7 @@
             // txtTubeDistY
             // 
             this.txtTubeDistY.Location = new System.Drawing.Point(105, 160);
-            this.txtTubeDistY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTubeDistY.Margin = new System.Windows.Forms.Padding(2);
             this.txtTubeDistY.Name = "txtTubeDistY";
             this.txtTubeDistY.Size = new System.Drawing.Size(76, 21);
             this.txtTubeDistY.TabIndex = 21;
@@ -245,7 +245,7 @@
             // txtTubeDistX
             // 
             this.txtTubeDistX.Location = new System.Drawing.Point(105, 132);
-            this.txtTubeDistX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTubeDistX.Margin = new System.Windows.Forms.Padding(2);
             this.txtTubeDistX.Name = "txtTubeDistX";
             this.txtTubeDistX.Size = new System.Drawing.Size(76, 21);
             this.txtTubeDistX.TabIndex = 19;
@@ -253,7 +253,7 @@
             // btnSetFY
             // 
             this.btnSetFY.Location = new System.Drawing.Point(184, 101);
-            this.btnSetFY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSetFY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFY.Name = "btnSetFY";
             this.btnSetFY.Size = new System.Drawing.Size(50, 22);
             this.btnSetFY.TabIndex = 24;
@@ -264,7 +264,7 @@
             // btnSetTY
             // 
             this.btnSetTY.Location = new System.Drawing.Point(184, 160);
-            this.btnSetTY.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSetTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTY.Name = "btnSetTY";
             this.btnSetTY.Size = new System.Drawing.Size(50, 21);
             this.btnSetTY.TabIndex = 25;
@@ -275,7 +275,7 @@
             // btnSetFX
             // 
             this.btnSetFX.Location = new System.Drawing.Point(184, 73);
-            this.btnSetFX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSetFX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFX.Name = "btnSetFX";
             this.btnSetFX.Size = new System.Drawing.Size(50, 21);
             this.btnSetFX.TabIndex = 26;
@@ -286,7 +286,7 @@
             // btnSetTX
             // 
             this.btnSetTX.Location = new System.Drawing.Point(184, 132);
-            this.btnSetTX.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSetTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTX.Name = "btnSetTX";
             this.btnSetTX.Size = new System.Drawing.Size(50, 21);
             this.btnSetTX.TabIndex = 27;

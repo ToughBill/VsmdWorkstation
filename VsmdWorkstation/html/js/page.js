@@ -19,6 +19,14 @@ $(function () {
 		    if (window.externalObj) {
 		        window.externalObj.StartDrip(JSON.stringify(JsExecutor.getSelectedTubes()));
 		    }
+		},
+		pauseMove: function () {
+
+		},
+		resumeMove: function () {
+		    if (window.externalObj) {
+		        window.externalObj.StartDrip(JSON.stringify(JsExecutor.getSelectedTubes()));
+		    }
 		}
 	}
 	if (window.externalObj && window.externalObj.DomLoaded) {

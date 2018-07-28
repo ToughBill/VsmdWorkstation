@@ -140,6 +140,18 @@ namespace VsmdWorkstation
             GetAxis(axis).cfgSpd(speed);
         }
 
+        public void Pos(VsmdAxis axis, int pos)
+        {
+            GetAxis(axis).moveto(pos);
+        }
+        public void Ena(VsmdAxis axis)
+        {
+            GetAxis(axis).enable();
+        }
+        public void Off(VsmdAxis axis)
+        {
+            GetAxis(axis).disable();
+        }
         public void Move(VsmdAxis axis)
         {
             GetAxis(axis).move();
@@ -159,6 +171,14 @@ namespace VsmdWorkstation
         public void ZeroStop(VsmdAxis axis)
         {
             GetAxis(axis).zeroStop();
+        }
+        public void Org(VsmdAxis axis)
+        {
+            GetAxis(axis).org();
+        }
+        public void Sts(VsmdAxis axis)
+        {
+            GetAxis(axis).sts();
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
