@@ -125,7 +125,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelGrid.Location = new System.Drawing.Point(9, 85);
-            this.panelGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelGrid.Margin = new System.Windows.Forms.Padding(2);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(863, 432);
             this.panelGrid.TabIndex = 4;
@@ -145,7 +145,7 @@
             this.cmbBoards.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBoards.FormattingEnabled = true;
             this.cmbBoards.Location = new System.Drawing.Point(90, 57);
-            this.cmbBoards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbBoards.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBoards.Name = "cmbBoards";
             this.cmbBoards.Size = new System.Drawing.Size(130, 20);
             this.cmbBoards.TabIndex = 6;
@@ -153,7 +153,7 @@
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(224, 55);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 7;
@@ -163,8 +163,9 @@
             // 
             // btnStop
             // 
+            this.btnStop.Enabled = false;
             this.btnStop.Location = new System.Drawing.Point(382, 55);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 8;
@@ -174,8 +175,9 @@
             // 
             // btnPause
             // 
+            this.btnPause.Enabled = false;
             this.btnPause.Location = new System.Drawing.Point(303, 55);
-            this.btnPause.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;

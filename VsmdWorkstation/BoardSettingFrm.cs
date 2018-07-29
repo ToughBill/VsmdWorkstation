@@ -23,28 +23,6 @@ namespace VsmdWorkstation
             InitializeComponent();
         }
 
-        private void btnMove_Click(object sender, EventArgs e)
-        {
-            //vsmd = new Vsmd();
-            //axisX = vsmd.createVsmdInfo(1);
-            //bool ret = vsmd.openSerailPort("COM3", 9600);
-            //axisX.flgAutoUpdate = false;
-            //axisX.enable();
-            //axisX.cfgSpd(128000);
-            //axisX.cfgCur(1.6f, 1.4f, 0.8f);
-        }
-
-        private void BoardSettingFrm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Left)
-            {
-                //ParameterizedThreadStart MyImpDelegate = new ParameterizedThreadStart(this, this.mythread);
-                //Thread MyimpThread = new Thread(MyImpDelegate);
-                //MyimpThread.IsBackground = true;
-                //MyimpThread.Start(yourparam);
-            }
-        }
-
         private void BoardSettingFrm_Load(object sender, EventArgs e)
         {
             
@@ -99,14 +77,30 @@ namespace VsmdWorkstation
         }
         private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
         {
-            //SetTubePosiion frm = new SetTubePosiion(axisType, GetTempBoardSetting());
-            //if (frm.ShowDialog() == DialogResult.OK)
-            //{
-            //    textbox.Text = frm.PositionVal.ToString();
-            //}
             SetTubePositionFrm frm = new SetTubePositionFrm(axisType);
             frm.ShowDialog();
             textbox.Text = VsmdController.GetVsmdController().GetAxis(axisType).curPos.ToString();
+        }
+
+        private void btnChoose_Click(object sender, EventArgs e)
+        {
+            ItemListFrm frm = new ItemListFrm();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                BoardMeta meta = (BoardMeta)frm.SelectedObject;
+                FillData(meta);
+            }
+        }
+        private void FillData(BoardMeta meta)
+        {
+            txtName.Text = meta.Name;
+            txtBlockCnt.Text = meta.BlockCount.ToString();
+            txtRowCnt.Text = meta.RowCount.ToString();
+            txtColCnt.Text = meta.ColumnCount.ToString();
+            txtFirstTubePosX.Text = meta.FirstTubeX.ToString();
+            txtFirstTubePosY.Text = meta.FirstTubeY.ToString();
+            txtTubeDistX.Text = meta.TubeDistanceX.ToString();
+            txtTubeDistY.Text = meta.TubeDistanceY.ToString();
         }
     }
 }

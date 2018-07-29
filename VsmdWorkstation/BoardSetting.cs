@@ -84,6 +84,10 @@ namespace VsmdWorkstation
             }
             m_boardSettings = JsonConvert.DeserializeObject<List<BoardMeta>>(str);
         }
+        public List<BoardMeta> GetAllBoardMetaes()
+        {
+            return m_boardSettings;
+        }
         public void AddNewBoard(BoardMeta board)
         {
             m_boardSettings.Add(board);

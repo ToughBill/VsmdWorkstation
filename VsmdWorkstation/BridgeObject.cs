@@ -52,7 +52,11 @@ namespace VsmdWorkstation
         }
         public void PauseMove()
         {
-
+            CallJS("JsExecutor.pauseMove()");
+        }
+        public void ResumeMove()
+        {
+            CallJS("JsExecutor.startDrip()");
         }
         public void BuildGrid(BoardMeta board)
         {

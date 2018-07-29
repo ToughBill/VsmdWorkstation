@@ -17,10 +17,15 @@ namespace VsmdWorkstation
 {
     public partial class MainFrm : Form
     {
+        public enum DripStatus
+        {
+            Idle,
+            Moving,
+            PauseMove
+        }
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
-        private BoardSetting m_curBoardSettings;
-
+        private DripStatus m_dripStatus = DripStatus.Idle;
         public MainFrm()
         {
             InitializeComponent();
@@ -125,16 +130,38 @@ namespace VsmdWorkstation
         private void btnStart_Click(object sender, EventArgs e)
         {
             m_externalObj.Move();
+            m_dripStatus = DripStatus.Moving;
+            UpdateButtons();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             m_externalObj.StopMove();
+            m_dripStatus = DripStatus.Idle;
+            UpdateButtons();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-
+            if (m_dripStatus == DripStatus.Moving)
+            {
+                m_externalObj.ResumeMove();
+                m_dripStatus = DripStatus.PauseMove;
+                btnPause.Text = "暂停滴液";
+            }
+            else if(m_dripStatus == DripStatus.PauseMove)
+            {
+                m_externalObj.PauseMove();
+                m_dripStatus = DripStatus.Moving;
+                btnPause.Text = "继续滴液";
+            }
+            UpdateButtons();
+        }
+        private void UpdateButtons()
+        {
+            btnStart.Enabled = (m_dripStatus == DripStatus.Idle);
+            btnStop.Enabled = (m_dripStatus != DripStatus.Idle);
+            btnPause.Enabled = (m_dripStatus == DripStatus.Moving || m_dripStatus == DripStatus.PauseMove);
         }
     }
 }

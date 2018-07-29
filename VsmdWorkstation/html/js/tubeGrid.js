@@ -7,7 +7,8 @@ window.TubeGrid = (function () {
     const CHAR_CODE_A = 65;
     var GridMode = {
         Idle: 0,
-        Move: 1
+        Move: 1,
+        PauseMove: 2
     }
     function TubeGrid(container, options_) {
         this.container = container;
@@ -199,6 +200,9 @@ window.TubeGrid = (function () {
         }
         this.leaveMoveMode = function () {
             gridEditor.mode = GridMode.Idle;
+        }
+        this.pauseMove = function () {
+            gridEditor.mode = GridMode.PauseMove;
         }
         this.resetTube = function () {
             $(".grid-cell.selected").removeClass("selected");

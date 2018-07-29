@@ -21,7 +21,7 @@ $(function () {
 		    }
 		},
 		pauseMove: function () {
-
+		    window.__grid.pauseMove();
 		},
 		resumeMove: function () {
 		    if (window.externalObj) {

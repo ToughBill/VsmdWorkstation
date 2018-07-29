@@ -16,7 +16,7 @@ namespace VsmdWorkstation
     public partial class VsmdSettingFrm : Form
     {
         private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj;
+        private BridgeObject m_externalObj = null;
 
         public VsmdSettingFrm()
         {

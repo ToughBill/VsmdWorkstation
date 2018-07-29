@@ -53,6 +53,7 @@
             this.btnSetTY = new System.Windows.Forms.Button();
             this.btnSetFX = new System.Windows.Forms.Button();
             this.btnSetTX = new System.Windows.Forms.Button();
+            this.btnChoose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +71,7 @@
             this.txtName.Location = new System.Drawing.Point(89, 12);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(219, 21);
+            this.txtName.Size = new System.Drawing.Size(182, 21);
             this.txtName.TabIndex = 2;
             // 
             // label2
@@ -122,7 +123,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(291, 46);
+            this.label5.Location = new System.Drawing.Point(292, 48);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(17, 12);
@@ -294,11 +295,24 @@
             this.btnSetTX.UseVisualStyleBackColor = true;
             this.btnSetTX.Click += new System.EventHandler(this.btnSetTX_Click);
             // 
+            // btnChoose
+            // 
+            this.btnChoose.Location = new System.Drawing.Point(273, 12);
+            this.btnChoose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnChoose.Name = "btnChoose";
+            this.btnChoose.Size = new System.Drawing.Size(36, 23);
+            this.btnChoose.TabIndex = 28;
+            this.btnChoose.Text = ".......";
+            this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChoose.UseVisualStyleBackColor = true;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
+            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 231);
+            this.ClientSize = new System.Drawing.Size(318, 231);
+            this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.btnSetTX);
             this.Controls.Add(this.btnSetFX);
             this.Controls.Add(this.btnSetTY);
@@ -328,7 +342,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "载物架设置";
             this.Load += new System.EventHandler(this.BoardSettingFrm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoardSettingFrm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,5 +373,6 @@
         private System.Windows.Forms.Button btnSetTY;
         private System.Windows.Forms.Button btnSetFX;
         private System.Windows.Forms.Button btnSetTX;
+        private System.Windows.Forms.Button btnChoose;
     }
 }
