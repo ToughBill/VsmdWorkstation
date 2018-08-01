@@ -1,4 +1,6 @@
-﻿namespace VsmdWorkstation
+﻿using VsmdWorkstation.Controls;
+
+namespace VsmdWorkstation
 {
     partial class VsmdSettingFrm
     {
@@ -42,9 +44,9 @@
             this.btnSaveX = new System.Windows.Forms.Button();
             this.ckbAutoUpdateX = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSpeedX = new VsmdWorkstation.TextBoxEx();
+            this.txtSpeedX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtPosX = new VsmdWorkstation.TextBoxEx();
+            this.txtPosX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,9 +64,9 @@
             this.btnSaveY = new System.Windows.Forms.Button();
             this.ckbAutoUpdateY = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtSpeedY = new VsmdWorkstation.TextBoxEx();
+            this.txtSpeedY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtPosY = new VsmdWorkstation.TextBoxEx();
+            this.txtPosY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCidY = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,9 +83,9 @@
             this.btnSaveZ = new System.Windows.Forms.Button();
             this.ckbAutoUpdateZ = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtSpeedZ = new VsmdWorkstation.TextBoxEx();
+            this.txtSpeedZ = new VsmdWorkstation.Controls.TextBoxEx();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtPosZ = new VsmdWorkstation.TextBoxEx();
+            this.txtPosZ = new VsmdWorkstation.Controls.TextBoxEx();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCidZ = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -254,7 +256,7 @@
             this.txtSpeedX.Name = "txtSpeedX";
             this.txtSpeedX.Size = new System.Drawing.Size(179, 21);
             this.txtSpeedX.TabIndex = 5;
-            this.txtSpeedX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtSpeedX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label3
             // 
@@ -271,7 +273,7 @@
             this.txtPosX.Name = "txtPosX";
             this.txtPosX.Size = new System.Drawing.Size(179, 21);
             this.txtPosX.TabIndex = 3;
-            this.txtPosX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtPosX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label2
             // 
@@ -458,7 +460,7 @@
             this.txtSpeedY.Name = "txtSpeedY";
             this.txtSpeedY.Size = new System.Drawing.Size(179, 21);
             this.txtSpeedY.TabIndex = 5;
-            this.txtSpeedY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtSpeedY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label6
             // 
@@ -475,7 +477,7 @@
             this.txtPosY.Name = "txtPosY";
             this.txtPosY.Size = new System.Drawing.Size(179, 21);
             this.txtPosY.TabIndex = 3;
-            this.txtPosY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtPosY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label7
             // 
@@ -654,7 +656,7 @@
             this.txtSpeedZ.Name = "txtSpeedZ";
             this.txtSpeedZ.Size = new System.Drawing.Size(179, 21);
             this.txtSpeedZ.TabIndex = 5;
-            this.txtSpeedZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtSpeedZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label10
             // 
@@ -671,7 +673,7 @@
             this.txtPosZ.Name = "txtPosZ";
             this.txtPosZ.Size = new System.Drawing.Size(179, 21);
             this.txtPosZ.TabIndex = 3;
-            this.txtPosZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            this.txtPosZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label11
             // 

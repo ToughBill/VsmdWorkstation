@@ -5,163 +5,65 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using CefSharp;
-using CefSharp.WinForms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
     public partial class MainFrm : Form
     {
-        public enum DripStatus
-        {
-            Idle,
-            Moving,
-            PauseMove
-        }
-        private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj;
-        private DripStatus m_dripStatus = DripStatus.Idle;
         public MainFrm()
         {
             InitializeComponent();
-            InitBrowser();
-        }
-
-        private void mainFrm_Load(object sender, EventArgs e)
-        {
-            InitBoardSettings();
-            //InitVsmdController();
-            
-            StatusBar.Init(statusBarEx);
-            InitTubeGrid();
-        }
-        private void InitBrowser()
-        {
-            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            CefSettings setting = new CefSettings();
-            setting.RemoteDebuggingPort = 7073;
-            Cef.Initialize(setting);
-            string url = Application.StartupPath + @"\..\..\..\html\tubeGrid.html";
-            m_browser = new ChromiumWebBrowser(url);
-            panelGrid.Controls.Add(m_browser);
-            m_browser.Dock = DockStyle.Fill;
-            //m_browser.Left = 0;
-            //m_browser.Width = this.Width;
-            //m_browser.Top = toolStrip.Bottom;
-            //m_browser.Height = statusBarEx.Top - toolStrip.Bottom;
-            //m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-
-            m_externalObj = new BridgeObject(m_browser);
-            m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
-            BindingOptions opt = new BindingOptions();
-            opt.CamelCaseJavascriptNames = false;
-            m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
-        }
-
-        private void InitBoardSettings()
-        {
-            BoardMeta newBoard = new BoardMeta();
-            newBoard = new BoardMeta();
-            newBoard.Name = "3 X 8 X 12";
-            newBoard.BlockCount = 3;
-            newBoard.RowCount = 12;
-            newBoard.ColumnCount = 8;
-            newBoard.FirstTubeX = 300;
-            newBoard.FirstTubeY = 300;
-            newBoard.TubeDistanceX = 200;
-            newBoard.TubeDistanceY = 200;
-            newBoard.TubeDiameter = 200;
-            BoardSetting.GetInstance().AddNewBoard(newBoard);
-            BoardSetting.GetInstance().CurrentBoard = newBoard;
-
-            cmbBoards.Items.Add(newBoard.Name);
-            cmbBoards.SelectedIndex = 0;
-        }
-        private void InitVsmdController()
-        {
-            //bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
-            //if (!ret)
-            //{
-            //    statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
-            //}
-        }
-        private void OnGridPageDomLoaded()
-        {
-            m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
-        }
-        private void InitTubeGrid()
-        {
-            //BoardSettings curBoard = BoardSettings.GetCurrentBoardSetting();
-            //System.Threading.Thread.Sleep(2000);
-            //m_externalObj.BuildGrid(curBoard);
-        }
-        private void tsmBoardSetting_Click(object sender, EventArgs e)
-        {
-            BoardSettingFrm frm = new BoardSettingFrm();
-            frm.ShowDialog();
-        }
-
-        private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            VsmdController.GetVsmdController().Dispose();
-        }
-
-        private void tsmDevTools_Click(object sender, EventArgs e)
-        {
-            m_browser.ShowDevTools();
         }
 
         private void tsmVsmdSetting_Click(object sender, EventArgs e)
         {
             VsmdSettingFrm frm = new VsmdSettingFrm();
-            frm.ShowDialog();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void MainFrm_Load(object sender, EventArgs e)
         {
-
+            InitStatusBar();
+            InitVsmdConnection();
         }
-
-        private void btnStart_Click(object sender, EventArgs e)
+        private void InitStatusBar()
         {
-            m_externalObj.Move();
-            m_dripStatus = DripStatus.Moving;
-            UpdateButtons();
+            StatusBar.Init(statusBarEx);
         }
-
-        private void btnStop_Click(object sender, EventArgs e)
+        private void InitVsmdConnection()
         {
-            m_externalObj.StopMove();
-            m_dripStatus = DripStatus.Idle;
-            UpdateButtons();
+            ConnectVsmd frm = new ConnectVsmd(InitVsmdConnectionCB);
+            frm.MdiParent = this;
+            frm.Show();
+            
         }
-
-        private void btnPause_Click(object sender, EventArgs e)
+        private void InitVsmdConnectionCB(InitResult initRet)
         {
-            if (m_dripStatus == DripStatus.Moving)
+            if (initRet.IsSuccess)
             {
-                m_externalObj.ResumeMove();
-                m_dripStatus = DripStatus.PauseMove;
-                btnPause.Text = "暂停滴液";
+                StatusBar.DisplayMessage(MessageType.Info, "控制器连接成功！");
+                DripFrm frm = new DripFrm();
+                frm.MdiParent = this;
+                //frm.WindowState = FormWindowState.Maximized;
+                frm.Dock = DockStyle.Fill;
+                frm.Show();
             }
-            else if(m_dripStatus == DripStatus.PauseMove)
+            else
             {
-                m_externalObj.PauseMove();
-                m_dripStatus = DripStatus.Moving;
-                btnPause.Text = "继续滴液";
+                StatusBar.DisplayMessage(MessageType.Error, "控制器连接失败！");
             }
-            UpdateButtons();
         }
-        private void UpdateButtons()
+
+        private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
-            btnStart.Enabled = (m_dripStatus == DripStatus.Idle);
-            btnStop.Enabled = (m_dripStatus != DripStatus.Idle);
-            btnPause.Enabled = (m_dripStatus == DripStatus.Moving || m_dripStatus == DripStatus.PauseMove);
+            BoardSettingFrm frm = new BoardSettingFrm();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

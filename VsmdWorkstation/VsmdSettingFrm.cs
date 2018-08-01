@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VsmdLib;
+using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {

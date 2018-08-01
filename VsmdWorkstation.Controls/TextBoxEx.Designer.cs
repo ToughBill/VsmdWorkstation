@@ -1,4 +1,4 @@
-﻿namespace VsmdWorkstation
+﻿namespace VsmdWorkstation.Controls
 {
     partial class TextBoxEx
     {

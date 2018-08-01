@@ -16,13 +16,13 @@ namespace VsmdWorkstation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainFrm());
+            //ConnectVsmd frm = new ConnectVsmd();
+            //if(frm.ShowDialog() == DialogResult.OK && frm.IsConnected)
+            //{
+            //    Application.Run(new DripFrm());
+            //}
 
-            ConnectVsmd frm = new ConnectVsmd();
-            if(frm.ShowDialog() == DialogResult.OK && frm.IsConnected)
-            {
-                Application.Run(new MainFrm());
-            }
-            
         }
     }
 }

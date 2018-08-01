@@ -12,12 +12,15 @@ using VsmdLib;
 
 namespace VsmdWorkstation
 {
+    public delegate void DelInitVsmdConnectionCB(InitResult initRet);
     public partial class ConnectVsmd : Form
     {
         public bool IsConnected { get; set; }
-        public ConnectVsmd()
+        private DelInitVsmdConnectionCB m_initCB;
+        public ConnectVsmd(DelInitVsmdConnectionCB callback = null)
         {
             InitializeComponent();
+            m_initCB = callback;
         }
 
         private void ConnectVsmd_Load(object sender, EventArgs e)
@@ -29,32 +32,16 @@ namespace VsmdWorkstation
 
         private async void btnConnect_Click(object sender, EventArgs e)
         {
-            //Vsmd m_vsmd = new Vsmd();
-            //bool ret = m_vsmd.openSerailPort("COM1", 9600);
-            //m_vsmd.closeSerailPort();
-            //Vsmd m_vsmd2 = new Vsmd();
-            //m_vsmd2.openSerailPort("COM1", 9600);
-            MaskLayer layer = new MaskLayer();
-            layer.Left = 0;
-            layer.Top = 0;
-            layer.Width = this.Width;
-            layer.Height = this.Height;
-            this.Controls.Add(layer);
-            layer.BringToFront();
             InitResult initRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
+            if(m_initCB != null)
+            {
+                m_initCB(initRet);
+            }
             if (initRet.IsSuccess)
             {
-                this.IsConnected = true;
-                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else
-            {
-                this.Controls.Remove(layer);
-                layer.Dispose();
-                layer = null;
-                MessageBox.Show(initRet.ErrorMsg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

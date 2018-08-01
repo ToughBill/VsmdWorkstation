@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VsmdWorkstation
+namespace VsmdWorkstation.Controls
 {
     public partial class TextBoxEx : TextBox
     {
