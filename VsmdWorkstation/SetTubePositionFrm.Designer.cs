@@ -63,6 +63,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SetTubePositionFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetTubePositionFrm_FormClosing);
             this.Load += new System.EventHandler(this.SetTubePositionFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SetTubePositionFrm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SetTubePositionFrm_KeyUp);

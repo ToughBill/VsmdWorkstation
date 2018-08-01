@@ -42,7 +42,9 @@
             this.btnSaveX = new System.Windows.Forms.Button();
             this.ckbAutoUpdateX = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtSpeedX = new VsmdWorkstation.TextBoxEx();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtPosX = new VsmdWorkstation.TextBoxEx();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,7 +62,9 @@
             this.btnSaveY = new System.Windows.Forms.Button();
             this.ckbAutoUpdateY = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtSpeedY = new VsmdWorkstation.TextBoxEx();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtPosY = new VsmdWorkstation.TextBoxEx();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCidY = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -77,16 +81,12 @@
             this.btnSaveZ = new System.Windows.Forms.Button();
             this.ckbAutoUpdateZ = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtSpeedZ = new VsmdWorkstation.TextBoxEx();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtPosZ = new VsmdWorkstation.TextBoxEx();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCidZ = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtSpeedZ = new VsmdWorkstation.TextBoxEx();
-            this.txtPosZ = new VsmdWorkstation.TextBoxEx();
-            this.txtSpeedY = new VsmdWorkstation.TextBoxEx();
-            this.txtPosY = new VsmdWorkstation.TextBoxEx();
-            this.txtSpeedX = new VsmdWorkstation.TextBoxEx();
-            this.txtPosX = new VsmdWorkstation.TextBoxEx();
             this.groupBox1.SuspendLayout();
             this.gridContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -228,6 +228,7 @@
             this.btnSaveX.TabIndex = 8;
             this.btnSaveX.Text = "保存";
             this.btnSaveX.UseVisualStyleBackColor = true;
+            this.btnSaveX.Click += new System.EventHandler(this.btnSaveX_Click);
             // 
             // ckbAutoUpdateX
             // 
@@ -247,6 +248,14 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "自动更新：";
             // 
+            // txtSpeedX
+            // 
+            this.txtSpeedX.Location = new System.Drawing.Point(66, 74);
+            this.txtSpeedX.Name = "txtSpeedX";
+            this.txtSpeedX.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedX.TabIndex = 5;
+            this.txtSpeedX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -255,6 +264,14 @@
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 4;
             this.label3.Text = "速度：";
+            // 
+            // txtPosX
+            // 
+            this.txtPosX.Location = new System.Drawing.Point(66, 47);
+            this.txtPosX.Name = "txtPosX";
+            this.txtPosX.Size = new System.Drawing.Size(179, 21);
+            this.txtPosX.TabIndex = 3;
+            this.txtPosX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label2
             // 
@@ -415,6 +432,7 @@
             this.btnSaveY.TabIndex = 8;
             this.btnSaveY.Text = "保存";
             this.btnSaveY.UseVisualStyleBackColor = true;
+            this.btnSaveY.Click += new System.EventHandler(this.btnSaveY_Click);
             // 
             // ckbAutoUpdateY
             // 
@@ -434,6 +452,14 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "自动更新：";
             // 
+            // txtSpeedY
+            // 
+            this.txtSpeedY.Location = new System.Drawing.Point(66, 74);
+            this.txtSpeedY.Name = "txtSpeedY";
+            this.txtSpeedY.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedY.TabIndex = 5;
+            this.txtSpeedY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -442,6 +468,14 @@
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 4;
             this.label6.Text = "速度：";
+            // 
+            // txtPosY
+            // 
+            this.txtPosY.Location = new System.Drawing.Point(66, 47);
+            this.txtPosY.Name = "txtPosY";
+            this.txtPosY.Size = new System.Drawing.Size(179, 21);
+            this.txtPosY.TabIndex = 3;
+            this.txtPosY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label7
             // 
@@ -594,6 +628,7 @@
             this.btnSaveZ.TabIndex = 8;
             this.btnSaveZ.Text = "保存";
             this.btnSaveZ.UseVisualStyleBackColor = true;
+            this.btnSaveZ.Click += new System.EventHandler(this.btnSaveZ_Click);
             // 
             // ckbAutoUpdateZ
             // 
@@ -613,6 +648,14 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "自动更新：";
             // 
+            // txtSpeedZ
+            // 
+            this.txtSpeedZ.Location = new System.Drawing.Point(66, 74);
+            this.txtSpeedZ.Name = "txtSpeedZ";
+            this.txtSpeedZ.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedZ.TabIndex = 5;
+            this.txtSpeedZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -621,6 +664,14 @@
             this.label10.Size = new System.Drawing.Size(41, 12);
             this.label10.TabIndex = 4;
             this.label10.Text = "速度：";
+            // 
+            // txtPosZ
+            // 
+            this.txtPosZ.Location = new System.Drawing.Point(66, 47);
+            this.txtPosZ.Name = "txtPosZ";
+            this.txtPosZ.Size = new System.Drawing.Size(179, 21);
+            this.txtPosZ.TabIndex = 3;
+            this.txtPosZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label11
             // 
@@ -647,54 +698,6 @@
             this.label12.Size = new System.Drawing.Size(35, 12);
             this.label12.TabIndex = 0;
             this.label12.Text = "Cid：";
-            // 
-            // txtSpeedZ
-            // 
-            this.txtSpeedZ.Location = new System.Drawing.Point(66, 74);
-            this.txtSpeedZ.Name = "txtSpeedZ";
-            this.txtSpeedZ.Size = new System.Drawing.Size(179, 21);
-            this.txtSpeedZ.TabIndex = 5;
-            this.txtSpeedZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtPosZ
-            // 
-            this.txtPosZ.Location = new System.Drawing.Point(66, 47);
-            this.txtPosZ.Name = "txtPosZ";
-            this.txtPosZ.Size = new System.Drawing.Size(179, 21);
-            this.txtPosZ.TabIndex = 3;
-            this.txtPosZ.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSpeedY
-            // 
-            this.txtSpeedY.Location = new System.Drawing.Point(66, 74);
-            this.txtSpeedY.Name = "txtSpeedY";
-            this.txtSpeedY.Size = new System.Drawing.Size(179, 21);
-            this.txtSpeedY.TabIndex = 5;
-            this.txtSpeedY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtPosY
-            // 
-            this.txtPosY.Location = new System.Drawing.Point(66, 47);
-            this.txtPosY.Name = "txtPosY";
-            this.txtPosY.Size = new System.Drawing.Size(179, 21);
-            this.txtPosY.TabIndex = 3;
-            this.txtPosY.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSpeedX
-            // 
-            this.txtSpeedX.Location = new System.Drawing.Point(66, 74);
-            this.txtSpeedX.Name = "txtSpeedX";
-            this.txtSpeedX.Size = new System.Drawing.Size(179, 21);
-            this.txtSpeedX.TabIndex = 5;
-            this.txtSpeedX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtPosX
-            // 
-            this.txtPosX.Location = new System.Drawing.Point(66, 47);
-            this.txtPosX.Name = "txtPosX";
-            this.txtPosX.Size = new System.Drawing.Size(179, 21);
-            this.txtPosX.TabIndex = 3;
-            this.txtPosX.ValueType = VsmdWorkstation.TextBoxEx.TextBoxValueType.Interge;
             // 
             // VsmdSettingFrm
             // 

@@ -239,5 +239,20 @@ namespace VsmdWorkstation
         {
             VsmdController.GetVsmdController().Sts(axis);
         }
+
+        private void btnSaveX_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveY_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveZ_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

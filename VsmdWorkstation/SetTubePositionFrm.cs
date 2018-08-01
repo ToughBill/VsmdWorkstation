@@ -97,5 +97,10 @@ namespace VsmdWorkstation
                     m_inMoving = false;
                 }
         }
+
+        private void SetTubePositionFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            VsmdController.GetVsmdController().SetSpeed(m_axisType, m_preAxisSpeed);
+        }
     }
 }
