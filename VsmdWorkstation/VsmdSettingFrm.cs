@@ -16,25 +16,10 @@ namespace VsmdWorkstation
 {
     public partial class VsmdSettingFrm : Form
     {
-        private ChromiumWebBrowser m_browser;
-        private BridgeObject m_externalObj = null;
 
         public VsmdSettingFrm()
         {
             InitializeComponent();
-            InitBrowser();
-        }
-        private void InitBrowser()
-        {
-            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            //Cef.Initialize(new CefSettings());
-            string url = Application.StartupPath + @"\..\..\..\html\vsmdSetting.html";
-            m_browser = new ChromiumWebBrowser(url);
-            gridContainer.Controls.Add(m_browser);
-            m_browser.Dock = DockStyle.Fill;
-            BindingOptions opt = new BindingOptions();
-            opt.CamelCaseJavascriptNames = false;
-            m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
         }
 
         private void VsmdSettingFrm_Load(object sender, EventArgs e)
@@ -43,6 +28,12 @@ namespace VsmdWorkstation
         }
         private void InitAxises()
         {
+            if (!VsmdController.GetVsmdController().IsInitialized())
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
+                DisableAllControls();
+                return;
+            }
             VsmdInfo axisX = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
             txtCidX.Text = axisX.Cid.ToString();
             txtPosX.Text = axisX.curPos.ToString();
@@ -62,9 +53,27 @@ namespace VsmdWorkstation
             txtSpeedZ.Text = axisZ.curSpd.ToString();
             ckbAutoUpdateZ.Checked = axisZ.flgAutoUpdate;
         }
+        private void DisableAllControls()
+        {
+            foreach(Control ctrl in this.Controls)
+            {
+                if(ctrl is GroupBox)
+                {
+                    foreach (Control ctrl2 in ctrl.Controls)
+                    {
+                        if (ctrl2 is Button ||
+                            ctrl2 is TextBox ||
+                            ctrl2 is CheckBox)
+                        {
+                            ctrl2.Enabled = false;
+                        }
+                    }
+                }
+                
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            m_browser.ShowDevTools();
         }
         private bool CheckTextBoxValue(TextBox box, out int val)
         {

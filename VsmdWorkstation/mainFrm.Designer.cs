@@ -38,6 +38,7 @@
             this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsmConnectVsmd = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmConnectVsmd,
             this.tsmVsmdSetting,
             this.tsmBoardSetting});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -119,6 +121,13 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
+            // tsmConnectVsmd
+            // 
+            this.tsmConnectVsmd.Name = "tsmConnectVsmd";
+            this.tsmConnectVsmd.Size = new System.Drawing.Size(152, 22);
+            this.tsmConnectVsmd.Text = "连接控制器";
+            this.tsmConnectVsmd.Click += new System.EventHandler(this.tsmConnectVsmd_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -129,6 +138,7 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.Name = "MainFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainFrm";
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -151,5 +161,6 @@
         private Controls.StatusBarEx statusBarEx;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem tsmConnectVsmd;
     }
 }

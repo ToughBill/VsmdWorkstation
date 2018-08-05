@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VsmdLib;
+using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
@@ -25,11 +26,20 @@ namespace VsmdWorkstation
 
         private void BoardSettingFrm_Load(object sender, EventArgs e)
         {
-            
+            if (!VsmdController.GetVsmdController().IsInitialized())
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
+                DisableControls();
+                return;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!ValidFormData())
+            {
+                return;
+            }
             BoardMeta meta = GetTempBoardSetting();
             
             BoardSetting.GetInstance().AddNewBoard(meta);
@@ -57,7 +67,74 @@ namespace VsmdWorkstation
             int.TryParse(txtTubeDistY.Text.Trim(), out val);
             temp.TubeDistanceX = val;
 
+            val = 0;
+            int.TryParse(txtBlockDist.Text.Trim(), out val);
+            temp.BlockDistanceX = val;
+
             return temp;
+        }
+        private bool ValidFormData()
+        {
+            if(string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                ShowMessage(MessageType.Error, "名称不能为空！");
+                txtName.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtBlockCnt.Text))
+            {
+                ShowMessage(MessageType.Error, "规格-组不能为空！");
+                txtBlockCnt.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtRowCnt.Text))
+            {
+                ShowMessage(MessageType.Error, "规格-行不能为空！");
+                txtRowCnt.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtColCnt.Text))
+            {
+                ShowMessage(MessageType.Error, "规格-列不能为空！");
+                txtColCnt.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtBlockDist.Text))
+            {
+                ShowMessage(MessageType.Error, "组件不能为空！");
+                txtBlockDist.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtFirstTubePosX.Text))
+            {
+                ShowMessage(MessageType.Error, "首孔位置不能为空！");
+                txtFirstTubePosX.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtFirstTubePosY.Text))
+            {
+                ShowMessage(MessageType.Error, "首孔位置不能为空！");
+                txtFirstTubePosY.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtTubeDistX.Text))
+            {
+                ShowMessage(MessageType.Error, "孔距不能为空！");
+                txtTubeDistX.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtTubeDistY.Text))
+            {
+                ShowMessage(MessageType.Error, "孔距不能为空！");
+                txtTubeDistY.Focus();
+                return false;
+            }
+
+            return true;
+        }
+        private void ShowMessage(MessageType type, string str)
+        {
+            StatusBar.DisplayMessage(type, str);
         }
         private void btnSetFX_Click(object sender, EventArgs e)
         {
@@ -81,7 +158,13 @@ namespace VsmdWorkstation
             frm.ShowDialog();
             textbox.Text = VsmdController.GetVsmdController().GetAxis(axisType).curPos.ToString();
         }
-
+        private void DisableControls() {
+            btnSetBlockDist.Enabled = false;
+            btnSetFX.Enabled = false;
+            btnSetFY.Enabled = false;
+            btnSetTX.Enabled = false;
+            btnSetTY.Enabled = false;
+        }
         private void btnChoose_Click(object sender, EventArgs e)
         {
             ItemListFrm frm = new ItemListFrm();
@@ -101,6 +184,16 @@ namespace VsmdWorkstation
             txtFirstTubePosY.Text = meta.FirstTubeY.ToString();
             txtTubeDistX.Text = meta.TubeDistanceX.ToString();
             txtTubeDistY.Text = meta.TubeDistanceY.ToString();
+        }
+
+        private void btnSetBlockDist_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtBlockDist, VsmdAxis.X);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

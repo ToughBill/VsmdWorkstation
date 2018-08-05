@@ -17,6 +17,7 @@ namespace VsmdWorkstation
     {
         public bool IsConnected { get; set; }
         private DelInitVsmdConnectionCB m_initCB;
+        public bool IsClosed { get; set; }
         public ConnectVsmd(DelInitVsmdConnectionCB callback = null)
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace VsmdWorkstation
             cmbPort.Items.AddRange(SerialPort.GetPortNames());
             cmbPort.SelectedIndex = 0;
             cmbBaudrate.SelectedIndex = 2;
+            IsClosed = false;
         }
 
         private async void btnConnect_Click(object sender, EventArgs e)
@@ -47,6 +49,11 @@ namespace VsmdWorkstation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ConnectVsmd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            IsClosed = true;
         }
     }
 }

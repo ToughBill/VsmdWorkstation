@@ -29,31 +29,34 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtBlockCnt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtRowCnt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtColCnt = new System.Windows.Forms.TextBox();
-            this.txtFirstTubePosX = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtFirstTubePosY = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtTubeDistY = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtTubeDistX = new System.Windows.Forms.TextBox();
             this.btnSetFY = new System.Windows.Forms.Button();
             this.btnSetTY = new System.Windows.Forms.Button();
             this.btnSetFX = new System.Windows.Forms.Button();
             this.btnSetTX = new System.Windows.Forms.Button();
             this.btnChoose = new System.Windows.Forms.Button();
+            this.btnSetBlockDist = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtBlockDist = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtTubeDistY = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtTubeDistX = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtFirstTubePosY = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtFirstTubePosX = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtColCnt = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtBlockCnt = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtName = new VsmdWorkstation.Controls.TextBoxEx();
             this.SuspendLayout();
             // 
             // label1
@@ -66,14 +69,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "载物架名称：";
             // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(89, 12);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(182, 21);
-            this.txtName.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -83,14 +78,6 @@
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 3;
             this.label2.Text = "规格：";
-            // 
-            // txtBlockCnt
-            // 
-            this.txtBlockCnt.Location = new System.Drawing.Point(89, 43);
-            this.txtBlockCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBlockCnt.Name = "txtBlockCnt";
-            this.txtBlockCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtBlockCnt.TabIndex = 4;
             // 
             // label3
             // 
@@ -112,14 +99,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "行";
             // 
-            // txtRowCnt
-            // 
-            this.txtRowCnt.Location = new System.Drawing.Point(164, 45);
-            this.txtRowCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtRowCnt.Name = "txtRowCnt";
-            this.txtRowCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtRowCnt.TabIndex = 6;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -130,26 +109,10 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "列";
             // 
-            // txtColCnt
-            // 
-            this.txtColCnt.Location = new System.Drawing.Point(238, 45);
-            this.txtColCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtColCnt.Name = "txtColCnt";
-            this.txtColCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtColCnt.TabIndex = 8;
-            // 
-            // txtFirstTubePosX
-            // 
-            this.txtFirstTubePosX.Location = new System.Drawing.Point(105, 73);
-            this.txtFirstTubePosX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFirstTubePosX.Name = "txtFirstTubePosX";
-            this.txtFirstTubePosX.Size = new System.Drawing.Size(76, 21);
-            this.txtFirstTubePosX.TabIndex = 11;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 75);
+            this.label6.Location = new System.Drawing.Point(26, 106);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
@@ -159,7 +122,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(47, 135);
+            this.label7.Location = new System.Drawing.Point(47, 166);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
@@ -168,7 +131,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(71, 195);
+            this.btnOK.Location = new System.Drawing.Point(71, 226);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
@@ -179,18 +142,19 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(184, 195);
+            this.btnCancel.Location = new System.Drawing.Point(184, 226);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(87, 75);
+            this.label8.Location = new System.Drawing.Point(87, 106);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(11, 12);
@@ -200,60 +164,36 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(87, 104);
+            this.label9.Location = new System.Drawing.Point(87, 135);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(11, 12);
             this.label9.TabIndex = 18;
             this.label9.Text = "Y";
             // 
-            // txtFirstTubePosY
-            // 
-            this.txtFirstTubePosY.Location = new System.Drawing.Point(105, 102);
-            this.txtFirstTubePosY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFirstTubePosY.Name = "txtFirstTubePosY";
-            this.txtFirstTubePosY.Size = new System.Drawing.Size(76, 21);
-            this.txtFirstTubePosY.TabIndex = 17;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(87, 163);
+            this.label10.Location = new System.Drawing.Point(87, 194);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(11, 12);
             this.label10.TabIndex = 22;
             this.label10.Text = "Y";
             // 
-            // txtTubeDistY
-            // 
-            this.txtTubeDistY.Location = new System.Drawing.Point(105, 160);
-            this.txtTubeDistY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTubeDistY.Name = "txtTubeDistY";
-            this.txtTubeDistY.Size = new System.Drawing.Size(76, 21);
-            this.txtTubeDistY.TabIndex = 21;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(87, 134);
+            this.label11.Location = new System.Drawing.Point(87, 165);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(11, 12);
             this.label11.TabIndex = 20;
             this.label11.Text = "X";
             // 
-            // txtTubeDistX
-            // 
-            this.txtTubeDistX.Location = new System.Drawing.Point(105, 132);
-            this.txtTubeDistX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTubeDistX.Name = "txtTubeDistX";
-            this.txtTubeDistX.Size = new System.Drawing.Size(76, 21);
-            this.txtTubeDistX.TabIndex = 19;
-            // 
             // btnSetFY
             // 
-            this.btnSetFY.Location = new System.Drawing.Point(184, 101);
+            this.btnSetFY.Location = new System.Drawing.Point(184, 132);
             this.btnSetFY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFY.Name = "btnSetFY";
             this.btnSetFY.Size = new System.Drawing.Size(50, 22);
@@ -264,7 +204,7 @@
             // 
             // btnSetTY
             // 
-            this.btnSetTY.Location = new System.Drawing.Point(184, 160);
+            this.btnSetTY.Location = new System.Drawing.Point(184, 191);
             this.btnSetTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTY.Name = "btnSetTY";
             this.btnSetTY.Size = new System.Drawing.Size(50, 21);
@@ -275,7 +215,7 @@
             // 
             // btnSetFX
             // 
-            this.btnSetFX.Location = new System.Drawing.Point(184, 73);
+            this.btnSetFX.Location = new System.Drawing.Point(184, 104);
             this.btnSetFX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFX.Name = "btnSetFX";
             this.btnSetFX.Size = new System.Drawing.Size(50, 21);
@@ -286,7 +226,7 @@
             // 
             // btnSetTX
             // 
-            this.btnSetTX.Location = new System.Drawing.Point(184, 132);
+            this.btnSetTX.Location = new System.Drawing.Point(184, 163);
             this.btnSetTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTX.Name = "btnSetTX";
             this.btnSetTX.Size = new System.Drawing.Size(50, 21);
@@ -297,7 +237,7 @@
             // 
             // btnChoose
             // 
-            this.btnChoose.Location = new System.Drawing.Point(273, 12);
+            this.btnChoose.Location = new System.Drawing.Point(273, 11);
             this.btnChoose.Margin = new System.Windows.Forms.Padding(0);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Size = new System.Drawing.Size(36, 23);
@@ -307,11 +247,119 @@
             this.btnChoose.UseVisualStyleBackColor = true;
             this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
+            // btnSetBlockDist
+            // 
+            this.btnSetBlockDist.Location = new System.Drawing.Point(184, 74);
+            this.btnSetBlockDist.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetBlockDist.Name = "btnSetBlockDist";
+            this.btnSetBlockDist.Size = new System.Drawing.Size(50, 21);
+            this.btnSetBlockDist.TabIndex = 35;
+            this.btnSetBlockDist.Text = "设置";
+            this.btnSetBlockDist.UseVisualStyleBackColor = true;
+            this.btnSetBlockDist.Click += new System.EventHandler(this.btnSetBlockDist_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(50, 79);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 12);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "组距：";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtBlockDist
+            // 
+            this.txtBlockDist.Location = new System.Drawing.Point(89, 74);
+            this.txtBlockDist.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBlockDist.Name = "txtBlockDist";
+            this.txtBlockDist.Size = new System.Drawing.Size(91, 21);
+            this.txtBlockDist.TabIndex = 30;
+            this.txtBlockDist.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtTubeDistY
+            // 
+            this.txtTubeDistY.Location = new System.Drawing.Point(105, 191);
+            this.txtTubeDistY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTubeDistY.Name = "txtTubeDistY";
+            this.txtTubeDistY.Size = new System.Drawing.Size(76, 21);
+            this.txtTubeDistY.TabIndex = 21;
+            this.txtTubeDistY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtTubeDistX
+            // 
+            this.txtTubeDistX.Location = new System.Drawing.Point(105, 163);
+            this.txtTubeDistX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTubeDistX.Name = "txtTubeDistX";
+            this.txtTubeDistX.Size = new System.Drawing.Size(76, 21);
+            this.txtTubeDistX.TabIndex = 19;
+            this.txtTubeDistX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtFirstTubePosY
+            // 
+            this.txtFirstTubePosY.Location = new System.Drawing.Point(105, 133);
+            this.txtFirstTubePosY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFirstTubePosY.Name = "txtFirstTubePosY";
+            this.txtFirstTubePosY.Size = new System.Drawing.Size(76, 21);
+            this.txtFirstTubePosY.TabIndex = 17;
+            this.txtFirstTubePosY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtFirstTubePosX
+            // 
+            this.txtFirstTubePosX.Location = new System.Drawing.Point(105, 104);
+            this.txtFirstTubePosX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFirstTubePosX.Name = "txtFirstTubePosX";
+            this.txtFirstTubePosX.Size = new System.Drawing.Size(76, 21);
+            this.txtFirstTubePosX.TabIndex = 11;
+            this.txtFirstTubePosX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtColCnt
+            // 
+            this.txtColCnt.Location = new System.Drawing.Point(238, 45);
+            this.txtColCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtColCnt.Name = "txtColCnt";
+            this.txtColCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtColCnt.TabIndex = 8;
+            this.txtColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtRowCnt
+            // 
+            this.txtRowCnt.Location = new System.Drawing.Point(164, 45);
+            this.txtRowCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtRowCnt.Name = "txtRowCnt";
+            this.txtRowCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtRowCnt.TabIndex = 6;
+            this.txtRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtBlockCnt
+            // 
+            this.txtBlockCnt.Location = new System.Drawing.Point(89, 43);
+            this.txtBlockCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBlockCnt.Name = "txtBlockCnt";
+            this.txtBlockCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtBlockCnt.TabIndex = 4;
+            this.txtBlockCnt.Text = "1";
+            this.txtBlockCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(89, 12);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(182, 21);
+            this.txtName.TabIndex = 2;
+            this.txtName.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 231);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(318, 261);
+            this.Controls.Add(this.btnSetBlockDist);
+            this.Controls.Add(this.txtBlockDist);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.btnSetTX);
             this.Controls.Add(this.btnSetFX);
@@ -349,30 +397,33 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtName;
+        private VsmdWorkstation.Controls.TextBoxEx txtName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtBlockCnt;
+        private VsmdWorkstation.Controls.TextBoxEx txtBlockCnt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtRowCnt;
+        private VsmdWorkstation.Controls.TextBoxEx txtRowCnt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtColCnt;
-        private System.Windows.Forms.TextBox txtFirstTubePosX;
+        private VsmdWorkstation.Controls.TextBoxEx txtColCnt;
+        private VsmdWorkstation.Controls.TextBoxEx txtFirstTubePosX;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtFirstTubePosY;
+        private VsmdWorkstation.Controls.TextBoxEx txtFirstTubePosY;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTubeDistY;
+        private VsmdWorkstation.Controls.TextBoxEx txtTubeDistY;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtTubeDistX;
+        private VsmdWorkstation.Controls.TextBoxEx txtTubeDistX;
         private System.Windows.Forms.Button btnSetFY;
         private System.Windows.Forms.Button btnSetTY;
         private System.Windows.Forms.Button btnSetFX;
         private System.Windows.Forms.Button btnSetTX;
         private System.Windows.Forms.Button btnChoose;
+        private System.Windows.Forms.Button btnSetBlockDist;
+        private VsmdWorkstation.Controls.TextBoxEx txtBlockDist;
+        private System.Windows.Forms.Label label14;
     }
 }

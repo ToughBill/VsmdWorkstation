@@ -30,7 +30,6 @@ namespace VsmdWorkstation
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnOffX = new System.Windows.Forms.Button();
             this.btnEnaX = new System.Windows.Forms.Button();
@@ -50,7 +49,6 @@ namespace VsmdWorkstation
             this.label2 = new System.Windows.Forms.Label();
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gridContainer = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnOffY = new System.Windows.Forms.Button();
             this.btnEnaY = new System.Windows.Forms.Button();
@@ -90,20 +88,9 @@ namespace VsmdWorkstation
             this.txtCidZ = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.gridContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 272);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -127,16 +114,16 @@ namespace VsmdWorkstation
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 237);
+            this.groupBox1.Size = new System.Drawing.Size(216, 279);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "X轴";
             // 
             // btnOffX
             // 
-            this.btnOffX.Location = new System.Drawing.Point(89, 148);
+            this.btnOffX.Location = new System.Drawing.Point(123, 186);
             this.btnOffX.Name = "btnOffX";
-            this.btnOffX.Size = new System.Drawing.Size(75, 23);
+            this.btnOffX.Size = new System.Drawing.Size(80, 23);
             this.btnOffX.TabIndex = 17;
             this.btnOffX.Text = "off";
             this.btnOffX.UseVisualStyleBackColor = true;
@@ -144,9 +131,9 @@ namespace VsmdWorkstation
             // 
             // btnEnaX
             // 
-            this.btnEnaX.Location = new System.Drawing.Point(8, 148);
+            this.btnEnaX.Location = new System.Drawing.Point(8, 186);
             this.btnEnaX.Name = "btnEnaX";
-            this.btnEnaX.Size = new System.Drawing.Size(75, 23);
+            this.btnEnaX.Size = new System.Drawing.Size(80, 23);
             this.btnEnaX.TabIndex = 16;
             this.btnEnaX.Text = "ena";
             this.btnEnaX.UseVisualStyleBackColor = true;
@@ -154,9 +141,9 @@ namespace VsmdWorkstation
             // 
             // btnPosX
             // 
-            this.btnPosX.Location = new System.Drawing.Point(170, 148);
+            this.btnPosX.Location = new System.Drawing.Point(8, 157);
             this.btnPosX.Name = "btnPosX";
-            this.btnPosX.Size = new System.Drawing.Size(75, 23);
+            this.btnPosX.Size = new System.Drawing.Size(80, 23);
             this.btnPosX.TabIndex = 15;
             this.btnPosX.Text = "pos";
             this.btnPosX.UseVisualStyleBackColor = true;
@@ -164,9 +151,9 @@ namespace VsmdWorkstation
             // 
             // btnStsX
             // 
-            this.btnStsX.Location = new System.Drawing.Point(170, 206);
+            this.btnStsX.Location = new System.Drawing.Point(8, 128);
             this.btnStsX.Name = "btnStsX";
-            this.btnStsX.Size = new System.Drawing.Size(75, 23);
+            this.btnStsX.Size = new System.Drawing.Size(80, 23);
             this.btnStsX.TabIndex = 14;
             this.btnStsX.Text = "sts";
             this.btnStsX.UseVisualStyleBackColor = true;
@@ -174,9 +161,9 @@ namespace VsmdWorkstation
             // 
             // btnOrgX
             // 
-            this.btnOrgX.Location = new System.Drawing.Point(170, 177);
+            this.btnOrgX.Location = new System.Drawing.Point(123, 157);
             this.btnOrgX.Name = "btnOrgX";
-            this.btnOrgX.Size = new System.Drawing.Size(75, 23);
+            this.btnOrgX.Size = new System.Drawing.Size(80, 23);
             this.btnOrgX.TabIndex = 13;
             this.btnOrgX.Text = "org";
             this.btnOrgX.UseVisualStyleBackColor = true;
@@ -184,9 +171,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopX
             // 
-            this.btnZeroStopX.Location = new System.Drawing.Point(89, 206);
+            this.btnZeroStopX.Location = new System.Drawing.Point(123, 244);
             this.btnZeroStopX.Name = "btnZeroStopX";
-            this.btnZeroStopX.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStopX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopX.TabIndex = 12;
             this.btnZeroStopX.Text = "zero stop";
             this.btnZeroStopX.UseVisualStyleBackColor = true;
@@ -194,9 +181,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartX
             // 
-            this.btnZeroStartX.Location = new System.Drawing.Point(8, 206);
+            this.btnZeroStartX.Location = new System.Drawing.Point(8, 244);
             this.btnZeroStartX.Name = "btnZeroStartX";
-            this.btnZeroStartX.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStartX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartX.TabIndex = 11;
             this.btnZeroStartX.Text = "zero start";
             this.btnZeroStartX.UseVisualStyleBackColor = true;
@@ -204,9 +191,9 @@ namespace VsmdWorkstation
             // 
             // btnStopX
             // 
-            this.btnStopX.Location = new System.Drawing.Point(89, 177);
+            this.btnStopX.Location = new System.Drawing.Point(123, 215);
             this.btnStopX.Name = "btnStopX";
-            this.btnStopX.Size = new System.Drawing.Size(75, 23);
+            this.btnStopX.Size = new System.Drawing.Size(80, 23);
             this.btnStopX.TabIndex = 10;
             this.btnStopX.Text = "stop";
             this.btnStopX.UseVisualStyleBackColor = true;
@@ -214,9 +201,9 @@ namespace VsmdWorkstation
             // 
             // btnMoveX
             // 
-            this.btnMoveX.Location = new System.Drawing.Point(8, 177);
+            this.btnMoveX.Location = new System.Drawing.Point(8, 215);
             this.btnMoveX.Name = "btnMoveX";
-            this.btnMoveX.Size = new System.Drawing.Size(75, 23);
+            this.btnMoveX.Size = new System.Drawing.Size(80, 23);
             this.btnMoveX.TabIndex = 9;
             this.btnMoveX.Text = "move";
             this.btnMoveX.UseVisualStyleBackColor = true;
@@ -224,9 +211,9 @@ namespace VsmdWorkstation
             // 
             // btnSaveX
             // 
-            this.btnSaveX.Location = new System.Drawing.Point(170, 119);
+            this.btnSaveX.Location = new System.Drawing.Point(123, 128);
             this.btnSaveX.Name = "btnSaveX";
-            this.btnSaveX.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveX.Size = new System.Drawing.Size(80, 23);
             this.btnSaveX.TabIndex = 8;
             this.btnSaveX.Text = "保存";
             this.btnSaveX.UseVisualStyleBackColor = true;
@@ -254,7 +241,7 @@ namespace VsmdWorkstation
             // 
             this.txtSpeedX.Location = new System.Drawing.Point(66, 74);
             this.txtSpeedX.Name = "txtSpeedX";
-            this.txtSpeedX.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedX.Size = new System.Drawing.Size(137, 21);
             this.txtSpeedX.TabIndex = 5;
             this.txtSpeedX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -271,7 +258,7 @@ namespace VsmdWorkstation
             // 
             this.txtPosX.Location = new System.Drawing.Point(66, 47);
             this.txtPosX.Name = "txtPosX";
-            this.txtPosX.Size = new System.Drawing.Size(179, 21);
+            this.txtPosX.Size = new System.Drawing.Size(137, 21);
             this.txtPosX.TabIndex = 3;
             this.txtPosX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -289,7 +276,7 @@ namespace VsmdWorkstation
             this.txtCidX.Location = new System.Drawing.Point(66, 20);
             this.txtCidX.Name = "txtCidX";
             this.txtCidX.ReadOnly = true;
-            this.txtCidX.Size = new System.Drawing.Size(179, 21);
+            this.txtCidX.Size = new System.Drawing.Size(137, 21);
             this.txtCidX.TabIndex = 1;
             // 
             // label1
@@ -300,14 +287,6 @@ namespace VsmdWorkstation
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cid：";
-            // 
-            // gridContainer
-            // 
-            this.gridContainer.Controls.Add(this.button1);
-            this.gridContainer.Location = new System.Drawing.Point(12, 255);
-            this.gridContainer.Name = "gridContainer";
-            this.gridContainer.Size = new System.Drawing.Size(771, 298);
-            this.gridContainer.TabIndex = 2;
             // 
             // groupBox2
             // 
@@ -329,18 +308,18 @@ namespace VsmdWorkstation
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtCidY);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(271, 12);
+            this.groupBox2.Location = new System.Drawing.Point(234, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(253, 237);
+            this.groupBox2.Size = new System.Drawing.Size(216, 279);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Y轴";
             // 
             // btnOffY
             // 
-            this.btnOffY.Location = new System.Drawing.Point(89, 148);
+            this.btnOffY.Location = new System.Drawing.Point(123, 186);
             this.btnOffY.Name = "btnOffY";
-            this.btnOffY.Size = new System.Drawing.Size(75, 23);
+            this.btnOffY.Size = new System.Drawing.Size(80, 23);
             this.btnOffY.TabIndex = 17;
             this.btnOffY.Text = "off";
             this.btnOffY.UseVisualStyleBackColor = true;
@@ -348,9 +327,9 @@ namespace VsmdWorkstation
             // 
             // btnEnaY
             // 
-            this.btnEnaY.Location = new System.Drawing.Point(8, 148);
+            this.btnEnaY.Location = new System.Drawing.Point(8, 186);
             this.btnEnaY.Name = "btnEnaY";
-            this.btnEnaY.Size = new System.Drawing.Size(75, 23);
+            this.btnEnaY.Size = new System.Drawing.Size(80, 23);
             this.btnEnaY.TabIndex = 16;
             this.btnEnaY.Text = "ena";
             this.btnEnaY.UseVisualStyleBackColor = true;
@@ -358,9 +337,9 @@ namespace VsmdWorkstation
             // 
             // btnPosY
             // 
-            this.btnPosY.Location = new System.Drawing.Point(170, 148);
+            this.btnPosY.Location = new System.Drawing.Point(8, 157);
             this.btnPosY.Name = "btnPosY";
-            this.btnPosY.Size = new System.Drawing.Size(75, 23);
+            this.btnPosY.Size = new System.Drawing.Size(80, 23);
             this.btnPosY.TabIndex = 15;
             this.btnPosY.Text = "pos";
             this.btnPosY.UseVisualStyleBackColor = true;
@@ -368,9 +347,9 @@ namespace VsmdWorkstation
             // 
             // btnStsY
             // 
-            this.btnStsY.Location = new System.Drawing.Point(170, 206);
+            this.btnStsY.Location = new System.Drawing.Point(8, 128);
             this.btnStsY.Name = "btnStsY";
-            this.btnStsY.Size = new System.Drawing.Size(75, 23);
+            this.btnStsY.Size = new System.Drawing.Size(80, 23);
             this.btnStsY.TabIndex = 14;
             this.btnStsY.Text = "sts";
             this.btnStsY.UseVisualStyleBackColor = true;
@@ -378,9 +357,9 @@ namespace VsmdWorkstation
             // 
             // btnOrgY
             // 
-            this.btnOrgY.Location = new System.Drawing.Point(170, 177);
+            this.btnOrgY.Location = new System.Drawing.Point(123, 157);
             this.btnOrgY.Name = "btnOrgY";
-            this.btnOrgY.Size = new System.Drawing.Size(75, 23);
+            this.btnOrgY.Size = new System.Drawing.Size(80, 23);
             this.btnOrgY.TabIndex = 13;
             this.btnOrgY.Text = "org";
             this.btnOrgY.UseVisualStyleBackColor = true;
@@ -388,9 +367,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopY
             // 
-            this.btnZeroStopY.Location = new System.Drawing.Point(89, 206);
+            this.btnZeroStopY.Location = new System.Drawing.Point(123, 244);
             this.btnZeroStopY.Name = "btnZeroStopY";
-            this.btnZeroStopY.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStopY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopY.TabIndex = 12;
             this.btnZeroStopY.Text = "zero stop";
             this.btnZeroStopY.UseVisualStyleBackColor = true;
@@ -398,9 +377,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartY
             // 
-            this.btnZeroStartY.Location = new System.Drawing.Point(8, 206);
+            this.btnZeroStartY.Location = new System.Drawing.Point(8, 244);
             this.btnZeroStartY.Name = "btnZeroStartY";
-            this.btnZeroStartY.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStartY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartY.TabIndex = 11;
             this.btnZeroStartY.Text = "zero start";
             this.btnZeroStartY.UseVisualStyleBackColor = true;
@@ -408,9 +387,9 @@ namespace VsmdWorkstation
             // 
             // btnStopY
             // 
-            this.btnStopY.Location = new System.Drawing.Point(89, 177);
+            this.btnStopY.Location = new System.Drawing.Point(123, 215);
             this.btnStopY.Name = "btnStopY";
-            this.btnStopY.Size = new System.Drawing.Size(75, 23);
+            this.btnStopY.Size = new System.Drawing.Size(80, 23);
             this.btnStopY.TabIndex = 10;
             this.btnStopY.Text = "stop";
             this.btnStopY.UseVisualStyleBackColor = true;
@@ -418,9 +397,9 @@ namespace VsmdWorkstation
             // 
             // btnMoveY
             // 
-            this.btnMoveY.Location = new System.Drawing.Point(8, 177);
+            this.btnMoveY.Location = new System.Drawing.Point(8, 215);
             this.btnMoveY.Name = "btnMoveY";
-            this.btnMoveY.Size = new System.Drawing.Size(75, 23);
+            this.btnMoveY.Size = new System.Drawing.Size(80, 23);
             this.btnMoveY.TabIndex = 9;
             this.btnMoveY.Text = "move";
             this.btnMoveY.UseVisualStyleBackColor = true;
@@ -428,9 +407,9 @@ namespace VsmdWorkstation
             // 
             // btnSaveY
             // 
-            this.btnSaveY.Location = new System.Drawing.Point(170, 119);
+            this.btnSaveY.Location = new System.Drawing.Point(123, 128);
             this.btnSaveY.Name = "btnSaveY";
-            this.btnSaveY.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveY.Size = new System.Drawing.Size(80, 23);
             this.btnSaveY.TabIndex = 8;
             this.btnSaveY.Text = "保存";
             this.btnSaveY.UseVisualStyleBackColor = true;
@@ -458,7 +437,7 @@ namespace VsmdWorkstation
             // 
             this.txtSpeedY.Location = new System.Drawing.Point(66, 74);
             this.txtSpeedY.Name = "txtSpeedY";
-            this.txtSpeedY.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedY.Size = new System.Drawing.Size(137, 21);
             this.txtSpeedY.TabIndex = 5;
             this.txtSpeedY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -475,7 +454,7 @@ namespace VsmdWorkstation
             // 
             this.txtPosY.Location = new System.Drawing.Point(66, 47);
             this.txtPosY.Name = "txtPosY";
-            this.txtPosY.Size = new System.Drawing.Size(179, 21);
+            this.txtPosY.Size = new System.Drawing.Size(137, 21);
             this.txtPosY.TabIndex = 3;
             this.txtPosY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -493,7 +472,7 @@ namespace VsmdWorkstation
             this.txtCidY.Location = new System.Drawing.Point(66, 20);
             this.txtCidY.Name = "txtCidY";
             this.txtCidY.ReadOnly = true;
-            this.txtCidY.Size = new System.Drawing.Size(179, 21);
+            this.txtCidY.Size = new System.Drawing.Size(137, 21);
             this.txtCidY.TabIndex = 1;
             // 
             // label8
@@ -525,18 +504,18 @@ namespace VsmdWorkstation
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtCidZ);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Location = new System.Drawing.Point(530, 12);
+            this.groupBox3.Location = new System.Drawing.Point(456, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(253, 237);
+            this.groupBox3.Size = new System.Drawing.Size(216, 279);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Z轴";
             // 
             // btnOffZ
             // 
-            this.btnOffZ.Location = new System.Drawing.Point(89, 148);
+            this.btnOffZ.Location = new System.Drawing.Point(121, 186);
             this.btnOffZ.Name = "btnOffZ";
-            this.btnOffZ.Size = new System.Drawing.Size(75, 23);
+            this.btnOffZ.Size = new System.Drawing.Size(80, 23);
             this.btnOffZ.TabIndex = 17;
             this.btnOffZ.Text = "off";
             this.btnOffZ.UseVisualStyleBackColor = true;
@@ -544,9 +523,9 @@ namespace VsmdWorkstation
             // 
             // btnEnaZ
             // 
-            this.btnEnaZ.Location = new System.Drawing.Point(8, 148);
+            this.btnEnaZ.Location = new System.Drawing.Point(6, 186);
             this.btnEnaZ.Name = "btnEnaZ";
-            this.btnEnaZ.Size = new System.Drawing.Size(75, 23);
+            this.btnEnaZ.Size = new System.Drawing.Size(80, 23);
             this.btnEnaZ.TabIndex = 16;
             this.btnEnaZ.Text = "ena";
             this.btnEnaZ.UseVisualStyleBackColor = true;
@@ -554,9 +533,9 @@ namespace VsmdWorkstation
             // 
             // btnPosZ
             // 
-            this.btnPosZ.Location = new System.Drawing.Point(170, 148);
+            this.btnPosZ.Location = new System.Drawing.Point(8, 157);
             this.btnPosZ.Name = "btnPosZ";
-            this.btnPosZ.Size = new System.Drawing.Size(75, 23);
+            this.btnPosZ.Size = new System.Drawing.Size(80, 23);
             this.btnPosZ.TabIndex = 15;
             this.btnPosZ.Text = "pos";
             this.btnPosZ.UseVisualStyleBackColor = true;
@@ -564,9 +543,9 @@ namespace VsmdWorkstation
             // 
             // btnStsZ
             // 
-            this.btnStsZ.Location = new System.Drawing.Point(170, 206);
+            this.btnStsZ.Location = new System.Drawing.Point(8, 128);
             this.btnStsZ.Name = "btnStsZ";
-            this.btnStsZ.Size = new System.Drawing.Size(75, 23);
+            this.btnStsZ.Size = new System.Drawing.Size(80, 23);
             this.btnStsZ.TabIndex = 14;
             this.btnStsZ.Text = "sts";
             this.btnStsZ.UseVisualStyleBackColor = true;
@@ -574,9 +553,9 @@ namespace VsmdWorkstation
             // 
             // btnOrgZ
             // 
-            this.btnOrgZ.Location = new System.Drawing.Point(170, 177);
+            this.btnOrgZ.Location = new System.Drawing.Point(123, 157);
             this.btnOrgZ.Name = "btnOrgZ";
-            this.btnOrgZ.Size = new System.Drawing.Size(75, 23);
+            this.btnOrgZ.Size = new System.Drawing.Size(80, 23);
             this.btnOrgZ.TabIndex = 13;
             this.btnOrgZ.Text = "org";
             this.btnOrgZ.UseVisualStyleBackColor = true;
@@ -584,9 +563,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopZ
             // 
-            this.btnZeroStopZ.Location = new System.Drawing.Point(89, 206);
+            this.btnZeroStopZ.Location = new System.Drawing.Point(121, 244);
             this.btnZeroStopZ.Name = "btnZeroStopZ";
-            this.btnZeroStopZ.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopZ.TabIndex = 12;
             this.btnZeroStopZ.Text = "zero stop";
             this.btnZeroStopZ.UseVisualStyleBackColor = true;
@@ -594,9 +573,9 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartZ
             // 
-            this.btnZeroStartZ.Location = new System.Drawing.Point(8, 206);
+            this.btnZeroStartZ.Location = new System.Drawing.Point(6, 244);
             this.btnZeroStartZ.Name = "btnZeroStartZ";
-            this.btnZeroStartZ.Size = new System.Drawing.Size(75, 23);
+            this.btnZeroStartZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartZ.TabIndex = 11;
             this.btnZeroStartZ.Text = "zero start";
             this.btnZeroStartZ.UseVisualStyleBackColor = true;
@@ -604,9 +583,9 @@ namespace VsmdWorkstation
             // 
             // btnStopZ
             // 
-            this.btnStopZ.Location = new System.Drawing.Point(89, 177);
+            this.btnStopZ.Location = new System.Drawing.Point(121, 215);
             this.btnStopZ.Name = "btnStopZ";
-            this.btnStopZ.Size = new System.Drawing.Size(75, 23);
+            this.btnStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnStopZ.TabIndex = 10;
             this.btnStopZ.Text = "stop";
             this.btnStopZ.UseVisualStyleBackColor = true;
@@ -614,9 +593,9 @@ namespace VsmdWorkstation
             // 
             // btnMoveZ
             // 
-            this.btnMoveZ.Location = new System.Drawing.Point(8, 177);
+            this.btnMoveZ.Location = new System.Drawing.Point(6, 215);
             this.btnMoveZ.Name = "btnMoveZ";
-            this.btnMoveZ.Size = new System.Drawing.Size(75, 23);
+            this.btnMoveZ.Size = new System.Drawing.Size(80, 23);
             this.btnMoveZ.TabIndex = 9;
             this.btnMoveZ.Text = "move";
             this.btnMoveZ.UseVisualStyleBackColor = true;
@@ -624,9 +603,9 @@ namespace VsmdWorkstation
             // 
             // btnSaveZ
             // 
-            this.btnSaveZ.Location = new System.Drawing.Point(170, 119);
+            this.btnSaveZ.Location = new System.Drawing.Point(123, 128);
             this.btnSaveZ.Name = "btnSaveZ";
-            this.btnSaveZ.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveZ.Size = new System.Drawing.Size(80, 23);
             this.btnSaveZ.TabIndex = 8;
             this.btnSaveZ.Text = "保存";
             this.btnSaveZ.UseVisualStyleBackColor = true;
@@ -654,7 +633,7 @@ namespace VsmdWorkstation
             // 
             this.txtSpeedZ.Location = new System.Drawing.Point(66, 74);
             this.txtSpeedZ.Name = "txtSpeedZ";
-            this.txtSpeedZ.Size = new System.Drawing.Size(179, 21);
+            this.txtSpeedZ.Size = new System.Drawing.Size(137, 21);
             this.txtSpeedZ.TabIndex = 5;
             this.txtSpeedZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -671,7 +650,7 @@ namespace VsmdWorkstation
             // 
             this.txtPosZ.Location = new System.Drawing.Point(66, 47);
             this.txtPosZ.Name = "txtPosZ";
-            this.txtPosZ.Size = new System.Drawing.Size(179, 21);
+            this.txtPosZ.Size = new System.Drawing.Size(137, 21);
             this.txtPosZ.TabIndex = 3;
             this.txtPosZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -689,7 +668,7 @@ namespace VsmdWorkstation
             this.txtCidZ.Location = new System.Drawing.Point(66, 20);
             this.txtCidZ.Name = "txtCidZ";
             this.txtCidZ.ReadOnly = true;
-            this.txtCidZ.Size = new System.Drawing.Size(179, 21);
+            this.txtCidZ.Size = new System.Drawing.Size(137, 21);
             this.txtCidZ.TabIndex = 1;
             // 
             // label12
@@ -705,10 +684,9 @@ namespace VsmdWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 565);
+            this.ClientSize = new System.Drawing.Size(683, 300);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.gridContainer);
             this.Controls.Add(this.groupBox1);
             this.Name = "VsmdSettingFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -716,7 +694,6 @@ namespace VsmdWorkstation
             this.Load += new System.EventHandler(this.VsmdSettingFrm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gridContainer.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -726,10 +703,7 @@ namespace VsmdWorkstation
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel gridContainer;
         private TextBoxEx txtSpeedX;
         private System.Windows.Forms.Label label3;
         private TextBoxEx txtPosX;

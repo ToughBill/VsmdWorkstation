@@ -117,6 +117,7 @@
             this.Name = "ConnectVsmd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "连接控制器";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectVsmd_FormClosed);
             this.Load += new System.EventHandler(this.ConnectVsmd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

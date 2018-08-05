@@ -14,6 +14,7 @@ namespace VsmdWorkstation
 {
     public partial class MainFrm : Form
     {
+        private ConnectVsmd m_connectForm;
         public MainFrm()
         {
             InitializeComponent();
@@ -37,10 +38,7 @@ namespace VsmdWorkstation
         }
         private void InitVsmdConnection()
         {
-            ConnectVsmd frm = new ConnectVsmd(InitVsmdConnectionCB);
-            frm.MdiParent = this;
-            frm.Show();
-            
+            ConnectVsmd();
         }
         private void InitVsmdConnectionCB(InitResult initRet)
         {
@@ -52,6 +50,8 @@ namespace VsmdWorkstation
                 //frm.WindowState = FormWindowState.Maximized;
                 frm.Dock = DockStyle.Fill;
                 frm.Show();
+                m_connectForm.Dispose();
+                m_connectForm = null;
             }
             else
             {
@@ -64,6 +64,23 @@ namespace VsmdWorkstation
             BoardSettingFrm frm = new BoardSettingFrm();
             frm.MdiParent = this;
             frm.Show();
+        }
+        private void ConnectVsmd()
+        {
+            if(m_connectForm == null || m_connectForm.IsClosed)
+            {
+                m_connectForm = new ConnectVsmd(InitVsmdConnectionCB);
+                m_connectForm.MdiParent = this;
+                m_connectForm.Show();
+            }
+            else
+            {
+                m_connectForm.Focus();
+            }
+        }
+        private void tsmConnectVsmd_Click(object sender, EventArgs e)
+        {
+            ConnectVsmd();
         }
     }
 }
