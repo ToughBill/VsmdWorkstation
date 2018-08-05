@@ -41,9 +41,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(50, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Port:";
+            this.label1.Text = "端口：";
             // 
             // cmbPort
             // 
@@ -57,11 +57,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 67);
+            this.label2.Location = new System.Drawing.Point(38, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Baudrate:";
+            this.label2.Text = "波特率：";
             // 
             // cmbBaudrate
             // 
@@ -114,9 +114,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbPort);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ConnectVsmd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "连接控制器";
+            this.Text = "连接设备";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectVsmd_FormClosed);
             this.Load += new System.EventHandler(this.ConnectVsmd_Load);
             this.ResumeLayout(false);

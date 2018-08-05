@@ -35,10 +35,10 @@
             this.tsmBoardSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDevTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tsmConnectVsmd = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,17 +90,8 @@
             // tsmDevTools
             // 
             this.tsmDevTools.Name = "tsmDevTools";
-            this.tsmDevTools.Size = new System.Drawing.Size(134, 22);
+            this.tsmDevTools.Size = new System.Drawing.Size(152, 22);
             this.tsmDevTools.Text = "Dev Tools";
-            // 
-            // statusBarEx
-            // 
-            this.statusBarEx.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBarEx.Location = new System.Drawing.Point(0, 645);
-            this.statusBarEx.Name = "statusBarEx";
-            this.statusBarEx.Size = new System.Drawing.Size(829, 24);
-            this.statusBarEx.TabIndex = 4;
-            this.statusBarEx.Text = "statusBarEx1";
             // 
             // toolStrip1
             // 
@@ -128,6 +119,15 @@
             this.tsmConnectVsmd.Text = "连接控制器";
             this.tsmConnectVsmd.Click += new System.EventHandler(this.tsmConnectVsmd_Click);
             // 
+            // statusBarEx
+            // 
+            this.statusBarEx.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusBarEx.Location = new System.Drawing.Point(0, 645);
+            this.statusBarEx.Name = "statusBarEx";
+            this.statusBarEx.Size = new System.Drawing.Size(829, 24);
+            this.statusBarEx.TabIndex = 4;
+            this.statusBarEx.Text = "statusBarEx1";
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -139,7 +139,7 @@
             this.IsMdiContainer = true;
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainFrm";
+            this.Text = "VSMD工作站";
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

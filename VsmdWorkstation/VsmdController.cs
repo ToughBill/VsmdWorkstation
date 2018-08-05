@@ -82,7 +82,7 @@ namespace VsmdWorkstation
             string errMsg = "";
             if(errAxis.Count > 0)
             {
-                errMsg = "驱动器 ";
+                errMsg = "设备 ";
                 for (int i = 0; i < errAxis.Count; i++)
                 {
                     if (i > 0)
