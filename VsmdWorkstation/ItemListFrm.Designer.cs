@@ -91,7 +91,7 @@
             this.Controls.Add(this.listView);
             this.Name = "ItemListFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ItemListFrm";
+            this.Text = "选择载物架";
             this.Load += new System.EventHandler(this.ItemListFrm_Load);
             this.ResumeLayout(false);
 

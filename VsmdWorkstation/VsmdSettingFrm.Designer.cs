@@ -690,7 +690,7 @@ namespace VsmdWorkstation
             this.Controls.Add(this.groupBox1);
             this.Name = "VsmdSettingFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VsmdSettingFrm";
+            this.Text = "驱动器设置";
             this.Load += new System.EventHandler(this.VsmdSettingFrm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -30,12 +30,21 @@
         {
             this.lblTip = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStartPos = new VsmdWorkstation.Controls.TextBoxEx();
+            this.btnSetStart = new System.Windows.Forms.Button();
+            this.btnSetEnd = new System.Windows.Forms.Button();
+            this.txtEndPos = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDist = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTip
             // 
             this.lblTip.AutoSize = true;
-            this.lblTip.Location = new System.Drawing.Point(23, 29);
+            this.lblTip.Location = new System.Drawing.Point(53, 21);
             this.lblTip.Name = "lblTip";
             this.lblTip.Size = new System.Drawing.Size(221, 12);
             this.lblTip.TabIndex = 0;
@@ -43,21 +52,112 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(250, 22);
+            this.btnOK.Location = new System.Drawing.Point(174, 104);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(54, 26);
+            this.btnOK.Size = new System.Drawing.Size(126, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "位置：";
+            // 
+            // txtStartPos
+            // 
+            this.txtStartPos.Location = new System.Drawing.Point(55, 47);
+            this.txtStartPos.Name = "txtStartPos";
+            this.txtStartPos.Size = new System.Drawing.Size(113, 21);
+            this.txtStartPos.TabIndex = 3;
+            this.txtStartPos.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // btnSetStart
+            // 
+            this.btnSetStart.Location = new System.Drawing.Point(174, 45);
+            this.btnSetStart.Name = "btnSetStart";
+            this.btnSetStart.Size = new System.Drawing.Size(126, 23);
+            this.btnSetStart.TabIndex = 4;
+            this.btnSetStart.Text = "将当前位置设为起点";
+            this.btnSetStart.UseVisualStyleBackColor = true;
+            this.btnSetStart.Click += new System.EventHandler(this.btnSetStart_Click);
+            // 
+            // btnSetEnd
+            // 
+            this.btnSetEnd.Location = new System.Drawing.Point(174, 75);
+            this.btnSetEnd.Name = "btnSetEnd";
+            this.btnSetEnd.Size = new System.Drawing.Size(126, 23);
+            this.btnSetEnd.TabIndex = 7;
+            this.btnSetEnd.Text = "将当前位置设为终点";
+            this.btnSetEnd.UseVisualStyleBackColor = true;
+            this.btnSetEnd.Click += new System.EventHandler(this.btnSetEnd_Click);
+            // 
+            // txtEndPos
+            // 
+            this.txtEndPos.Location = new System.Drawing.Point(55, 77);
+            this.txtEndPos.Name = "txtEndPos";
+            this.txtEndPos.Size = new System.Drawing.Size(113, 21);
+            this.txtEndPos.TabIndex = 6;
+            this.txtEndPos.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "位置：";
+            // 
+            // txtDist
+            // 
+            this.txtDist.Location = new System.Drawing.Point(55, 106);
+            this.txtDist.Name = "txtDist";
+            this.txtDist.Size = new System.Drawing.Size(113, 21);
+            this.txtDist.TabIndex = 9;
+            this.txtDist.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 113);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "位置：";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(43, 211);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // SetTubePositionFrm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 67);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(319, 143);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.txtDist);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnSetEnd);
+            this.Controls.Add(this.txtEndPos);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnSetStart);
+            this.Controls.Add(this.txtStartPos);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblTip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -76,5 +176,14 @@
 
         private System.Windows.Forms.Label lblTip;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Label label1;
+        private Controls.TextBoxEx txtStartPos;
+        private System.Windows.Forms.Button btnSetStart;
+        private System.Windows.Forms.Button btnSetEnd;
+        private Controls.TextBoxEx txtEndPos;
+        private System.Windows.Forms.Label label2;
+        private Controls.TextBoxEx txtDist;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

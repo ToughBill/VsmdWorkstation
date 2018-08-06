@@ -155,8 +155,11 @@ namespace VsmdWorkstation
         private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
         {
             SetTubePositionFrm frm = new SetTubePositionFrm(axisType);
-            frm.ShowDialog();
-            textbox.Text = VsmdController.GetVsmdController().GetAxis(axisType).curPos.ToString();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                textbox.Text = frm.GetDist().ToString();
+            }
+            
         }
         private void DisableControls() {
             btnSetBlockDist.Enabled = false;
@@ -178,6 +181,7 @@ namespace VsmdWorkstation
         {
             txtName.Text = meta.Name;
             txtBlockCnt.Text = meta.BlockCount.ToString();
+            txtBlockDist.Text = meta.BlockDistanceX.ToString();
             txtRowCnt.Text = meta.RowCount.ToString();
             txtColCnt.Text = meta.ColumnCount.ToString();
             txtFirstTubePosX.Text = meta.FirstTubeX.ToString();
