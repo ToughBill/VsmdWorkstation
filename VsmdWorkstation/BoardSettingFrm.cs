@@ -19,6 +19,13 @@ namespace VsmdWorkstation
 {
     public partial class BoardSettingFrm : Form
     {
+        public enum FORM_MODE
+        {
+            Add,
+            Update
+        }
+        private FORM_MODE m_mode;
+        private BoardMeta m_curMeta;
         public BoardSettingFrm()
         {
             InitializeComponent();
@@ -26,6 +33,10 @@ namespace VsmdWorkstation
 
         private void BoardSettingFrm_Load(object sender, EventArgs e)
         {
+            m_curMeta = new BoardMeta();
+            FillData();
+            m_mode = FORM_MODE.Add;
+
             if (!VsmdController.GetVsmdController().IsInitialized())
             {
                 StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
@@ -40,39 +51,82 @@ namespace VsmdWorkstation
             {
                 return;
             }
-            BoardMeta meta = GetTempBoardSetting();
-            
-            BoardSetting.GetInstance().AddNewBoard(meta);
-            BoardSetting.GetInstance().Save();
+            //BoardMeta meta = GetTempBoardSetting();
+            FormDatToMeta();
+            bool ret = true;
+            if(m_mode == FORM_MODE.Add)
+            {
+                ret = BoardSetting.GetInstance().AddNewBoard(m_curMeta);
+                if (ret)
+                {
+                    ShowMessage(MessageType.Info, "添加成功！");
+                    ResetData();
+                }
+                else
+                {
+                    ShowMessage(MessageType.Error, "添加失败！");
+                }
+            }
+            else if(m_mode == FORM_MODE.Update)
+            {
+                //BoardSetting.GetInstance().AddNewBoard(m_curMeta);
+                ret = BoardSetting.GetInstance().Save();
+                if (ret)
+                {
+                    ShowMessage(MessageType.Info, "更新成功！");
+                    ResetData();
+                }
+                else
+                {
+                    ShowMessage(MessageType.Error, "更新失败！");
+                }
+            }
+        }
+
+        private void ResetData()
+        {
+            m_curMeta = new BoardMeta();
+            m_mode = FORM_MODE.Add;
+            FillData();
         }
         private BoardMeta GetTempBoardSetting()
         {
             BoardMeta temp = new BoardMeta();
-            temp.Name = txtName.Text.Trim();
-            temp.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
-            temp.RowCount = int.Parse(txtRowCnt.Text.Trim());
-            temp.ColumnCount = int.Parse(txtColCnt.Text.Trim());
-            int val = 0;
-            int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
-            temp.FirstTubeX = val;
-
-            val = 0;
-            int.TryParse(txtFirstTubePosY.Text.Trim(), out val);
-        
-            val = 0;
-            int.TryParse(txtTubeDistX.Text.Trim(), out val);
-            temp.TubeDistanceX = val;
-
-            val = 0;
-            int.TryParse(txtTubeDistY.Text.Trim(), out val);
-            temp.TubeDistanceX = val;
-
-            val = 0;
-            int.TryParse(txtBlockDist.Text.Trim(), out val);
-            temp.BlockDistanceX = val;
+            FormDatToMetaImpl(temp);
 
             return temp;
         }
+        private void FormDatToMeta()
+        {
+            FormDatToMetaImpl(m_curMeta);
+        }
+        private void FormDatToMetaImpl(BoardMeta meta)
+        {
+            meta.Name = txtName.Text.Trim();
+            meta.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
+            meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
+            meta.ColumnCount = int.Parse(txtColCnt.Text.Trim());
+            int val = 0;
+            int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
+            meta.FirstTubeX = val;
+
+            val = 0;
+            int.TryParse(txtFirstTubePosY.Text.Trim(), out val);
+            meta.FirstTubeY = val;
+
+            val = 0;
+            int.TryParse(txtTubeDistX.Text.Trim(), out val);
+            meta.TubeDistanceX = val;
+
+            val = 0;
+            int.TryParse(txtTubeDistY.Text.Trim(), out val);
+            meta.TubeDistanceY = val;
+
+            val = 0;
+            int.TryParse(txtBlockDist.Text.Trim(), out val);
+            meta.BlockDistanceX = val;
+        }
+
         private bool ValidFormData()
         {
             if(string.IsNullOrWhiteSpace(txtName.Text))
@@ -99,7 +153,7 @@ namespace VsmdWorkstation
                 txtColCnt.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtBlockDist.Text))
+            if (int.Parse(txtBlockCnt.Text) > 1 && string.IsNullOrWhiteSpace(txtBlockDist.Text))
             {
                 ShowMessage(MessageType.Error, "组件不能为空！");
                 txtBlockDist.Focus();
@@ -173,21 +227,22 @@ namespace VsmdWorkstation
             ItemListFrm frm = new ItemListFrm();
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                BoardMeta meta = (BoardMeta)frm.SelectedObject;
-                FillData(meta);
+                m_curMeta = (BoardMeta)frm.SelectedObject;
+                FillData();
+                m_mode = FORM_MODE.Update;
             }
         }
-        private void FillData(BoardMeta meta)
+        private void FillData()
         {
-            txtName.Text = meta.Name;
-            txtBlockCnt.Text = meta.BlockCount.ToString();
-            txtBlockDist.Text = meta.BlockDistanceX.ToString();
-            txtRowCnt.Text = meta.RowCount.ToString();
-            txtColCnt.Text = meta.ColumnCount.ToString();
-            txtFirstTubePosX.Text = meta.FirstTubeX.ToString();
-            txtFirstTubePosY.Text = meta.FirstTubeY.ToString();
-            txtTubeDistX.Text = meta.TubeDistanceX.ToString();
-            txtTubeDistY.Text = meta.TubeDistanceY.ToString();
+            txtName.Text = m_curMeta.Name;
+            txtBlockCnt.Text = m_curMeta.BlockCount.ToString();
+            txtBlockDist.Text = m_curMeta.BlockDistanceX.ToString();
+            txtRowCnt.Text = m_curMeta.RowCount.ToString();
+            txtColCnt.Text = m_curMeta.ColumnCount.ToString();
+            txtFirstTubePosX.Text = m_curMeta.FirstTubeX.ToString();
+            txtFirstTubePosY.Text = m_curMeta.FirstTubeY.ToString();
+            txtTubeDistX.Text = m_curMeta.TubeDistanceX.ToString();
+            txtTubeDistY.Text = m_curMeta.TubeDistanceY.ToString();
         }
 
         private void btnSetBlockDist_Click(object sender, EventArgs e)
@@ -198,6 +253,25 @@ namespace VsmdWorkstation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tsmiDelete_Click(object sender, EventArgs e)
+        {
+            bool ret = BoardSetting.GetInstance().DeleteBoard(m_curMeta);
+            if (ret)
+            {
+                ShowMessage(MessageType.Info, "删除成功！");
+                ResetData();
+            }
+            else
+            {
+                ShowMessage(MessageType.Error, "删除失败！");
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            tsmiDelete.Enabled = (m_mode == FORM_MODE.Update);
         }
     }
 }

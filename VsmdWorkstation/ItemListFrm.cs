@@ -53,5 +53,14 @@ namespace VsmdWorkstation
         {
             this.Close();
         }
+
+        private void listView_DoubleClick(object sender, EventArgs e)
+        {
+            if(listView.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            btnOk_Click(null, null);
+        }
     }
 }

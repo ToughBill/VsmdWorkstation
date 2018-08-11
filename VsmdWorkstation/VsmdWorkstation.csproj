@@ -74,9 +74,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VsmdLib">
-      <HintPath>sdk\VsmdLib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoardSettingFrm.cs">
@@ -211,6 +208,10 @@
     <Folder Include="html\icon\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VsmdLib\VsmdLib.csproj">
+      <Project>{4e8b8537-a816-4731-979a-7c0a88bf7ec5}</Project>
+      <Name>VsmdLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VsmdWorkstation.Controls\VsmdWorkstation.Controls.csproj">
       <Project>{feb64d6c-52c5-4487-b143-19ec668b69e8}</Project>
       <Name>VsmdWorkstation.Controls</Name>

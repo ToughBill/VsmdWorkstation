@@ -31,6 +31,7 @@ namespace VsmdWorkstation
         {
             InitStatusBar();
             InitVsmdConnection();
+            BoardSetting.GetInstance().LoadBoardSettings();
         }
         private void InitStatusBar()
         {
@@ -44,7 +45,7 @@ namespace VsmdWorkstation
         {
             if (initRet.IsSuccess)
             {
-                StatusBar.DisplayMessage(MessageType.Info, "控制器连接成功！");
+                StatusBar.DisplayMessage(MessageType.Info, "设备连接成功！");
                 DripFrm frm = new DripFrm();
                 frm.MdiParent = this;
                 //frm.WindowState = FormWindowState.Maximized;
@@ -55,7 +56,7 @@ namespace VsmdWorkstation
             }
             else
             {
-                StatusBar.DisplayMessage(MessageType.Error, "控制器连接失败！");
+                StatusBar.DisplayMessage(MessageType.Error, "设备连接失败！");
             }
         }
 

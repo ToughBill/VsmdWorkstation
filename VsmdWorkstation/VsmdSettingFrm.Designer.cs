@@ -69,6 +69,8 @@ namespace VsmdWorkstation
             this.txtCidY = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnS3Off = new System.Windows.Forms.Button();
+            this.btnS3On = new System.Windows.Forms.Button();
             this.btnOffZ = new System.Windows.Forms.Button();
             this.btnEnaZ = new System.Windows.Forms.Button();
             this.btnPosZ = new System.Windows.Forms.Button();
@@ -486,6 +488,8 @@ namespace VsmdWorkstation
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnS3Off);
+            this.groupBox3.Controls.Add(this.btnS3On);
             this.groupBox3.Controls.Add(this.btnOffZ);
             this.groupBox3.Controls.Add(this.btnEnaZ);
             this.groupBox3.Controls.Add(this.btnPosZ);
@@ -506,10 +510,30 @@ namespace VsmdWorkstation
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(456, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 279);
+            this.groupBox3.Size = new System.Drawing.Size(216, 304);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Z轴";
+            // 
+            // btnS3Off
+            // 
+            this.btnS3Off.Location = new System.Drawing.Point(123, 273);
+            this.btnS3Off.Name = "btnS3Off";
+            this.btnS3Off.Size = new System.Drawing.Size(80, 23);
+            this.btnS3Off.TabIndex = 19;
+            this.btnS3Off.Text = "S3 Output";
+            this.btnS3Off.UseVisualStyleBackColor = true;
+            this.btnS3Off.Click += new System.EventHandler(this.btnS3Off_Click);
+            // 
+            // btnS3On
+            // 
+            this.btnS3On.Location = new System.Drawing.Point(8, 273);
+            this.btnS3On.Name = "btnS3On";
+            this.btnS3On.Size = new System.Drawing.Size(80, 23);
+            this.btnS3On.TabIndex = 18;
+            this.btnS3On.Text = "S3 Input";
+            this.btnS3On.UseVisualStyleBackColor = true;
+            this.btnS3On.Click += new System.EventHandler(this.btnS3On_Click);
             // 
             // btnOffZ
             // 
@@ -684,7 +708,7 @@ namespace VsmdWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 300);
+            this.ClientSize = new System.Drawing.Size(683, 338);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -760,5 +784,7 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnPosX;
         private System.Windows.Forms.Button btnEnaX;
         private System.Windows.Forms.Button btnOffX;
+        private System.Windows.Forms.Button btnS3Off;
+        private System.Windows.Forms.Button btnS3On;
     }
 }

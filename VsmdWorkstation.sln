@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsmdWorkstation", "VsmdWork
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsmdWorkstation.Controls", "VsmdWorkstation.Controls\VsmdWorkstation.Controls.csproj", "{FEB64D6C-52C5-4487-B143-19EC668B69E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsmdLib", "VsmdLib\VsmdLib.csproj", "{4E8B8537-A816-4731-979A-7C0A88BF7EC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{FEB64D6C-52C5-4487-B143-19EC668B69E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FEB64D6C-52C5-4487-B143-19EC668B69E8}.Release|x86.ActiveCfg = Release|Any CPU
 		{FEB64D6C-52C5-4487-B143-19EC668B69E8}.Release|x86.Build.0 = Release|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Debug|x86.Build.0 = Debug|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E8B8537-A816-4731-979A-7C0A88BF7EC5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

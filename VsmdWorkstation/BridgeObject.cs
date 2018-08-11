@@ -13,9 +13,11 @@ using VsmdWorkstation.Controls;
 namespace VsmdWorkstation
 {
     public delegate void GridPageDomLoaded();
+    public delegate void DelDripFinished();
     public class BridgeObject
     {
         public event GridPageDomLoaded onGridPageDomLoaded = null;
+        public event DelDripFinished onDripFinished = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
         private bool isDriping = false;
@@ -28,7 +30,7 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             if (!vsmdController.IsInitialized())
             {
-                StatusBar.DisplayMessage(MessageType.Error, "未初始化控制器！");
+                StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
                 return;
             }
             CallJS("JsExecutor.startDrip()");
@@ -59,6 +61,10 @@ namespace VsmdWorkstation
         {
             CallJS("JsExecutor.startDrip()");
         }
+        public void ResetBoard()
+        {
+            CallJS("JsExecutor.resetTube()");
+        }
         public void BuildGrid(BoardMeta board)
         {
             JObject opts = new JObject();
@@ -76,7 +82,7 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             await vsmdController.MoveToSync(VsmdAxis.X, 0);
             await vsmdController.MoveToSync(VsmdAxis.Y, 0);
-
+            
             for (int i = 0; i < jsArr.Count; i++)
             {
                 if (!isDriping)
@@ -86,8 +92,17 @@ namespace VsmdWorkstation
                 int col = int.Parse(obj["column"].ToString());
                 await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
                 await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                if (i > 0)
+                {
+                    vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                    vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                    Thread.Sleep(1000);
+                }
+                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                Thread.Sleep(5000);
                 MoveCallBack(row, col);
-                System.Threading.Thread.Sleep(1000);
+                
                 //await Task.Delay(1000);
             }
             AfterMove();
@@ -108,6 +123,10 @@ namespace VsmdWorkstation
         private void AfterMove()
         {
             CallJS("JsExecutor.afterMove();");
+            if(onDripFinished != null)
+            {
+                onDripFinished();
+            }
         }
         private void MoveCallBack(int row, int col)
         {

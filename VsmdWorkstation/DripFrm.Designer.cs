@@ -37,6 +37,7 @@ namespace VsmdWorkstation
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnRestGrid = new System.Windows.Forms.Button();
+            this.btnDevTools = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -69,6 +70,7 @@ namespace VsmdWorkstation
             this.cmbBoards.Name = "cmbBoards";
             this.cmbBoards.Size = new System.Drawing.Size(130, 20);
             this.cmbBoards.TabIndex = 6;
+            this.cmbBoards.SelectedIndexChanged += new System.EventHandler(this.cmbBoards_SelectedIndexChanged);
             // 
             // btnStart
             // 
@@ -113,12 +115,25 @@ namespace VsmdWorkstation
             this.btnRestGrid.TabIndex = 10;
             this.btnRestGrid.Text = "重置";
             this.btnRestGrid.UseVisualStyleBackColor = true;
+            this.btnRestGrid.Click += new System.EventHandler(this.btnRestGrid_Click);
+            // 
+            // btnDevTools
+            // 
+            this.btnDevTools.Location = new System.Drawing.Point(540, 10);
+            this.btnDevTools.Name = "btnDevTools";
+            this.btnDevTools.Size = new System.Drawing.Size(101, 23);
+            this.btnDevTools.TabIndex = 11;
+            this.btnDevTools.Text = "Open Dev Tools";
+            this.btnDevTools.UseVisualStyleBackColor = true;
+            this.btnDevTools.Visible = false;
+            this.btnDevTools.Click += new System.EventHandler(this.btnDevTools_Click);
             // 
             // DripFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(881, 545);
+            this.Controls.Add(this.btnDevTools);
             this.Controls.Add(this.btnRestGrid);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnStop);
@@ -145,6 +160,7 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnRestGrid;
+        private System.Windows.Forms.Button btnDevTools;
     }
 }
 

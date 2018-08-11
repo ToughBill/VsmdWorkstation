@@ -1,7 +1,11 @@
 $(function () {
 	window.JsExecutor = {
 	    buildGrid: function (options) {
-			window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
+	        if (window.__grid) {
+	            window.__grid.buildGrid(options);
+	        } else {
+	            window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
+	        }
 		},
 		moveCallBack: function(row, col) {
 			window.__grid.getCell(row, col).addClass("moveDone");
@@ -22,6 +26,9 @@ $(function () {
 		},
 		pauseMove: function () {
 		    window.__grid.pauseMove();
+		},
+		resetTube: function(){
+		    window.__grid.resetTube();
 		},
 		resumeMove: function () {
 		    if (window.externalObj) {

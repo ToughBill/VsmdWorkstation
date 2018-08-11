@@ -12,16 +12,21 @@ window.TubeGrid = (function () {
     }
     function TubeGrid(container, options_) {
         this.container = container;
-        this.options = options_ || {};
-
-        this.tubeWidth = options_.tubeWidth || defaultSettings.tubeWidth;
-        this.tubeHeight = options_.tubeHeight || defaultSettings.tubeHeight;
-        this.blockCount = options_.blockCount || defaultSettings.blockCount;
-        this.rowCount = options_.rowCount;
-        this.columnCount = options_.columnCount;
         this.tubeEleArr = [];
         this.mode = GridMode.Idle;
         let gridEditor = this;
+
+        function initOptions(options_) {
+            gridEditor.options = options_ || {};
+            
+            gridEditor.tubeWidth = options_.tubeWidth || defaultSettings.tubeWidth;
+            gridEditor.tubeHeight = options_.tubeHeight || defaultSettings.tubeHeight;
+            gridEditor.blockCount = options_.blockCount || defaultSettings.blockCount;
+            gridEditor.rowCount = options_.rowCount;
+            gridEditor.columnCount = options_.columnCount;
+        }
+
+        initOptions(options_);
 
         this.renderHeaders = function($table, blockNum) {
 			let $header = $("<thead class='grid-headers'></thead>");
@@ -65,11 +70,11 @@ window.TubeGrid = (function () {
             $con.addClass("tubeGrid");
 
             for(let i = 0; i < this.blockCount; i++){
-				let $table = $('<table class="table"></table>');
+				let $table = $('<table class="table" id="block_' + i + '"></table>');
 				this.renderHeaders($table, i);
 				this.renderRows($table, i);
-				$table.width(250);
 				$con.append($table);
+				$table.width($table.find('tbody').width() + 20);
             }
 
 
@@ -84,7 +89,7 @@ window.TubeGrid = (function () {
             //     }
             //     $con.append($rowEle);
             // }
-             this.enableBoxSelection();
+             
         }
 
         this.enableBoxSelection = function() {
@@ -107,6 +112,7 @@ window.TubeGrid = (function () {
                     if (gridEditor.mode != GridMode.Idle) {
                         return;
                     }
+                    gridEditor.resetTube();
                     //  设置选择的标识
                     var isSelect = true;
                     //  创建选框节点
@@ -208,6 +214,11 @@ window.TubeGrid = (function () {
             $(".grid-cell.selected").removeClass("selected");
             $(".grid-cell.moveDone").removeClass("moveDone");
         }
+        this.buildGrid = function (options_) {
+            initOptions(options_);
+            $(gridEditor.container).html("");
+            gridEditor.render();
+        }
         this.getSelectedTubes = function () {
 			let selectedTubes = [];
 			$.each($(gridEditor.container).find(".grid-cell.selected").not(".moveDone"), (idx, val) => {
@@ -223,8 +234,10 @@ window.TubeGrid = (function () {
 				selectedTubes.push(obj);
 			});
 			return selectedTubes;
-		}
+        }
+
         this.render();
+        this.enableBoxSelection();
     }
 
     return TubeGrid;

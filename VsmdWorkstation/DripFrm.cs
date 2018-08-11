@@ -34,6 +34,10 @@ namespace VsmdWorkstation
 
         private void mainFrm_Load(object sender, EventArgs e)
         {
+#if DEBUG
+            btnDevTools.Visible = true;
+#endif
+
             InitBoardSettings();
             //InitVsmdController();
             
@@ -57,6 +61,7 @@ namespace VsmdWorkstation
 
             m_externalObj = new BridgeObject(m_browser);
             m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
+            m_externalObj.onDripFinished += OnDripFinished;
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
@@ -64,21 +69,28 @@ namespace VsmdWorkstation
 
         private void InitBoardSettings()
         {
-            BoardMeta newBoard = new BoardMeta();
-            newBoard = new BoardMeta();
-            newBoard.Name = "3 X 8 X 12";
-            newBoard.BlockCount = 3;
-            newBoard.RowCount = 12;
-            newBoard.ColumnCount = 8;
-            newBoard.FirstTubeX = 300;
-            newBoard.FirstTubeY = 300;
-            newBoard.TubeDistanceX = 200;
-            newBoard.TubeDistanceY = 200;
-            newBoard.TubeDiameter = 200;
-            BoardSetting.GetInstance().AddNewBoard(newBoard);
-            BoardSetting.GetInstance().CurrentBoard = newBoard;
+            //BoardMeta newBoard = new BoardMeta();
+            //newBoard = new BoardMeta();
+            //newBoard.Name = "3 X 8 X 12";
+            //newBoard.BlockCount = 3;
+            //newBoard.RowCount = 12;
+            //newBoard.ColumnCount = 8;
+            //newBoard.FirstTubeX = 300;
+            //newBoard.FirstTubeY = 300;
+            //newBoard.TubeDistanceX = 200;
+            //newBoard.TubeDistanceY = 200;
+            //newBoard.TubeDiameter = 200;
+            //BoardSetting.GetInstance().AddNewBoard(newBoard);
+            //BoardSetting.GetInstance().CurrentBoard = newBoard;
 
-            cmbBoards.Items.Add(newBoard.Name);
+            //BoardSetting.GetInstance().LoadBoardSettings();
+            //cmbBoards.Items.Add(newBoard.Name);
+            BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
+                {
+                    cmbBoards.Items.Add(meta);
+                }
+            );
+            
             cmbBoards.SelectedIndex = 0;
         }
         private void InitVsmdController()
@@ -92,6 +104,15 @@ namespace VsmdWorkstation
         private void OnGridPageDomLoaded()
         {
             m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+        }
+        private void OnDripFinished()
+        {
+            m_dripStatus = DripStatus.Idle;
+            this.Invoke(new DelDripFinished(delegate
+            {
+                UpdateButtons();
+            }));
+            //
         }
         private void InitTubeGrid()
         {
@@ -161,6 +182,23 @@ namespace VsmdWorkstation
             btnStart.Enabled = (m_dripStatus == DripStatus.Idle);
             btnStop.Enabled = (m_dripStatus != DripStatus.Idle);
             btnPause.Enabled = (m_dripStatus == DripStatus.Moving || m_dripStatus == DripStatus.PauseMove);
+            btnRestGrid.Enabled = (m_dripStatus == DripStatus.Idle);
+        }
+
+        private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BoardSetting.GetInstance().CurrentBoard = (BoardMeta)cmbBoards.Items[cmbBoards.SelectedIndex];
+            m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+        }
+
+        private void btnDevTools_Click(object sender, EventArgs e)
+        {
+            m_browser.ShowDevTools();
+        }
+
+        private void btnRestGrid_Click(object sender, EventArgs e)
+        {
+            m_externalObj.ResetBoard();
         }
     }
 }

@@ -180,6 +180,18 @@ namespace VsmdWorkstation
         {
             GetAxis(axis).sts();
         }
+        public void S3On(VsmdAxis axis)
+        {
+            GetAxis(axis).S3On();
+        }
+        public void S3Off(VsmdAxis axis)
+        {
+            GetAxis(axis).S3Off();
+        }
+        public void SetS3Mode(VsmdAxis axis, int mode)
+        {
+            GetAxis(axis).S3Mode(mode);
+        }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
             VsmdInfo vsmdAxis = GetAxis(axis);

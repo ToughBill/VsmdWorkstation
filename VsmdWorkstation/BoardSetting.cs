@@ -41,6 +41,11 @@ namespace VsmdWorkstation
         /// 圆孔直径
         /// </summary>
         public int TubeDiameter { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
     public class BoardSetting
     {
@@ -89,20 +94,38 @@ namespace VsmdWorkstation
         {
             return m_boardSettings;
         }
-        public void AddNewBoard(BoardMeta board)
+        public bool AddNewBoard(BoardMeta board)
         {
             m_boardSettings.Add(board);
+            return Save();
         }
-        public void Save()
+        public bool DeleteBoard(BoardMeta board)
+        {
+            m_boardSettings.Remove(board);
+            return Save();
+        }
+        public bool Save()
         {
             string configFile = GetBoardMetaFilePath();
-            if (File.Exists(configFile))
+            bool ret = true;
+            try
             {
-                File.Delete(configFile);
+                if (File.Exists(configFile))
+                {
+                    File.Delete(configFile);
+                }
+                using (FileStream stream = File.Create(configFile))
+                {
+                    string str = JsonConvert.SerializeObject(m_boardSettings);
+                    byte[] bytes = System.Text.Encoding.Default.GetBytes(str);
+                    stream.Write(bytes, 0, bytes.Length);
+                    //File.WriteAllText(configFile, str);
+                }
+            } catch (Exception e)
+            {
+                ret = false;
             }
-            File.Create(configFile);
-            string str = JsonConvert.SerializeObject(m_boardSettings);
-            File.WriteAllText(configFile, str);
+            return ret;
         }
         private static BoardSetting m_curBoardSetting = null;
         public static void SetCurrentBoardSetting(BoardSetting setting)

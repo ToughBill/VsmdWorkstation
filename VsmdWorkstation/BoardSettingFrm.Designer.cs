@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +58,9 @@
             this.txtRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtBlockCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtName = new VsmdWorkstation.Controls.TextBoxEx();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -135,7 +139,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
-            this.btnOK.TabIndex = 14;
+            this.btnOK.TabIndex = 16;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -147,7 +151,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -198,7 +202,7 @@
             this.btnSetFY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFY.Name = "btnSetFY";
             this.btnSetFY.Size = new System.Drawing.Size(50, 22);
-            this.btnSetFY.TabIndex = 24;
+            this.btnSetFY.TabIndex = 11;
             this.btnSetFY.Text = "设置";
             this.btnSetFY.UseVisualStyleBackColor = true;
             this.btnSetFY.Click += new System.EventHandler(this.btnSetFY_Click);
@@ -209,7 +213,7 @@
             this.btnSetTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTY.Name = "btnSetTY";
             this.btnSetTY.Size = new System.Drawing.Size(50, 21);
-            this.btnSetTY.TabIndex = 25;
+            this.btnSetTY.TabIndex = 15;
             this.btnSetTY.Text = "设置";
             this.btnSetTY.UseVisualStyleBackColor = true;
             this.btnSetTY.Click += new System.EventHandler(this.btnSetTY_Click);
@@ -220,7 +224,7 @@
             this.btnSetFX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetFX.Name = "btnSetFX";
             this.btnSetFX.Size = new System.Drawing.Size(50, 21);
-            this.btnSetFX.TabIndex = 26;
+            this.btnSetFX.TabIndex = 9;
             this.btnSetFX.Text = "设置";
             this.btnSetFX.UseVisualStyleBackColor = true;
             this.btnSetFX.Click += new System.EventHandler(this.btnSetFX_Click);
@@ -231,7 +235,7 @@
             this.btnSetTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetTX.Name = "btnSetTX";
             this.btnSetTX.Size = new System.Drawing.Size(50, 21);
-            this.btnSetTX.TabIndex = 27;
+            this.btnSetTX.TabIndex = 13;
             this.btnSetTX.Text = "设置";
             this.btnSetTX.UseVisualStyleBackColor = true;
             this.btnSetTX.Click += new System.EventHandler(this.btnSetTX_Click);
@@ -242,7 +246,7 @@
             this.btnChoose.Margin = new System.Windows.Forms.Padding(0);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Size = new System.Drawing.Size(36, 23);
-            this.btnChoose.TabIndex = 28;
+            this.btnChoose.TabIndex = 2;
             this.btnChoose.Text = ".......";
             this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChoose.UseVisualStyleBackColor = true;
@@ -254,7 +258,7 @@
             this.btnSetBlockDist.Margin = new System.Windows.Forms.Padding(2);
             this.btnSetBlockDist.Name = "btnSetBlockDist";
             this.btnSetBlockDist.Size = new System.Drawing.Size(50, 21);
-            this.btnSetBlockDist.TabIndex = 35;
+            this.btnSetBlockDist.TabIndex = 7;
             this.btnSetBlockDist.Text = "设置";
             this.btnSetBlockDist.UseVisualStyleBackColor = true;
             this.btnSetBlockDist.Click += new System.EventHandler(this.btnSetBlockDist_Click);
@@ -276,7 +280,7 @@
             this.txtBlockDist.Margin = new System.Windows.Forms.Padding(2);
             this.txtBlockDist.Name = "txtBlockDist";
             this.txtBlockDist.Size = new System.Drawing.Size(91, 21);
-            this.txtBlockDist.TabIndex = 30;
+            this.txtBlockDist.TabIndex = 6;
             this.txtBlockDist.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtTubeDistY
@@ -285,7 +289,7 @@
             this.txtTubeDistY.Margin = new System.Windows.Forms.Padding(2);
             this.txtTubeDistY.Name = "txtTubeDistY";
             this.txtTubeDistY.Size = new System.Drawing.Size(76, 21);
-            this.txtTubeDistY.TabIndex = 21;
+            this.txtTubeDistY.TabIndex = 14;
             this.txtTubeDistY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtTubeDistX
@@ -294,7 +298,7 @@
             this.txtTubeDistX.Margin = new System.Windows.Forms.Padding(2);
             this.txtTubeDistX.Name = "txtTubeDistX";
             this.txtTubeDistX.Size = new System.Drawing.Size(76, 21);
-            this.txtTubeDistX.TabIndex = 19;
+            this.txtTubeDistX.TabIndex = 12;
             this.txtTubeDistX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtFirstTubePosY
@@ -303,7 +307,7 @@
             this.txtFirstTubePosY.Margin = new System.Windows.Forms.Padding(2);
             this.txtFirstTubePosY.Name = "txtFirstTubePosY";
             this.txtFirstTubePosY.Size = new System.Drawing.Size(76, 21);
-            this.txtFirstTubePosY.TabIndex = 17;
+            this.txtFirstTubePosY.TabIndex = 10;
             this.txtFirstTubePosY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtFirstTubePosX
@@ -312,7 +316,7 @@
             this.txtFirstTubePosX.Margin = new System.Windows.Forms.Padding(2);
             this.txtFirstTubePosX.Name = "txtFirstTubePosX";
             this.txtFirstTubePosX.Size = new System.Drawing.Size(76, 21);
-            this.txtFirstTubePosX.TabIndex = 11;
+            this.txtFirstTubePosX.TabIndex = 8;
             this.txtFirstTubePosX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtColCnt
@@ -321,8 +325,8 @@
             this.txtColCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtColCnt.Name = "txtColCnt";
             this.txtColCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtColCnt.TabIndex = 8;
-            this.txtColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            this.txtColCnt.TabIndex = 5;
+            this.txtColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // txtRowCnt
             // 
@@ -330,8 +334,8 @@
             this.txtRowCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtRowCnt.Name = "txtRowCnt";
             this.txtRowCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtRowCnt.TabIndex = 6;
-            this.txtRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            this.txtRowCnt.TabIndex = 4;
+            this.txtRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // txtBlockCnt
             // 
@@ -339,9 +343,9 @@
             this.txtBlockCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtBlockCnt.Name = "txtBlockCnt";
             this.txtBlockCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtBlockCnt.TabIndex = 4;
+            this.txtBlockCnt.TabIndex = 3;
             this.txtBlockCnt.Text = "1";
-            this.txtBlockCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            this.txtBlockCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // txtName
             // 
@@ -349,8 +353,23 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(182, 21);
-            this.txtName.TabIndex = 2;
+            this.txtName.TabIndex = 1;
             this.txtName.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDelete});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(101, 26);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // tsmiDelete
+            // 
+            this.tsmiDelete.Name = "tsmiDelete";
+            this.tsmiDelete.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDelete.Text = "删除";
+            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // BoardSettingFrm
             // 
@@ -358,6 +377,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(318, 261);
+            this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.btnSetBlockDist);
             this.Controls.Add(this.txtBlockDist);
             this.Controls.Add(this.label14);
@@ -392,6 +412,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "载物架设置";
             this.Load += new System.EventHandler(this.BoardSettingFrm_Load);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,5 +448,7 @@
         private System.Windows.Forms.Button btnSetBlockDist;
         private VsmdWorkstation.Controls.TextBoxEx txtBlockDist;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
     }
 }
