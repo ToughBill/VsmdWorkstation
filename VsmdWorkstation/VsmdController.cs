@@ -33,9 +33,18 @@ namespace VsmdWorkstation
          
         public async Task<InitResult> Init(string port, int baudrate)
         {
+            if(port == m_port && baudrate == m_baudrate)
+            {
+                return new InitResult() { ErrorMsg = "设备连接成功!", IsSuccess = true };
+            }
+            
             m_port = port;
             m_baudrate = baudrate;
-
+            if (m_initialized)
+            {
+                m_vsmd.closeSerailPort();
+            }
+            
             m_vsmd = new Vsmd();
             bool ret = m_vsmd.openSerailPort(port, baudrate);
             if (!ret)
@@ -203,6 +212,7 @@ namespace VsmdWorkstation
         }
         public void SetS3Mode(VsmdAxis axis, int mode)
         {
+            //GetAxis(axis).cfgS3(mode);
             GetAxis(axis).S3Mode(mode);
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)

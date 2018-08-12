@@ -20,7 +20,8 @@ namespace VsmdWorkstation
         public event DelDripFinished onDripFinished = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
-        private bool isDriping = false;
+        private DripStatus m_dripStatus = DripStatus.Idle;
+        private bool m_isFromPause = false;
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
@@ -46,7 +47,7 @@ namespace VsmdWorkstation
         }
         public void StopMove()
         {
-            isDriping = false;
+            m_dripStatus = DripStatus.Idle;
             //if (m_moveThread != null)
             //{
             //    m_moveThread.Abort();
@@ -56,10 +57,13 @@ namespace VsmdWorkstation
         public void PauseMove()
         {
             CallJS("JsExecutor.pauseMove()");
+            m_dripStatus = DripStatus.PauseMove;
         }
         public void ResumeMove()
         {
             CallJS("JsExecutor.startDrip()");
+            m_isFromPause = true;
+            m_dripStatus = DripStatus.Moving;
         }
         public void ResetBoard()
         {
@@ -85,26 +89,27 @@ namespace VsmdWorkstation
             
             for (int i = 0; i < jsArr.Count; i++)
             {
-                if (!isDriping)
+                if (m_dripStatus != DripStatus.Moving)
                     break;
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
                 await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
                 await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
-                if (i > 0)
+                if (i > 0 || m_isFromPause)
                 {
                     vsmdController.SetS3Mode(VsmdAxis.Z, 1);
                     vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                 }
                 vsmdController.SetS3Mode(VsmdAxis.Z, 1);
                 vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                Thread.Sleep(5000);
+                Thread.Sleep(4000);
                 MoveCallBack(row, col);
                 
                 //await Task.Delay(1000);
             }
+            m_isFromPause = false;
             AfterMove();
         }
         public void DomLoaded()
@@ -117,13 +122,13 @@ namespace VsmdWorkstation
         }
         private void BeforeMove()
         {
-            isDriping = true;
+            m_dripStatus = DripStatus.Moving;
             CallJS("JsExecutor.beforeMove();");
         }
         private void AfterMove()
         {
             CallJS("JsExecutor.afterMove();");
-            if(onDripFinished != null)
+            if (m_dripStatus == DripStatus.Moving && onDripFinished != null)
             {
                 onDripFinished();
             }

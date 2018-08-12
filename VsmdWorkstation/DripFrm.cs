@@ -15,14 +15,14 @@ using Newtonsoft.Json.Linq;
 
 namespace VsmdWorkstation
 {
+    public enum DripStatus
+    {
+        Idle,
+        Moving,
+        PauseMove
+    }
     public partial class DripFrm : Form
     {
-        public enum DripStatus
-        {
-            Idle,
-            Moving,
-            PauseMove
-        }
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
         private DripStatus m_dripStatus = DripStatus.Idle;
@@ -165,15 +165,15 @@ namespace VsmdWorkstation
         {
             if (m_dripStatus == DripStatus.Moving)
             {
-                m_externalObj.ResumeMove();
+                m_externalObj.PauseMove();
                 m_dripStatus = DripStatus.PauseMove;
-                btnPause.Text = "暂停滴液";
+                btnPause.Text = "继续滴液";
             }
             else if(m_dripStatus == DripStatus.PauseMove)
             {
-                m_externalObj.PauseMove();
+                m_externalObj.ResumeMove();
                 m_dripStatus = DripStatus.Moving;
-                btnPause.Text = "继续滴液";
+                btnPause.Text = "暂停滴液";
             }
             UpdateButtons();
         }

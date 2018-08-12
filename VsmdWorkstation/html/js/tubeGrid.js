@@ -112,32 +112,42 @@ window.TubeGrid = (function () {
                     if (gridEditor.mode != GridMode.Idle) {
                         return;
                     }
-                    gridEditor.resetTube();
-                    //  设置选择的标识
-                    var isSelect = true;
-                    //  创建选框节点
-                    var $selectBoxDashed = $('<div class="select-box-dashed"></div>');
+                    if (eventDown.button != 0) {
+                        return;
+                    }
+                    if (!eventDown.ctrlKey) {
+                        let rowC, colC;
+                        let className = eventDown.target.className
+                        let match1 = className.match(/\S*(r\d+)/);
+                        if (match1 && match1.length > 0) {
+                            rowC = match1[0];
+                        }
+                        let match2 = className.match(/\S*(c\d+)/);
+                        if (match2 && match2.length > 0) {
+                            colC = match2[0];
+                        }
+                        $(gridEditor.container).find('.grid-cell.selected,.grid-cell.moveDone').not('.' + rowC + '.' + colC).removeClass('selected moveDone');
+                        //gridEditor.resetTube();
+                    }
+                    let isSelect = true;
+
+                    let $selectBoxDashed = $('<div class="select-box-dashed"></div>');
                     $('body').append($selectBoxDashed);
-                    //  设置选框的初始位置
-                    var startX = eventDown.x || eventDown.clientX;
-                    var startY = eventDown.y || eventDown.clientY;
+
+                    let startX = eventDown.x || eventDown.clientX;
+                    let startY = eventDown.y || eventDown.clientY;
                     $selectBoxDashed.css({
                         left: startX,
                         top : startY
                     });
-                    //  根据鼠标移动，设置选框宽高
+
                     var _x = null;
                     var _y = null;
-                    //  清除事件冒泡、捕获
                     clearBubble(eventDown);
-                    //  监听鼠标移动事件
                     $container.on('mousemove', function(eventMove) {
-                        //  设置选框可见
                         $selectBoxDashed.css('display', 'block');
-                        //  根据鼠标移动，设置选框的位置、宽高
                         _x = eventMove.x || eventMove.clientX;
                         _y = eventMove.y || eventMove.clientY;
-                        //  暂存选框的位置及宽高，用于将 select-item 选中
                         var _left   = Math.min(_x, startX);
                         var _top    = Math.min(_y, startY);
                         var _width  = Math.abs(_x - startX);
@@ -149,7 +159,6 @@ window.TubeGrid = (function () {
                             height: _height
                         });
                         let boxPos = $selectBoxDashed[0].getBoundingClientRect();
-                        //  遍历容器中的选项，进行选中操作
                         $container.find('.grid-cell').each(function(idx, val) {
                             var $item = $(val);
                             var elePos = val.getBoundingClientRect();
@@ -170,7 +179,7 @@ window.TubeGrid = (function () {
 
                             }
                         });
-                        //  清除事件冒泡、捕获
+
                         clearBubble(eventMove);
                     });
 
@@ -191,8 +200,11 @@ window.TubeGrid = (function () {
                     if(ev.ctrlKey) {
                         $(this).toggleClass('selected');
                     } else {
+                        let alreadySelected = $(this).hasClass('selected');
                         $container.find('.grid-cell.selected').removeClass('selected');
-                        $(this).addClass('selected');
+                        if (!alreadySelected) {
+                            $(this).addClass('selected');
+                        }
                     }
 
                 });
@@ -213,6 +225,7 @@ window.TubeGrid = (function () {
         this.resetTube = function () {
             $(".grid-cell.selected").removeClass("selected");
             $(".grid-cell.moveDone").removeClass("moveDone");
+            gridEditor.mode = GridMode.Idle;
         }
         this.buildGrid = function (options_) {
             initOptions(options_);

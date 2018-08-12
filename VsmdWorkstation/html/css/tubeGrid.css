@@ -67,3 +67,13 @@
 .moveDone{
     background-color: #0099CC !important;
 }
+.movingCell{
+    animation: movingAnimation 5s;
+}
+@keyframes movingAnimation
+{
+    0% {background: #FF9966;}/*动画开始样式*/
+    25% {background: yellow;}
+    50% {background: blue;}
+    100% {background: green;}/*动画结束样式*/
+}

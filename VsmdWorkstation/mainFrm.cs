@@ -15,6 +15,7 @@ namespace VsmdWorkstation
     public partial class MainFrm : Form
     {
         private ConnectVsmd m_connectForm;
+        private DripFrm m_dripForm;
         public MainFrm()
         {
             InitializeComponent();
@@ -46,13 +47,16 @@ namespace VsmdWorkstation
             if (initRet.IsSuccess)
             {
                 StatusBar.DisplayMessage(MessageType.Info, "设备连接成功！");
-                DripFrm frm = new DripFrm();
-                frm.MdiParent = this;
-                //frm.WindowState = FormWindowState.Maximized;
-                frm.Dock = DockStyle.Fill;
-                frm.Show();
-                m_connectForm.Dispose();
-                m_connectForm = null;
+                if(m_dripForm == null)
+                {
+                    m_dripForm = new DripFrm();
+                    m_dripForm.MdiParent = this;
+                    //frm.WindowState = FormWindowState.Maximized;
+                    m_dripForm.Dock = DockStyle.Fill;
+                    m_dripForm.Show();
+                    m_connectForm.Dispose();
+                    m_connectForm = null;
+                }
             }
             else
             {

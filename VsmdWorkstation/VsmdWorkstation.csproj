@@ -108,12 +108,6 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaskLayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MaskLayer.Designer.cs">
-      <DependentUpon>MaskLayer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetTubePositionFrm.cs">
@@ -145,9 +139,6 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaskLayer.resx">
-      <DependentUpon>MaskLayer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -178,7 +169,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html\boardSetting.html" />
     <Content Include="html\css\boardSetting.css" />
     <Content Include="html\css\bootstrap-theme.css" />
     <Content Include="html\css\bootstrap-theme.min.css" />
@@ -195,12 +185,9 @@
     <Content Include="html\js\contextMenu.js" />
     <Content Include="html\js\jquery-1.12.4.js" />
     <Content Include="html\js\jquery-ui.js" />
-    <Content Include="html\js\main.js" />
     <Content Include="html\js\page.js" />
     <Content Include="html\js\tubeGrid.js" />
-    <Content Include="html\main.html" />
     <Content Include="html\tubeGrid.html" />
-    <Content Include="html\vsmdSetting.html" />
     <Content Include="Readme.txt" />
     <Content Include="sdk\VsmdLib.dll" />
   </ItemGroup>

@@ -248,6 +248,43 @@ namespace VsmdWorkstation
         private void StsImpl(VsmdAxis axis)
         {
             VsmdController.GetVsmdController().Sts(axis);
+            SetTimeout(100, new Action(delegate ()
+            {
+                Action action = delegate ()
+                {
+                    string newPos = VsmdController.GetVsmdController().GetAxis(axis).curPos.ToString();
+                    string newSpeed = VsmdController.GetVsmdController().GetAxis(axis).curSpd.ToString();
+                    switch (axis)
+                    {
+                        case VsmdAxis.X:
+                            txtPosX.Text = newPos;
+                            txtSpeedX.Text = newSpeed;
+                            break;
+                        case VsmdAxis.Y:
+                            txtPosY.Text = newPos;
+                            txtSpeedY.Text = newSpeed;
+                            break;
+                        case VsmdAxis.Z:
+                            txtPosZ.Text = newPos;
+                            txtSpeedZ.Text = newSpeed;
+                            break;
+                        default:
+                            break;
+                    }
+                };
+                this.Invoke(action);
+            })
+            );
+        }
+        public void SetTimeout(double interval, Action action)
+        {
+            System.Timers.Timer timer = new System.Timers.Timer(interval);
+            timer.Elapsed += delegate (object sender, System.Timers.ElapsedEventArgs e)
+            {
+                timer.Enabled = false;
+                action();
+            };
+            timer.Enabled = true;
         }
 
         private void btnSaveX_Click(object sender, EventArgs e)

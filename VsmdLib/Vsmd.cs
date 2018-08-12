@@ -66,9 +66,13 @@ namespace VsmdLib
             this.isSerialPortThreadRunning = true;
             this.serial_port_thread.Priority = ThreadPriority.AboveNormal;
             this.serial_port_thread.Start((object)this);
-            Vsmd.isSerialPortRecieveThreadRunning = true;
-            Vsmd.serial_port_recieve_thread.Priority = ThreadPriority.Highest;
-            Vsmd.serial_port_recieve_thread.Start((object)this);
+            if (!Vsmd.isSerialPortRecieveThreadRunning)
+            {
+                Vsmd.isSerialPortRecieveThreadRunning = true;
+                Vsmd.serial_port_recieve_thread.Priority = ThreadPriority.Highest;
+                Vsmd.serial_port_recieve_thread.Start((object)this);
+            }
+            
             return true;
         }
 
@@ -115,7 +119,7 @@ namespace VsmdLib
                         this.curCommand = str;
                         this.retryCnt = 0;
                         vsmdInfo = this.objList[index];
-                        this.waitResTimer.start(500000L);
+                        this.waitResTimer.start(500000000L);
                         this.flgResWaiting = true;
                         this.comPort.Write(this.curCommand);
                     }
@@ -131,6 +135,7 @@ namespace VsmdLib
                         this.flgResWaiting = false;
                         this.retryCnt = 0;
                         vsmdInfo.isOnline = false;
+                        System.Diagnostics.Debug.WriteLine("vsmdInfo.isOnline = false, cid: " + vsmdInfo.Cid);
                     }
                     else
                         this.comPort.Write(this.curCommand);

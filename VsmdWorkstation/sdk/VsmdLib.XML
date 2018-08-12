@@ -4,6 +4,11 @@
         <name>VsmdLib</name>
     </assembly>
     <members>
+        <member name="T:VsmdLib.Vsmd">
+            <summary>
+            Vsmd Class
+            </summary>
+        </member>
         <member name="F:VsmdLib.Vsmd.objList">
             <summary>
             device list
@@ -19,6 +24,11 @@
             serial port object
             </summary>
         </member>
+        <member name="P:VsmdLib.Vsmd.comPort">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:VsmdLib.Vsmd.openSerailPort(System.String,System.Int32)">
             <summary>
             open serail port
@@ -27,9 +37,23 @@
             <param name="baudrate"></param>
             <returns></returns>
         </member>
+        <member name="M:VsmdLib.Vsmd.openSerialPort(System.String,System.Int32)">
+            <summary>
+            open serial port
+            </summary>
+            <param name="port"></param>
+            <param name="baudrate"></param>
+            <returns></returns>
+        </member>
         <member name="M:VsmdLib.Vsmd.closeSerailPort">
             <summary>
-            
+            close serial port
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VsmdLib.Vsmd.closeSerialPort">
+            <summary>
+            close serial port
             </summary>
             <returns></returns>
         </member>
@@ -326,6 +350,30 @@
             </summary>
             <param name="s6r"></param>
         </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS3(System.Int32)">
+            <summary>
+            config s3 as input or output
+            </summary>
+            <param name="mode">0-input / 1-output</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS4(System.Int32)">
+            <summary>
+            config s4 as input or output
+            </summary>
+            <param name="mode">0-input / 1-output</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS5(System.Int32)">
+            <summary>
+            config s5 as input or output
+            </summary>
+            <param name="mode">0-input / 1-output</param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.cfgS6(System.Int32)">
+            <summary>
+            config s6 as input or output
+            </summary>
+            <param name="mode">0-input / 1-output</param>
+        </member>
         <member name="M:VsmdLib.VsmdInfo.cfgZero(System.Int32,System.Int32,System.Int32,System.Single,System.Int32)">
             <summary>
             config zero parameters
@@ -424,6 +472,28 @@
             pre-position (moveto position)
             </summary>
         </member>
+        <member name="M:VsmdLib.VsmdInfo.preAdd(System.Int32[])">
+            <summary>
+            pre-pos-buffer
+            </summary>
+            <param name="pos"></param>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.preStart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.preStop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:VsmdLib.VsmdInfo.isPreListBusy">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:VsmdLib.VsmdInfo.sts">
             <summary>
             get status (speed, position, status bits)
@@ -437,6 +507,11 @@
         <member name="M:VsmdLib.VsmdInfo.zeroStop">
             <summary>
             stop zero function
+            </summary>
+        </member>
+        <member name="T:VsmdLib.VsmdTimer">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:VsmdLib.VsmdTimer.lastTick">
