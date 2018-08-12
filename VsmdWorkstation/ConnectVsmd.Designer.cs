@@ -34,12 +34,14 @@
             this.cmbBaudrate = new System.Windows.Forms.ComboBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblCurConn = new System.Windows.Forms.Label();
+            this.lblCurInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 37);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 0;
@@ -49,7 +51,7 @@
             // 
             this.cmbPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPort.FormattingEnabled = true;
-            this.cmbPort.Location = new System.Drawing.Point(87, 29);
+            this.cmbPort.Location = new System.Drawing.Point(87, 42);
             this.cmbPort.Name = "cmbPort";
             this.cmbPort.Size = new System.Drawing.Size(137, 20);
             this.cmbPort.TabIndex = 1;
@@ -57,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 65);
+            this.label2.Location = new System.Drawing.Point(38, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
@@ -78,14 +80,14 @@
             "230400",
             "460800",
             "921600"});
-            this.cmbBaudrate.Location = new System.Drawing.Point(87, 59);
+            this.cmbBaudrate.Location = new System.Drawing.Point(87, 72);
             this.cmbBaudrate.Name = "cmbBaudrate";
             this.cmbBaudrate.Size = new System.Drawing.Size(137, 20);
             this.cmbBaudrate.TabIndex = 3;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(50, 112);
+            this.btnConnect.Location = new System.Drawing.Point(50, 115);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 4;
@@ -95,7 +97,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(131, 112);
+            this.btnCancel.Location = new System.Drawing.Point(131, 115);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -103,11 +105,33 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblCurConn
+            // 
+            this.lblCurConn.AutoSize = true;
+            this.lblCurConn.Location = new System.Drawing.Point(26, 22);
+            this.lblCurConn.Name = "lblCurConn";
+            this.lblCurConn.Size = new System.Drawing.Size(65, 12);
+            this.lblCurConn.TabIndex = 6;
+            this.lblCurConn.Text = "当前连接：";
+            this.lblCurConn.Visible = false;
+            // 
+            // lblCurInfo
+            // 
+            this.lblCurInfo.AutoSize = true;
+            this.lblCurInfo.Location = new System.Drawing.Point(97, 22);
+            this.lblCurInfo.Name = "lblCurInfo";
+            this.lblCurInfo.Size = new System.Drawing.Size(41, 12);
+            this.lblCurInfo.TabIndex = 7;
+            this.lblCurInfo.Text = "label4";
+            this.lblCurInfo.Visible = false;
+            // 
             // ConnectVsmd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 155);
+            this.ClientSize = new System.Drawing.Size(255, 162);
+            this.Controls.Add(this.lblCurInfo);
+            this.Controls.Add(this.lblCurConn);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.cmbBaudrate);
@@ -133,5 +157,7 @@
         private System.Windows.Forms.ComboBox cmbBaudrate;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblCurConn;
+        private System.Windows.Forms.Label lblCurInfo;
     }
 }

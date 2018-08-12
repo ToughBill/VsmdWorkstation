@@ -34,6 +34,7 @@ namespace VsmdWorkstation
                 lvm.SubItems.Add(meta.Name);
                 lvm.Tag = meta;
                 listView.Items.Add(lvm);
+                no++;
             });
         }
 

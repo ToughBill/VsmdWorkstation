@@ -28,9 +28,14 @@ namespace VsmdWorkstation
         private VsmdInfo m_axisY = null;
         private VsmdInfo m_axisZ = null;
         private bool m_initialized = false;
+        private string m_port;
+        private int m_baudrate;
          
         public async Task<InitResult> Init(string port, int baudrate)
         {
+            m_port = port;
+            m_baudrate = baudrate;
+
             m_vsmd = new Vsmd();
             bool ret = m_vsmd.openSerailPort(port, baudrate);
             if (!ret)
@@ -129,6 +134,14 @@ namespace VsmdWorkstation
                     break;
             }
             return ret;
+        }
+        public string GetPort()
+        {
+            return m_port;
+        }
+        public int GetBaudrate()
+        {
+            return m_baudrate;
         }
 
         public float GetSpeed(VsmdAxis axis)

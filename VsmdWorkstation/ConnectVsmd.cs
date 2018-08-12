@@ -26,6 +26,17 @@ namespace VsmdWorkstation
 
         private void ConnectVsmd_Load(object sender, EventArgs e)
         {
+            if (VsmdController.GetVsmdController().IsInitialized())
+            {
+                lblCurConn.Visible = true;
+                lblCurInfo.Text = VsmdController.GetVsmdController().GetPort() + ", " + VsmdController.GetVsmdController().GetBaudrate();
+                lblCurInfo.Visible = true;
+            }
+            else
+            {
+                lblCurConn.Visible = false;
+                lblCurInfo.Visible = false;
+            }
             cmbPort.Items.AddRange(SerialPort.GetPortNames());
             cmbPort.SelectedIndex = 0;
             cmbBaudrate.SelectedIndex = 2;
