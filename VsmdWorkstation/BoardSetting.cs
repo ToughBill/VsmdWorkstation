@@ -13,6 +13,7 @@ namespace VsmdWorkstation
 {
     public class BoardMeta
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public int BlockCount { get; set; }
         public int RowCount { get; set; }
@@ -132,6 +133,18 @@ namespace VsmdWorkstation
                 ret = false;
             }
             return ret;
+        }
+        public int GetNextBoardNum()
+        {
+            int no = 1;
+            m_boardSettings.ForEach((board) => {
+                if(board.ID >= no)
+                {
+                    no = board.ID + 1;
+                }
+            });
+
+            return no;
         }
         private static BoardSetting m_curBoardSetting = null;
         public static void SetCurrentBoardSetting(BoardSetting setting)

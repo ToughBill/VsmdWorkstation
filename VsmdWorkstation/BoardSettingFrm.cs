@@ -102,6 +102,10 @@ namespace VsmdWorkstation
         }
         private void FormDatToMetaImpl(BoardMeta meta)
         {
+            if(m_mode == FORM_MODE.Add)
+            {
+                meta.ID = BoardSetting.GetInstance().GetNextBoardNum();
+            }
             meta.Name = txtName.Text.Trim();
             meta.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
             meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
