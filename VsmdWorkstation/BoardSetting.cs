@@ -47,10 +47,12 @@ namespace VsmdWorkstation
             return this.Name;
         }
     }
+    public delegate void DelDataUpdated(object data);
     public class BoardSetting
     {
         private List<BoardMeta> m_boardSettings = new List<BoardMeta>();
         public BoardMeta CurrentBoard { get; set; }
+        public DelDataUpdated OnDataUpdate;
 
         public int Convert2PhysicalPos(VsmdAxis axis, int coord)
         {
@@ -120,6 +122,10 @@ namespace VsmdWorkstation
                     byte[] bytes = System.Text.Encoding.Default.GetBytes(str);
                     stream.Write(bytes, 0, bytes.Length);
                     //File.WriteAllText(configFile, str);
+                }
+                if(OnDataUpdate != null)
+                {
+                    OnDataUpdate(m_boardSettings);
                 }
             } catch (Exception e)
             {

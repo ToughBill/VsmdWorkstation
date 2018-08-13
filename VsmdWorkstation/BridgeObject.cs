@@ -22,6 +22,8 @@ namespace VsmdWorkstation
         private Thread m_moveThread;
         private DripStatus m_dripStatus = DripStatus.Idle;
         private bool m_isFromPause = false;
+        private JArray m_selectedTubes;
+        private int m_dripIndex;
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
@@ -32,27 +34,24 @@ namespace VsmdWorkstation
             if (!vsmdController.IsInitialized())
             {
                 StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
-                return;
+                //return;
             }
             CallJS("JsExecutor.startDrip()");
         }
+        /// <summary>
+        /// called from JS
+        /// </summary>
+        /// <param name="args"></param>
         public void StartDrip(string args)
         {
-            //if (m_moveThread != null && m_moveThread.IsAlive)
-            //{
-            //    m_moveThread.Abort();
-            //}
-            m_moveThread = new Thread(new ParameterizedThreadStart(DripThread));
-            m_moveThread.Start(args);
+            m_selectedTubes = (JArray)JsonConvert.DeserializeObject(args.ToString());
+            m_dripIndex = 0;
+            m_moveThread = new Thread(new ThreadStart(DripThread));
+            m_moveThread.Start();
         }
         public void StopMove()
         {
             m_dripStatus = DripStatus.Idle;
-            //if (m_moveThread != null)
-            //{
-            //    m_moveThread.Abort();
-            //    AfterMove();
-            //}
         }
         public void PauseMove()
         {
@@ -61,9 +60,11 @@ namespace VsmdWorkstation
         }
         public void ResumeMove()
         {
-            CallJS("JsExecutor.startDrip()");
+            //CallJS("JsExecutor.startDrip()");
             m_isFromPause = true;
             m_dripStatus = DripStatus.Moving;
+            m_moveThread = new Thread(new ThreadStart(DripThread));
+            m_moveThread.Start();
         }
         public void ResetBoard()
         {
@@ -78,36 +79,41 @@ namespace VsmdWorkstation
 
             CallJS("JsExecutor.buildGrid(" + opts.ToString() + ");");
         }
-        private async void DripThread(object args)
+        private async void DripThread()
         {
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
-            JArray jsArr = (JArray)JsonConvert.DeserializeObject(args.ToString());
+            JArray jsArr = m_selectedTubes;
             BeforeMove();
             VsmdController vsmdController = VsmdController.GetVsmdController();
-            await vsmdController.MoveToSync(VsmdAxis.X, 0);
-            await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+            if (!m_isFromPause)
+            {
+                //await vsmdController.MoveToSync(VsmdAxis.X, 0);
+                //await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+            }
             
-            for (int i = 0; i < jsArr.Count; i++)
+            for (int i = m_dripIndex; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
                     break;
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
-                await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
-                if (i > 0 || m_isFromPause)
-                {
-                    vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                    vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                    Thread.Sleep(1500);
-                }
-                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                Thread.Sleep(4000);
+                //await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+                //await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                // start drip
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                // wait 5 seconds, this time should be changed according to the volume dripped
+                //Thread.Sleep(5000);
+
+                // change the screen to start
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                //Thread.Sleep(1000);
+                await Task.Delay(1000);
+
                 MoveCallBack(row, col);
-                
-                //await Task.Delay(1000);
+                m_dripIndex = i;
             }
             m_isFromPause = false;
             AfterMove();

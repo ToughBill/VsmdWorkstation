@@ -26,6 +26,7 @@ namespace VsmdWorkstation
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
         private DripStatus m_dripStatus = DripStatus.Idle;
+        private bool m_delayToBuildGrid = false;
         public DripFrm()
         {
             InitializeComponent();
@@ -65,34 +66,30 @@ namespace VsmdWorkstation
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
+            m_browser.IsBrowserInitializedChanged += IsBrowserInitializedChanged;
+        }
+
+        private void IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        {
+            if(e.IsBrowserInitialized && m_delayToBuildGrid)
+            {
+                m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+            }
         }
 
         private void InitBoardSettings()
         {
-            //BoardMeta newBoard = new BoardMeta();
-            //newBoard = new BoardMeta();
-            //newBoard.Name = "3 X 8 X 12";
-            //newBoard.BlockCount = 3;
-            //newBoard.RowCount = 12;
-            //newBoard.ColumnCount = 8;
-            //newBoard.FirstTubeX = 300;
-            //newBoard.FirstTubeY = 300;
-            //newBoard.TubeDistanceX = 200;
-            //newBoard.TubeDistanceY = 200;
-            //newBoard.TubeDiameter = 200;
-            //BoardSetting.GetInstance().AddNewBoard(newBoard);
-            //BoardSetting.GetInstance().CurrentBoard = newBoard;
-
-            //BoardSetting.GetInstance().LoadBoardSettings();
-            //cmbBoards.Items.Add(newBoard.Name);
             BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
                 {
                     cmbBoards.Items.Add(meta);
                 }
             );
-            
-            cmbBoards.SelectedIndex = 0;
+            if(cmbBoards.Items.Count > 0)
+            {
+                cmbBoards.SelectedIndex = 0;
+            }
         }
+
         private void InitVsmdController()
         {
             //bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
@@ -103,7 +100,10 @@ namespace VsmdWorkstation
         }
         private void OnGridPageDomLoaded()
         {
-            m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+            if(BoardSetting.GetInstance().CurrentBoard != null)
+            {
+                m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+            }
         }
         private void OnDripFinished()
         {
@@ -188,7 +188,14 @@ namespace VsmdWorkstation
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
         {
             BoardSetting.GetInstance().CurrentBoard = (BoardMeta)cmbBoards.Items[cmbBoards.SelectedIndex];
-            m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+            if (m_browser.IsBrowserInitialized)
+            {
+                m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
+            }
+            else
+            {
+                m_delayToBuildGrid = true;
+            }
         }
 
         private void btnDevTools_Click(object sender, EventArgs e)
