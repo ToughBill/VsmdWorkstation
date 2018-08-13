@@ -440,7 +440,7 @@ namespace VsmdLib
         /// set s3 mode
         /// </summary>
         /// <param name="mode">0: input mode, 1: output mode</param>
-        public void S3Mode(int mode)
+        public void cfgS3(int mode)
         {
             this.addCommand("cfg s3=" + mode.ToString());
         }

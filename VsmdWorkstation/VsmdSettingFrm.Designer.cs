@@ -31,16 +31,16 @@ namespace VsmdWorkstation
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnOffX = new System.Windows.Forms.Button();
-            this.btnEnaX = new System.Windows.Forms.Button();
-            this.btnPosX = new System.Windows.Forms.Button();
-            this.btnStsX = new System.Windows.Forms.Button();
-            this.btnOrgX = new System.Windows.Forms.Button();
-            this.btnZeroStopX = new System.Windows.Forms.Button();
-            this.btnZeroStartX = new System.Windows.Forms.Button();
-            this.btnStopX = new System.Windows.Forms.Button();
-            this.btnMoveX = new System.Windows.Forms.Button();
-            this.btnSaveX = new System.Windows.Forms.Button();
+            this.btnOffX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnEnaX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnPosX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStsX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnOrgX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStopX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStartX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStopX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnMoveX = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnSaveX = new VsmdWorkstation.Controls.ButtonEx();
             this.ckbAutoUpdateX = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSpeedX = new VsmdWorkstation.Controls.TextBoxEx();
@@ -50,16 +50,16 @@ namespace VsmdWorkstation
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnOffY = new System.Windows.Forms.Button();
-            this.btnEnaY = new System.Windows.Forms.Button();
-            this.btnPosY = new System.Windows.Forms.Button();
-            this.btnStsY = new System.Windows.Forms.Button();
-            this.btnOrgY = new System.Windows.Forms.Button();
-            this.btnZeroStopY = new System.Windows.Forms.Button();
-            this.btnZeroStartY = new System.Windows.Forms.Button();
-            this.btnStopY = new System.Windows.Forms.Button();
-            this.btnMoveY = new System.Windows.Forms.Button();
-            this.btnSaveY = new System.Windows.Forms.Button();
+            this.btnOffY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnEnaY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnPosY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStsY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnOrgY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStopY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStartY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStopY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnMoveY = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnSaveY = new VsmdWorkstation.Controls.ButtonEx();
             this.ckbAutoUpdateY = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSpeedY = new VsmdWorkstation.Controls.TextBoxEx();
@@ -69,18 +69,18 @@ namespace VsmdWorkstation
             this.txtCidY = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnS3Off = new System.Windows.Forms.Button();
-            this.btnS3On = new System.Windows.Forms.Button();
-            this.btnOffZ = new System.Windows.Forms.Button();
-            this.btnEnaZ = new System.Windows.Forms.Button();
-            this.btnPosZ = new System.Windows.Forms.Button();
-            this.btnStsZ = new System.Windows.Forms.Button();
-            this.btnOrgZ = new System.Windows.Forms.Button();
-            this.btnZeroStopZ = new System.Windows.Forms.Button();
-            this.btnZeroStartZ = new System.Windows.Forms.Button();
-            this.btnStopZ = new System.Windows.Forms.Button();
-            this.btnMoveZ = new System.Windows.Forms.Button();
-            this.btnSaveZ = new System.Windows.Forms.Button();
+            this.btnS3Off = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnS3On = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnOffZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnEnaZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnPosZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStsZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnOrgZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStopZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnZeroStartZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnStopZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnMoveZ = new VsmdWorkstation.Controls.ButtonEx();
+            this.btnSaveZ = new VsmdWorkstation.Controls.ButtonEx();
             this.ckbAutoUpdateZ = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSpeedZ = new VsmdWorkstation.Controls.TextBoxEx();
@@ -128,6 +128,7 @@ namespace VsmdWorkstation
             this.btnOffX.Size = new System.Drawing.Size(80, 23);
             this.btnOffX.TabIndex = 17;
             this.btnOffX.Text = "off";
+            this.btnOffX.ToolTip = "motor power off";
             this.btnOffX.UseVisualStyleBackColor = true;
             this.btnOffX.Click += new System.EventHandler(this.btnOffX_Click);
             // 
@@ -138,6 +139,7 @@ namespace VsmdWorkstation
             this.btnEnaX.Size = new System.Drawing.Size(80, 23);
             this.btnEnaX.TabIndex = 16;
             this.btnEnaX.Text = "ena";
+            this.btnEnaX.ToolTip = "motor power on";
             this.btnEnaX.UseVisualStyleBackColor = true;
             this.btnEnaX.Click += new System.EventHandler(this.btnEnaX_Click);
             // 
@@ -148,6 +150,7 @@ namespace VsmdWorkstation
             this.btnPosX.Size = new System.Drawing.Size(80, 23);
             this.btnPosX.TabIndex = 15;
             this.btnPosX.Text = "pos";
+            this.btnPosX.ToolTip = "move to target position with current parameters(speed, acc, dec)";
             this.btnPosX.UseVisualStyleBackColor = true;
             this.btnPosX.Click += new System.EventHandler(this.btnPosX_Click);
             // 
@@ -158,6 +161,7 @@ namespace VsmdWorkstation
             this.btnStsX.Size = new System.Drawing.Size(80, 23);
             this.btnStsX.TabIndex = 14;
             this.btnStsX.Text = "sts";
+            this.btnStsX.ToolTip = "get current status(speed, position, flags)";
             this.btnStsX.UseVisualStyleBackColor = true;
             this.btnStsX.Click += new System.EventHandler(this.btnStsX_Click);
             // 
@@ -168,6 +172,7 @@ namespace VsmdWorkstation
             this.btnOrgX.Size = new System.Drawing.Size(80, 23);
             this.btnOrgX.TabIndex = 13;
             this.btnOrgX.Text = "org";
+            this.btnOrgX.ToolTip = "set current position as position 0";
             this.btnOrgX.UseVisualStyleBackColor = true;
             this.btnOrgX.Click += new System.EventHandler(this.btnOrgX_Click);
             // 
@@ -178,6 +183,7 @@ namespace VsmdWorkstation
             this.btnZeroStopX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopX.TabIndex = 12;
             this.btnZeroStopX.Text = "zero stop";
+            this.btnZeroStopX.ToolTip = "stop zero";
             this.btnZeroStopX.UseVisualStyleBackColor = true;
             this.btnZeroStopX.Click += new System.EventHandler(this.btnZeroStopX_Click);
             // 
@@ -188,6 +194,7 @@ namespace VsmdWorkstation
             this.btnZeroStartX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartX.TabIndex = 11;
             this.btnZeroStartX.Text = "zero start";
+            this.btnZeroStartX.ToolTip = "start zero";
             this.btnZeroStartX.UseVisualStyleBackColor = true;
             this.btnZeroStartX.Click += new System.EventHandler(this.btnZeroStartX_Click);
             // 
@@ -198,6 +205,7 @@ namespace VsmdWorkstation
             this.btnStopX.Size = new System.Drawing.Size(80, 23);
             this.btnStopX.TabIndex = 10;
             this.btnStopX.Text = "stop";
+            this.btnStopX.ToolTip = "stop using parameter(dec)";
             this.btnStopX.UseVisualStyleBackColor = true;
             this.btnStopX.Click += new System.EventHandler(this.btnStopX_Click);
             // 
@@ -208,6 +216,7 @@ namespace VsmdWorkstation
             this.btnMoveX.Size = new System.Drawing.Size(80, 23);
             this.btnMoveX.TabIndex = 9;
             this.btnMoveX.Text = "move";
+            this.btnMoveX.ToolTip = "move using parameters(speed, acc, dec)";
             this.btnMoveX.UseVisualStyleBackColor = true;
             this.btnMoveX.Click += new System.EventHandler(this.btnMoveX_Click);
             // 
@@ -218,6 +227,7 @@ namespace VsmdWorkstation
             this.btnSaveX.Size = new System.Drawing.Size(80, 23);
             this.btnSaveX.TabIndex = 8;
             this.btnSaveX.Text = "保存";
+            this.btnSaveX.ToolTip = null;
             this.btnSaveX.UseVisualStyleBackColor = true;
             this.btnSaveX.Click += new System.EventHandler(this.btnSaveX_Click);
             // 
@@ -324,6 +334,7 @@ namespace VsmdWorkstation
             this.btnOffY.Size = new System.Drawing.Size(80, 23);
             this.btnOffY.TabIndex = 17;
             this.btnOffY.Text = "off";
+            this.btnOffY.ToolTip = "motor power off";
             this.btnOffY.UseVisualStyleBackColor = true;
             this.btnOffY.Click += new System.EventHandler(this.btnOffY_Click);
             // 
@@ -334,6 +345,7 @@ namespace VsmdWorkstation
             this.btnEnaY.Size = new System.Drawing.Size(80, 23);
             this.btnEnaY.TabIndex = 16;
             this.btnEnaY.Text = "ena";
+            this.btnEnaY.ToolTip = "motor power on";
             this.btnEnaY.UseVisualStyleBackColor = true;
             this.btnEnaY.Click += new System.EventHandler(this.btnEnaY_Click);
             // 
@@ -344,6 +356,7 @@ namespace VsmdWorkstation
             this.btnPosY.Size = new System.Drawing.Size(80, 23);
             this.btnPosY.TabIndex = 15;
             this.btnPosY.Text = "pos";
+            this.btnPosY.ToolTip = "move to target position with current parameters(speed, acc, dec)";
             this.btnPosY.UseVisualStyleBackColor = true;
             this.btnPosY.Click += new System.EventHandler(this.btnPosY_Click);
             // 
@@ -354,6 +367,7 @@ namespace VsmdWorkstation
             this.btnStsY.Size = new System.Drawing.Size(80, 23);
             this.btnStsY.TabIndex = 14;
             this.btnStsY.Text = "sts";
+            this.btnStsY.ToolTip = "get current status(speed, position, flags)";
             this.btnStsY.UseVisualStyleBackColor = true;
             this.btnStsY.Click += new System.EventHandler(this.btnStsY_Click);
             // 
@@ -364,6 +378,7 @@ namespace VsmdWorkstation
             this.btnOrgY.Size = new System.Drawing.Size(80, 23);
             this.btnOrgY.TabIndex = 13;
             this.btnOrgY.Text = "org";
+            this.btnOrgY.ToolTip = "set current position as position 0";
             this.btnOrgY.UseVisualStyleBackColor = true;
             this.btnOrgY.Click += new System.EventHandler(this.btnOrgY_Click);
             // 
@@ -374,6 +389,7 @@ namespace VsmdWorkstation
             this.btnZeroStopY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopY.TabIndex = 12;
             this.btnZeroStopY.Text = "zero stop";
+            this.btnZeroStopY.ToolTip = "stop zero";
             this.btnZeroStopY.UseVisualStyleBackColor = true;
             this.btnZeroStopY.Click += new System.EventHandler(this.btnZeroStopY_Click);
             // 
@@ -384,6 +400,7 @@ namespace VsmdWorkstation
             this.btnZeroStartY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartY.TabIndex = 11;
             this.btnZeroStartY.Text = "zero start";
+            this.btnZeroStartY.ToolTip = "start zero";
             this.btnZeroStartY.UseVisualStyleBackColor = true;
             this.btnZeroStartY.Click += new System.EventHandler(this.btnZeroStartY_Click);
             // 
@@ -394,6 +411,7 @@ namespace VsmdWorkstation
             this.btnStopY.Size = new System.Drawing.Size(80, 23);
             this.btnStopY.TabIndex = 10;
             this.btnStopY.Text = "stop";
+            this.btnStopY.ToolTip = "stop using parameter(dec)";
             this.btnStopY.UseVisualStyleBackColor = true;
             this.btnStopY.Click += new System.EventHandler(this.btnStopY_Click);
             // 
@@ -404,6 +422,7 @@ namespace VsmdWorkstation
             this.btnMoveY.Size = new System.Drawing.Size(80, 23);
             this.btnMoveY.TabIndex = 9;
             this.btnMoveY.Text = "move";
+            this.btnMoveY.ToolTip = "move using parameters(speed, acc, dec)";
             this.btnMoveY.UseVisualStyleBackColor = true;
             this.btnMoveY.Click += new System.EventHandler(this.btnMoveY_Click);
             // 
@@ -414,6 +433,7 @@ namespace VsmdWorkstation
             this.btnSaveY.Size = new System.Drawing.Size(80, 23);
             this.btnSaveY.TabIndex = 8;
             this.btnSaveY.Text = "保存";
+            this.btnSaveY.ToolTip = null;
             this.btnSaveY.UseVisualStyleBackColor = true;
             this.btnSaveY.Click += new System.EventHandler(this.btnSaveY_Click);
             // 
@@ -522,6 +542,7 @@ namespace VsmdWorkstation
             this.btnS3Off.Size = new System.Drawing.Size(80, 23);
             this.btnS3Off.TabIndex = 19;
             this.btnS3Off.Text = "S3 Output";
+            this.btnS3Off.ToolTip = "set S3 as output";
             this.btnS3Off.UseVisualStyleBackColor = true;
             this.btnS3Off.Click += new System.EventHandler(this.btnS3Off_Click);
             // 
@@ -532,6 +553,7 @@ namespace VsmdWorkstation
             this.btnS3On.Size = new System.Drawing.Size(80, 23);
             this.btnS3On.TabIndex = 18;
             this.btnS3On.Text = "S3 Input";
+            this.btnS3On.ToolTip = "set S3 as input";
             this.btnS3On.UseVisualStyleBackColor = true;
             this.btnS3On.Click += new System.EventHandler(this.btnS3On_Click);
             // 
@@ -542,6 +564,7 @@ namespace VsmdWorkstation
             this.btnOffZ.Size = new System.Drawing.Size(80, 23);
             this.btnOffZ.TabIndex = 17;
             this.btnOffZ.Text = "off";
+            this.btnOffZ.ToolTip = "motor power off";
             this.btnOffZ.UseVisualStyleBackColor = true;
             this.btnOffZ.Click += new System.EventHandler(this.btnOffZ_Click);
             // 
@@ -552,6 +575,7 @@ namespace VsmdWorkstation
             this.btnEnaZ.Size = new System.Drawing.Size(80, 23);
             this.btnEnaZ.TabIndex = 16;
             this.btnEnaZ.Text = "ena";
+            this.btnEnaZ.ToolTip = "motor power on";
             this.btnEnaZ.UseVisualStyleBackColor = true;
             this.btnEnaZ.Click += new System.EventHandler(this.btnEnaZ_Click);
             // 
@@ -562,6 +586,7 @@ namespace VsmdWorkstation
             this.btnPosZ.Size = new System.Drawing.Size(80, 23);
             this.btnPosZ.TabIndex = 15;
             this.btnPosZ.Text = "pos";
+            this.btnPosZ.ToolTip = "move to target position with current parameters(speed, acc, dec)";
             this.btnPosZ.UseVisualStyleBackColor = true;
             this.btnPosZ.Click += new System.EventHandler(this.btnPosZ_Click);
             // 
@@ -572,6 +597,7 @@ namespace VsmdWorkstation
             this.btnStsZ.Size = new System.Drawing.Size(80, 23);
             this.btnStsZ.TabIndex = 14;
             this.btnStsZ.Text = "sts";
+            this.btnStsZ.ToolTip = "get current status(speed, position, flags)";
             this.btnStsZ.UseVisualStyleBackColor = true;
             this.btnStsZ.Click += new System.EventHandler(this.btnStsZ_Click);
             // 
@@ -582,6 +608,7 @@ namespace VsmdWorkstation
             this.btnOrgZ.Size = new System.Drawing.Size(80, 23);
             this.btnOrgZ.TabIndex = 13;
             this.btnOrgZ.Text = "org";
+            this.btnOrgZ.ToolTip = "set current position as position 0";
             this.btnOrgZ.UseVisualStyleBackColor = true;
             this.btnOrgZ.Click += new System.EventHandler(this.btnOrgZ_Click);
             // 
@@ -592,6 +619,7 @@ namespace VsmdWorkstation
             this.btnZeroStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopZ.TabIndex = 12;
             this.btnZeroStopZ.Text = "zero stop";
+            this.btnZeroStopZ.ToolTip = "stop zero";
             this.btnZeroStopZ.UseVisualStyleBackColor = true;
             this.btnZeroStopZ.Click += new System.EventHandler(this.btnZeroStopZ_Click);
             // 
@@ -602,6 +630,7 @@ namespace VsmdWorkstation
             this.btnZeroStartZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartZ.TabIndex = 11;
             this.btnZeroStartZ.Text = "zero start";
+            this.btnZeroStartZ.ToolTip = "start zero";
             this.btnZeroStartZ.UseVisualStyleBackColor = true;
             this.btnZeroStartZ.Click += new System.EventHandler(this.btnZeroStartZ_Click);
             // 
@@ -612,6 +641,7 @@ namespace VsmdWorkstation
             this.btnStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnStopZ.TabIndex = 10;
             this.btnStopZ.Text = "stop";
+            this.btnStopZ.ToolTip = "stop using parameter(dec)";
             this.btnStopZ.UseVisualStyleBackColor = true;
             this.btnStopZ.Click += new System.EventHandler(this.btnStopZ_Click);
             // 
@@ -622,6 +652,7 @@ namespace VsmdWorkstation
             this.btnMoveZ.Size = new System.Drawing.Size(80, 23);
             this.btnMoveZ.TabIndex = 9;
             this.btnMoveZ.Text = "move";
+            this.btnMoveZ.ToolTip = "move using parameters(speed, acc, dec)";
             this.btnMoveZ.UseVisualStyleBackColor = true;
             this.btnMoveZ.Click += new System.EventHandler(this.btnMoveZ_Click);
             // 
@@ -632,6 +663,7 @@ namespace VsmdWorkstation
             this.btnSaveZ.Size = new System.Drawing.Size(80, 23);
             this.btnSaveZ.TabIndex = 8;
             this.btnSaveZ.Text = "保存";
+            this.btnSaveZ.ToolTip = null;
             this.btnSaveZ.UseVisualStyleBackColor = true;
             this.btnSaveZ.Click += new System.EventHandler(this.btnSaveZ_Click);
             // 
@@ -734,26 +766,26 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCidX;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSaveX;
+        private ButtonEx btnSaveX;
         private System.Windows.Forms.CheckBox ckbAutoUpdateX;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnZeroStopX;
-        private System.Windows.Forms.Button btnZeroStartX;
-        private System.Windows.Forms.Button btnStopX;
-        private System.Windows.Forms.Button btnMoveX;
+        private ButtonEx btnZeroStopX;
+        private ButtonEx btnZeroStartX;
+        private ButtonEx btnStopX;
+        private ButtonEx btnMoveX;
         private System.Windows.Forms.CheckBox ckbAutoUpdateY;
         private TextBoxEx txtSpeedY;
         private TextBoxEx txtPosY;
         private System.Windows.Forms.TextBox txtCidY;
-        private System.Windows.Forms.Button btnEnaZ;
-        private System.Windows.Forms.Button btnPosZ;
-        private System.Windows.Forms.Button btnStsZ;
-        private System.Windows.Forms.Button btnOrgZ;
-        private System.Windows.Forms.Button btnZeroStopZ;
-        private System.Windows.Forms.Button btnZeroStartZ;
-        private System.Windows.Forms.Button btnStopZ;
-        private System.Windows.Forms.Button btnMoveZ;
-        private System.Windows.Forms.Button btnSaveZ;
+        private ButtonEx btnEnaZ;
+        private ButtonEx btnPosZ;
+        private ButtonEx btnStsZ;
+        private ButtonEx btnOrgZ;
+        private ButtonEx btnZeroStopZ;
+        private ButtonEx btnZeroStartZ;
+        private ButtonEx btnStopZ;
+        private ButtonEx btnMoveZ;
+        private ButtonEx btnSaveZ;
         private System.Windows.Forms.CheckBox ckbAutoUpdateZ;
         private TextBoxEx txtSpeedZ;
         private TextBoxEx txtPosZ;
@@ -762,29 +794,29 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnOffZ;
+        private ButtonEx btnOffZ;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnSaveY;
-        private System.Windows.Forms.Button btnMoveY;
-        private System.Windows.Forms.Button btnStopY;
-        private System.Windows.Forms.Button btnZeroStartY;
-        private System.Windows.Forms.Button btnZeroStopY;
-        private System.Windows.Forms.Button btnOrgY;
-        private System.Windows.Forms.Button btnStsY;
-        private System.Windows.Forms.Button btnPosY;
-        private System.Windows.Forms.Button btnEnaY;
-        private System.Windows.Forms.Button btnOffY;
+        private ButtonEx btnSaveY;
+        private ButtonEx btnMoveY;
+        private ButtonEx btnStopY;
+        private ButtonEx btnZeroStartY;
+        private ButtonEx btnZeroStopY;
+        private ButtonEx btnOrgY;
+        private ButtonEx btnStsY;
+        private ButtonEx btnPosY;
+        private ButtonEx btnEnaY;
+        private ButtonEx btnOffY;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnOrgX;
-        private System.Windows.Forms.Button btnStsX;
-        private System.Windows.Forms.Button btnPosX;
-        private System.Windows.Forms.Button btnEnaX;
-        private System.Windows.Forms.Button btnOffX;
-        private System.Windows.Forms.Button btnS3Off;
-        private System.Windows.Forms.Button btnS3On;
+        private ButtonEx btnOrgX;
+        private ButtonEx btnStsX;
+        private ButtonEx btnPosX;
+        private ButtonEx btnEnaX;
+        private ButtonEx btnOffX;
+        private ButtonEx btnS3Off;
+        private ButtonEx btnS3On;
     }
 }

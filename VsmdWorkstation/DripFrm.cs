@@ -67,6 +67,7 @@ namespace VsmdWorkstation
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
             m_browser.IsBrowserInitializedChanged += IsBrowserInitializedChanged;
+            m_browser.MenuHandler = new CEFMenuHandler();
         }
 
         private void IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
@@ -206,6 +207,27 @@ namespace VsmdWorkstation
         private void btnRestGrid_Click(object sender, EventArgs e)
         {
             m_externalObj.ResetBoard();
+        }
+    }
+
+    public class CEFMenuHandler : CefSharp.IContextMenuHandler
+    {
+        void CefSharp.IContextMenuHandler.OnBeforeContextMenu(CefSharp.IWebBrowser browserControl, CefSharp.IBrowser browser, CefSharp.IFrame frame, CefSharp.IContextMenuParams parameters, CefSharp.IMenuModel model)
+        {
+            model.Clear();
+        }
+        bool CefSharp.IContextMenuHandler.OnContextMenuCommand(CefSharp.IWebBrowser browserControl, CefSharp.IBrowser browser, CefSharp.IFrame frame, CefSharp.IContextMenuParams parameters, CefSharp.CefMenuCommand commandId, CefSharp.CefEventFlags eventFlags)
+        {
+            //throw new NotImplementedException();
+            return false;
+        }
+        void CefSharp.IContextMenuHandler.OnContextMenuDismissed(CefSharp.IWebBrowser browserControl, CefSharp.IBrowser browser, CefSharp.IFrame frame)
+        {
+            //throw new NotImplementedException();
+        }
+        bool CefSharp.IContextMenuHandler.RunContextMenu(CefSharp.IWebBrowser browserControl, CefSharp.IBrowser browser, CefSharp.IFrame frame, CefSharp.IContextMenuParams parameters, CefSharp.IMenuModel model, CefSharp.IRunContextMenuCallback callback)
+        {
+            return false;
         }
     }
 }

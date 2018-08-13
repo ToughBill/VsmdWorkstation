@@ -87,8 +87,8 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             if (!m_isFromPause)
             {
-                //await vsmdController.MoveToSync(VsmdAxis.X, 0);
-                //await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+                await vsmdController.MoveToSync(VsmdAxis.X, 0);
+                await vsmdController.MoveToSync(VsmdAxis.Y, 0);
             }
             
             for (int i = m_dripIndex; i < jsArr.Count; i++)
@@ -98,19 +98,20 @@ namespace VsmdWorkstation
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
-                //await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                //await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+                await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                Thread.Sleep(500);
                 // start drip
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
                 // wait 5 seconds, this time should be changed according to the volume dripped
-                //Thread.Sleep(5000);
+                Thread.Sleep(5000);
 
                 // change the screen to start
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                //Thread.Sleep(1000);
-                await Task.Delay(1000);
+                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                Thread.Sleep(1000);
+                //await Task.Delay(1000);
 
                 MoveCallBack(row, col);
                 m_dripIndex = i;

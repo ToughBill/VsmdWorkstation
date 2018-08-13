@@ -26,7 +26,6 @@ namespace VsmdWorkstation.Controls
         }
 
         [Browsable(true)]
-
         public TextBoxValueType ValueType { get; set; }
 
         protected override void OnKeyPress(KeyPressEventArgs e)

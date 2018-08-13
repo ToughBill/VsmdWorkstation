@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -33,10 +34,10 @@ namespace VsmdWorkstation
          
         public async Task<InitResult> Init(string port, int baudrate)
         {
-            //if(port == m_port && baudrate == m_baudrate)
-            //{
+            if(m_initialized && port == m_port && baudrate == m_baudrate)
+            {
                 return new InitResult() { ErrorMsg = "设备连接成功!", IsSuccess = true };
-            //}
+            }
             
             m_port = port;
             m_baudrate = baudrate;
@@ -212,11 +213,12 @@ namespace VsmdWorkstation
         }
         public void SetS3Mode(VsmdAxis axis, int mode)
         {
-            //GetAxis(axis).cfgS3(mode);
-            GetAxis(axis).S3Mode(mode);
+            GetAxis(axis).cfgS3(mode);
+            //GetAxis(axis).S3Mode(mode);
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
+            Debug.WriteLine("### MoveToSync, axis: " + axis.ToString() + ", pos: " + pos.ToString());
             VsmdInfo vsmdAxis = GetAxis(axis);
             vsmdAxis.moveto(pos);
             int tryCount = 0;
