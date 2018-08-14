@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VsmdLib.Vsmd
 // Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 80BC418D-8177-4FA4-A057-7E2A3FD77244
-// Assembly location: G:\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
+// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
+// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
 
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,9 @@ using System.Threading;
 
 namespace VsmdLib
 {
+    /// <summary>Vsmd Class</summary>
     public class Vsmd
     {
-        /// <summary>serial port recieve thread</summary>
-        private static Thread serial_port_recieve_thread = new Thread(new ParameterizedThreadStart(Vsmd.serial_port_recieve_thread_process));
         /// <summary>device list</summary>
         private List<VsmdInfo> objList = new List<VsmdInfo>();
         /// <summary>serial port object</summary>
@@ -23,6 +22,8 @@ namespace VsmdLib
         /// 
         /// </summary>
         private Thread serial_port_thread = new Thread(new ParameterizedThreadStart(Vsmd.serial_port_thread_process));
+        /// <summary>serial port recieve thread</summary>
+        private Thread serial_port_recieve_thread = new Thread(new ParameterizedThreadStart(Vsmd.serial_port_recieve_thread_process));
         /// <summary>
         /// 
         /// </summary>
@@ -34,6 +35,9 @@ namespace VsmdLib
         private int recieveBufferSize;
         private bool flgResWaiting;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public SerialPort comPort
         {
             get
@@ -64,27 +68,30 @@ namespace VsmdLib
                 return false;
             }
             this.isSerialPortThreadRunning = true;
-            this.serial_port_thread.Priority = ThreadPriority.AboveNormal;
+            this.serial_port_thread.Priority = ThreadPriority.Highest;
             this.serial_port_thread.Start((object)this);
-            if (!Vsmd.isSerialPortRecieveThreadRunning)
-            {
-                Vsmd.isSerialPortRecieveThreadRunning = true;
-                Vsmd.serial_port_recieve_thread.Priority = ThreadPriority.Highest;
-                Vsmd.serial_port_recieve_thread.Start((object)this);
-            }
-            
+            this.isSerialPortRecieveThreadRunning = true;
+            this.serial_port_recieve_thread.Priority = ThreadPriority.Highest;
+            this.serial_port_recieve_thread.Start((object)this);
             return true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary>open serial port</summary>
+        /// <param name="port"></param>
+        /// <param name="baudrate"></param>
+        /// <returns></returns>
+        public bool openSerialPort(string port, int baudrate)
+        {
+            return this.openSerailPort(port, baudrate);
+        }
+
+        /// <summary>close serial port</summary>
         /// <returns></returns>
         public bool closeSerailPort()
         {
             bool flag = true;
             this.isSerialPortThreadRunning = false;
-            Vsmd.isSerialPortRecieveThreadRunning = false;
+            this.isSerialPortRecieveThreadRunning = false;
             try
             {
                 this.comPort.DiscardInBuffer();
@@ -96,6 +103,13 @@ namespace VsmdLib
                 flag = this.comPort.IsOpen && false;
             }
             return flag;
+        }
+
+        /// <summary>close serial port</summary>
+        /// <returns></returns>
+        public bool closeSerialPort()
+        {
+            return this.closeSerailPort();
         }
 
         private bool isSerialPortThreadRunning { get; set; }
@@ -114,12 +128,12 @@ namespace VsmdLib
                     string str = (string)null;
                     if (this.objList[index].isOnline)
                         str = this.objList[index].sendCmdProcess();
-                    if (str != null)
+                    if (str != null && this.comPort.IsOpen)
                     {
                         this.curCommand = str;
                         this.retryCnt = 0;
                         vsmdInfo = this.objList[index];
-                        this.waitResTimer.start(500000000L);
+                        this.waitResTimer.start(500000L);
                         this.flgResWaiting = true;
                         this.comPort.Write(this.curCommand);
                     }
@@ -135,7 +149,6 @@ namespace VsmdLib
                         this.flgResWaiting = false;
                         this.retryCnt = 0;
                         vsmdInfo.isOnline = false;
-                        System.Diagnostics.Debug.WriteLine("vsmdInfo.isOnline = false, cid: " + vsmdInfo.Cid);
                     }
                     else
                         this.comPort.Write(this.curCommand);
@@ -151,12 +164,12 @@ namespace VsmdLib
             ((Vsmd)obj).serialPortSendProcess();
         }
 
-        private static bool isSerialPortRecieveThreadRunning { get; set; }
+        private bool isSerialPortRecieveThreadRunning { get; set; }
 
         /// <summary>serial port recieve process</summary>
         private void serialPortRecieveProcess()
         {
-            while (Vsmd.isSerialPortRecieveThreadRunning)
+            while (this.isSerialPortRecieveThreadRunning)
             {
                 try
                 {

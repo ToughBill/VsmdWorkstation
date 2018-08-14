@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VsmdLib.VsmdInfo
 // Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 80BC418D-8177-4FA4-A057-7E2A3FD77244
-// Assembly location: G:\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
+// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
+// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
 
 using System;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace VsmdLib
             if (this.com_port == null || !this.com_port.IsOpen)
                 return;
             lock (this.cmdList)
-              this.cmdList.Add(cmd);
+                this.cmdList.Add(cmd);
         }
 
         /// <summary>send command process from cmdList</summary>
@@ -71,7 +71,7 @@ namespace VsmdLib
             {
                 str = this.cmdList[0];
                 lock (this.cmdList)
-                  this.cmdList.RemoveAt(0);
+                    this.cmdList.RemoveAt(0);
             }
             else if (this.flgAutoUpdate)
                 str = "sts";
@@ -334,6 +334,34 @@ namespace VsmdLib
             this.addCommand("cfg s6r=" + s6r.ToString("d"));
         }
 
+        /// <summary>config s3 as input or output</summary>
+        /// <param name="mode">0-input / 1-output</param>
+        public void cfgS3(int mode)
+        {
+            this.addCommand("cfg s3=" + mode.ToString("d"));
+        }
+
+        /// <summary>config s4 as input or output</summary>
+        /// <param name="mode">0-input / 1-output</param>
+        public void cfgS4(int mode)
+        {
+            this.addCommand("cfg s4=" + mode.ToString("d"));
+        }
+
+        /// <summary>config s5 as input or output</summary>
+        /// <param name="mode">0-input / 1-output</param>
+        public void cfgS5(int mode)
+        {
+            this.addCommand("cfg s5=" + mode.ToString("d"));
+        }
+
+        /// <summary>config s6 as input or output</summary>
+        /// <param name="mode">0-input / 1-output</param>
+        public void cfgS6(int mode)
+        {
+            this.addCommand("cfg s6=" + mode.ToString("d"));
+        }
+
         /// <summary>config zero parameters</summary>
         /// <param name="zmd">zero mode</param>
         /// <param name="osv">open-state level</param>
@@ -436,14 +464,6 @@ namespace VsmdLib
         {
             this.addCommand("s6 off");
         }
-        /// <summary>
-        /// set s3 mode
-        /// </summary>
-        /// <param name="mode">0: input mode, 1: output mode</param>
-        public void cfgS3(int mode)
-        {
-            this.addCommand("cfg s3=" + mode.ToString());
-        }
 
         /// <summary>pre-position (set position)</summary>
         /// <param name="pos"></param>
@@ -456,6 +476,41 @@ namespace VsmdLib
         public void pps()
         {
             this.addCommand(nameof(pps));
+        }
+
+        /// <summary>pre-pos-buffer</summary>
+        /// <param name="pos"></param>
+        public void preAdd(int[] pos)
+        {
+            string cmd = "pre";
+            foreach (int po in pos)
+                cmd = cmd + " " + po.ToString("d");
+            this.addCommand(cmd);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void preStart()
+        {
+            this.addCommand("prestart");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void preStop()
+        {
+            this.addCommand("prestop");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool isPreListBusy()
+        {
+            return ((int)this.curStatus & 8388608) == 8388608;
         }
 
         /// <summary>get status (speed, position, status bits)</summary>

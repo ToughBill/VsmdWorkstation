@@ -1,13 +1,16 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VsmdLib.VsmdTimer
 // Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 80BC418D-8177-4FA4-A057-7E2A3FD77244
-// Assembly location: G:\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
+// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
+// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
 
 using System;
 
 namespace VsmdLib
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class VsmdTimer
     {
         /// <summary>for internal timer.</summary>
