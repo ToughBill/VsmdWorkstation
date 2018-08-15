@@ -129,7 +129,7 @@ namespace VsmdWorkstation
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            VsmdController.GetVsmdController().Dispose();
+            
         }
 
         private void tsmDevTools_Click(object sender, EventArgs e)

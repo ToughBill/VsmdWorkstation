@@ -90,7 +90,7 @@ namespace VsmdWorkstation
                 await vsmdController.MoveToSync(VsmdAxis.X, 0);
                 await vsmdController.MoveToSync(VsmdAxis.Y, 0);
             }
-            
+            vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_dripIndex; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
@@ -102,14 +102,20 @@ namespace VsmdWorkstation
                 await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
                 Thread.Sleep(500);
                 // start drip
-                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                vsmdController.S3On(VsmdAxis.Z);
+                Thread.Sleep(500);
+                vsmdController.S3Off(VsmdAxis.Z);
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(5000);
 
                 // change the screen to start
-                vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
+                vsmdController.S3On(VsmdAxis.Z);
+                Thread.Sleep(500);
+                vsmdController.S3Off(VsmdAxis.Z);
                 Thread.Sleep(1000);
                 //await Task.Delay(1000);
 

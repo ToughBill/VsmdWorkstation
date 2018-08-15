@@ -87,5 +87,10 @@ namespace VsmdWorkstation
         {
             ConnectVsmd();
         }
+
+        private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            VsmdController.GetVsmdController().Dispose();
+        }
     }
 }

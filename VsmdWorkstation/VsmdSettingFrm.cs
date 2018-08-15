@@ -302,14 +302,24 @@ namespace VsmdWorkstation
 
         }
 
-        private void btnS3On_Click(object sender, EventArgs e)
+        private void btnS3Input_Click(object sender, EventArgs e)
         {
             VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 0);
         }
 
-        private void btnS3Off_Click(object sender, EventArgs e)
+        private void btnS3Output_Click(object sender, EventArgs e)
         {
             VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 1);
+        }
+
+        private void btnS3On_Click(object sender, EventArgs e)
+        {
+            VsmdController.GetVsmdController().S3On(VsmdAxis.Z);
+        }
+
+        private void btnS3Off_Click(object sender, EventArgs e)
+        {
+            VsmdController.GetVsmdController().S3Off(VsmdAxis.Z);
         }
     }
 }
