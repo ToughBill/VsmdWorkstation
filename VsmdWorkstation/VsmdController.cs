@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using VsmdLib;
+using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
@@ -121,6 +122,20 @@ namespace VsmdWorkstation
             //m_axisX.cfgSpd(128000);
             //m_axisX.cfgCur(1.6f, 1.4f, 0.8f);
             
+        }
+        public async Task<InitResult> ResetVsmdController()
+        {
+            bool ret = true;
+            if (m_initialized)
+            {
+                this.Dispose();
+            }
+            InitResult result = await Init(m_port, m_baudrate);
+            if (!result.IsSuccess)
+            {
+                StatusBar.DisplayMessage(MessageType.Error, result.ErrorMsg);
+            }
+            return result;
         }
         public bool IsInitialized()
         {
@@ -240,6 +255,54 @@ namespace VsmdWorkstation
                 return true;
             }
         }
+        public async Task<bool> ZeroStartSync(VsmdAxis axis)
+        {
+            VsmdInfo vsmdAxis = GetAxis(axis);
+            vsmdAxis.zeroStart();
+            int tryCount = 0;
+            await Task.Delay(1500);
+            while (tryCount < 3)
+            {
+                await Task.Delay(50);
+                if (vsmdAxis.curPos == 0)
+                {
+                    break;
+                }
+                tryCount++;
+            }
+            if (tryCount >= 50)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public async Task<bool> ZeroStopSync(VsmdAxis axis)
+        {
+            VsmdInfo vsmdAxis = GetAxis(axis);
+            vsmdAxis.zeroStop();
+            int tryCount = 0;
+            await Task.Delay(1500);
+            while (tryCount < 3)
+            {
+                await Task.Delay(50);
+                if (vsmdAxis.curPos == 0)
+                {
+                    break;
+                }
+                tryCount++;
+            }
+            if (tryCount >= 50)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public async void MoveTo(int xpox, int ypox)
         {
             await MoveToSync(VsmdAxis.X, xpox);
@@ -255,6 +318,7 @@ namespace VsmdWorkstation
                 m_axisY = null;
                 m_axisZ = null;
                 m_vsmd.closeSerailPort();
+                m_initialized = false;
             }
         }
 

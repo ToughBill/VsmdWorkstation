@@ -81,15 +81,20 @@ namespace VsmdWorkstation
         }
         private async void DripThread()
         {
+            VsmdController vsmdController = VsmdController.GetVsmdController();
+            await vsmdController.ResetVsmdController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
             BeforeMove();
-            VsmdController vsmdController = VsmdController.GetVsmdController();
+            
             if (!m_isFromPause)
             {
-                await vsmdController.MoveToSync(VsmdAxis.X, 0);
-                await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+                //await vsmdController.MoveToSync(VsmdAxis.X, 0);
+                //await vsmdController.MoveToSync(VsmdAxis.Y, 0);
+                await vsmdController.ZeroStartSync(VsmdAxis.X);
+                await vsmdController.ZeroStopSync(VsmdAxis.Y);
             }
+
             vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_dripIndex; i < jsArr.Count; i++)
             {
