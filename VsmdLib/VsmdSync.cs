@@ -6,24 +6,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace VsmdLib
 {
     /// <summary>Vsmd Class</summary>
-    public class Vsmd
+    public class VsmdSync
     {
         /// <summary>device list</summary>
-        private List<VsmdInfo> objList = new List<VsmdInfo>();
+        private List<VsmdInfoSync> objList = new List<VsmdInfoSync>();
         /// <summary>serial port object</summary>
         private SerialPort com_port = new SerialPort();
         /// <summary>
         /// 
         /// </summary>
-        private Thread serial_port_thread = new Thread(new ParameterizedThreadStart(Vsmd.serial_port_thread_process));
+        private Thread serial_port_thread;
         /// <summary>serial port recieve thread</summary>
-        private Thread serial_port_recieve_thread = new Thread(new ParameterizedThreadStart(Vsmd.serial_port_recieve_thread_process));
+        private Thread serial_port_recieve_thread;
         /// <summary>
         /// 
         /// </summary>
@@ -33,7 +35,7 @@ namespace VsmdLib
         private int retryCnt;
         private string curCommand;
         private int recieveBufferSize;
-        private bool flgResWaiting;
+        private bool m_isWaitingResponse;
 
         /// <summary>
         /// 
@@ -67,10 +69,13 @@ namespace VsmdLib
             {
                 return false;
             }
-            this.isSerialPortThreadRunning = true;
-            this.serial_port_thread.Priority = ThreadPriority.Highest;
-            this.serial_port_thread.Start((object)this);
+            //this.isSerialPortThreadRunning = true;
+            //this.serial_port_thread = new Thread(new ParameterizedThreadStart(serial_port_thread_process));
+            //this.serial_port_thread.Priority = ThreadPriority.Highest;
+            //this.serial_port_thread.Start((object)this);
+
             this.isSerialPortRecieveThreadRunning = true;
+            this.serial_port_recieve_thread = new Thread(new ParameterizedThreadStart(serial_port_recieve_thread_process));
             this.serial_port_recieve_thread.Priority = ThreadPriority.Highest;
             this.serial_port_recieve_thread.Start((object)this);
             return true;
@@ -120,10 +125,10 @@ namespace VsmdLib
         private void serialPortSendProcess()
         {
             int index = 0;
-            VsmdInfo vsmdInfo = (VsmdInfo)null;
+            VsmdInfoSync vsmdInfo = (VsmdInfoSync)null;
             while (this.isSerialPortThreadRunning)
             {
-                if (this.objList.Count > 0 && !this.flgResWaiting)
+                if (this.objList.Count > 0 && !this.m_isWaitingResponse)
                 {
                     string str = (string)null;
                     if (this.objList[index].isOnline)
@@ -134,7 +139,7 @@ namespace VsmdLib
                         this.retryCnt = 0;
                         vsmdInfo = this.objList[index];
                         this.waitResTimer.start(500000L);
-                        this.flgResWaiting = true;
+                        this.m_isWaitingResponse = true;
                         this.comPort.Write(this.curCommand);
                         if(this.curCommand.IndexOf("sts") < 0)
                         {
@@ -146,12 +151,12 @@ namespace VsmdLib
                     if (index >= this.objList.Count)
                         index = 0;
                 }
-                else if (this.flgResWaiting && this.waitResTimer.isTimeout())
+                else if (this.m_isWaitingResponse && this.waitResTimer.isTimeout())
                 {
                     ++this.retryCnt;
                     if (this.retryCnt >= 3)
                     {
-                        this.flgResWaiting = false;
+                        this.m_isWaitingResponse = false;
                         this.retryCnt = 0;
                         vsmdInfo.isOnline = false;
                         System.Diagnostics.Debug.WriteLine("fail to get result, vsmdInfo.isOnline = false" + Environment.NewLine);
@@ -169,9 +174,9 @@ namespace VsmdLib
 
         /// <summary>serial port thread process</summary>
         /// <param name="obj"></param>
-        private static void serial_port_thread_process(object obj)
+        private void serial_port_thread_process(object obj)
         {
-            ((Vsmd)obj).serialPortSendProcess();
+            ((VsmdSync)obj).serialPortSendProcess();
         }
 
         private bool isSerialPortRecieveThreadRunning { get; set; }
@@ -222,7 +227,7 @@ namespace VsmdLib
                                 }
                             }
                         }
-                        this.flgResWaiting = false;
+                        this.m_isWaitingResponse = false;
                         break;
                     }
                     goto default;
@@ -258,9 +263,9 @@ namespace VsmdLib
 
         /// <summary>serial port recieve thread process</summary>
         /// <param name="obj"></param>
-        private static void serial_port_recieve_thread_process(object obj)
+        private void serial_port_recieve_thread_process(object obj)
         {
-            ((Vsmd)obj).serialPortRecieveProcess();
+            ((VsmdSync)obj).serialPortRecieveProcess();
         }
 
         /// <summary>
@@ -268,9 +273,9 @@ namespace VsmdLib
         /// </summary>
         /// <param name="cid"></param>
         /// <returns></returns>
-        public VsmdInfo createVsmdInfo(int cid)
+        public VsmdInfoSync createVsmdInfo(int cid, VsmdSync controller)
         {
-            VsmdInfo vsmdInfo = new VsmdInfo(cid);
+            VsmdInfoSync vsmdInfo = new VsmdInfoSync(cid, controller);
             vsmdInfo.comPort = this.comPort;
             this.objList.Add(vsmdInfo);
             return vsmdInfo;
@@ -278,9 +283,41 @@ namespace VsmdLib
 
         /// <summary>remove VsmdInfo object</summary>
         /// <param name="info"></param>
-        public void removeVsmdInfo(VsmdInfo info)
+        public void removeVsmdInfo(VsmdInfoSync info)
         {
             this.objList.Remove(info);
+        }
+
+        public async Task<bool> SendCommand(string cmd, int waitInterval = 10, int waitCount = 5)
+        {
+            bool returnVal = true;
+            this.comPort.Write(cmd);
+            OutputLog("send command: " + cmd);
+            m_isWaitingResponse = true;
+            returnVal = await WaitResult(waitInterval, waitCount);
+
+            return returnVal;
+        }
+        public async Task<bool> WaitResult(int waitInterval = 10, int waitCount = 5)
+        {
+            int curWaitCnt = 0;
+            while(curWaitCnt < waitCount)
+            {
+                curWaitCnt++;
+                OutputLog("wait for result, try " + curWaitCnt.ToString());
+                if (!m_isWaitingResponse)
+                {
+                    break;
+                }
+                await Task.Delay(waitInterval);
+            }
+
+            return curWaitCnt <= waitCount;
+        }
+
+        private void OutputLog(string log)
+        {
+            Debug.WriteLine(log + Environment.NewLine);
         }
     }
 }

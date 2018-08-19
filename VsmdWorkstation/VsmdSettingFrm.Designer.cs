@@ -31,6 +31,8 @@ namespace VsmdWorkstation
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtZsdX = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnOffX = new VsmdWorkstation.Controls.ButtonEx();
             this.btnEnaX = new VsmdWorkstation.Controls.ButtonEx();
             this.btnPosX = new VsmdWorkstation.Controls.ButtonEx();
@@ -41,8 +43,6 @@ namespace VsmdWorkstation
             this.btnStopX = new VsmdWorkstation.Controls.ButtonEx();
             this.btnMoveX = new VsmdWorkstation.Controls.ButtonEx();
             this.btnSaveX = new VsmdWorkstation.Controls.ButtonEx();
-            this.ckbAutoUpdateX = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtSpeedX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPosX = new VsmdWorkstation.Controls.TextBoxEx();
@@ -50,6 +50,9 @@ namespace VsmdWorkstation
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAddCmd = new VsmdWorkstation.Controls.ButtonEx();
+            this.txtZsdY = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnOffY = new VsmdWorkstation.Controls.ButtonEx();
             this.btnEnaY = new VsmdWorkstation.Controls.ButtonEx();
             this.btnPosY = new VsmdWorkstation.Controls.ButtonEx();
@@ -60,8 +63,6 @@ namespace VsmdWorkstation
             this.btnStopY = new VsmdWorkstation.Controls.ButtonEx();
             this.btnMoveY = new VsmdWorkstation.Controls.ButtonEx();
             this.btnSaveY = new VsmdWorkstation.Controls.ButtonEx();
-            this.ckbAutoUpdateY = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtSpeedY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPosY = new VsmdWorkstation.Controls.TextBoxEx();
@@ -69,7 +70,9 @@ namespace VsmdWorkstation
             this.txtCidY = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtZsdZ = new VsmdWorkstation.Controls.TextBoxEx();
             this.btnS3Off = new VsmdWorkstation.Controls.ButtonEx();
+            this.label15 = new System.Windows.Forms.Label();
             this.btnS3On = new VsmdWorkstation.Controls.ButtonEx();
             this.btnS3Output = new VsmdWorkstation.Controls.ButtonEx();
             this.btnS3Input = new VsmdWorkstation.Controls.ButtonEx();
@@ -83,8 +86,6 @@ namespace VsmdWorkstation
             this.btnStopZ = new VsmdWorkstation.Controls.ButtonEx();
             this.btnMoveZ = new VsmdWorkstation.Controls.ButtonEx();
             this.btnSaveZ = new VsmdWorkstation.Controls.ButtonEx();
-            this.ckbAutoUpdateZ = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtSpeedZ = new VsmdWorkstation.Controls.TextBoxEx();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPosZ = new VsmdWorkstation.Controls.TextBoxEx();
@@ -98,6 +99,8 @@ namespace VsmdWorkstation
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtZsdX);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.btnOffX);
             this.groupBox1.Controls.Add(this.btnEnaX);
             this.groupBox1.Controls.Add(this.btnPosX);
@@ -108,8 +111,6 @@ namespace VsmdWorkstation
             this.groupBox1.Controls.Add(this.btnStopX);
             this.groupBox1.Controls.Add(this.btnMoveX);
             this.groupBox1.Controls.Add(this.btnSaveX);
-            this.groupBox1.Controls.Add(this.ckbAutoUpdateX);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtSpeedX);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtPosX);
@@ -118,14 +119,31 @@ namespace VsmdWorkstation
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(216, 279);
+            this.groupBox1.Size = new System.Drawing.Size(216, 289);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "X轴";
             // 
+            // txtZsdX
+            // 
+            this.txtZsdX.Location = new System.Drawing.Point(66, 101);
+            this.txtZsdX.Name = "txtZsdX";
+            this.txtZsdX.Size = new System.Drawing.Size(137, 21);
+            this.txtZsdX.TabIndex = 19;
+            this.txtZsdX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 107);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 12);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "zsd：";
+            // 
             // btnOffX
             // 
-            this.btnOffX.Location = new System.Drawing.Point(123, 186);
+            this.btnOffX.Location = new System.Drawing.Point(123, 196);
             this.btnOffX.Name = "btnOffX";
             this.btnOffX.Size = new System.Drawing.Size(80, 23);
             this.btnOffX.TabIndex = 17;
@@ -136,7 +154,7 @@ namespace VsmdWorkstation
             // 
             // btnEnaX
             // 
-            this.btnEnaX.Location = new System.Drawing.Point(8, 186);
+            this.btnEnaX.Location = new System.Drawing.Point(8, 196);
             this.btnEnaX.Name = "btnEnaX";
             this.btnEnaX.Size = new System.Drawing.Size(80, 23);
             this.btnEnaX.TabIndex = 16;
@@ -147,7 +165,7 @@ namespace VsmdWorkstation
             // 
             // btnPosX
             // 
-            this.btnPosX.Location = new System.Drawing.Point(8, 157);
+            this.btnPosX.Location = new System.Drawing.Point(8, 167);
             this.btnPosX.Name = "btnPosX";
             this.btnPosX.Size = new System.Drawing.Size(80, 23);
             this.btnPosX.TabIndex = 15;
@@ -158,7 +176,7 @@ namespace VsmdWorkstation
             // 
             // btnStsX
             // 
-            this.btnStsX.Location = new System.Drawing.Point(8, 128);
+            this.btnStsX.Location = new System.Drawing.Point(8, 138);
             this.btnStsX.Name = "btnStsX";
             this.btnStsX.Size = new System.Drawing.Size(80, 23);
             this.btnStsX.TabIndex = 14;
@@ -169,7 +187,7 @@ namespace VsmdWorkstation
             // 
             // btnOrgX
             // 
-            this.btnOrgX.Location = new System.Drawing.Point(123, 157);
+            this.btnOrgX.Location = new System.Drawing.Point(123, 167);
             this.btnOrgX.Name = "btnOrgX";
             this.btnOrgX.Size = new System.Drawing.Size(80, 23);
             this.btnOrgX.TabIndex = 13;
@@ -180,7 +198,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopX
             // 
-            this.btnZeroStopX.Location = new System.Drawing.Point(123, 244);
+            this.btnZeroStopX.Location = new System.Drawing.Point(123, 254);
             this.btnZeroStopX.Name = "btnZeroStopX";
             this.btnZeroStopX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopX.TabIndex = 12;
@@ -191,7 +209,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartX
             // 
-            this.btnZeroStartX.Location = new System.Drawing.Point(8, 244);
+            this.btnZeroStartX.Location = new System.Drawing.Point(8, 254);
             this.btnZeroStartX.Name = "btnZeroStartX";
             this.btnZeroStartX.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartX.TabIndex = 11;
@@ -202,7 +220,7 @@ namespace VsmdWorkstation
             // 
             // btnStopX
             // 
-            this.btnStopX.Location = new System.Drawing.Point(123, 215);
+            this.btnStopX.Location = new System.Drawing.Point(123, 225);
             this.btnStopX.Name = "btnStopX";
             this.btnStopX.Size = new System.Drawing.Size(80, 23);
             this.btnStopX.TabIndex = 10;
@@ -213,7 +231,7 @@ namespace VsmdWorkstation
             // 
             // btnMoveX
             // 
-            this.btnMoveX.Location = new System.Drawing.Point(8, 215);
+            this.btnMoveX.Location = new System.Drawing.Point(8, 225);
             this.btnMoveX.Name = "btnMoveX";
             this.btnMoveX.Size = new System.Drawing.Size(80, 23);
             this.btnMoveX.TabIndex = 9;
@@ -224,7 +242,7 @@ namespace VsmdWorkstation
             // 
             // btnSaveX
             // 
-            this.btnSaveX.Location = new System.Drawing.Point(123, 128);
+            this.btnSaveX.Location = new System.Drawing.Point(123, 138);
             this.btnSaveX.Name = "btnSaveX";
             this.btnSaveX.Size = new System.Drawing.Size(80, 23);
             this.btnSaveX.TabIndex = 8;
@@ -232,24 +250,6 @@ namespace VsmdWorkstation
             this.btnSaveX.ToolTip = null;
             this.btnSaveX.UseVisualStyleBackColor = true;
             this.btnSaveX.Click += new System.EventHandler(this.btnSaveX_Click);
-            // 
-            // ckbAutoUpdateX
-            // 
-            this.ckbAutoUpdateX.AutoSize = true;
-            this.ckbAutoUpdateX.Location = new System.Drawing.Point(66, 103);
-            this.ckbAutoUpdateX.Name = "ckbAutoUpdateX";
-            this.ckbAutoUpdateX.Size = new System.Drawing.Size(15, 14);
-            this.ckbAutoUpdateX.TabIndex = 7;
-            this.ckbAutoUpdateX.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "自动更新：";
             // 
             // txtSpeedX
             // 
@@ -304,6 +304,9 @@ namespace VsmdWorkstation
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnAddCmd);
+            this.groupBox2.Controls.Add(this.txtZsdY);
+            this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.btnOffY);
             this.groupBox2.Controls.Add(this.btnEnaY);
             this.groupBox2.Controls.Add(this.btnPosY);
@@ -314,8 +317,6 @@ namespace VsmdWorkstation
             this.groupBox2.Controls.Add(this.btnStopY);
             this.groupBox2.Controls.Add(this.btnMoveY);
             this.groupBox2.Controls.Add(this.btnSaveY);
-            this.groupBox2.Controls.Add(this.ckbAutoUpdateY);
-            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtSpeedY);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.txtPosY);
@@ -324,14 +325,42 @@ namespace VsmdWorkstation
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(234, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(216, 279);
+            this.groupBox2.Size = new System.Drawing.Size(216, 319);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Y轴";
             // 
+            // btnAddCmd
+            // 
+            this.btnAddCmd.Location = new System.Drawing.Point(8, 284);
+            this.btnAddCmd.Name = "btnAddCmd";
+            this.btnAddCmd.Size = new System.Drawing.Size(80, 23);
+            this.btnAddCmd.TabIndex = 22;
+            this.btnAddCmd.Text = "Add Command";
+            this.btnAddCmd.ToolTip = "Add Command";
+            this.btnAddCmd.UseVisualStyleBackColor = true;
+            this.btnAddCmd.Click += new System.EventHandler(this.btnAddCmd_Click);
+            // 
+            // txtZsdY
+            // 
+            this.txtZsdY.Location = new System.Drawing.Point(66, 101);
+            this.txtZsdY.Name = "txtZsdY";
+            this.txtZsdY.Size = new System.Drawing.Size(137, 21);
+            this.txtZsdY.TabIndex = 21;
+            this.txtZsdY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 107);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 12);
+            this.label14.TabIndex = 20;
+            this.label14.Text = "zsd：";
+            // 
             // btnOffY
             // 
-            this.btnOffY.Location = new System.Drawing.Point(123, 186);
+            this.btnOffY.Location = new System.Drawing.Point(123, 196);
             this.btnOffY.Name = "btnOffY";
             this.btnOffY.Size = new System.Drawing.Size(80, 23);
             this.btnOffY.TabIndex = 17;
@@ -342,7 +371,7 @@ namespace VsmdWorkstation
             // 
             // btnEnaY
             // 
-            this.btnEnaY.Location = new System.Drawing.Point(8, 186);
+            this.btnEnaY.Location = new System.Drawing.Point(8, 196);
             this.btnEnaY.Name = "btnEnaY";
             this.btnEnaY.Size = new System.Drawing.Size(80, 23);
             this.btnEnaY.TabIndex = 16;
@@ -353,7 +382,7 @@ namespace VsmdWorkstation
             // 
             // btnPosY
             // 
-            this.btnPosY.Location = new System.Drawing.Point(8, 157);
+            this.btnPosY.Location = new System.Drawing.Point(8, 167);
             this.btnPosY.Name = "btnPosY";
             this.btnPosY.Size = new System.Drawing.Size(80, 23);
             this.btnPosY.TabIndex = 15;
@@ -364,7 +393,7 @@ namespace VsmdWorkstation
             // 
             // btnStsY
             // 
-            this.btnStsY.Location = new System.Drawing.Point(8, 128);
+            this.btnStsY.Location = new System.Drawing.Point(8, 138);
             this.btnStsY.Name = "btnStsY";
             this.btnStsY.Size = new System.Drawing.Size(80, 23);
             this.btnStsY.TabIndex = 14;
@@ -375,7 +404,7 @@ namespace VsmdWorkstation
             // 
             // btnOrgY
             // 
-            this.btnOrgY.Location = new System.Drawing.Point(123, 157);
+            this.btnOrgY.Location = new System.Drawing.Point(123, 167);
             this.btnOrgY.Name = "btnOrgY";
             this.btnOrgY.Size = new System.Drawing.Size(80, 23);
             this.btnOrgY.TabIndex = 13;
@@ -386,7 +415,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopY
             // 
-            this.btnZeroStopY.Location = new System.Drawing.Point(123, 244);
+            this.btnZeroStopY.Location = new System.Drawing.Point(123, 254);
             this.btnZeroStopY.Name = "btnZeroStopY";
             this.btnZeroStopY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopY.TabIndex = 12;
@@ -397,7 +426,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartY
             // 
-            this.btnZeroStartY.Location = new System.Drawing.Point(8, 244);
+            this.btnZeroStartY.Location = new System.Drawing.Point(8, 254);
             this.btnZeroStartY.Name = "btnZeroStartY";
             this.btnZeroStartY.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartY.TabIndex = 11;
@@ -408,7 +437,7 @@ namespace VsmdWorkstation
             // 
             // btnStopY
             // 
-            this.btnStopY.Location = new System.Drawing.Point(123, 215);
+            this.btnStopY.Location = new System.Drawing.Point(123, 225);
             this.btnStopY.Name = "btnStopY";
             this.btnStopY.Size = new System.Drawing.Size(80, 23);
             this.btnStopY.TabIndex = 10;
@@ -419,7 +448,7 @@ namespace VsmdWorkstation
             // 
             // btnMoveY
             // 
-            this.btnMoveY.Location = new System.Drawing.Point(8, 215);
+            this.btnMoveY.Location = new System.Drawing.Point(8, 225);
             this.btnMoveY.Name = "btnMoveY";
             this.btnMoveY.Size = new System.Drawing.Size(80, 23);
             this.btnMoveY.TabIndex = 9;
@@ -430,7 +459,7 @@ namespace VsmdWorkstation
             // 
             // btnSaveY
             // 
-            this.btnSaveY.Location = new System.Drawing.Point(123, 128);
+            this.btnSaveY.Location = new System.Drawing.Point(123, 138);
             this.btnSaveY.Name = "btnSaveY";
             this.btnSaveY.Size = new System.Drawing.Size(80, 23);
             this.btnSaveY.TabIndex = 8;
@@ -438,24 +467,6 @@ namespace VsmdWorkstation
             this.btnSaveY.ToolTip = null;
             this.btnSaveY.UseVisualStyleBackColor = true;
             this.btnSaveY.Click += new System.EventHandler(this.btnSaveY_Click);
-            // 
-            // ckbAutoUpdateY
-            // 
-            this.ckbAutoUpdateY.AutoSize = true;
-            this.ckbAutoUpdateY.Location = new System.Drawing.Point(66, 103);
-            this.ckbAutoUpdateY.Name = "ckbAutoUpdateY";
-            this.ckbAutoUpdateY.Size = new System.Drawing.Size(15, 14);
-            this.ckbAutoUpdateY.TabIndex = 7;
-            this.ckbAutoUpdateY.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 103);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "自动更新：";
             // 
             // txtSpeedY
             // 
@@ -510,7 +521,9 @@ namespace VsmdWorkstation
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtZsdZ);
             this.groupBox3.Controls.Add(this.btnS3Off);
+            this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.btnS3On);
             this.groupBox3.Controls.Add(this.btnS3Output);
             this.groupBox3.Controls.Add(this.btnS3Input);
@@ -524,8 +537,6 @@ namespace VsmdWorkstation
             this.groupBox3.Controls.Add(this.btnStopZ);
             this.groupBox3.Controls.Add(this.btnMoveZ);
             this.groupBox3.Controls.Add(this.btnSaveZ);
-            this.groupBox3.Controls.Add(this.ckbAutoUpdateZ);
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtSpeedZ);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtPosZ);
@@ -534,14 +545,22 @@ namespace VsmdWorkstation
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(456, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 351);
+            this.groupBox3.Size = new System.Drawing.Size(216, 347);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Z轴";
             // 
+            // txtZsdZ
+            // 
+            this.txtZsdZ.Location = new System.Drawing.Point(66, 101);
+            this.txtZsdZ.Name = "txtZsdZ";
+            this.txtZsdZ.Size = new System.Drawing.Size(137, 21);
+            this.txtZsdZ.TabIndex = 23;
+            this.txtZsdZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // btnS3Off
             // 
-            this.btnS3Off.Location = new System.Drawing.Point(121, 302);
+            this.btnS3Off.Location = new System.Drawing.Point(121, 312);
             this.btnS3Off.Name = "btnS3Off";
             this.btnS3Off.Size = new System.Drawing.Size(80, 23);
             this.btnS3Off.TabIndex = 21;
@@ -550,9 +569,18 @@ namespace VsmdWorkstation
             this.btnS3Off.UseVisualStyleBackColor = true;
             this.btnS3Off.Click += new System.EventHandler(this.btnS3Off_Click);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 107);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 12);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "zsd：";
+            // 
             // btnS3On
             // 
-            this.btnS3On.Location = new System.Drawing.Point(6, 302);
+            this.btnS3On.Location = new System.Drawing.Point(6, 312);
             this.btnS3On.Name = "btnS3On";
             this.btnS3On.Size = new System.Drawing.Size(80, 23);
             this.btnS3On.TabIndex = 20;
@@ -563,7 +591,7 @@ namespace VsmdWorkstation
             // 
             // btnS3Output
             // 
-            this.btnS3Output.Location = new System.Drawing.Point(121, 273);
+            this.btnS3Output.Location = new System.Drawing.Point(121, 283);
             this.btnS3Output.Name = "btnS3Output";
             this.btnS3Output.Size = new System.Drawing.Size(80, 23);
             this.btnS3Output.TabIndex = 19;
@@ -574,7 +602,7 @@ namespace VsmdWorkstation
             // 
             // btnS3Input
             // 
-            this.btnS3Input.Location = new System.Drawing.Point(6, 273);
+            this.btnS3Input.Location = new System.Drawing.Point(6, 283);
             this.btnS3Input.Name = "btnS3Input";
             this.btnS3Input.Size = new System.Drawing.Size(80, 23);
             this.btnS3Input.TabIndex = 18;
@@ -585,7 +613,7 @@ namespace VsmdWorkstation
             // 
             // btnOffZ
             // 
-            this.btnOffZ.Location = new System.Drawing.Point(121, 186);
+            this.btnOffZ.Location = new System.Drawing.Point(121, 196);
             this.btnOffZ.Name = "btnOffZ";
             this.btnOffZ.Size = new System.Drawing.Size(80, 23);
             this.btnOffZ.TabIndex = 17;
@@ -596,7 +624,7 @@ namespace VsmdWorkstation
             // 
             // btnEnaZ
             // 
-            this.btnEnaZ.Location = new System.Drawing.Point(6, 186);
+            this.btnEnaZ.Location = new System.Drawing.Point(6, 196);
             this.btnEnaZ.Name = "btnEnaZ";
             this.btnEnaZ.Size = new System.Drawing.Size(80, 23);
             this.btnEnaZ.TabIndex = 16;
@@ -607,7 +635,7 @@ namespace VsmdWorkstation
             // 
             // btnPosZ
             // 
-            this.btnPosZ.Location = new System.Drawing.Point(8, 157);
+            this.btnPosZ.Location = new System.Drawing.Point(8, 167);
             this.btnPosZ.Name = "btnPosZ";
             this.btnPosZ.Size = new System.Drawing.Size(80, 23);
             this.btnPosZ.TabIndex = 15;
@@ -618,7 +646,7 @@ namespace VsmdWorkstation
             // 
             // btnStsZ
             // 
-            this.btnStsZ.Location = new System.Drawing.Point(8, 128);
+            this.btnStsZ.Location = new System.Drawing.Point(8, 138);
             this.btnStsZ.Name = "btnStsZ";
             this.btnStsZ.Size = new System.Drawing.Size(80, 23);
             this.btnStsZ.TabIndex = 14;
@@ -629,7 +657,7 @@ namespace VsmdWorkstation
             // 
             // btnOrgZ
             // 
-            this.btnOrgZ.Location = new System.Drawing.Point(123, 157);
+            this.btnOrgZ.Location = new System.Drawing.Point(123, 167);
             this.btnOrgZ.Name = "btnOrgZ";
             this.btnOrgZ.Size = new System.Drawing.Size(80, 23);
             this.btnOrgZ.TabIndex = 13;
@@ -640,7 +668,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStopZ
             // 
-            this.btnZeroStopZ.Location = new System.Drawing.Point(121, 244);
+            this.btnZeroStopZ.Location = new System.Drawing.Point(121, 254);
             this.btnZeroStopZ.Name = "btnZeroStopZ";
             this.btnZeroStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStopZ.TabIndex = 12;
@@ -651,7 +679,7 @@ namespace VsmdWorkstation
             // 
             // btnZeroStartZ
             // 
-            this.btnZeroStartZ.Location = new System.Drawing.Point(6, 244);
+            this.btnZeroStartZ.Location = new System.Drawing.Point(6, 254);
             this.btnZeroStartZ.Name = "btnZeroStartZ";
             this.btnZeroStartZ.Size = new System.Drawing.Size(80, 23);
             this.btnZeroStartZ.TabIndex = 11;
@@ -662,7 +690,7 @@ namespace VsmdWorkstation
             // 
             // btnStopZ
             // 
-            this.btnStopZ.Location = new System.Drawing.Point(121, 215);
+            this.btnStopZ.Location = new System.Drawing.Point(121, 225);
             this.btnStopZ.Name = "btnStopZ";
             this.btnStopZ.Size = new System.Drawing.Size(80, 23);
             this.btnStopZ.TabIndex = 10;
@@ -673,7 +701,7 @@ namespace VsmdWorkstation
             // 
             // btnMoveZ
             // 
-            this.btnMoveZ.Location = new System.Drawing.Point(6, 215);
+            this.btnMoveZ.Location = new System.Drawing.Point(6, 225);
             this.btnMoveZ.Name = "btnMoveZ";
             this.btnMoveZ.Size = new System.Drawing.Size(80, 23);
             this.btnMoveZ.TabIndex = 9;
@@ -684,7 +712,7 @@ namespace VsmdWorkstation
             // 
             // btnSaveZ
             // 
-            this.btnSaveZ.Location = new System.Drawing.Point(123, 128);
+            this.btnSaveZ.Location = new System.Drawing.Point(123, 138);
             this.btnSaveZ.Name = "btnSaveZ";
             this.btnSaveZ.Size = new System.Drawing.Size(80, 23);
             this.btnSaveZ.TabIndex = 8;
@@ -692,24 +720,6 @@ namespace VsmdWorkstation
             this.btnSaveZ.ToolTip = null;
             this.btnSaveZ.UseVisualStyleBackColor = true;
             this.btnSaveZ.Click += new System.EventHandler(this.btnSaveZ_Click);
-            // 
-            // ckbAutoUpdateZ
-            // 
-            this.ckbAutoUpdateZ.AutoSize = true;
-            this.ckbAutoUpdateZ.Location = new System.Drawing.Point(66, 103);
-            this.ckbAutoUpdateZ.Name = "ckbAutoUpdateZ";
-            this.ckbAutoUpdateZ.Size = new System.Drawing.Size(15, 14);
-            this.ckbAutoUpdateZ.TabIndex = 7;
-            this.ckbAutoUpdateZ.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 103);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "自动更新：";
             // 
             // txtSpeedZ
             // 
@@ -766,7 +776,7 @@ namespace VsmdWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 375);
+            this.ClientSize = new System.Drawing.Size(683, 369);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -793,13 +803,10 @@ namespace VsmdWorkstation
         private System.Windows.Forms.TextBox txtCidX;
         private System.Windows.Forms.Label label1;
         private ButtonEx btnSaveX;
-        private System.Windows.Forms.CheckBox ckbAutoUpdateX;
-        private System.Windows.Forms.Label label4;
         private ButtonEx btnZeroStopX;
         private ButtonEx btnZeroStartX;
         private ButtonEx btnStopX;
         private ButtonEx btnMoveX;
-        private System.Windows.Forms.CheckBox ckbAutoUpdateY;
         private TextBoxEx txtSpeedY;
         private TextBoxEx txtPosY;
         private System.Windows.Forms.TextBox txtCidY;
@@ -812,20 +819,17 @@ namespace VsmdWorkstation
         private ButtonEx btnStopZ;
         private ButtonEx btnMoveZ;
         private ButtonEx btnSaveZ;
-        private System.Windows.Forms.CheckBox ckbAutoUpdateZ;
         private TextBoxEx txtSpeedZ;
         private TextBoxEx txtPosZ;
         private System.Windows.Forms.TextBox txtCidZ;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private ButtonEx btnOffZ;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private ButtonEx btnSaveY;
         private ButtonEx btnMoveY;
         private ButtonEx btnStopY;
@@ -846,5 +850,12 @@ namespace VsmdWorkstation
         private ButtonEx btnS3Input;
         private ButtonEx btnS3Off;
         private ButtonEx btnS3On;
+        private TextBoxEx txtZsdX;
+        private System.Windows.Forms.Label label13;
+        private TextBoxEx txtZsdY;
+        private System.Windows.Forms.Label label14;
+        private TextBoxEx txtZsdZ;
+        private System.Windows.Forms.Label label15;
+        private ButtonEx btnAddCmd;
     }
 }

@@ -9,16 +9,11 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace VsmdLib
 {
-    public enum VsmdAttribute
-    {
-        Cid,
-        Spd,
-        Zsd
-    }
-    public class VsmdInfo
+    public class VsmdInfoSync
     {
         /// <summary>command list</summary>
         private List<string> cmdList = new List<string>();
@@ -36,16 +31,18 @@ namespace VsmdLib
         private int cur_pos;
         /// <summary>current status bits</summary>
         private uint cur_status;
+        private VsmdSync m_controller;
 
         private Dictionary<string, VsmdAttribute> m_attrNameMap;
         private Dictionary<VsmdAttribute, float> m_vsmdAttrs;
 
         /// <summary>constructor</summary>
         /// <param name="cid">slave device id</param>
-        public VsmdInfo(int cid)
+        public VsmdInfoSync(int cid, VsmdSync controller)
         {
             this.cid = cid;
             this.isOnline = true;
+            this.m_controller = controller;
 
             m_attrNameMap = new Dictionary<string, VsmdAttribute>();
             m_attrNameMap.Add("cid", VsmdAttribute.Cid);
@@ -109,7 +106,7 @@ namespace VsmdLib
         /// <returns></returns>
         private float convertFloat(byte[] data)
         {
-            VsmdInfo.TokenValue tokenValue = new VsmdInfo.TokenValue();
+            VsmdInfoSync.TokenValue tokenValue = new VsmdInfoSync.TokenValue();
             tokenValue.uData = (uint)data[0];
             tokenValue.uData <<= 7;
             tokenValue.uData |= (uint)data[1];
@@ -127,7 +124,7 @@ namespace VsmdLib
         /// <returns></returns>
         private uint convertUint(byte[] data)
         {
-            VsmdInfo.TokenValue tokenValue = new VsmdInfo.TokenValue();
+            VsmdInfoSync.TokenValue tokenValue = new VsmdInfoSync.TokenValue();
             tokenValue.uData = (uint)data[0];
             tokenValue.uData <<= 7;
             tokenValue.uData |= (uint)data[1];
@@ -145,7 +142,7 @@ namespace VsmdLib
         /// <returns></returns>
         private int convertInt(byte[] data)
         {
-            VsmdInfo.TokenValue tokenValue = new VsmdInfo.TokenValue();
+            VsmdInfoSync.TokenValue tokenValue = new VsmdInfoSync.TokenValue();
             tokenValue.uData = (uint)data[0];
             tokenValue.uData <<= 7;
             tokenValue.uData |= (uint)data[1];
@@ -444,9 +441,10 @@ namespace VsmdLib
         }
 
         /// <summary>enable motor</summary>
-        public void enable()
+        public async Task<bool> enable()
         {
-            this.addCommand("ena");
+            //this.addCommand("ena");
+            return await m_controller.SendCommand("ena");
         }
 
         /// <summary>disable motor</summary>

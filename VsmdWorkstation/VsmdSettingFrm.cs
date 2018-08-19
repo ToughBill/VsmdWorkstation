@@ -26,7 +26,7 @@ namespace VsmdWorkstation
         {
             InitAxises();
         }
-        private void InitAxises()
+        private  void InitAxises()
         {
             if (!VsmdController.GetVsmdController().IsInitialized())
             {
@@ -34,24 +34,39 @@ namespace VsmdWorkstation
                 DisableAllControls();
                 return;
             }
-            VsmdInfo axisX = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
-            txtCidX.Text = axisX.Cid.ToString();
-            txtPosX.Text = axisX.curPos.ToString();
-            txtSpeedX.Text = axisX.curSpd.ToString();
-            ckbAutoUpdateX.Checked = axisX.flgAutoUpdate;
+            
+            VsmdInfo ax = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
+            txtCidX.Text = ax.Cid.ToString();
+            txtPosX.Text = ax.curPos.ToString();
+            txtSpeedX.Text = ax.GetAttributeValue(VsmdAttribute.Spd).ToString();
+            txtZsdX.Text = ax.GetAttributeValue(VsmdAttribute.Zsd).ToString();
 
+            VsmdInfo ay = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
+            txtCidY.Text = ay.Cid.ToString();
+            txtPosY.Text = ay.curPos.ToString();
+            txtSpeedY.Text = ay.GetAttributeValue(VsmdAttribute.Spd).ToString();
+            txtZsdY.Text = ay.GetAttributeValue(VsmdAttribute.Zsd).ToString();
+            
+            VsmdInfo az = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
+            txtCidZ.Text = az.Cid.ToString();
+            txtPosZ.Text = az.curPos.ToString();
+            txtSpeedZ.Text = az.GetAttributeValue(VsmdAttribute.Spd).ToString();
+            txtZsdZ.Text = az.GetAttributeValue(VsmdAttribute.Zsd).ToString();
 
-            VsmdInfo axisY = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
-            txtCidY.Text = axisY.Cid.ToString();
-            txtPosY.Text = axisY.curPos.ToString();
-            txtSpeedY.Text = axisY.curSpd.ToString();
-            ckbAutoUpdateY.Checked = axisY.flgAutoUpdate;
+            //VsmdInfo axisX = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
+            //txtCidX.Text = axisX.Cid.ToString();
+            //txtPosX.Text = axisX.curPos.ToString();
+            //txtSpeedX.Text = axisX.curSpd.ToString();
 
-            VsmdInfo axisZ = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
-            txtCidZ.Text = axisZ.Cid.ToString();
-            txtPosZ.Text = axisZ.curPos.ToString();
-            txtSpeedZ.Text = axisZ.curSpd.ToString();
-            ckbAutoUpdateZ.Checked = axisZ.flgAutoUpdate;
+            //VsmdInfo axisY = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
+            //txtCidY.Text = axisY.Cid.ToString();
+            //txtPosY.Text = axisY.curPos.ToString();
+            //txtSpeedY.Text = axisY.curSpd.ToString();
+
+            //VsmdInfo axisZ = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
+            //txtCidZ.Text = axisZ.Cid.ToString();
+            //txtPosZ.Text = axisZ.curPos.ToString();
+            //txtSpeedZ.Text = axisZ.curSpd.ToString();
         }
         private void DisableAllControls()
         {
@@ -138,20 +153,21 @@ namespace VsmdWorkstation
 
         private void btnMoveX_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.X);
+            MoveImpl(VsmdAxis.X, float.Parse(txtSpeedX.Text));
         }
 
         private void btnMoveY_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.Y);
+            MoveImpl(VsmdAxis.Y, float.Parse(txtSpeedY.Text));
         }
 
         private void btnMoveZ_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.Z);
+            MoveImpl(VsmdAxis.Z, float.Parse(txtSpeedZ.Text));
         }
-        private void MoveImpl(VsmdAxis axis)
+        private void MoveImpl(VsmdAxis axis, float speed)
         {
+            VsmdController.GetVsmdController().SetSpeed(axis, speed);
             VsmdController.GetVsmdController().Move(axis);
         }
 
@@ -195,39 +211,41 @@ namespace VsmdWorkstation
 
         private void btnZeroStartX_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.X);
+            ZeroStartImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
         }
 
         private void btnZeroStartY_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.Y);
+            ZeroStartImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
         }
 
         private void btnZeroStartZ_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.Z);
+            ZeroStartImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
         }
-        private void ZeroStartImpl(VsmdAxis axis)
+        private void ZeroStartImpl(VsmdAxis axis, float speed)
         {
+            VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
             VsmdController.GetVsmdController().ZeroStart(axis);
         }
 
         private void btnZeroStopX_Click(object sender, EventArgs e)
         {
-            ZeroStopImpl(VsmdAxis.X);
+            ZeroStopImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
         }
 
         private void btnZeroStopY_Click(object sender, EventArgs e)
         {
-            ZeroStopImpl(VsmdAxis.Y);
+            ZeroStopImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
         }
 
         private void btnZeroStopZ_Click(object sender, EventArgs e)
         {
-            ZeroStopImpl(VsmdAxis.Z);
+            ZeroStopImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
         }
-        private void ZeroStopImpl(VsmdAxis axis)
+        private void ZeroStopImpl(VsmdAxis axis, float speed)
         {
+            VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
             VsmdController.GetVsmdController().ZeroStop(axis);
         }
 
@@ -289,17 +307,54 @@ namespace VsmdWorkstation
 
         private void btnSaveX_Click(object sender, EventArgs e)
         {
-
+            SaveImpl(VsmdAxis.X);
         }
-
         private void btnSaveY_Click(object sender, EventArgs e)
         {
-
+            SaveImpl(VsmdAxis.Y);
         }
 
         private void btnSaveZ_Click(object sender, EventArgs e)
         {
-
+            SaveImpl(VsmdAxis.Z);
+        }
+        private void SaveImpl(VsmdAxis axis)
+        {
+            switch (axis)
+            {
+                case VsmdAxis.X:
+                    if (!string.IsNullOrWhiteSpace(txtSpeedX.Text))
+                    {
+                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedX.Text));
+                    }
+                    if (!string.IsNullOrWhiteSpace(txtZsdX.Text))
+                    {
+                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdX.Text));
+                    }
+                    break;
+                case VsmdAxis.Y:
+                    if (!string.IsNullOrWhiteSpace(txtSpeedY.Text))
+                    {
+                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedY.Text));
+                    }
+                    if (!string.IsNullOrWhiteSpace(txtZsdY.Text))
+                    {
+                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdY.Text));
+                    }
+                    break;
+                case VsmdAxis.Z:
+                    if (!string.IsNullOrWhiteSpace(txtSpeedZ.Text))
+                    {
+                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedZ.Text));
+                    }
+                    if (!string.IsNullOrWhiteSpace(txtZsdX.Text))
+                    {
+                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdZ.Text));
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void btnS3Input_Click(object sender, EventArgs e)
@@ -320,6 +375,11 @@ namespace VsmdWorkstation
         private void btnS3Off_Click(object sender, EventArgs e)
         {
             VsmdController.GetVsmdController().S3Off(VsmdAxis.Z);
+        }
+
+        private void btnAddCmd_Click(object sender, EventArgs e)
+        {
+            VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y).addCommand("cfg\n");
         }
     }
 }

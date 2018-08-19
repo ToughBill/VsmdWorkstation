@@ -38,6 +38,7 @@ namespace VsmdWorkstation
             this.btnPause = new System.Windows.Forms.Button();
             this.btnRestGrid = new System.Windows.Forms.Button();
             this.btnDevTools = new System.Windows.Forms.Button();
+            this.btnResetControler = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -45,17 +46,19 @@ namespace VsmdWorkstation
             this.panelGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelGrid.Location = new System.Drawing.Point(12, 51);
+            this.panelGrid.Location = new System.Drawing.Point(9, 38);
+            this.panelGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(1151, 664);
+            this.panelGrid.Size = new System.Drawing.Size(863, 498);
             this.panelGrid.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 24);
+            this.label1.Location = new System.Drawing.Point(11, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 5;
             this.label1.Text = "载物架类型：";
             // 
@@ -63,17 +66,19 @@ namespace VsmdWorkstation
             // 
             this.cmbBoards.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBoards.FormattingEnabled = true;
-            this.cmbBoards.Location = new System.Drawing.Point(116, 16);
+            this.cmbBoards.Location = new System.Drawing.Point(87, 12);
+            this.cmbBoards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbBoards.Name = "cmbBoards";
-            this.cmbBoards.Size = new System.Drawing.Size(172, 24);
+            this.cmbBoards.Size = new System.Drawing.Size(130, 20);
             this.cmbBoards.TabIndex = 6;
             this.cmbBoards.SelectedIndexChanged += new System.EventHandler(this.cmbBoards_SelectedIndexChanged);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(295, 13);
+            this.btnStart.Location = new System.Drawing.Point(221, 10);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(100, 31);
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 7;
             this.btnStart.Text = "开始滴液";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -82,9 +87,10 @@ namespace VsmdWorkstation
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(505, 13);
+            this.btnStop.Location = new System.Drawing.Point(379, 10);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(100, 31);
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 8;
             this.btnStop.Text = "停止滴液";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -93,9 +99,10 @@ namespace VsmdWorkstation
             // btnPause
             // 
             this.btnPause.Enabled = false;
-            this.btnPause.Location = new System.Drawing.Point(400, 13);
+            this.btnPause.Location = new System.Drawing.Point(300, 10);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(100, 31);
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
             this.btnPause.Text = "暂停滴液";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -103,10 +110,9 @@ namespace VsmdWorkstation
             // 
             // btnRestGrid
             // 
-            this.btnRestGrid.Location = new System.Drawing.Point(612, 13);
-            this.btnRestGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRestGrid.Location = new System.Drawing.Point(459, 10);
             this.btnRestGrid.Name = "btnRestGrid";
-            this.btnRestGrid.Size = new System.Drawing.Size(100, 31);
+            this.btnRestGrid.Size = new System.Drawing.Size(75, 23);
             this.btnRestGrid.TabIndex = 10;
             this.btnRestGrid.Text = "重置";
             this.btnRestGrid.UseVisualStyleBackColor = true;
@@ -114,21 +120,31 @@ namespace VsmdWorkstation
             // 
             // btnDevTools
             // 
-            this.btnDevTools.Location = new System.Drawing.Point(720, 13);
-            this.btnDevTools.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDevTools.Location = new System.Drawing.Point(540, 10);
             this.btnDevTools.Name = "btnDevTools";
-            this.btnDevTools.Size = new System.Drawing.Size(135, 31);
+            this.btnDevTools.Size = new System.Drawing.Size(101, 23);
             this.btnDevTools.TabIndex = 11;
             this.btnDevTools.Text = "Open Dev Tools";
             this.btnDevTools.UseVisualStyleBackColor = true;
             this.btnDevTools.Visible = false;
             this.btnDevTools.Click += new System.EventHandler(this.btnDevTools_Click);
             // 
+            // btnResetControler
+            // 
+            this.btnResetControler.Location = new System.Drawing.Point(647, 10);
+            this.btnResetControler.Name = "btnResetControler";
+            this.btnResetControler.Size = new System.Drawing.Size(75, 23);
+            this.btnResetControler.TabIndex = 12;
+            this.btnResetControler.Text = "重置VSMD";
+            this.btnResetControler.UseVisualStyleBackColor = true;
+            this.btnResetControler.Click += new System.EventHandler(this.btnResetControler_Click);
+            // 
             // DripFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1175, 727);
+            this.ClientSize = new System.Drawing.Size(881, 545);
+            this.Controls.Add(this.btnResetControler);
             this.Controls.Add(this.btnDevTools);
             this.Controls.Add(this.btnRestGrid);
             this.Controls.Add(this.btnPause);
@@ -138,7 +154,6 @@ namespace VsmdWorkstation
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DripFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
@@ -158,6 +173,7 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnRestGrid;
         private System.Windows.Forms.Button btnDevTools;
+        private System.Windows.Forms.Button btnResetControler;
     }
 }
 

@@ -208,6 +208,11 @@ namespace VsmdWorkstation
         {
             m_externalObj.ResetBoard();
         }
+
+        private async void btnResetControler_Click(object sender, EventArgs e)
+        {
+            await VsmdController.GetVsmdController().ResetVsmdController();
+        }
     }
 
     public class CEFMenuHandler : CefSharp.IContextMenuHandler

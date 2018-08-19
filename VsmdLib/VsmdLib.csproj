@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VsmdSync.cs" />
     <Compile Include="Vsmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VsmdInfoSync.cs" />
     <Compile Include="VsmdInfo.cs" />
     <Compile Include="VsmdTimer.cs" />
   </ItemGroup>

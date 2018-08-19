@@ -30,6 +30,7 @@ namespace VsmdWorkstation
         private VsmdInfo m_axisY = null;
         private VsmdInfo m_axisZ = null;
         private bool m_initialized = false;
+        private const int MAX_STROKE_Y = 32000;
         private string m_port;
         private int m_baudrate;
          
@@ -57,14 +58,17 @@ namespace VsmdWorkstation
             m_axisX = m_vsmd.createVsmdInfo(1);
             m_axisX.enable();
             m_axisX.flgAutoUpdate = true;
+            await CfgSync(VsmdAxis.X);
 
             m_axisY = m_vsmd.createVsmdInfo(2);
             m_axisY.enable();
             m_axisY.flgAutoUpdate = true;
+            await CfgSync(VsmdAxis.Y);
 
             m_axisZ = m_vsmd.createVsmdInfo(3);
             m_axisZ.enable();
             m_axisZ.flgAutoUpdate = true;
+            await CfgSync(VsmdAxis.Z);
 
             int tryCount = 3;
             List<string> errAxis = new List<string>();
@@ -133,7 +137,7 @@ namespace VsmdWorkstation
             InitResult result = await Init(m_port, m_baudrate);
             if (!result.IsSuccess)
             {
-                StatusBar.DisplayMessage(MessageType.Error, result.ErrorMsg);
+                //StatusBar.DisplayMessage(MessageType.Error, result.ErrorMsg);
             }
             return result;
         }
@@ -226,10 +230,46 @@ namespace VsmdWorkstation
         {
             GetAxis(axis).S3Off();
         }
+        public async Task<bool> CfgSync(VsmdAxis axis)
+        {
+            GetAxis(axis).cfg();
+            await Task.Delay(100);
+            return true;
+        }
+        public void Cfg(VsmdAxis axis)
+        {
+            //GetAxis(axis).cfg();
+        }
+        public void SetZsd(VsmdAxis axis, float speed)
+        {
+            //GetAxis(axis).cfgZsd(speed);
+        }
         public void SetS3Mode(VsmdAxis axis, int mode)
         {
             GetAxis(axis).cfgS3(mode);
-            //GetAxis(axis).S3Mode(mode);
+        }
+        public async Task<bool> MoveSync(VsmdAxis axis)
+        {
+            VsmdInfo vsmdAxis = GetAxis(axis);
+            vsmdAxis.move();
+            int tryCount = 0;
+            while (tryCount < 200)
+            {
+                await Task.Delay(20);
+                if (vsmdAxis.curPos == MAX_STROKE_Y)
+                {
+                    break;
+                }
+                tryCount++;
+            }
+            if (tryCount >= 200)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
@@ -237,7 +277,7 @@ namespace VsmdWorkstation
             VsmdInfo vsmdAxis = GetAxis(axis);
             vsmdAxis.moveto(pos);
             int tryCount = 0;
-            while(tryCount < 3)
+            while(tryCount < 50)
             {
                 await Task.Delay(20);
                 if(vsmdAxis.curPos == pos)
@@ -255,13 +295,21 @@ namespace VsmdWorkstation
                 return true;
             }
         }
+
         public async Task<bool> ZeroStartSync(VsmdAxis axis)
         {
             VsmdInfo vsmdAxis = GetAxis(axis);
+            vsmdAxis.addCommand("cfg zsd=1200\n");
+            await Task.Delay(20);
             vsmdAxis.zeroStart();
             int tryCount = 0;
-            await Task.Delay(1500);
-            while (tryCount < 3)
+            //await Task.Delay(8000);
+            
+            float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
+            //await Task.Delay((int)(MAX_STROKE_Y / zsd - 2) * 1000);
+            int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
+            int maxTryCount = delayTime / 50;
+            while (tryCount < maxTryCount)
             {
                 await Task.Delay(50);
                 if (vsmdAxis.curPos == 0)
@@ -270,7 +318,7 @@ namespace VsmdWorkstation
                 }
                 tryCount++;
             }
-            if (tryCount >= 50)
+            if (tryCount >= maxTryCount)
             {
                 return false;
             }
@@ -279,29 +327,10 @@ namespace VsmdWorkstation
                 return true;
             }
         }
-        public async Task<bool> ZeroStopSync(VsmdAxis axis)
+        public void ZeroStopSync(VsmdAxis axis)
         {
             VsmdInfo vsmdAxis = GetAxis(axis);
             vsmdAxis.zeroStop();
-            int tryCount = 0;
-            await Task.Delay(1500);
-            while (tryCount < 3)
-            {
-                await Task.Delay(50);
-                if (vsmdAxis.curPos == 0)
-                {
-                    break;
-                }
-                tryCount++;
-            }
-            if (tryCount >= 50)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
         }
         public async void MoveTo(int xpox, int ypox)
         {
