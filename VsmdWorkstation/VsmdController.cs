@@ -25,10 +25,10 @@ namespace VsmdWorkstation
     public delegate void VsmdInitCallback(bool isOnline,List<string> errAxis);
     public class VsmdController
     {
-        private Vsmd m_vsmd = null;
-        private VsmdInfo m_axisX = null;
-        private VsmdInfo m_axisY = null;
-        private VsmdInfo m_axisZ = null;
+        private VsmdSync m_vsmd = null;
+        private VsmdInfoSync m_axisX = null;
+        private VsmdInfoSync m_axisY = null;
+        private VsmdInfoSync m_axisZ = null;
         private bool m_initialized = false;
         private const int MAX_STROKE_Y = 32000;
         private string m_port;
@@ -48,57 +48,46 @@ namespace VsmdWorkstation
                 m_vsmd.closeSerailPort();
             }
             
-            m_vsmd = new Vsmd();
+            m_vsmd = new VsmdSync();
             bool ret = m_vsmd.openSerailPort(port, baudrate);
             if (!ret)
             {
                 return new InitResult() { ErrorMsg="打开串口失败!", IsSuccess = false };
             }
 
+            List<string> errAxis = new List<string>();
             m_axisX = m_vsmd.createVsmdInfo(1);
-            m_axisX.enable();
+            await m_axisX.enable();
             m_axisX.flgAutoUpdate = true;
-            await CfgSync(VsmdAxis.X);
+            await m_axisX.cfg();
 
             m_axisY = m_vsmd.createVsmdInfo(2);
-            m_axisY.enable();
+            await m_axisY.enable();
             m_axisY.flgAutoUpdate = true;
-            await CfgSync(VsmdAxis.Y);
+            await m_axisY.cfg();
 
             m_axisZ = m_vsmd.createVsmdInfo(3);
-            m_axisZ.enable();
+            await m_axisZ.enable();
             m_axisZ.flgAutoUpdate = true;
-            await CfgSync(VsmdAxis.Z);
+            await m_axisZ.cfg();
 
-            int tryCount = 3;
-            List<string> errAxis = new List<string>();
-            while (tryCount > 0)
+            if (!m_axisX.isOnline)
             {
-                await Task.Delay(1000);
-                errAxis.Clear();
-                if (!m_axisX.isOnline)
-                {
-                    errAxis.Add("X");
-                }
-                if (!m_axisY.isOnline)
-                {
-                    errAxis.Add("Y");
-                }
-                if (!m_axisZ.isOnline)
-                {
-                    errAxis.Add("Z");
-                }
-                if(errAxis.Count > 0)
-                {
-                    tryCount--;
-                    continue;
-                }
-                else
-                {
-                    m_initialized = true;
-                    break;
-                }
+                errAxis.Add("X");
             }
+            if (!m_axisY.isOnline)
+            {
+                errAxis.Add("Y");
+            }
+            if (!m_axisZ.isOnline)
+            {
+                errAxis.Add("Z");
+            }
+            if(errAxis.Count <= 0)
+            {
+                m_initialized = true;
+            }
+            
             string errMsg = "";
             if(errAxis.Count > 0)
             {
@@ -145,9 +134,9 @@ namespace VsmdWorkstation
         {
             return m_initialized;
         }
-        public VsmdInfo GetAxis(VsmdAxis axis)
+        public VsmdInfoSync GetAxis(VsmdAxis axis)
         {
-            VsmdInfo ret = null;
+            VsmdInfoSync ret = null;
             switch (axis)
             {
                 case VsmdAxis.X:
@@ -177,160 +166,101 @@ namespace VsmdWorkstation
         {
             return GetAxis(axis).curSpd;
         }
-        public void SetSpeed(VsmdAxis axis, float speed)
+        public async Task<bool> SetSpeed(VsmdAxis axis, float speed)
         {
-            GetAxis(axis).cfgSpd(speed);
+            return await GetAxis(axis).cfgSpd(speed);
         }
 
-        public void Pos(VsmdAxis axis, int pos)
+        public async Task<bool> Pos(VsmdAxis axis, int pos)
         {
-            GetAxis(axis).moveto(pos);
+            return await GetAxis(axis).moveto(pos);
         }
-        public void Ena(VsmdAxis axis)
+        public async Task<bool> Ena(VsmdAxis axis)
         {
-            GetAxis(axis).enable();
+            return await GetAxis(axis).enable();
         }
-        public void Off(VsmdAxis axis)
+        public async Task<bool> Off(VsmdAxis axis)
         {
-            GetAxis(axis).disable();
+            return await GetAxis(axis).disable();
         }
-        public void Move(VsmdAxis axis)
+        public async Task<bool> Move(VsmdAxis axis)
         {
-            GetAxis(axis).move();
+            return await GetAxis(axis).move();
         }
-        public void Stop(VsmdAxis axis)
+        public async Task<bool> Stop(VsmdAxis axis)
         {
-            GetAxis(axis).stop((int)GetAxis(axis).curSpd);
+            return await GetAxis(axis).stop((int)GetAxis(axis).curSpd);
         }
-        public void MoveTo(VsmdAxis axis, int pos)
+        public async Task<bool> MoveTo(VsmdAxis axis, int pos)
         {
-            GetAxis(axis).moveto(pos);
+            return await GetAxis(axis).moveto(pos);
         }
-        public void ZeroStart(VsmdAxis axis)
+        public async Task<bool> ZeroStart(VsmdAxis axis)
         {
-            GetAxis(axis).zeroStart();
+            return await GetAxis(axis).zeroStart();
         }
-        public void ZeroStop(VsmdAxis axis)
+        public async Task<bool> ZeroStop(VsmdAxis axis)
         {
-            GetAxis(axis).zeroStop();
+            return await GetAxis(axis).zeroStop();
         }
-        public void Org(VsmdAxis axis)
+        public async Task<bool> Org(VsmdAxis axis)
         {
-            GetAxis(axis).org();
+            return await GetAxis(axis).org();
         }
-        public void Sts(VsmdAxis axis)
+        public async Task<bool> Sts(VsmdAxis axis)
         {
-            GetAxis(axis).sts();
+            return await GetAxis(axis).sts();
         }
-        public void S3On(VsmdAxis axis)
+        public async Task<bool> S3On(VsmdAxis axis)
         {
-            GetAxis(axis).S3On();
+            return await GetAxis(axis).S3On();
         }
-        public void S3Off(VsmdAxis axis)
+        public async Task<bool> S3Off(VsmdAxis axis)
         {
-            GetAxis(axis).S3Off();
+            return await GetAxis(axis).S3Off();
         }
         public async Task<bool> CfgSync(VsmdAxis axis)
         {
-            GetAxis(axis).cfg();
-            await Task.Delay(100);
-            return true;
+            return await GetAxis(axis).cfg();
         }
-        public void Cfg(VsmdAxis axis)
+        public async Task<bool> Cfg(VsmdAxis axis)
         {
-            //GetAxis(axis).cfg();
+            return await GetAxis(axis).cfg();
         }
-        public void SetZsd(VsmdAxis axis, float speed)
+        public async Task<bool> SetZsd(VsmdAxis axis, float speed)
         {
-            //GetAxis(axis).cfgZsd(speed);
+            return await GetAxis(axis).cfgZsd(speed);
         }
-        public void SetS3Mode(VsmdAxis axis, int mode)
+        public async Task<bool> SetS3Mode(VsmdAxis axis, int mode)
         {
-            GetAxis(axis).cfgS3(mode);
+            return await GetAxis(axis).cfgS3(mode);
         }
         public async Task<bool> MoveSync(VsmdAxis axis)
         {
-            VsmdInfo vsmdAxis = GetAxis(axis);
-            vsmdAxis.move();
-            int tryCount = 0;
-            while (tryCount < 200)
-            {
-                await Task.Delay(20);
-                if (vsmdAxis.curPos == MAX_STROKE_Y)
-                {
-                    break;
-                }
-                tryCount++;
-            }
-            if (tryCount >= 200)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            VsmdInfoSync vsmdAxis = GetAxis(axis);
+            return await vsmdAxis.move();
         }
         public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
         {
-            Debug.WriteLine("### MoveToSync, axis: " + axis.ToString() + ", pos: " + pos.ToString());
-            VsmdInfo vsmdAxis = GetAxis(axis);
-            vsmdAxis.moveto(pos);
-            int tryCount = 0;
-            while(tryCount < 50)
-            {
-                await Task.Delay(20);
-                if(vsmdAxis.curPos == pos)
-                {
-                    break;
-                }
-                tryCount++;
-            }
-            if(tryCount >= 50)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            VsmdInfoSync vsmdAxis = GetAxis(axis);
+            return await vsmdAxis.moveto(pos);
         }
 
         public async Task<bool> ZeroStartSync(VsmdAxis axis)
         {
-            VsmdInfo vsmdAxis = GetAxis(axis);
-            vsmdAxis.addCommand("cfg zsd=1200\n");
-            await Task.Delay(20);
-            vsmdAxis.zeroStart();
-            int tryCount = 0;
-            //await Task.Delay(8000);
-            
+            VsmdInfoSync vsmdAxis = GetAxis(axis);
+            await m_vsmdController.SetZsd(axis, 1200);
+
             float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
-            //await Task.Delay((int)(MAX_STROKE_Y / zsd - 2) * 1000);
             int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
-            int maxTryCount = delayTime / 50;
-            while (tryCount < maxTryCount)
-            {
-                await Task.Delay(50);
-                if (vsmdAxis.curPos == 0)
-                {
-                    break;
-                }
-                tryCount++;
-            }
-            if (tryCount >= maxTryCount)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            int maxTryCount = delayTime / 10;
+            return await vsmdAxis.zeroStart(10, maxTryCount);
+
         }
-        public void ZeroStopSync(VsmdAxis axis)
+        public async Task<bool> ZeroStopSync(VsmdAxis axis)
         {
-            VsmdInfo vsmdAxis = GetAxis(axis);
-            vsmdAxis.zeroStop();
+            VsmdInfoSync vsmdAxis = GetAxis(axis);
+            return await vsmdAxis.zeroStop();
         }
         public async void MoveTo(int xpox, int ypox)
         {

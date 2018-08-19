@@ -34,20 +34,20 @@ namespace VsmdWorkstation
                 DisableAllControls();
                 return;
             }
-            
-            VsmdInfo ax = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
+
+            VsmdInfoSync ax = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
             txtCidX.Text = ax.Cid.ToString();
             txtPosX.Text = ax.curPos.ToString();
             txtSpeedX.Text = ax.GetAttributeValue(VsmdAttribute.Spd).ToString();
             txtZsdX.Text = ax.GetAttributeValue(VsmdAttribute.Zsd).ToString();
 
-            VsmdInfo ay = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
+            VsmdInfoSync ay = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
             txtCidY.Text = ay.Cid.ToString();
             txtPosY.Text = ay.curPos.ToString();
             txtSpeedY.Text = ay.GetAttributeValue(VsmdAttribute.Spd).ToString();
             txtZsdY.Text = ay.GetAttributeValue(VsmdAttribute.Zsd).ToString();
-            
-            VsmdInfo az = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
+
+            VsmdInfoSync az = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
             txtCidZ.Text = az.Cid.ToString();
             txtPosZ.Text = az.curPos.ToString();
             txtSpeedZ.Text = az.GetAttributeValue(VsmdAttribute.Spd).ToString();

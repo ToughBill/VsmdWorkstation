@@ -294,7 +294,7 @@ namespace VsmdLib
             OutputLog("send command: " + cmd);
             m_isWaitingResponse = true;
         }
-        public async Task<bool> SendCommandSync(string cmd, int waitInterval = 10, int waitCount = 5)
+        public async Task<bool> SendCommandSync(string cmd, int waitInterval = 10, int waitCount = 50)
         {
             bool returnVal = true;
             this.comPort.Write(cmd);
@@ -304,7 +304,7 @@ namespace VsmdLib
 
             return returnVal;
         }
-        public async Task<bool> WaitResult(int waitInterval = 10, int waitCount = 5)
+        public async Task<bool> WaitResult(int waitInterval = 10, int waitCount = 50)
         {
             int curWaitCnt = 0;
             while(curWaitCnt < waitCount)
@@ -323,7 +323,7 @@ namespace VsmdLib
 
         private void OutputLog(string log)
         {
-            Debug.WriteLine(log + Environment.NewLine);
+            Debug.WriteLine(log);
         }
     }
 }

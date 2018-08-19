@@ -188,7 +188,7 @@ namespace VsmdLib
         public async Task<bool> cfg()
         {
             //this.addCommand("cfg");
-            return await SendCommandSyncImpl("cfg", 10, 10);
+            return await SendCommandSyncImpl("cfg", 10, 50);
         }
         /// <summary>
         /// parse all attribte values
@@ -473,7 +473,7 @@ namespace VsmdLib
         public async Task<bool> move()
         {
             //this.addCommand("mov");
-            m_controller.SendCommand("mov");
+            SendCommandImpl("mov");
             int curTryCnt = 0, maxCnt = (int)(MAX_STROKE_Y / this.GetAttributeValue(VsmdAttribute.Spd)) + 2; 
             while(curTryCnt < maxCnt)
             {
@@ -499,7 +499,7 @@ namespace VsmdLib
         public async Task<bool> moveto(int pos)
         {
             //this.addCommand("pos " + pos.ToString("d"));
-            m_controller.SendCommand("pos " + pos.ToString("d"));
+            SendCommandImpl("pos " + pos.ToString("d"));
             int curTryCnt = 0, maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
             while (curTryCnt < maxCnt)
             {
@@ -635,7 +635,7 @@ namespace VsmdLib
         }
 
         /// <summary>start zero function</summary>
-        public async Task<bool> zeroStart(int waitInterval = 10, int waitCount = 5)
+        public async Task<bool> zeroStart(int waitInterval = 10, int waitCount = 100)
         {
             //this.addCommand("zero start");
             return await SendCommandSyncImpl("zero start", waitInterval, waitCount);
@@ -647,9 +647,13 @@ namespace VsmdLib
             //this.addCommand("zero stop");
             return await SendCommandSyncImpl("zero stop");
         }
-        private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = 10, int waitCount = 5)
+        private void SendCommandImpl(string cmd, int waitInterval = 10, int waitCount = 50)
         {
-            return await m_controller.SendCommandSync(this.Cid.ToString() + " cmd", waitInterval, waitCount);
+            m_controller.SendCommand(this.Cid.ToString() + " " + cmd + "\n");
+        }
+        private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = 10, int waitCount = 50)
+        {
+            return await m_controller.SendCommandSync(this.Cid.ToString() + " " + cmd + "\n", waitInterval, waitCount);
         }
         /// <summary>value definition</summary>
         [StructLayout(LayoutKind.Explicit, Size = 4)]
