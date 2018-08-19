@@ -36,6 +36,8 @@ namespace VsmdLib
         private Dictionary<string, VsmdAttribute> m_attrNameMap;
         private Dictionary<VsmdAttribute, float> m_vsmdAttrs;
 
+        public const int MAX_STROKE_Y = 32000;
+
         /// <summary>constructor</summary>
         /// <param name="cid">slave device id</param>
         public VsmdInfoSync(int cid, VsmdSync controller)
@@ -179,9 +181,14 @@ namespace VsmdLib
                     break;
             }
         }
-        public void cfg()
+        /// <summary>
+        /// get all parameters
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> cfg()
         {
-            this.addCommand("cfg");
+            //this.addCommand("cfg");
+            return await SendCommandSyncImpl("cfg", 10, 10);
         }
         /// <summary>
         /// parse all attribte values
@@ -280,10 +287,16 @@ namespace VsmdLib
 
         /// <summary>config target speed</summary>
         /// <param name="spd">target speed (-192000,192000)</param>
-        public void cfgSpd(float spd)
+        public async Task<bool> cfgSpd(float spd)
         {
-            this.addCommand("cfg spd=" + spd.ToString("f"));
-            m_vsmdAttrs[VsmdAttribute.Spd] = spd;
+            //this.addCommand("cfg spd=" + spd.ToString("f"));
+
+            bool retVal = await SendCommandSyncImpl("cfg spd=" + spd.ToString("f"));
+            if (retVal)
+            {
+                m_vsmdAttrs[VsmdAttribute.Spd] = spd;
+            }
+            return retVal;
         }
 
         /// <summary>config acceleration</summary>
@@ -395,9 +408,10 @@ namespace VsmdLib
 
         /// <summary>config s3 as input or output</summary>
         /// <param name="mode">0-input / 1-output</param>
-        public void cfgS3(int mode)
+        public async Task<bool> cfgS3(int mode)
         {
             this.addCommand("cfg s3=" + mode.ToString("d"));
+            return await SendCommandSyncImpl("cfg s3=" + mode.ToString("d"));
         }
 
         /// <summary>config s4 as input or output</summary>
@@ -424,9 +438,10 @@ namespace VsmdLib
         /// config zsd
         /// </summary>
         /// <param name="speed"></param>
-        public void cfgZsd(float speed)
+        public async Task<bool> cfgZsd(float speed)
         {
-            this.addCommand("cfg zsd=" + speed.ToString());
+            //this.addCommand("cfg zsd=" + speed.ToString());
+            return await SendCommandSyncImpl("cfg zsd=" + speed.ToString());
         }
 
         /// <summary>config zero parameters</summary>
@@ -444,19 +459,33 @@ namespace VsmdLib
         public async Task<bool> enable()
         {
             //this.addCommand("ena");
-            return await m_controller.SendCommand("ena");
+            return await SendCommandSyncImpl("ena");
         }
 
         /// <summary>disable motor</summary>
-        public void disable()
+        public async Task<bool> disable()
         {
-            this.addCommand("off");
+            //this.addCommand("off");
+            return await SendCommandSyncImpl("off");
         }
 
         /// <summary>speed move</summary>
-        public void move()
+        public async Task<bool> move()
         {
-            this.addCommand("mov");
+            //this.addCommand("mov");
+            m_controller.SendCommand("mov");
+            int curTryCnt = 0, maxCnt = (int)(MAX_STROKE_Y / this.GetAttributeValue(VsmdAttribute.Spd)) + 2; 
+            while(curTryCnt < maxCnt)
+            {
+                curTryCnt++;
+                await Task.Delay(20);
+                await this.sts();
+                if(this.curSpd == 0)
+                {
+                    break;
+                }
+            }
+            return curTryCnt <= maxCnt;
         }
 
         /// <summary>relative move</summary>
@@ -467,34 +496,51 @@ namespace VsmdLib
 
         /// <summary>position move</summary>
         /// <param name="pos"></param>
-        public void moveto(int pos)
+        public async Task<bool> moveto(int pos)
         {
-            this.addCommand("pos " + pos.ToString("d"));
+            //this.addCommand("pos " + pos.ToString("d"));
+            m_controller.SendCommand("pos " + pos.ToString("d"));
+            int curTryCnt = 0, maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
+            while (curTryCnt < maxCnt)
+            {
+                curTryCnt++;
+                await Task.Delay(10);
+                await this.sts();
+                if (this.curPos == pos)
+                {
+                    break;
+                }
+            }
+            return curTryCnt <= maxCnt;
         }
 
         /// <summary>stop</summary>
         /// <param name="mode"></param>
-        public void stop(int mode)
+        public async Task<bool> stop(int mode)
         {
-            this.addCommand("stp " + mode.ToString("d"));
+            //this.addCommand("stp " + mode.ToString("d"));
+            return await SendCommandSyncImpl("stp " + mode.ToString("d"));
         }
 
         /// <summary>set current position as 0 position</summary>
-        public void org()
+        public async Task<bool> org()
         {
-            this.addCommand(nameof(org));
+            //this.addCommand(nameof(org));
+            return await SendCommandSyncImpl("org");
         }
 
         /// <summary>s3 on (high level)</summary>
-        public void S3On()
+        public async Task<bool> S3On()
         {
-            this.addCommand("s3 on");
+            //this.addCommand("s3 on");
+            return await SendCommandSyncImpl("s3 on");
         }
 
         /// <summary>s3 off (low level)</summary>
-        public void S3Off()
+        public async Task<bool> S3Off()
         {
-            this.addCommand("s3 off");
+            //this.addCommand("s3 off");
+            return await SendCommandSyncImpl("s3 off");
         }
 
         /// <summary>s4 on (high level)</summary>
@@ -582,23 +628,29 @@ namespace VsmdLib
         }
 
         /// <summary>get status (speed, position, status bits)</summary>
-        public void sts()
+        public async Task<bool> sts()
         {
-            this.addCommand(nameof(sts));
+            //this.addCommand(nameof(sts));
+            return await SendCommandSyncImpl("sts");
         }
 
         /// <summary>start zero function</summary>
-        public void zeroStart()
+        public async Task<bool> zeroStart(int waitInterval = 10, int waitCount = 5)
         {
-            this.addCommand("zero start");
+            //this.addCommand("zero start");
+            return await SendCommandSyncImpl("zero start", waitInterval, waitCount);
         }
 
         /// <summary>stop zero function</summary>
-        public void zeroStop()
+        public async Task<bool> zeroStop()
         {
-            this.addCommand("zero stop");
+            //this.addCommand("zero stop");
+            return await SendCommandSyncImpl("zero stop");
         }
-
+        private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = 10, int waitCount = 5)
+        {
+            return await m_controller.SendCommandSync(this.Cid.ToString() + " cmd", waitInterval, waitCount);
+        }
         /// <summary>value definition</summary>
         [StructLayout(LayoutKind.Explicit, Size = 4)]
         private struct TokenValue

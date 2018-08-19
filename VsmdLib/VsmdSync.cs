@@ -273,9 +273,9 @@ namespace VsmdLib
         /// </summary>
         /// <param name="cid"></param>
         /// <returns></returns>
-        public VsmdInfoSync createVsmdInfo(int cid, VsmdSync controller)
+        public VsmdInfoSync createVsmdInfo(int cid)
         {
-            VsmdInfoSync vsmdInfo = new VsmdInfoSync(cid, controller);
+            VsmdInfoSync vsmdInfo = new VsmdInfoSync(cid, this);
             vsmdInfo.comPort = this.comPort;
             this.objList.Add(vsmdInfo);
             return vsmdInfo;
@@ -287,12 +287,18 @@ namespace VsmdLib
         {
             this.objList.Remove(info);
         }
-
-        public async Task<bool> SendCommand(string cmd, int waitInterval = 10, int waitCount = 5)
+        public void SendCommand(string cmd)
         {
             bool returnVal = true;
             this.comPort.Write(cmd);
             OutputLog("send command: " + cmd);
+            m_isWaitingResponse = true;
+        }
+        public async Task<bool> SendCommandSync(string cmd, int waitInterval = 10, int waitCount = 5)
+        {
+            bool returnVal = true;
+            this.comPort.Write(cmd);
+            OutputLog("send command sync: " + cmd);
             m_isWaitingResponse = true;
             returnVal = await WaitResult(waitInterval, waitCount);
 
