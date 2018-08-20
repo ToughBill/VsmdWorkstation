@@ -105,6 +105,7 @@ namespace VsmdWorkstation
                 await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
 
                 // start drip
+                await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
                 await vsmdController.S3On(VsmdAxis.Z);
                 Thread.Sleep(500);
                 await vsmdController.S3Off(VsmdAxis.Z);
@@ -155,7 +156,7 @@ namespace VsmdWorkstation
 
                 if (m_oriSpeedY < 0.0)
                 {
-                    await vsmdController.SetSpeed(VsmdAxis.X, -m_oriSpeedY);
+                    await vsmdController.SetSpeed(VsmdAxis.Y, -m_oriSpeedY);
                 }
                 await vsmdController.MoveSync(VsmdAxis.Y);
                 await vsmdController.Org(VsmdAxis.Y);

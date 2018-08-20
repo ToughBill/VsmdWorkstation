@@ -305,7 +305,7 @@ namespace VsmdLib
         {
             bool returnVal = true;
             this.comPort.Write(cmd);
-            OutputLog("send command sync: " + cmd);
+            OutputLog(Environment.NewLine + "send command sync: " + cmd);
             m_isWaitingResponse = true;
             returnVal = await WaitResponse(waitInterval, waitCount);
             if (!returnVal)
@@ -320,27 +320,27 @@ namespace VsmdLib
             int curWaitCnt = 0;
             while(curWaitCnt < waitCount)
             {
-                curWaitCnt++;
-                OutputLog("wait for result, try " + curWaitCnt.ToString());
                 if (!m_isWaitingResponse)
                 {
                     break;
                 }
+                curWaitCnt++;
+                OutputLog("wait for response, try " + curWaitCnt.ToString());
                 await Task.Delay(waitInterval);
             }
             
-            return curWaitCnt <= waitCount;
+            return curWaitCnt < waitCount;
         }
 
         private void OutputLog(string log)
         {
             if(log[log.Length - 1] == '\n')
             {
-                Debug.WriteLine(log);
+                Debug.Write(log);
             }
             else
             {
-                Debug.WriteLine(log + Environment.NewLine);
+                Debug.WriteLine(log);
             }
         }
         [ConditionalAttribute("DEBUG")]

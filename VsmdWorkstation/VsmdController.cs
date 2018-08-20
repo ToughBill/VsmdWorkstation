@@ -57,16 +57,19 @@ namespace VsmdWorkstation
 
             List<string> errAxis = new List<string>();
             m_axisX = m_vsmd.createVsmdInfo(1);
+            await m_axisX.dev();
             await m_axisX.enable();
             m_axisX.flgAutoUpdate = true;
             await m_axisX.cfg();
 
             m_axisY = m_vsmd.createVsmdInfo(2);
+            await m_axisY.dev();
             await m_axisY.enable();
             m_axisY.flgAutoUpdate = true;
             await m_axisY.cfg();
 
             m_axisZ = m_vsmd.createVsmdInfo(3);
+            await m_axisZ.dev();
             await m_axisZ.enable();
             m_axisZ.flgAutoUpdate = true;
             await m_axisZ.cfg();
@@ -169,6 +172,10 @@ namespace VsmdWorkstation
         {
             return await GetAxis(axis).cfgSpd(speed);
         }
+        public async Task<bool> Dev(VsmdAxis axis)
+        {
+            return await GetAxis(axis).dev();
+        }
 
         public async Task<bool> Pos(VsmdAxis axis, int pos)
         {
@@ -188,7 +195,7 @@ namespace VsmdWorkstation
         }
         public async Task<bool> Stop(VsmdAxis axis)
         {
-            return await GetAxis(axis).stop((int)GetAxis(axis).curSpd);
+            return await GetAxis(axis).stop(0);
         }
         public async Task<bool> MoveTo(VsmdAxis axis, int pos)
         {
@@ -250,10 +257,11 @@ namespace VsmdWorkstation
             VsmdInfoSync vsmdAxis = GetAxis(axis);
             await m_vsmdController.SetZsd(axis, 1200);
 
-            float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
-            int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
-            int maxTryCount = delayTime / 10;
-            return await vsmdAxis.zeroStart(10, maxTryCount);
+            //float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
+            //int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
+            //int maxTryCount = delayTime / 10;
+            
+            return await vsmdAxis.zeroStart();
 
         }
         public async Task<bool> ZeroStopSync(VsmdAxis axis)

@@ -196,7 +196,7 @@ namespace VsmdLib
         /// <param name="strInfo"></param>
         private void ParseAttributes(string strInfo)
         {
-            System.Diagnostics.Debug.WriteLine("&& result : " + strInfo + Environment.NewLine);
+            System.Diagnostics.Debug.WriteLine("&& result : " + strInfo);
             try
             {
                 string[] attrs = strInfo.Split(' ');
@@ -455,6 +455,12 @@ namespace VsmdLib
             this.addCommand("cfg zmd=" + zmd.ToString("d") + " osv=" + osv.ToString("d") + " snr=" + snr.ToString("d") + " zsd=" + zsd.ToString("f") + " zsp=" + zsp.ToString("d"));
         }
 
+        public async Task<bool> dev()
+        {
+            //this.addCommand("ena");
+            return await SendCommandSyncImpl("dev");
+        }
+
         /// <summary>enable motor</summary>
         public async Task<bool> enable()
         {
@@ -474,8 +480,11 @@ namespace VsmdLib
         {
             //this.addCommand("mov");
             SendCommandImpl("mov");
-            int curTryCnt = 0, maxCnt = (int)(MAX_STROKE_Y / this.GetAttributeValue(VsmdAttribute.Spd)) + 2; 
-            while(curTryCnt < maxCnt)
+            await Task.Delay(100);
+            int curTryCnt = 0;
+            int maxCnt = 25 * 1000 / 20;
+            //int maxCnt = (int)(MAX_STROKE_Y / this.GetAttributeValue(VsmdAttribute.Spd)) + 2; 
+            while (curTryCnt < maxCnt)
             {
                 curTryCnt++;
                 await Task.Delay(20);
@@ -500,7 +509,10 @@ namespace VsmdLib
         {
             //this.addCommand("pos " + pos.ToString("d"));
             SendCommandImpl("pos " + pos.ToString("d"));
-            int curTryCnt = 0, maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
+            await Task.Delay(100);
+            int curTryCnt = 0;
+            //int maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
+            int maxCnt = 25 * 1000 / 20;
             while (curTryCnt < maxCnt)
             {
                 curTryCnt++;
@@ -635,10 +647,24 @@ namespace VsmdLib
         }
 
         /// <summary>start zero function</summary>
-        public async Task<bool> zeroStart(int waitInterval = 10, int waitCount = 100)
+        public async Task<bool> zeroStart()
         {
             //this.addCommand("zero start");
-            return await SendCommandSyncImpl("zero start", waitInterval, waitCount);
+            SendCommandImpl("zero start");
+            await Task.Delay(100);
+            int maxTryCount = 28 * 1000 / 20;
+            int curTryCnt = 0;
+            while (curTryCnt < maxTryCount)
+            {
+                curTryCnt++;
+                await Task.Delay(20);
+                await this.sts();
+                if (this.curSpd == 0)
+                {
+                    break;
+                }
+            }
+            return curTryCnt < maxTryCount;
         }
 
         /// <summary>stop zero function</summary>
@@ -653,7 +679,9 @@ namespace VsmdLib
         }
         private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = 10, int waitCount = 50)
         {
-            return await m_controller.SendCommandSync(this.Cid.ToString() + " " + cmd + "\n", waitInterval, waitCount);
+            bool retVal = await m_controller.SendCommandSync(this.Cid.ToString() + " " + cmd + "\n", waitInterval, waitCount);
+            await Task.Delay(10);
+            return retVal;
         }
         /// <summary>value definition</summary>
         [StructLayout(LayoutKind.Explicit, Size = 4)]
