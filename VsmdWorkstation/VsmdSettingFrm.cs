@@ -95,80 +95,80 @@ namespace VsmdWorkstation
             return int.TryParse(box.Text.Trim(), out val);
 
         }
-        private void btnPosX_Click(object sender, EventArgs e)
+        private async void btnPosX_Click(object sender, EventArgs e)
         {
-            PosImpl(VsmdAxis.X, txtPosX);
+            await PosImpl(VsmdAxis.X, txtPosX);
         }
-        private void btnPosY_Click(object sender, EventArgs e)
+        private async void btnPosY_Click(object sender, EventArgs e)
         {
-            PosImpl(VsmdAxis.Y, txtPosY);
-        }
-
-        private void btnPosZ_Click(object sender, EventArgs e)
-        {
-            PosImpl(VsmdAxis.Z, txtPosZ);
-        }
-        private void PosImpl(VsmdAxis axis, TextBoxEx boxCtrl)
-        {
-            VsmdController.GetVsmdController().Pos(axis, int.Parse(boxCtrl.Text.Trim()));
+            await PosImpl(VsmdAxis.Y, txtPosY);
         }
 
-        private void btnEnaX_Click(object sender, EventArgs e)
+        private async void btnPosZ_Click(object sender, EventArgs e)
         {
-            EnaImpl(VsmdAxis.X);
+            await PosImpl(VsmdAxis.Z, txtPosZ);
+        }
+        private async Task<bool> PosImpl(VsmdAxis axis, TextBoxEx boxCtrl)
+        {
+            return await VsmdController.GetVsmdController().Pos(axis, int.Parse(boxCtrl.Text.Trim()));
         }
 
-        private void btnEnaY_Click(object sender, EventArgs e)
+        private async void btnEnaX_Click(object sender, EventArgs e)
         {
-            EnaImpl(VsmdAxis.Y);
+            await EnaImpl(VsmdAxis.X);
         }
 
-        private void btnEnaZ_Click(object sender, EventArgs e)
+        private async void btnEnaY_Click(object sender, EventArgs e)
         {
-            EnaImpl(VsmdAxis.Z);
-        }
-        private void EnaImpl(VsmdAxis axis)
-        {
-            VsmdController.GetVsmdController().Ena(axis);
+            await EnaImpl(VsmdAxis.Y);
         }
 
-        private void btnOffX_Click(object sender, EventArgs e)
+        private async void btnEnaZ_Click(object sender, EventArgs e)
         {
-            OffImpl(VsmdAxis.X);
+            await EnaImpl(VsmdAxis.Z);
+        }
+        private async Task<bool> EnaImpl(VsmdAxis axis)
+        {
+            return await VsmdController.GetVsmdController().Ena(axis);
         }
 
-        private void btnOffY_Click(object sender, EventArgs e)
+        private async void btnOffX_Click(object sender, EventArgs e)
         {
-            OffImpl(VsmdAxis.Y);
+            await OffImpl(VsmdAxis.X);
         }
 
-        private void btnOffZ_Click(object sender, EventArgs e)
+        private async void btnOffY_Click(object sender, EventArgs e)
         {
-            OffImpl(VsmdAxis.Z);
-        }
-        private void OffImpl(VsmdAxis axis)
-        {
-            VsmdController.GetVsmdController().Off(axis);
+            await OffImpl(VsmdAxis.Y);
         }
 
-        private void btnMoveX_Click(object sender, EventArgs e)
+        private async void btnOffZ_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.X, float.Parse(txtSpeedX.Text));
+            await OffImpl(VsmdAxis.Z);
+        }
+        private async Task<bool> OffImpl(VsmdAxis axis)
+        {
+            return await VsmdController.GetVsmdController().Off(axis);
         }
 
-        private void btnMoveY_Click(object sender, EventArgs e)
+        private async void btnMoveX_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.Y, float.Parse(txtSpeedY.Text));
+            await MoveImpl(VsmdAxis.X, float.Parse(txtSpeedX.Text));
         }
 
-        private void btnMoveZ_Click(object sender, EventArgs e)
+        private async void btnMoveY_Click(object sender, EventArgs e)
         {
-            MoveImpl(VsmdAxis.Z, float.Parse(txtSpeedZ.Text));
+            await MoveImpl(VsmdAxis.Y, float.Parse(txtSpeedY.Text));
         }
-        private void MoveImpl(VsmdAxis axis, float speed)
+
+        private async void btnMoveZ_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().SetSpeed(axis, speed);
-            VsmdController.GetVsmdController().Move(axis);
+            await MoveImpl(VsmdAxis.Z, float.Parse(txtSpeedZ.Text));
+        }
+        private async Task<bool> MoveImpl(VsmdAxis axis, float speed)
+        {
+            await VsmdController.GetVsmdController().SetSpeed(axis, speed);
+            return await VsmdController.GetVsmdController().Move(axis);
         }
 
         private void btnStopX_Click(object sender, EventArgs e)
@@ -185,9 +185,9 @@ namespace VsmdWorkstation
         {
             StopImpl(VsmdAxis.Z);
         }
-        private void StopImpl(VsmdAxis axis)
+        private async void StopImpl(VsmdAxis axis)
         {
-            VsmdController.GetVsmdController().Stop(axis);
+            await VsmdController.GetVsmdController().Stop(axis);
         }
 
         private void btnOrgX_Click(object sender, EventArgs e)
@@ -204,95 +204,84 @@ namespace VsmdWorkstation
         {
             OrgImpl(VsmdAxis.Z);
         }
-        private void OrgImpl(VsmdAxis axis)
+        private async void OrgImpl(VsmdAxis axis)
         {
-            VsmdController.GetVsmdController().Org(axis);
+            await VsmdController.GetVsmdController().Org(axis);
         }
 
-        private void btnZeroStartX_Click(object sender, EventArgs e)
+        private async void btnZeroStartX_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
+            await ZeroStartImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
         }
 
-        private void btnZeroStartY_Click(object sender, EventArgs e)
+        private async void btnZeroStartY_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
+            await ZeroStartImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
         }
 
-        private void btnZeroStartZ_Click(object sender, EventArgs e)
+        private async void btnZeroStartZ_Click(object sender, EventArgs e)
         {
-            ZeroStartImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
+            await ZeroStartImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
         }
-        private void ZeroStartImpl(VsmdAxis axis, float speed)
+        private async Task<bool> ZeroStartImpl(VsmdAxis axis, float speed)
         {
-            VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
-            VsmdController.GetVsmdController().ZeroStart(axis);
-        }
-
-        private void btnZeroStopX_Click(object sender, EventArgs e)
-        {
-            ZeroStopImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
+            //VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
+            await VsmdController.GetVsmdController().SetZsd(axis, speed);
+            return await VsmdController.GetVsmdController().ZeroStart(axis);
         }
 
-        private void btnZeroStopY_Click(object sender, EventArgs e)
+        private async void btnZeroStopX_Click(object sender, EventArgs e)
         {
-            ZeroStopImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
+            await ZeroStopImpl(VsmdAxis.X, float.Parse(txtZsdX.Text));
         }
 
-        private void btnZeroStopZ_Click(object sender, EventArgs e)
+        private async void btnZeroStopY_Click(object sender, EventArgs e)
         {
-            ZeroStopImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
-        }
-        private void ZeroStopImpl(VsmdAxis axis, float speed)
-        {
-            VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
-            VsmdController.GetVsmdController().ZeroStop(axis);
+            await ZeroStopImpl(VsmdAxis.Y, float.Parse(txtZsdY.Text));
         }
 
-        private void btnStsX_Click(object sender, EventArgs e)
+        private async void btnZeroStopZ_Click(object sender, EventArgs e)
         {
-            StsImpl(VsmdAxis.X);
+            await ZeroStopImpl(VsmdAxis.Z, float.Parse(txtZsdZ.Text));
+        }
+        private async Task<bool> ZeroStopImpl(VsmdAxis axis, float speed)
+        {
+            return await VsmdController.GetVsmdController().ZeroStop(axis);
         }
 
-        private void btnStsY_Click(object sender, EventArgs e)
+        private async void btnStsX_Click(object sender, EventArgs e)
         {
-            StsImpl(VsmdAxis.Y);
+            await StsImpl(VsmdAxis.X);
         }
 
-        private void btnStsZ_Click(object sender, EventArgs e)
+        private async void btnStsY_Click(object sender, EventArgs e)
         {
-            StsImpl(VsmdAxis.Z);
+            await StsImpl(VsmdAxis.Y);
         }
-        private void StsImpl(VsmdAxis axis)
+
+        private async void btnStsZ_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().Sts(axis);
-            SetTimeout(100, new Action(delegate ()
+            await StsImpl(VsmdAxis.Z);
+        }
+        private async Task<bool> StsImpl(VsmdAxis axis)
+        {
+            await VsmdController.GetVsmdController().Sts(axis);
+            string newPos = VsmdController.GetVsmdController().GetAxis(axis).curPos.ToString();
+            switch (axis)
             {
-                Action action = delegate ()
-                {
-                    string newPos = VsmdController.GetVsmdController().GetAxis(axis).curPos.ToString();
-                    string newSpeed = VsmdController.GetVsmdController().GetAxis(axis).curSpd.ToString();
-                    switch (axis)
-                    {
-                        case VsmdAxis.X:
-                            txtPosX.Text = newPos;
-                            txtSpeedX.Text = newSpeed;
-                            break;
-                        case VsmdAxis.Y:
-                            txtPosY.Text = newPos;
-                            txtSpeedY.Text = newSpeed;
-                            break;
-                        case VsmdAxis.Z:
-                            txtPosZ.Text = newPos;
-                            txtSpeedZ.Text = newSpeed;
-                            break;
-                        default:
-                            break;
-                    }
-                };
-                this.Invoke(action);
-            })
-            );
+                case VsmdAxis.X:
+                    txtPosX.Text = newPos;
+                    break;
+                case VsmdAxis.Y:
+                    txtPosY.Text = newPos;
+                    break;
+                case VsmdAxis.Z:
+                    txtPosZ.Text = newPos;
+                    break;
+                default:
+                    break;
+            }
+            return true;
         }
         public void SetTimeout(double interval, Action action)
         {
@@ -305,76 +294,77 @@ namespace VsmdWorkstation
             timer.Enabled = true;
         }
 
-        private void btnSaveX_Click(object sender, EventArgs e)
+        private async void btnSaveX_Click(object sender, EventArgs e)
         {
-            SaveImpl(VsmdAxis.X);
+            await SaveImpl(VsmdAxis.X);
         }
-        private void btnSaveY_Click(object sender, EventArgs e)
+        private async void btnSaveY_Click(object sender, EventArgs e)
         {
-            SaveImpl(VsmdAxis.Y);
+            await SaveImpl(VsmdAxis.Y);
         }
-
-        private void btnSaveZ_Click(object sender, EventArgs e)
+        private async void btnSaveZ_Click(object sender, EventArgs e)
         {
-            SaveImpl(VsmdAxis.Z);
+            await SaveImpl(VsmdAxis.Z);
         }
-        private void SaveImpl(VsmdAxis axis)
+        private async Task<bool> SaveImpl(VsmdAxis axis)
         {
             switch (axis)
             {
                 case VsmdAxis.X:
                     if (!string.IsNullOrWhiteSpace(txtSpeedX.Text))
                     {
-                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedX.Text));
+                        await VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedX.Text));
                     }
                     if (!string.IsNullOrWhiteSpace(txtZsdX.Text))
                     {
-                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdX.Text));
+                        await VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdX.Text));
                     }
                     break;
                 case VsmdAxis.Y:
                     if (!string.IsNullOrWhiteSpace(txtSpeedY.Text))
                     {
-                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedY.Text));
+                        await VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedY.Text));
                     }
                     if (!string.IsNullOrWhiteSpace(txtZsdY.Text))
                     {
-                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdY.Text));
+                        await VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdY.Text));
                     }
                     break;
                 case VsmdAxis.Z:
                     if (!string.IsNullOrWhiteSpace(txtSpeedZ.Text))
                     {
-                        VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedZ.Text));
+                        await VsmdController.GetVsmdController().SetSpeed(axis, float.Parse(txtSpeedZ.Text));
                     }
                     if (!string.IsNullOrWhiteSpace(txtZsdX.Text))
                     {
-                        VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdZ.Text));
+                        await VsmdController.GetVsmdController().SetZsd(axis, float.Parse(txtZsdZ.Text));
                     }
                     break;
                 default:
                     break;
             }
+
+            return true;
         }
 
-        private void btnS3Input_Click(object sender, EventArgs e)
+        private async void btnS3Input_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 0);
+            await VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 0);
         }
 
-        private void btnS3Output_Click(object sender, EventArgs e)
+        private async void btnS3Output_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 1);
+            await VsmdController.GetVsmdController().SetS3Mode(VsmdAxis.Z, 1);
         }
 
-        private void btnS3On_Click(object sender, EventArgs e)
+        private async void btnS3On_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().S3On(VsmdAxis.Z);
+            await VsmdController.GetVsmdController().S3On(VsmdAxis.Z);
         }
 
-        private void btnS3Off_Click(object sender, EventArgs e)
+        private async void btnS3Off_Click(object sender, EventArgs e)
         {
-            VsmdController.GetVsmdController().S3Off(VsmdAxis.Z);
+            await VsmdController.GetVsmdController().S3Off(VsmdAxis.Z);
         }
 
         private void btnAddCmd_Click(object sender, EventArgs e)

@@ -118,7 +118,6 @@ namespace VsmdWorkstation
         }
         public async Task<InitResult> ResetVsmdController()
         {
-            bool ret = true;
             if (m_initialized)
             {
                 this.Dispose();

@@ -24,6 +24,9 @@ namespace VsmdWorkstation
         private bool m_isFromPause = false;
         private JArray m_selectedTubes;
         private int m_dripIndex;
+
+        private float m_oriSpeedX, m_oriSpeedY, m_oriZsdX, m_oriZsdY;
+
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
@@ -88,32 +91,9 @@ namespace VsmdWorkstation
             //await vsmdController.ResetVsmdController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
-            BeforeMove();
-            float oriSpeedY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
-            float oriZsdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-            float oriZsdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-            if (!m_isFromPause)
-            {
+            await BeforeMove();
 
-                //await vsmdController.MoveToSync(VsmdAxis.X, 0);
-                //await vsmdController.MoveToSync(VsmdAxis.Y, 0);
-
-                vsmdController.SetZsd(VsmdAxis.X, oriZsdX > 0.0 ? -oriZsdX : oriZsdX);
-                vsmdController.SetZsd(VsmdAxis.Y, oriZsdY > 0.0 ? -oriZsdY : oriZsdY);
-                Thread.Sleep(20);
-                await vsmdController.ZeroStartSync(VsmdAxis.X);
-                await vsmdController.ZeroStartSync(VsmdAxis.Y);
-
-                await vsmdController.MoveSync(VsmdAxis.Y);
-                vsmdController.Org(VsmdAxis.Y);
-                vsmdController.SetSpeed(VsmdAxis.Y, oriSpeedY > 0.0 ? -oriSpeedY : oriSpeedY);
-            }
-
-            Thread.Sleep(20);
-            vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            Thread.Sleep(20);
-            //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-            //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+            await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_dripIndex; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
@@ -123,33 +103,26 @@ namespace VsmdWorkstation
                 int col = int.Parse(obj["column"].ToString());
                 await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
                 await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
-                Thread.Sleep(500);
+
                 // start drip
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                vsmdController.S3On(VsmdAxis.Z);
+                await vsmdController.S3On(VsmdAxis.Z);
                 Thread.Sleep(500);
-                vsmdController.S3Off(VsmdAxis.Z);
+                await vsmdController.S3Off(VsmdAxis.Z);
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(5000);
 
                 // change the screen to start
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                //vsmdController.SetS3Mode(VsmdAxis.Z, 0);
-                vsmdController.S3On(VsmdAxis.Z);
+                await vsmdController.S3On(VsmdAxis.Z);
                 Thread.Sleep(500);
-                vsmdController.S3Off(VsmdAxis.Z);
+                await vsmdController.S3Off(VsmdAxis.Z);
                 Thread.Sleep(1000);
                 //await Task.Delay(1000);
 
                 MoveCallBack(row, col);
                 m_dripIndex = i;
             }
-            m_isFromPause = false;
-            vsmdController.SetZsd(VsmdAxis.X, oriZsdX);
-            vsmdController.SetZsd(VsmdAxis.Y, oriZsdY);
-            vsmdController.SetSpeed(VsmdAxis.Y, oriSpeedY);
-            AfterMove();
+            
+            await AfterMove();
         }
         public void DomLoaded()
         {
@@ -159,20 +132,59 @@ namespace VsmdWorkstation
             }
             //BuildGrid(BoardSettings.GetCurrentBoardSetting());
         }
-        private void BeforeMove()
+        private async Task<bool> BeforeMove()
         {
             m_dripStatus = DripStatus.Moving;
             CallJS("JsExecutor.beforeMove();");
+            if (!m_isFromPause)
+            {
+                VsmdController vsmdController = VsmdController.GetVsmdController();
+                m_oriSpeedY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+                m_oriZsdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
+                m_oriZsdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
+                if (m_oriZsdX < 0.0)
+                {
+                    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdX);
+                }
+                if (m_oriZsdY < 0.0)
+                {
+                    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdY);
+                }
+                await vsmdController.ZeroStartSync(VsmdAxis.X);
+                await vsmdController.ZeroStartSync(VsmdAxis.Y);
+
+                if (m_oriSpeedY < 0.0)
+                {
+                    await vsmdController.SetSpeed(VsmdAxis.X, -m_oriSpeedY);
+                }
+                await vsmdController.MoveSync(VsmdAxis.Y);
+                await vsmdController.Org(VsmdAxis.Y);
+                await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY > 0.0 ? -m_oriSpeedY : m_oriSpeedY);
+            }
+
+            return true;
         }
-        private void AfterMove()
+        private async Task<bool> AfterMove()
         {
-            if (m_dripStatus == DripStatus.Moving && onDripFinished != null)
+            if (m_dripStatus == DripStatus.Moving)
             {
                 CallJS("JsExecutor.afterMove();");
-                m_dripStatus = DripStatus.Idle;
-                onDripFinished();
+                VsmdController vsmdController = VsmdController.GetVsmdController();
+                await vsmdController.SetZsd(VsmdAxis.X, m_oriZsdX);
+                await vsmdController.SetZsd(VsmdAxis.Y, m_oriZsdY);
+                await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY);
 
+                m_isFromPause = false;
+
+                m_dripStatus = DripStatus.Idle;
+                if(onDripFinished != null)
+                {
+                    onDripFinished();
+                }
+                
             }
+
+            return true;
         }
         private void MoveCallBack(int row, int col)
         {

@@ -58,7 +58,7 @@ namespace VsmdWorkstation
                 return base.ProcessDialogKey(keyData);
         }
 
-        private void SetTubePositionFrm_KeyDown(object sender, KeyEventArgs e)
+        private async void SetTubePositionFrm_KeyDown(object sender, KeyEventArgs e)
         {
             if (m_inMoving)
             {
@@ -68,32 +68,33 @@ namespace VsmdWorkstation
             {
                 if (e.KeyCode == Keys.Right)
                 {
-                    MoveAxis(MOVE_SPEED);
+                    await MoveAxis(MOVE_SPEED);
                 }
                 else if (e.KeyCode == Keys.Left)
                 {
-                    MoveAxis(-MOVE_SPEED);
+                    await MoveAxis(-MOVE_SPEED);
                 }
             }
             else if (m_axisType == VsmdAxis.Y)
             {
                 if (e.KeyCode == Keys.Up)
                 {
-                    MoveAxis(MOVE_SPEED);
+                    await MoveAxis(MOVE_SPEED);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    MoveAxis(-MOVE_SPEED);
+                    await MoveAxis(-MOVE_SPEED);
                 }
             }
         }
-        private void MoveAxis(float speed)
+        private async Task<bool> MoveAxis(float speed)
         {
-            VsmdController.GetVsmdController().SetSpeed(m_axisType, speed);
-            VsmdController.GetVsmdController().Move(m_axisType);
+            await VsmdController.GetVsmdController().SetSpeed(m_axisType, speed);
+            await VsmdController.GetVsmdController().Move(m_axisType);
             m_inMoving = true;
+            return true;
         }
-        private void SetTubePositionFrm_KeyUp(object sender, KeyEventArgs e)
+        private async void SetTubePositionFrm_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left ||
                 e.KeyCode == Keys.Right ||
@@ -101,14 +102,14 @@ namespace VsmdWorkstation
                 e.KeyCode == Keys.Down)
                 if (m_inMoving)
                 {
-                    VsmdController.GetVsmdController().Stop(m_axisType);
+                    await VsmdController.GetVsmdController().Stop(m_axisType);
                     m_inMoving = false;
                 }
         }
 
-        private void SetTubePositionFrm_FormClosing(object sender, FormClosingEventArgs e)
+        private async void SetTubePositionFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            VsmdController.GetVsmdController().SetSpeed(m_axisType, m_preAxisSpeed);
+            await VsmdController.GetVsmdController().SetSpeed(m_axisType, m_preAxisSpeed);
         }
 
         private void btnSetStart_Click(object sender, EventArgs e)

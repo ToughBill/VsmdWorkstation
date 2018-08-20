@@ -647,7 +647,7 @@ namespace VsmdLib
             //this.addCommand("zero stop");
             return await SendCommandSyncImpl("zero stop");
         }
-        private void SendCommandImpl(string cmd, int waitInterval = 10, int waitCount = 50)
+        private void SendCommandImpl(string cmd)
         {
             m_controller.SendCommand(this.Cid.ToString() + " " + cmd + "\n");
         }

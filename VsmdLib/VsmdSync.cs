@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -223,6 +224,7 @@ namespace VsmdLib
                                 if (this.objList[index].Cid == (int)res[1])
                                 {
                                     this.objList[index].parse(res);
+                                    OutputLog(res);
                                     break;
                                 }
                             }
@@ -287,12 +289,17 @@ namespace VsmdLib
         {
             this.objList.Remove(info);
         }
-        public void SendCommand(string cmd)
+        public bool SendCommand(string cmd)
         {
-            bool returnVal = true;
+            if (m_isWaitingResponse)
+            {
+                OutputLog("send command fail since last command didn't finish, " + cmd);
+                return false;
+            }
             this.comPort.Write(cmd);
             OutputLog("send command: " + cmd);
             m_isWaitingResponse = true;
+            return true;
         }
         public async Task<bool> SendCommandSync(string cmd, int waitInterval = 10, int waitCount = 50)
         {
@@ -300,11 +307,15 @@ namespace VsmdLib
             this.comPort.Write(cmd);
             OutputLog("send command sync: " + cmd);
             m_isWaitingResponse = true;
-            returnVal = await WaitResult(waitInterval, waitCount);
-
+            returnVal = await WaitResponse(waitInterval, waitCount);
+            if (!returnVal)
+            {
+                m_isWaitingResponse = false;
+                OutputLog("fail to wait response for command: " + cmd);
+            }
             return returnVal;
         }
-        public async Task<bool> WaitResult(int waitInterval = 10, int waitCount = 50)
+        public async Task<bool> WaitResponse(int waitInterval = 10, int waitCount = 50)
         {
             int curWaitCnt = 0;
             while(curWaitCnt < waitCount)
@@ -317,13 +328,32 @@ namespace VsmdLib
                 }
                 await Task.Delay(waitInterval);
             }
-
+            
             return curWaitCnt <= waitCount;
         }
 
         private void OutputLog(string log)
         {
-            Debug.WriteLine(log);
+            if(log[log.Length - 1] == '\n')
+            {
+                Debug.WriteLine(log);
+            }
+            else
+            {
+                Debug.WriteLine(log + Environment.NewLine);
+            }
+        }
+        [ConditionalAttribute("DEBUG")]
+        private void OutputLog(byte[] log)
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.Append("receive response: ");
+            Array.ForEach(log, (val) =>
+            {
+                strBuilder.Append(val.ToString());
+                strBuilder.Append(' ');
+            });
+            OutputLog(strBuilder.ToString());
         }
     }
 }
