@@ -57,35 +57,44 @@ namespace VsmdWorkstation
 
             List<string> errAxis = new List<string>();
             m_axisX = m_vsmd.createVsmdInfo(1);
-            await m_axisX.dev();
-            await m_axisX.enable();
-            m_axisX.flgAutoUpdate = true;
-            await m_axisX.cfg();
-
-            m_axisY = m_vsmd.createVsmdInfo(2);
-            await m_axisY.dev();
-            await m_axisY.enable();
-            m_axisY.flgAutoUpdate = true;
-            await m_axisY.cfg();
-
-            m_axisZ = m_vsmd.createVsmdInfo(3);
-            await m_axisZ.dev();
-            await m_axisZ.enable();
-            m_axisZ.flgAutoUpdate = true;
-            await m_axisZ.cfg();
-
-            if (!m_axisX.isOnline)
+            await m_axisX.CheckAxisIsOnline();
+            if (m_axisX.isOnline)
+            {
+                await m_axisX.enable();
+                m_axisX.flgAutoUpdate = true;
+                await m_axisX.cfg();
+            }
+            else
             {
                 errAxis.Add("X");
             }
-            if (!m_axisY.isOnline)
+
+            m_axisY = m_vsmd.createVsmdInfo(2);
+            await m_axisY.CheckAxisIsOnline();
+            if (m_axisY.isOnline)
+            {
+                await m_axisY.enable();
+                m_axisY.flgAutoUpdate = true;
+                await m_axisY.cfg();
+            }
+            else
             {
                 errAxis.Add("Y");
             }
-            if (!m_axisZ.isOnline)
+
+            m_axisZ = m_vsmd.createVsmdInfo(3);
+            await m_axisZ.CheckAxisIsOnline();
+            if (m_axisY.isOnline)
+            {
+                await m_axisZ.enable();
+                m_axisZ.flgAutoUpdate = true;
+                await m_axisZ.cfg();
+            }
+            else
             {
                 errAxis.Add("Z");
             }
+
             if(errAxis.Count <= 0)
             {
                 m_initialized = true;
@@ -112,12 +121,6 @@ namespace VsmdWorkstation
             }
             
             return new InitResult() { IsSuccess = m_initialized, ErrorMsg = errMsg };
-
-            //m_axisX.flgAutoUpdate = false;
-            //m_axisX.enable();
-            //m_axisX.cfgSpd(128000);
-            //m_axisX.cfgCur(1.6f, 1.4f, 0.8f);
-            
         }
         public async Task<InitResult> ResetVsmdController()
         {
@@ -155,6 +158,7 @@ namespace VsmdWorkstation
             }
             return ret;
         }
+        
         public string GetPort()
         {
             return m_port;

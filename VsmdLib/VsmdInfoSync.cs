@@ -454,11 +454,31 @@ namespace VsmdLib
         {
             this.addCommand("cfg zmd=" + zmd.ToString("d") + " osv=" + osv.ToString("d") + " snr=" + snr.ToString("d") + " zsd=" + zsd.ToString("f") + " zsp=" + zsp.ToString("d"));
         }
+        /// <summary>
+        /// check whether axis  is on-line, try 3 times, each time wait 200ms
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> CheckAxisIsOnline()
+        {
+            int tryCnt = 3;
+            while (tryCnt > 0)
+            {
+                bool retVal = await dev(10, 20);
+                if (retVal)
+                {
+                    break;
+                }
+                tryCnt--;
+            }
+            
+            this.isOnline = (tryCnt > 0);
+            return this.isOnline;
+        }
 
-        public async Task<bool> dev()
+        public async Task<bool> dev(int waitInterval = VsmdConstVars.Default_Wait_Interval, int waitCount = VsmdConstVars.Default_Wait_Count)
         {
             //this.addCommand("ena");
-            return await SendCommandSyncImpl("dev");
+            return await SendCommandSyncImpl("dev", waitInterval, waitCount);
         }
 
         /// <summary>enable motor</summary>
@@ -677,7 +697,7 @@ namespace VsmdLib
         {
             m_controller.SendCommand(this.Cid.ToString() + " " + cmd + "\n");
         }
-        private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = 10, int waitCount = 50)
+        private async Task<bool> SendCommandSyncImpl(string cmd, int waitInterval = VsmdConstVars.Default_Wait_Interval, int waitCount = VsmdConstVars.Default_Wait_Count)
         {
             bool retVal = await m_controller.SendCommandSync(this.Cid.ToString() + " " + cmd + "\n", waitInterval, waitCount);
             await Task.Delay(10);

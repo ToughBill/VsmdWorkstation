@@ -167,7 +167,7 @@ namespace VsmdWorkstation
         }
         private async Task<bool> AfterMove()
         {
-            if (m_dripStatus == DripStatus.Moving)
+            if (m_dripStatus != DripStatus.PauseMove)
             {
                 CallJS("JsExecutor.afterMove();");
                 VsmdController vsmdController = VsmdController.GetVsmdController();

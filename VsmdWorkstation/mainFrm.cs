@@ -60,7 +60,7 @@ namespace VsmdWorkstation
             }
             else
             {
-                StatusBar.DisplayMessage(MessageType.Error, "设备连接失败！");
+                StatusBar.DisplayMessage(MessageType.Error, initRet.ErrorMsg);
             }
         }
 

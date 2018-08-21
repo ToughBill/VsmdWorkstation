@@ -14,6 +14,11 @@ using System.Threading.Tasks;
 
 namespace VsmdLib
 {
+    public class VsmdConstVars
+    {
+        public const int Default_Wait_Interval = 10;
+        public const int Default_Wait_Count = 50;
+    }
     /// <summary>Vsmd Class</summary>
     public class VsmdSync
     {

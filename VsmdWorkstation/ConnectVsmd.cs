@@ -15,9 +15,12 @@ namespace VsmdWorkstation
     public delegate void DelInitVsmdConnectionCB(InitResult initRet);
     public partial class ConnectVsmd : Form
     {
-        public bool IsConnected { get; set; }
         private DelInitVsmdConnectionCB m_initCB;
+        private bool m_isConnecting;
+
+        public bool IsConnected { get; set; }
         public bool IsClosed { get; set; }
+        
         public ConnectVsmd(DelInitVsmdConnectionCB callback = null)
         {
             InitializeComponent();
@@ -45,10 +48,16 @@ namespace VsmdWorkstation
 
         private async void btnConnect_Click(object sender, EventArgs e)
         {
+            if (m_isConnecting)
+            {
+                return;
+            }
+            m_isConnecting = true;
             InitResult initRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
             if(m_initCB != null)
             {
                 m_initCB(initRet);
+                m_isConnecting = false;
             }
             if (initRet.IsSuccess)
             {
