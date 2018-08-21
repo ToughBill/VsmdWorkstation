@@ -1,4 +1,19 @@
 $(function () {
+    function addContextMenu() {
+        var menu = [{
+            name: 'move2Here',
+            title: '移动到这里',
+            fun: function (obj, event) {
+                if (window.externalObj) {
+                    window.externalObj.MoveToHere(JSON.stringify({ row: 1, col: 1 }));
+                }
+            }
+        }];
+        //Calling context menu
+        $('.grid-cell').contextMenu(menu, { triggerOn: 'contextmenu' });
+    }
+     
+
 	window.JsExecutor = {
 	    buildGrid: function (options) {
 	        if (window.__grid) {
@@ -6,6 +21,7 @@ $(function () {
 	        } else {
 	            window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
 	        }
+	        addContextMenu();
 		},
 		moveCallBack: function(row, col) {
 			window.__grid.getCell(row, col).addClass("moveDone");

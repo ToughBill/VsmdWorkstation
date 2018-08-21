@@ -302,7 +302,7 @@ namespace VsmdLib
                 return false;
             }
             this.comPort.Write(cmd);
-            OutputLog("send command: " + cmd);
+            OutputLog(Environment.NewLine + "send command: " + cmd);
             m_isWaitingResponse = true;
             return true;
         }

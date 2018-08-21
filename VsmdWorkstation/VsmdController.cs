@@ -207,6 +207,7 @@ namespace VsmdWorkstation
         }
         public async Task<bool> ZeroStart(VsmdAxis axis)
         {
+            await m_vsmdController.SetZsd(axis, 1200);
             return await GetAxis(axis).zeroStart();
         }
         public async Task<bool> ZeroStop(VsmdAxis axis)
@@ -245,40 +246,38 @@ namespace VsmdWorkstation
         {
             return await GetAxis(axis).cfgS3(mode);
         }
-        public async Task<bool> MoveSync(VsmdAxis axis)
-        {
-            VsmdInfoSync vsmdAxis = GetAxis(axis);
-            return await vsmdAxis.move();
-        }
-        public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
-        {
-            VsmdInfoSync vsmdAxis = GetAxis(axis);
-            return await vsmdAxis.moveto(pos);
-        }
+        //public async Task<bool> MoveSync(VsmdAxis axis)
+        //{
+        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
+        //    return await vsmdAxis.move();
+        //}
+        //public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
+        //{
+        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
+        //    return await vsmdAxis.moveto(pos);
+        //}
 
-        public async Task<bool> ZeroStartSync(VsmdAxis axis)
-        {
-            VsmdInfoSync vsmdAxis = GetAxis(axis);
-            await m_vsmdController.SetZsd(axis, 1200);
+        //public async Task<bool> ZeroStartSync(VsmdAxis axis)
+        //{
+        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
+        //    await m_vsmdController.SetZsd(axis, 1200);
 
-            //float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
-            //int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
-            //int maxTryCount = delayTime / 10;
+        //    //float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
+        //    //int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
+        //    //int maxTryCount = delayTime / 10;
             
-            return await vsmdAxis.zeroStart();
+        //    return await vsmdAxis.zeroStart();
 
-        }
-        public async Task<bool> ZeroStopSync(VsmdAxis axis)
-        {
-            VsmdInfoSync vsmdAxis = GetAxis(axis);
-            return await vsmdAxis.zeroStop();
-        }
+        //}
+        //public async Task<bool> ZeroStopSync(VsmdAxis axis)
+        //{
+        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
+        //    return await vsmdAxis.zeroStop();
+        //}
         public async void MoveTo(int xpox, int ypox)
         {
-            await MoveToSync(VsmdAxis.X, xpox);
-            await MoveToSync(VsmdAxis.Y, ypox);
-            //GetAxis(VsmdAxis.X).moveto(xpox);
-            //GetAxis(VsmdAxis.Y).moveto(ypox);
+            await MoveTo(VsmdAxis.X, xpox);
+            await MoveTo(VsmdAxis.Y, ypox);
         }
         public void Dispose()
         {

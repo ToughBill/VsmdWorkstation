@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtStartPos = new VsmdWorkstation.Controls.TextBoxEx();
             this.btnSetStart = new System.Windows.Forms.Button();
-            this.btnSetEnd = new System.Windows.Forms.Button();
             this.txtEndPos = new VsmdWorkstation.Controls.TextBoxEx();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDist = new VsmdWorkstation.Controls.TextBoxEx();
@@ -87,16 +86,6 @@
             this.btnSetStart.UseVisualStyleBackColor = true;
             this.btnSetStart.Click += new System.EventHandler(this.btnSetStart_Click);
             // 
-            // btnSetEnd
-            // 
-            this.btnSetEnd.Location = new System.Drawing.Point(174, 75);
-            this.btnSetEnd.Name = "btnSetEnd";
-            this.btnSetEnd.Size = new System.Drawing.Size(126, 23);
-            this.btnSetEnd.TabIndex = 7;
-            this.btnSetEnd.Text = "将当前位置设为终点";
-            this.btnSetEnd.UseVisualStyleBackColor = true;
-            this.btnSetEnd.Click += new System.EventHandler(this.btnSetEnd_Click);
-            // 
             // txtEndPos
             // 
             this.txtEndPos.Location = new System.Drawing.Point(55, 77);
@@ -133,6 +122,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(43, 211);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -152,7 +142,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtDist);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnSetEnd);
             this.Controls.Add(this.txtEndPos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSetStart);
@@ -179,7 +168,6 @@
         private System.Windows.Forms.Label label1;
         private Controls.TextBoxEx txtStartPos;
         private System.Windows.Forms.Button btnSetStart;
-        private System.Windows.Forms.Button btnSetEnd;
         private Controls.TextBoxEx txtEndPos;
         private System.Windows.Forms.Label label2;
         private Controls.TextBoxEx txtDist;

@@ -128,7 +128,7 @@ namespace VsmdWorkstation
                 {
                     OnDataUpdate(m_boardSettings);
                 }
-            } catch (Exception e)
+            } catch (Exception)
             {
                 ret = false;
             }

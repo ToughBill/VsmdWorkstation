@@ -693,6 +693,10 @@ namespace VsmdLib
             //this.addCommand("zero stop");
             return await SendCommandSyncImpl("zero stop");
         }
+        public void SendCommand(string cmd)
+        {
+            SendCommandImpl(cmd);
+        }
         private void SendCommandImpl(string cmd)
         {
             m_controller.SendCommand(this.Cid.ToString() + " " + cmd + "\n");

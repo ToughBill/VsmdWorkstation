@@ -25,7 +25,7 @@ namespace VsmdWorkstation
         private JArray m_selectedTubes;
         private int m_dripIndex;
 
-        private float m_oriSpeedX, m_oriSpeedY, m_oriZsdX, m_oriZsdY;
+        private float m_oriSpeedY, m_oriZsdX, m_oriZsdY;
 
         public BridgeObject(ChromiumWebBrowser browser)
         {
@@ -101,8 +101,8 @@ namespace VsmdWorkstation
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
-                await vsmdController.MoveToSync(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                await vsmdController.MoveToSync(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+                await vsmdController.MoveTo(VsmdAxis.Y, -curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
 
                 // start drip
                 await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
@@ -151,14 +151,14 @@ namespace VsmdWorkstation
                 {
                     await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdY);
                 }
-                await vsmdController.ZeroStartSync(VsmdAxis.X);
-                await vsmdController.ZeroStartSync(VsmdAxis.Y);
+                await vsmdController.ZeroStart(VsmdAxis.X);
+                await vsmdController.ZeroStart(VsmdAxis.Y);
 
                 if (m_oriSpeedY < 0.0)
                 {
                     await vsmdController.SetSpeed(VsmdAxis.Y, -m_oriSpeedY);
                 }
-                await vsmdController.MoveSync(VsmdAxis.Y);
+                await vsmdController.Move(VsmdAxis.Y);
                 await vsmdController.Org(VsmdAxis.Y);
                 await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY > 0.0 ? -m_oriSpeedY : m_oriSpeedY);
             }
@@ -186,6 +186,10 @@ namespace VsmdWorkstation
             }
 
             return true;
+        }
+        public void MoveToHere(string args)
+        {
+
         }
         private void MoveCallBack(int row, int col)
         {

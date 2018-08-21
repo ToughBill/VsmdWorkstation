@@ -196,23 +196,23 @@ namespace VsmdWorkstation
         }
         private void btnSetFX_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtFirstTubePosX, VsmdAxis.X);
+            ShowSetDlg(txtFirstTubePosX, VsmdAxis.X, SetTubePositionFrm.PosType.Pos);
         }
         private void btnSetFY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtFirstTubePosY, VsmdAxis.Y);
+            ShowSetDlg(txtFirstTubePosY, VsmdAxis.Y, SetTubePositionFrm.PosType.Pos);
         }
         private void btnSetTX_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtTubeDistX, VsmdAxis.X);
+            ShowSetDlg(txtTubeDistX, VsmdAxis.X, SetTubePositionFrm.PosType.Dist);
         }
         private void btnSetTY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtTubeDistY, VsmdAxis.Y);
+            ShowSetDlg(txtTubeDistY, VsmdAxis.Y, SetTubePositionFrm.PosType.Dist);
         }
-        private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
+        private void ShowSetDlg(TextBox textbox, VsmdAxis axisType, SetTubePositionFrm.PosType posType)
         {
-            SetTubePositionFrm frm = new SetTubePositionFrm(axisType);
+            SetTubePositionFrm frm = new SetTubePositionFrm(axisType, posType);
             if(frm.ShowDialog() == DialogResult.OK)
             {
                 textbox.Text = frm.GetDist().ToString();
@@ -251,7 +251,7 @@ namespace VsmdWorkstation
 
         private void btnSetBlockDist_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtBlockDist, VsmdAxis.X);
+            ShowSetDlg(txtBlockDist, VsmdAxis.X, SetTubePositionFrm.PosType.Dist);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
