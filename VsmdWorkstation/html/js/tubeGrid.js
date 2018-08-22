@@ -15,6 +15,7 @@ window.TubeGrid = (function () {
         this.tubeEleArr = [];
         this.mode = GridMode.Idle;
         let gridEditor = this;
+        let clickX, clickY;
 
         function initOptions(options_) {
             gridEditor.options = options_ || {};
@@ -109,6 +110,14 @@ window.TubeGrid = (function () {
             var $container = $(this.container);
             $container
                 .on('mousedown', function (eventDown) {
+                    if ($(eventDown.target).hasClass('grid-cell')) {
+                        clickX = eventDown.clientX;
+                        clickY = eventDown.clientY;
+                    } else {
+                        clickX = -1;
+                        clickY = -1;
+                    }
+                    
                     if (gridEditor.mode != GridMode.Idle) {
                         return;
                     }
@@ -209,7 +218,36 @@ window.TubeGrid = (function () {
 
                 });
         }
-
+        this.getTubePos = function (tubeEle) {
+            let classArr = tubeEle.className.split(' ');
+            let row, column;
+            classArr.forEach((val2, idx2) => {
+                if (val2.match(/^r\d+$/)) {
+                    row = parseInt(val2.substr(1));
+                } else if (val2.match(/^c\d+$/)) {
+                    column = parseInt(val2.substr(1));
+                }
+            });
+            return { row: row, col: column };
+        }
+        this.getLastClickedTube = function () {
+            if (clickX <= 0 || clickY <= 0) {
+                return null;
+            }
+            let eleArr = document.elementsFromPoint(clickX, clickY);
+            let targetEle;
+            for(let i = 0; i < eleArr.length; i++){
+                if ($(eleArr[i]).hasClass('grid-cell')) {
+                    targetEle = eleArr[i];
+                    break;
+                }
+            }
+            let pos = {row: -1, col: -1};
+            if (targetEle) {
+                pos = this.getTubePos(targetEle);
+            }
+            return {element: targetEle, row: pos.row, col: pos.col};
+        }
         this.getCell= function (row, col) {
             return $(".grid-cell" + ".r" + row + ".c" + col);
         }

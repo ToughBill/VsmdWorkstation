@@ -1,18 +1,31 @@
-$(function () {
-    function addContextMenu() {
-        var menu = [{
-            name: 'move2Here',
-            title: 'ÒÆ¶¯µ½ÕâÀï',
-            fun: function (obj, event) {
-                if (window.externalObj) {
-                    window.externalObj.MoveToHere(JSON.stringify({ row: 1, col: 1 }));
+ï»¿$(function () {
+
+    var gridCtxMenu = [{
+        name: 'move2Here',
+        title: 'ç§»åŠ¨åˆ°è¿™é‡Œ',
+        fun: function (obj, event) {
+            if (window.externalObj) {
+                let ele = window.__grid.getLastClickedTube();
+                if (ele) {
+                    console.log('move to tube, row: ', ele.row, ', column: ', ele.col);
+                    window.externalObj.MoveToHere(JSON.stringify({ row: ele.row, col: ele.col }));
                 }
             }
-        }];
-        //Calling context menu
-        $('.grid-cell').contextMenu(menu, { triggerOn: 'contextmenu' });
-    }
-     
+        }
+    },
+    {
+        name: 'drip',
+        title: 'æ»´æ¶²',
+        fun: function (obj, event) {
+            if (window.externalObj) {
+                let ele = window.__grid.getLastClickedTube();
+                if (ele) {
+                    console.log('drip tube, row: ', ele.row, ', column: ', ele.col);
+                    window.externalObj.DripTube(JSON.stringify({ row: ele.row, col: ele.col }));
+                }
+            }
+        }
+    }];
 
 	window.JsExecutor = {
 	    buildGrid: function (options) {
@@ -20,8 +33,9 @@ $(function () {
 	            window.__grid.buildGrid(options);
 	        } else {
 	            window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
+	            $('#tubesContainer').contextMenu(gridCtxMenu, { triggerOn: 'contextmenu' });
 	        }
-	        addContextMenu();
+	        //addContextMenu();
 		},
 		moveCallBack: function(row, col) {
 			window.__grid.getCell(row, col).addClass("moveDone");

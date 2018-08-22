@@ -55,6 +55,12 @@ namespace VsmdWorkstation
         public BoardMeta CurrentBoard { get; set; }
         public DelDataUpdated OnDataUpdate;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="axis"></param>
+        /// <param name="coord">start from 1</param>
+        /// <returns></returns>
         public int Convert2PhysicalPos(VsmdAxis axis, int coord)
         {
             int fpox = 0;
@@ -66,7 +72,7 @@ namespace VsmdWorkstation
                     //fpox = FirstTubeX + (coord - 1) * TubeDistanceX;
                     break;
                 case VsmdAxis.Y:
-                    fpox = CurrentBoard.FirstTubeY + (coord - 1) * CurrentBoard.TubeDistanceY;
+                    fpox = CurrentBoard.FirstTubeY - (coord - 1) * CurrentBoard.TubeDistanceY;
                     break;
                 default:
                     break;

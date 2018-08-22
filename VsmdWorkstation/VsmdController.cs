@@ -36,10 +36,10 @@ namespace VsmdWorkstation
          
         public async Task<InitResult> Init(string port, int baudrate)
         {
-            if(m_initialized && port == m_port && baudrate == m_baudrate)
-            {
+            //if(m_initialized && port == m_port && baudrate == m_baudrate)
+            //{
                 return new InitResult() { ErrorMsg = "设备连接成功!", IsSuccess = true };
-            }
+            //}
             
             m_port = port;
             m_baudrate = baudrate;
@@ -207,7 +207,7 @@ namespace VsmdWorkstation
         }
         public async Task<bool> ZeroStart(VsmdAxis axis)
         {
-            await m_vsmdController.SetZsd(axis, 1200);
+            //await m_vsmdController.SetZsd(axis, 1200);
             return await GetAxis(axis).zeroStart();
         }
         public async Task<bool> ZeroStop(VsmdAxis axis)

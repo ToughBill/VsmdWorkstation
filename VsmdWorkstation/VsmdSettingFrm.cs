@@ -225,7 +225,6 @@ namespace VsmdWorkstation
         }
         private async Task<bool> ZeroStartImpl(VsmdAxis axis, float speed)
         {
-            //VsmdController.GetVsmdController().GetAxis(axis).addCommand("cfg zsd=" + speed.ToString() + "\n");
             await VsmdController.GetVsmdController().SetZsd(axis, speed);
             return await VsmdController.GetVsmdController().ZeroStart(axis);
         }

@@ -93,7 +93,7 @@ namespace VsmdWorkstation
             JArray jsArr = m_selectedTubes;
             await BeforeMove();
 
-            await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+            //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_dripIndex; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
@@ -102,10 +102,11 @@ namespace VsmdWorkstation
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                await vsmdController.MoveTo(VsmdAxis.Y, -curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
 
                 // start drip
                 await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+                Thread.Sleep(500);
                 await vsmdController.S3On(VsmdAxis.Z);
                 Thread.Sleep(500);
                 await vsmdController.S3Off(VsmdAxis.Z);
@@ -123,7 +124,7 @@ namespace VsmdWorkstation
                 m_dripIndex = i;
             }
             
-            await AfterMove();
+            AfterMove();
         }
         public void DomLoaded()
         {
@@ -140,40 +141,40 @@ namespace VsmdWorkstation
             if (!m_isFromPause)
             {
                 VsmdController vsmdController = VsmdController.GetVsmdController();
-                m_oriSpeedY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
-                m_oriZsdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-                m_oriZsdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-                if (m_oriZsdX < 0.0)
-                {
-                    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdX);
-                }
-                if (m_oriZsdY < 0.0)
-                {
-                    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdY);
-                }
+                //m_oriSpeedY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+                //m_oriZsdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
+                //m_oriZsdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
+                //if (m_oriZsdX < 0.0)
+                //{
+                //    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdX);
+                //}
+                //if (m_oriZsdY < 0.0)
+                //{
+                //    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdY);
+                //}
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
 
-                if (m_oriSpeedY < 0.0)
-                {
-                    await vsmdController.SetSpeed(VsmdAxis.Y, -m_oriSpeedY);
-                }
-                await vsmdController.Move(VsmdAxis.Y);
-                await vsmdController.Org(VsmdAxis.Y);
-                await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY > 0.0 ? -m_oriSpeedY : m_oriSpeedY);
+                //if (m_oriSpeedY < 0.0)
+                //{
+                //    await vsmdController.SetSpeed(VsmdAxis.Y, -m_oriSpeedY);
+                //}
+                //await vsmdController.Move(VsmdAxis.Y);
+                //await vsmdController.Org(VsmdAxis.Y);
+                //await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY > 0.0 ? -m_oriSpeedY : m_oriSpeedY);
             }
 
             return true;
         }
-        private async Task<bool> AfterMove()
+        private void AfterMove()
         {
             if (m_dripStatus != DripStatus.PauseMove)
             {
                 CallJS("JsExecutor.afterMove();");
-                VsmdController vsmdController = VsmdController.GetVsmdController();
-                await vsmdController.SetZsd(VsmdAxis.X, m_oriZsdX);
-                await vsmdController.SetZsd(VsmdAxis.Y, m_oriZsdY);
-                await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY);
+                //VsmdController vsmdController = VsmdController.GetVsmdController();
+                //await vsmdController.SetZsd(VsmdAxis.X, m_oriZsdX);
+                //await vsmdController.SetZsd(VsmdAxis.Y, m_oriZsdY);
+                //await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY);
 
                 m_isFromPause = false;
 
@@ -182,14 +183,33 @@ namespace VsmdWorkstation
                 {
                     onDripFinished();
                 }
-                
             }
-
-            return true;
         }
-        public void MoveToHere(string args)
+        public async void MoveToHere(string args)
         {
+            JObject targetTube = (JObject)JsonConvert.DeserializeObject(args);
+            int row = int.Parse(targetTube["row"].ToString());
+            int col = int.Parse(targetTube["col"].ToString());
 
+            VsmdController vsmdController = VsmdController.GetVsmdController();
+            BoardSetting curBoardSetting = BoardSetting.GetInstance();
+            await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
+            await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+        }
+        public async void DripTube(string args)
+        {
+            JObject targetTube = (JObject)JsonConvert.DeserializeObject(args);
+            int row = int.Parse(targetTube["row"].ToString());
+            int col = int.Parse(targetTube["col"].ToString());
+
+            VsmdController vsmdController = VsmdController.GetVsmdController();
+            await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+            Thread.Sleep(500);
+            await vsmdController.S3On(VsmdAxis.Z);
+            Thread.Sleep(500);
+            await vsmdController.S3Off(VsmdAxis.Z);
+            Thread.Sleep(5000);
+            MoveCallBack(row, col);
         }
         private void MoveCallBack(int row, int col)
         {

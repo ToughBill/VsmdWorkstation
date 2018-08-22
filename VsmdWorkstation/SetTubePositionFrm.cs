@@ -124,16 +124,16 @@ namespace VsmdWorkstation
 
                     if (m_posType == PosType.Pos)
                     {
-                        txtDist.Text = Math.Abs(VsmdController.GetVsmdController().GetAxis(m_axisType).curPos).ToString();
+                        txtDist.Text = VsmdController.GetVsmdController().GetAxis(m_axisType).curPos.ToString();
                     }
                     else if(m_posType == PosType.Dist)
                     {
                         if (m_startSet)
                         {
-                            txtEndPos.Text = Math.Abs(VsmdController.GetVsmdController().GetAxis(m_axisType).curPos).ToString();
+                            txtEndPos.Text = VsmdController.GetVsmdController().GetAxis(m_axisType).curPos.ToString();
                             if (!string.IsNullOrWhiteSpace(txtStartPos.Text))
                             {
-                                txtDist.Text = (int.Parse(txtEndPos.Text) - int.Parse(txtStartPos.Text)).ToString();
+                                txtDist.Text = Math.Abs((int.Parse(txtEndPos.Text) - int.Parse(txtStartPos.Text))).ToString();
                             }
                         }
 
@@ -149,7 +149,7 @@ namespace VsmdWorkstation
 
         private void btnSetStart_Click(object sender, EventArgs e)
         {
-            txtStartPos.Text = Math.Abs(VsmdController.GetVsmdController().GetAxis(m_axisType).curPos).ToString();
+            txtStartPos.Text = VsmdController.GetVsmdController().GetAxis(m_axisType).curPos.ToString();
             m_startSet = true;
         }
 
