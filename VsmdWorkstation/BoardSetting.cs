@@ -72,7 +72,7 @@ namespace VsmdWorkstation
                     //fpox = FirstTubeX + (coord - 1) * TubeDistanceX;
                     break;
                 case VsmdAxis.Y:
-                    fpox = CurrentBoard.FirstTubeY - (coord - 1) * CurrentBoard.TubeDistanceY;
+                    fpox = CurrentBoard.FirstTubeY + (coord - 1) * CurrentBoard.TubeDistanceY;
                     break;
                 default:
                     break;

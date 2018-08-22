@@ -410,8 +410,20 @@ namespace VsmdLib
         /// <param name="mode">0-input / 1-output</param>
         public async Task<bool> cfgS3(int mode)
         {
-            this.addCommand("cfg s3=" + mode.ToString("d"));
-            return await SendCommandSyncImpl("cfg s3=" + mode.ToString("d"));
+            //this.addCommand("cfg s3=" + mode.ToString("d"));
+            string cmd = "cfg s3=" + mode.ToString("d");
+            int tryCnt = 3;
+            while (tryCnt > 0)
+            {
+                bool retVal = await SendCommandSyncImpl(cmd, 10, 20);
+                if (retVal)
+                {
+                    break;
+                }
+                tryCnt--;
+            }
+
+            return tryCnt > 0;
         }
 
         /// <summary>config s4 as input or output</summary>
@@ -565,14 +577,46 @@ namespace VsmdLib
         public async Task<bool> S3On()
         {
             //this.addCommand("s3 on");
-            return await SendCommandSyncImpl("s3 on");
+            int tryCnt = 3;
+            while (tryCnt > 0)
+            {
+                bool retVal = await SendCommandSyncImpl("s3 on", 10, 20);
+                if (retVal)
+                {
+                    break;
+                }
+                tryCnt--;
+            }
+            if(tryCnt <= 0)
+            {
+                await cfgS3(1);
+                await SendCommandSyncImpl("s3 on", 10, 20);
+            }
+
+            return tryCnt > 0;
         }
 
         /// <summary>s3 off (low level)</summary>
         public async Task<bool> S3Off()
         {
             //this.addCommand("s3 off");
-            return await SendCommandSyncImpl("s3 off");
+            int tryCnt = 3;
+            while (tryCnt > 0)
+            {
+                bool retVal = await SendCommandSyncImpl("s3 off", 10, 20);
+                if (retVal)
+                {
+                    break;
+                }
+                tryCnt--;
+            }
+            if (tryCnt <= 0)
+            {
+                await cfgS3(1);
+                await SendCommandSyncImpl("s3 off", 10, 20);
+            }
+
+            return tryCnt > 0;
         }
 
         /// <summary>s4 on (high level)</summary>

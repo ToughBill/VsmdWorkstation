@@ -54,7 +54,12 @@ namespace VsmdWorkstation
         }
         public void StopMove()
         {
+            DripStatus preMode = m_dripStatus;
             m_dripStatus = DripStatus.Idle;
+            if (preMode == DripStatus.PauseMove)
+            {
+                AfterMove();
+            }
         }
         public void PauseMove()
         {
@@ -209,6 +214,13 @@ namespace VsmdWorkstation
             Thread.Sleep(500);
             await vsmdController.S3Off(VsmdAxis.Z);
             Thread.Sleep(5000);
+
+            //change the screen to start interface
+            await vsmdController.S3On(VsmdAxis.Z);
+            Thread.Sleep(500);
+            await vsmdController.S3Off(VsmdAxis.Z);
+            Thread.Sleep(500);
+
             MoveCallBack(row, col);
         }
         private void MoveCallBack(int row, int col)
