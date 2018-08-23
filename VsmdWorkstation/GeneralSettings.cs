@@ -28,7 +28,30 @@ namespace VsmdWorkstation
             }
             return m_instance;
         }
-        
+
+        public int DripInterval
+        {
+            get
+            {
+                return m_settingMeta.DripInterval;
+            }
+        }
+        public float MoveSpeed
+        {
+            get
+            {
+                return m_settingMeta.MoveSpeed;
+            }
+        }
+        public bool OutputCommandLog
+        {
+            get
+            {
+                return m_settingMeta.OutputCommandLog;
+            }
+        }
+
+
         public string GetSettingFilePath()
         {
             return Application.StartupPath + "\\generalSetting.json";

@@ -42,7 +42,23 @@ namespace VsmdLib
         private string curCommand;
         private int recieveBufferSize;
         private bool m_isWaitingResponse;
+        private bool m_outPutCmdLog;
 
+        public VsmdSync()
+        {
+            m_outPutCmdLog = false;
+        }
+        public bool OutputCommandLog
+        {
+            get
+            {
+                return m_outPutCmdLog;
+            }
+            set
+            {
+                m_outPutCmdLog = value;
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -302,7 +318,7 @@ namespace VsmdLib
                 return false;
             }
             this.comPort.Write(cmd);
-            OutputLog(Environment.NewLine + "send command: " + cmd);
+            OutputLog("**** send command: " + cmd);
             m_isWaitingResponse = true;
             return true;
         }
@@ -310,7 +326,7 @@ namespace VsmdLib
         {
             bool returnVal = true;
             this.comPort.Write(cmd);
-            OutputLog(Environment.NewLine + "send command sync: " + cmd);
+            OutputLog("**** send command sync: " + cmd);
             m_isWaitingResponse = true;
             returnVal = await WaitResponse(waitInterval, waitCount);
             if (!returnVal)
@@ -337,22 +353,30 @@ namespace VsmdLib
             return curWaitCnt < waitCount;
         }
 
-        private void OutputLog(string log)
+        public void OutputLog(string log)
         {
+            if (!m_outPutCmdLog)
+            {
+                return;
+            }
+            string prefix = "VsmdWorkstation - ";
             if(log[log.Length - 1] == '\n')
             {
                 //Debug.Write(log); 
-                Debugger.Log(0, "VSMD", log);
+                Debugger.Log(0, "", prefix + log);
             }
             else
             {
                 //Debug.WriteLine(log);
-                Debugger.Log(0, "VSMD", log + '\n');
+                Debugger.Log(0, "", prefix + log + '\n');
             }
         }
-        [ConditionalAttribute("DEBUG")]
-        private void OutputLog(byte[] log)
+        public void OutputLog(byte[] log)
         {
+            if (!m_outPutCmdLog)
+            {
+                return;
+            }
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.Append("receive response: ");
             Array.ForEach(log, (val) =>

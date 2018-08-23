@@ -24,6 +24,7 @@ namespace VsmdWorkstation
             meta.MoveSpeed = float.Parse(txtMoveSpd.Text.Trim());
             meta.OutputCommandLog = ckbEnableCmdLog.Checked;
             GeneralSettings.GetInstance().Save();
+            this.Close();
         }
 
         private void GeneralSettingFrm_Load(object sender, EventArgs e)
@@ -37,6 +38,11 @@ namespace VsmdWorkstation
             numDripInter.Value = (decimal)meta.DripInterval;
             txtMoveSpd.Text = meta.MoveSpeed.ToString();
             ckbEnableCmdLog.Checked = meta.OutputCommandLog;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

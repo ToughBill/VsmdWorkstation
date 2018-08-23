@@ -18,7 +18,6 @@ namespace VsmdWorkstation
             Pos,
             Dist
         }
-        private const float MOVE_SPEED = 500.0f;
         private VsmdAxis m_axisType;
         private PosType m_posType;
         private float m_preAxisSpeed;
@@ -79,26 +78,27 @@ namespace VsmdWorkstation
             {
                 return;
             }
+            float moveSpd = GeneralSettings.GetInstance().MoveSpeed;
             if (m_axisType == VsmdAxis.X)
             {
                 if (e.KeyCode == Keys.Right)
                 {
-                    await MoveAxis(MOVE_SPEED);
+                    await MoveAxis(moveSpd);
                 }
                 else if (e.KeyCode == Keys.Left)
                 {
-                    await MoveAxis(-MOVE_SPEED);
+                    await MoveAxis(-moveSpd);
                 }
             }
             else if (m_axisType == VsmdAxis.Y)
             {
                 if (e.KeyCode == Keys.Up)
                 {
-                    await MoveAxis(MOVE_SPEED);
+                    await MoveAxis(moveSpd);
                 }
                 else if (e.KeyCode == Keys.Down)
                 {
-                    await MoveAxis(-MOVE_SPEED);
+                    await MoveAxis(-moveSpd);
                 }
             }
         }

@@ -47,7 +47,7 @@ namespace VsmdWorkstation
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelGrid.Location = new System.Drawing.Point(9, 38);
-            this.panelGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelGrid.Margin = new System.Windows.Forms.Padding(2);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(863, 498);
             this.panelGrid.TabIndex = 4;
@@ -67,7 +67,7 @@ namespace VsmdWorkstation
             this.cmbBoards.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBoards.FormattingEnabled = true;
             this.cmbBoards.Location = new System.Drawing.Point(87, 12);
-            this.cmbBoards.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbBoards.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBoards.Name = "cmbBoards";
             this.cmbBoards.Size = new System.Drawing.Size(130, 20);
             this.cmbBoards.TabIndex = 6;
@@ -76,7 +76,7 @@ namespace VsmdWorkstation
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(221, 10);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 7;
@@ -88,7 +88,7 @@ namespace VsmdWorkstation
             // 
             this.btnStop.Enabled = false;
             this.btnStop.Location = new System.Drawing.Point(379, 10);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 8;
@@ -100,7 +100,7 @@ namespace VsmdWorkstation
             // 
             this.btnPause.Enabled = false;
             this.btnPause.Location = new System.Drawing.Point(300, 10);
-            this.btnPause.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -156,7 +156,6 @@ namespace VsmdWorkstation
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DripFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.mainFrm_Load);
             this.ResumeLayout(false);

@@ -16,6 +16,7 @@ window.TubeGrid = (function () {
         this.mode = GridMode.Idle;
         let gridEditor = this;
         let clickX, clickY;
+        let drippingTubeFlickerInterval;
 
         function initOptions(options_) {
             gridEditor.options = options_ || {};
@@ -250,6 +251,21 @@ window.TubeGrid = (function () {
         }
         this.getCell= function (row, col) {
             return $(".grid-cell" + ".r" + row + ".c" + col);
+        }
+        this.moveCallBack = function (row, col) {
+            if (drippingTubeFlickerInterval) {
+                clearInterval(drippingTubeFlickerInterval);
+                this.getCell(row, col).removeClass('flickerColor');
+            }
+            this.getCell(row, col).addClass("moveDone");
+        }
+        this.setDrippingTube = function (row, col) {
+            if (drippingTubeFlickerInterval) {
+                clearInterval(drippingTubeFlickerInterval);
+            }
+            drippingTubeFlickerInterval = setInterval(() => {
+                this.getCell(row, col).toggleClass('flickerColor');
+            }, 500)
         }
         this.enterMoveMode = function () {
             gridEditor.mode = GridMode.Move;

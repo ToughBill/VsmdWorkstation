@@ -31,9 +31,9 @@ namespace VsmdWorkstation
         private void MainFrm_Load(object sender, EventArgs e)
         {
             InitStatusBar();
-            InitVsmdConnection();
             GeneralSettings.GetInstance().LoadGeneralSettings();
             BoardSetting.GetInstance().LoadBoardSettings();
+            InitVsmdConnection();
         }
         private void InitStatusBar()
         {

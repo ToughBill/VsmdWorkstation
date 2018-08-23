@@ -40,6 +40,7 @@ namespace VsmdLib
         private Dictionary<string, VsmdAttribute> m_attrNameMap;
         private Dictionary<VsmdAttribute, float> m_vsmdAttrs;
 
+        
         /// <summary>constructor</summary>
         /// <param name="cid">slave device id</param>
         public VsmdInfo(int cid)
@@ -53,7 +54,7 @@ namespace VsmdLib
             m_attrNameMap.Add("zsd", VsmdAttribute.Zsd);
             m_vsmdAttrs = new Dictionary<VsmdAttribute, float>();
         }
-
+        
         public SerialPort comPort
         {
             set

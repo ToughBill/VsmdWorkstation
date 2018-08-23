@@ -46,13 +46,6 @@ namespace VsmdWorkstation.Controls
             }
             
         }
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            this.SelectAll();
-            System.Diagnostics.Debug.WriteLine("select all");
-            //base.OnGotFocus(e);
-        }
     }
 
     

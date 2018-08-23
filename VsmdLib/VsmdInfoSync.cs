@@ -196,7 +196,7 @@ namespace VsmdLib
         /// <param name="strInfo"></param>
         private void ParseAttributes(string strInfo)
         {
-            System.Diagnostics.Debug.WriteLine("&& result : " + strInfo);
+            m_controller.OutputLog("string response: " + strInfo);
             try
             {
                 string[] attrs = strInfo.Split(' ');

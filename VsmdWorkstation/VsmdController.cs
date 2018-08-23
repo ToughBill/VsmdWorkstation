@@ -54,6 +54,7 @@ namespace VsmdWorkstation
             {
                 return new InitResult() { ErrorMsg="打开串口失败!", IsSuccess = false };
             }
+            m_vsmd.OutputCommandLog = GeneralSettings.GetInstance().OutputCommandLog;
 
             List<string> errAxis = new List<string>();
             m_axisX = m_vsmd.createVsmdInfo(1);

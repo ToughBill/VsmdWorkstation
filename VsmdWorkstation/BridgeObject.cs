@@ -25,8 +25,6 @@ namespace VsmdWorkstation
         private JArray m_selectedTubes;
         private int m_dripIndex;
 
-        private float m_oriSpeedY, m_oriZsdX, m_oriZsdY;
-
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
@@ -48,7 +46,7 @@ namespace VsmdWorkstation
         public void StartDrip(string args)
         {
             m_selectedTubes = (JArray)JsonConvert.DeserializeObject(args.ToString());
-            m_dripIndex = 0;
+            m_dripIndex = -1;
             m_moveThread = new Thread(new ThreadStart(DripThread));
             m_moveThread.Start();
         }
@@ -97,15 +95,16 @@ namespace VsmdWorkstation
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
             await BeforeMove();
-
+            int dripInterval = GeneralSettings.GetInstance().DripInterval;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            for (int i = m_dripIndex; i < jsArr.Count; i++)
+            for (int i = m_dripIndex + 1; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
                     break;
                 JObject obj = (JObject)jsArr[i];
                 int row = int.Parse(obj["row"].ToString());
                 int col = int.Parse(obj["column"].ToString());
+                SetDrippingTube(row, col);
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
 
@@ -116,7 +115,7 @@ namespace VsmdWorkstation
                 Thread.Sleep(500);
                 await vsmdController.S3Off(VsmdAxis.Z);
                 // wait 5 seconds, this time should be changed according to the volume dripped
-                Thread.Sleep(5000);
+                Thread.Sleep(dripInterval);
 
                 // change the screen to start
                 await vsmdController.S3On(VsmdAxis.Z);
@@ -146,27 +145,8 @@ namespace VsmdWorkstation
             if (!m_isFromPause)
             {
                 VsmdController vsmdController = VsmdController.GetVsmdController();
-                //m_oriSpeedY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
-                //m_oriZsdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-                //m_oriZsdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Zsd);
-                //if (m_oriZsdX < 0.0)
-                //{
-                //    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdX);
-                //}
-                //if (m_oriZsdY < 0.0)
-                //{
-                //    await vsmdController.SetZsd(VsmdAxis.X, -m_oriZsdY);
-                //}
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
-
-                //if (m_oriSpeedY < 0.0)
-                //{
-                //    await vsmdController.SetSpeed(VsmdAxis.Y, -m_oriSpeedY);
-                //}
-                //await vsmdController.Move(VsmdAxis.Y);
-                //await vsmdController.Org(VsmdAxis.Y);
-                //await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY > 0.0 ? -m_oriSpeedY : m_oriSpeedY);
             }
 
             return true;
@@ -176,10 +156,6 @@ namespace VsmdWorkstation
             if (m_dripStatus != DripStatus.PauseMove)
             {
                 CallJS("JsExecutor.afterMove();");
-                //VsmdController vsmdController = VsmdController.GetVsmdController();
-                //await vsmdController.SetZsd(VsmdAxis.X, m_oriZsdX);
-                //await vsmdController.SetZsd(VsmdAxis.Y, m_oriZsdY);
-                //await vsmdController.SetSpeed(VsmdAxis.Y, m_oriSpeedY);
 
                 m_isFromPause = false;
 
@@ -206,14 +182,14 @@ namespace VsmdWorkstation
             JObject targetTube = (JObject)JsonConvert.DeserializeObject(args);
             int row = int.Parse(targetTube["row"].ToString());
             int col = int.Parse(targetTube["col"].ToString());
-
+            SetDrippingTube(row, col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
             await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             Thread.Sleep(500);
             await vsmdController.S3On(VsmdAxis.Z);
             Thread.Sleep(500);
             await vsmdController.S3Off(VsmdAxis.Z);
-            Thread.Sleep(5000);
+            Thread.Sleep(GeneralSettings.GetInstance().DripInterval);
 
             //change the screen to start interface
             await vsmdController.S3On(VsmdAxis.Z);
@@ -222,6 +198,10 @@ namespace VsmdWorkstation
             Thread.Sleep(500);
 
             MoveCallBack(row, col);
+        }
+        private void SetDrippingTube(int row, int col)
+        {
+            CallJS("JsExecutor.setDrippingTube(" + row + "," + col + ");");
         }
         private void MoveCallBack(int row, int col)
         {

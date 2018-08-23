@@ -35,10 +35,9 @@
 	            window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
 	            $('#tubesContainer').contextMenu(gridCtxMenu, { triggerOn: 'contextmenu' });
 	        }
-	        //addContextMenu();
 		},
 		moveCallBack: function(row, col) {
-			window.__grid.getCell(row, col).addClass("moveDone");
+		    window.__grid.moveCallBack(row, col);
 		},
 		beforeMove: function () {
 			window.__grid.enterMoveMode();
@@ -53,6 +52,9 @@
 		    if (window.externalObj) {
 		        window.externalObj.StartDrip(JSON.stringify(JsExecutor.getSelectedTubes()));
 		    }
+		},
+		setDrippingTube: function(row, col){
+		    window.__grid.setDrippingTube(row, col);
 		},
 		pauseMove: function () {
 		    window.__grid.pauseMove();
