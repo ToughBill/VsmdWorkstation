@@ -90,6 +90,13 @@
     <Compile Include="ConnectVsmd.Designer.cs">
       <DependentUpon>ConnectVsmd.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneralSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeneralSettingFrm.Designer.cs">
+      <DependentUpon>GeneralSettingFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralSettings.cs" />
     <Compile Include="ItemListFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectVsmd.resx">
       <DependentUpon>ConnectVsmd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralSettingFrm.resx">
+      <DependentUpon>GeneralSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemListFrm.resx">
       <DependentUpon>ItemListFrm.cs</DependentUpon>

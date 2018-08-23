@@ -32,6 +32,7 @@ namespace VsmdWorkstation
         {
             InitStatusBar();
             InitVsmdConnection();
+            GeneralSettings.GetInstance().LoadGeneralSettings();
             BoardSetting.GetInstance().LoadBoardSettings();
         }
         private void InitStatusBar()
@@ -91,6 +92,13 @@ namespace VsmdWorkstation
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             VsmdController.GetVsmdController().Dispose();
+        }
+
+        private void tsmGenaralSetting_Click(object sender, EventArgs e)
+        {
+            GeneralSettingFrm frm = new GeneralSettingFrm();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

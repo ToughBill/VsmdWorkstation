@@ -341,11 +341,13 @@ namespace VsmdLib
         {
             if(log[log.Length - 1] == '\n')
             {
-                Debug.Write(log);
+                //Debug.Write(log); 
+                Debugger.Log(0, "VSMD", log);
             }
             else
             {
-                Debug.WriteLine(log);
+                //Debug.WriteLine(log);
+                Debugger.Log(0, "VSMD", log + '\n');
             }
         }
         [ConditionalAttribute("DEBUG")]
