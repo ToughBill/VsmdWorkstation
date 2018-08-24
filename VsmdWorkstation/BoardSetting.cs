@@ -134,8 +134,9 @@ namespace VsmdWorkstation
                 {
                     OnDataUpdate(m_boardSettings);
                 }
-            } catch (Exception)
+            } catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 ret = false;
             }
             return ret;

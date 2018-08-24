@@ -50,7 +50,7 @@ namespace VsmdWorkstation
             CefSettings setting = new CefSettings();
             setting.RemoteDebuggingPort = 7073;
             Cef.Initialize(setting);
-            string url = Application.StartupPath + @"\..\..\..\html\tubeGrid.html";
+            string url = Application.StartupPath + @"\html\tubeGrid.html";
             m_browser = new ChromiumWebBrowser(url);
             panelGrid.Controls.Add(m_browser);
             m_browser.Dock = DockStyle.Fill;

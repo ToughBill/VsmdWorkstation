@@ -41,7 +41,10 @@ namespace VsmdWorkstation
                 lblCurInfo.Visible = false;
             }
             cmbPort.Items.AddRange(SerialPort.GetPortNames());
-            cmbPort.SelectedIndex = 0;
+            if(cmbPort.Items.Count > 0)
+            {
+                cmbPort.SelectedIndex = 0;
+            }
             cmbBaudrate.SelectedIndex = 2;
             IsClosed = false;
         }
