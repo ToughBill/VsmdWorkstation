@@ -54,6 +54,7 @@ namespace VsmdWorkstation
         {
             DripStatus preMode = m_dripStatus;
             m_dripStatus = DripStatus.Idle;
+            m_selectedTubes.Clear();
             if (preMode == DripStatus.PauseMove)
             {
                 AfterMove();
@@ -160,7 +161,8 @@ namespace VsmdWorkstation
                 m_isFromPause = false;
 
                 m_dripStatus = DripStatus.Idle;
-                if(onDripFinished != null)
+                m_selectedTubes.Clear();
+                if (onDripFinished != null)
                 {
                     onDripFinished();
                 }

@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: VsmdLib.VsmdInfo
-// Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
-// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
@@ -12,12 +6,6 @@ using System.Text;
 
 namespace VsmdLib
 {
-    public enum VsmdAttribute
-    {
-        Cid,
-        Spd,
-        Zsd
-    }
     public class VsmdInfo
     {
         /// <summary>command list</summary>
@@ -37,24 +25,14 @@ namespace VsmdLib
         /// <summary>current status bits</summary>
         private uint cur_status;
 
-        private Dictionary<string, VsmdAttribute> m_attrNameMap;
-        private Dictionary<VsmdAttribute, float> m_vsmdAttrs;
-
-        
         /// <summary>constructor</summary>
         /// <param name="cid">slave device id</param>
         public VsmdInfo(int cid)
         {
             this.cid = cid;
             this.isOnline = true;
-
-            m_attrNameMap = new Dictionary<string, VsmdAttribute>();
-            m_attrNameMap.Add("cid", VsmdAttribute.Cid);
-            m_attrNameMap.Add("spd", VsmdAttribute.Spd);
-            m_attrNameMap.Add("zsd", VsmdAttribute.Zsd);
-            m_vsmdAttrs = new Dictionary<VsmdAttribute, float>();
         }
-        
+
         public SerialPort comPort
         {
             set
@@ -69,15 +47,6 @@ namespace VsmdLib
         /// <summary>check device is online</summary>
         public bool isOnline { set; get; }
 
-        /// <summary>
-        /// get axis attribute value
-        /// </summary>
-        /// <param name="attr"></param>
-        /// <returns></returns>
-        public float GetAttributeValue(VsmdAttribute attr)
-        {
-            return m_vsmdAttrs[attr];
-        }
         /// <summary>add command to list</summary>
         /// <param name="cmd">command string</param>
         public void addCommand(string cmd)
@@ -85,7 +54,7 @@ namespace VsmdLib
             if (this.com_port == null || !this.com_port.IsOpen)
                 return;
             lock (this.cmdList)
-                this.cmdList.Add(cmd);
+              this.cmdList.Add(cmd);
         }
 
         /// <summary>send command process from cmdList</summary>
@@ -96,7 +65,7 @@ namespace VsmdLib
             {
                 str = this.cmdList[0];
                 lock (this.cmdList)
-                    this.cmdList.RemoveAt(0);
+                  this.cmdList.RemoveAt(0);
             }
             else if (this.flgAutoUpdate)
                 str = "sts";
@@ -163,13 +132,10 @@ namespace VsmdLib
         /// <param name="res">response data</param>
         public void parse(byte[] res)
         {
-
             switch (res[2])
             {
                 case 1:
-                case 3:
                     this.devInfo = Encoding.Default.GetString(res, 3, res.Length - 6);
-                    ParseAttributes(this.devInfo);
                     break;
                 case 2:
                     byte[] data = new byte[5];
@@ -182,40 +148,6 @@ namespace VsmdLib
                     int num = (int)this.cur_status & 512;
                     break;
             }
-        }
-        public void cfg()
-        {
-            this.addCommand("cfg");
-        }
-        /// <summary>
-        /// parse all attribte values
-        /// </summary>
-        /// <param name="strInfo"></param>
-        private void ParseAttributes(string strInfo)
-        {
-            System.Diagnostics.Debug.WriteLine("&& result : " + strInfo + Environment.NewLine);
-            try
-            {
-                string[] attrs = strInfo.Split(' ');
-                for (int i = 0; i < attrs.Length; i++)
-                {
-                    if (string.IsNullOrWhiteSpace(attrs[i]))
-                    {
-                        continue;
-                    }
-                    string[] pair = attrs[i].Split('=');
-                    if (m_attrNameMap.ContainsKey(pair[0]))
-                    {
-                        m_vsmdAttrs[m_attrNameMap[pair[0]]] = float.Parse(pair[1]);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-            }
-            
-            
         }
 
         /// <summary>current speed</summary>
@@ -287,7 +219,6 @@ namespace VsmdLib
         public void cfgSpd(float spd)
         {
             this.addCommand("cfg spd=" + spd.ToString("f"));
-            m_vsmdAttrs[VsmdAttribute.Spd] = spd;
         }
 
         /// <summary>config acceleration</summary>
@@ -423,14 +354,6 @@ namespace VsmdLib
         public void cfgS6(int mode)
         {
             this.addCommand("cfg s6=" + mode.ToString("d"));
-        }
-        /// <summary>
-        /// config zsd
-        /// </summary>
-        /// <param name="speed"></param>
-        public void cfgZsd(float speed)
-        {
-            this.addCommand("cfg zsd=" + speed.ToString());
         }
 
         /// <summary>config zero parameters</summary>

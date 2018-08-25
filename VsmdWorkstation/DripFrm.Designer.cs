@@ -38,7 +38,6 @@ namespace VsmdWorkstation
             this.btnPause = new System.Windows.Forms.Button();
             this.btnRestGrid = new System.Windows.Forms.Button();
             this.btnDevTools = new System.Windows.Forms.Button();
-            this.btnResetControler = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -129,22 +128,11 @@ namespace VsmdWorkstation
             this.btnDevTools.Visible = false;
             this.btnDevTools.Click += new System.EventHandler(this.btnDevTools_Click);
             // 
-            // btnResetControler
-            // 
-            this.btnResetControler.Location = new System.Drawing.Point(647, 10);
-            this.btnResetControler.Name = "btnResetControler";
-            this.btnResetControler.Size = new System.Drawing.Size(75, 23);
-            this.btnResetControler.TabIndex = 12;
-            this.btnResetControler.Text = "重置VSMD";
-            this.btnResetControler.UseVisualStyleBackColor = true;
-            this.btnResetControler.Click += new System.EventHandler(this.btnResetControler_Click);
-            // 
             // DripFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(881, 545);
-            this.Controls.Add(this.btnResetControler);
             this.Controls.Add(this.btnDevTools);
             this.Controls.Add(this.btnRestGrid);
             this.Controls.Add(this.btnPause);
@@ -172,7 +160,6 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnRestGrid;
         private System.Windows.Forms.Button btnDevTools;
-        private System.Windows.Forms.Button btnResetControler;
     }
 }
 

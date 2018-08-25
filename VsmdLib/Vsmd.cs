@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: VsmdLib.Vsmd
-// Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
-// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
@@ -136,11 +130,6 @@ namespace VsmdLib
                         this.waitResTimer.start(500000L);
                         this.flgResWaiting = true;
                         this.comPort.Write(this.curCommand);
-                        if(this.curCommand.IndexOf("sts") < 0)
-                        {
-                            System.Diagnostics.Debug.WriteLine("send command: " + this.curCommand + Environment.NewLine);
-                        }
-                        
                     }
                     ++index;
                     if (index >= this.objList.Count)
@@ -154,16 +143,11 @@ namespace VsmdLib
                         this.flgResWaiting = false;
                         this.retryCnt = 0;
                         vsmdInfo.isOnline = false;
-                        System.Diagnostics.Debug.WriteLine("fail to get result, vsmdInfo.isOnline = false" + Environment.NewLine);
                     }
                     else
-                    {
                         this.comPort.Write(this.curCommand);
-                        System.Diagnostics.Debug.WriteLine("retry " + this.retryCnt.ToString() + Environment.NewLine);
-                    }
-                        
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(0);
             }
         }
 

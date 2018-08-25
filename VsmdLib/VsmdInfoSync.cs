@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: VsmdLib.VsmdInfo
-// Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
-// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
@@ -13,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace VsmdLib
 {
+    public enum VsmdAttribute
+    {
+        Cid,
+        Spd,
+        Zsd
+    }
     public class VsmdInfoSync
     {
         /// <summary>command list</summary>
@@ -514,8 +514,7 @@ namespace VsmdLib
             SendCommandImpl("mov");
             await Task.Delay(100);
             int curTryCnt = 0;
-            int maxCnt = 25 * 1000 / 20;
-            //int maxCnt = (int)(MAX_STROKE_Y / this.GetAttributeValue(VsmdAttribute.Spd)) + 2; 
+            int maxCnt = 30 * 1000 / 20;
             while (curTryCnt < maxCnt)
             {
                 curTryCnt++;
@@ -544,7 +543,7 @@ namespace VsmdLib
             await Task.Delay(100);
             int curTryCnt = 0;
             //int maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
-            int maxCnt = 25 * 1000 / 20;
+            int maxCnt = 30 * 1000 / 20;
             while (curTryCnt < maxCnt)
             {
                 curTryCnt++;

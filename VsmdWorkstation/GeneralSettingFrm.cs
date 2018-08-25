@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
@@ -23,8 +24,16 @@ namespace VsmdWorkstation
             meta.DripInterval = (int)numDripInter.Value;
             meta.MoveSpeed = float.Parse(txtMoveSpd.Text.Trim());
             meta.OutputCommandLog = ckbEnableCmdLog.Checked;
-            GeneralSettings.GetInstance().Save();
-            this.Close();
+            bool retVal = GeneralSettings.GetInstance().Save();
+            if (retVal)
+            {
+                StatusBar.DisplayMessage(MessageType.Info, "设置成功！");
+                this.Close();
+            }
+            else
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "设置失败！");
+            }
         }
 
         private void GeneralSettingFrm_Load(object sender, EventArgs e)

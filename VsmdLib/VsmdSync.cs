@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: VsmdLib.Vsmd
-// Assembly: VsmdLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6A01B76B-246D-4E84-8347-E0FC1DCA7B8D
-// Assembly location: C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\sdk\VsmdLib.dll
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.Ports;
@@ -251,7 +245,7 @@ namespace VsmdLib
             m_isWaitingResponse = true;
             return true;
         }
-        public async Task<bool> SendCommandSync(string cmd, int waitInterval = 10, int waitCount = 50)
+        public async Task<bool> SendCommandSync(string cmd, int waitInterval = VsmdConstVars.Default_Wait_Interval, int waitCount = VsmdConstVars.Default_Wait_Count)
         {
             bool returnVal = true;
             this.comPort.Write(cmd);
@@ -265,7 +259,7 @@ namespace VsmdLib
             }
             return returnVal;
         }
-        public async Task<bool> WaitResponse(int waitInterval = 10, int waitCount = 50)
+        public async Task<bool> WaitResponse(int waitInterval = VsmdConstVars.Default_Wait_Interval, int waitCount = VsmdConstVars.Default_Wait_Count)
         {
             int curWaitCnt = 0;
             while(curWaitCnt < waitCount)
