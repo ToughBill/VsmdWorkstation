@@ -2,13 +2,8 @@
 using CefSharp.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
@@ -23,7 +18,7 @@ namespace VsmdWorkstation
         private Thread m_moveThread;
         private DripStatus m_dripStatus = DripStatus.Idle;
         private bool m_isFromPause = false;
-        private JArray m_selectedTubes;
+        private JArray m_selectedTubes = new JArray();
         private int m_dripIndex;
         private static bool m_cefInitialized;
 
@@ -50,9 +45,40 @@ namespace VsmdWorkstation
             if (!vsmdController.IsInitialized())
             {
                 StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
-                //return;
+                return;
             }
-            CallJS("JsExecutor.startDrip()");
+            float spdX = vsmdController.GetAxis(VsmdAxis.X).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+            float spdY = vsmdController.GetAxis(VsmdAxis.Y).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+            float spdZ = vsmdController.GetAxis(VsmdAxis.Z).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+            string errAxis = "";
+            if(spdX <= 0.0)
+            {
+                errAxis += "X";
+            }
+            if (spdY <= 0.0)
+            {
+                if(errAxis.Length > 0)
+                {
+                    errAxis += ",";
+                }
+                errAxis += "Y";
+            }
+            if (spdZ <= 0.0)
+            {
+                if (errAxis.Length > 0)
+                {
+                    errAxis += ",";
+                }
+                errAxis += "Z";
+            }
+            if(errAxis.Length > 0)
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "控制轴" + errAxis + "速度不能为0！");
+            }
+            else
+            {
+                CallJS("JsExecutor.startDrip()");
+            }
         }
         /// <summary>
         /// called from JS
@@ -95,7 +121,9 @@ namespace VsmdWorkstation
         public void BuildGrid(BoardMeta board)
         {
             JObject opts = new JObject();
-            opts.Add("blockCount", board.BlockCount);
+            opts.Add("type", board.Type);
+            opts.Add("gridCount", board.GridCount);
+            opts.Add("siteCount", board.SiteCount);
             opts.Add("rowCount", board.RowCount);
             opts.Add("columnCount", board.ColumnCount);
 
@@ -107,7 +135,6 @@ namespace VsmdWorkstation
         private async void DripThread()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();
-            //await vsmdController.ResetVsmdController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
             await BeforeMove();
@@ -152,7 +179,6 @@ namespace VsmdWorkstation
             {
                 onGridPageDomLoaded();
             }
-            //BuildGrid(BoardSettings.GetCurrentBoardSetting());
         }
         private async Task<bool> BeforeMove()
         {

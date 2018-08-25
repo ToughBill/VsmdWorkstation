@@ -145,7 +145,7 @@ namespace VsmdWorkstation
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "滴液";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
-            this.Load += new System.EventHandler(this.mainFrm_Load);
+            this.Load += new System.EventHandler(this.DripFrm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

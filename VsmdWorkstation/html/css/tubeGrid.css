@@ -4,7 +4,11 @@
     border: 2px solid;
     text-align: center;
 }
-.tubeGrid>table{
+#tubesContainer table{
+    width: 1px;
+    margin: 0 auto;
+}
+#tubesContainer.grid>table{
     display: inline-block !important;
 }
 .grid-row{
@@ -25,14 +29,26 @@
     border-top: 0 !important;
     text-align: center;
 }
-.grid-cell{
-    height: 20px;
-    width: 20px;
+.grid .grid-cell{
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     border: 2px solid #6699CC;
     display: inline-block;
     margin-left: 5px;
 
+}
+.site .grid-cell{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 2px solid #6699CC;
+    display: inline-block;
+    margin-left: 5px;
+
+}
+th.grid-row-number{
+    min-width: 25px;
 }
 .grid-cell.flickerColor{
     background-color: blue !important;

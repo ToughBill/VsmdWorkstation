@@ -50,7 +50,6 @@ namespace VsmdWorkstation
             this.txtCidX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnAddCmd = new VsmdWorkstation.Controls.ButtonEx();
             this.txtZsdY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label14 = new System.Windows.Forms.Label();
             this.btnOffY = new VsmdWorkstation.Controls.ButtonEx();
@@ -304,7 +303,6 @@ namespace VsmdWorkstation
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnAddCmd);
             this.groupBox2.Controls.Add(this.txtZsdY);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.btnOffY);
@@ -325,21 +323,10 @@ namespace VsmdWorkstation
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(234, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(216, 319);
+            this.groupBox2.Size = new System.Drawing.Size(216, 289);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Y轴";
-            // 
-            // btnAddCmd
-            // 
-            this.btnAddCmd.Location = new System.Drawing.Point(8, 284);
-            this.btnAddCmd.Name = "btnAddCmd";
-            this.btnAddCmd.Size = new System.Drawing.Size(80, 23);
-            this.btnAddCmd.TabIndex = 22;
-            this.btnAddCmd.Text = "Add Command";
-            this.btnAddCmd.ToolTip = "Add Command";
-            this.btnAddCmd.UseVisualStyleBackColor = true;
-            this.btnAddCmd.Click += new System.EventHandler(this.btnAddCmd_Click);
             // 
             // txtZsdY
             // 
@@ -857,6 +844,5 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Label label14;
         private TextBoxEx txtZsdZ;
         private System.Windows.Forms.Label label15;
-        private ButtonEx btnAddCmd;
     }
 }

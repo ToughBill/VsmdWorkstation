@@ -1,12 +1,4 @@
-﻿using CefSharp;
-using CefSharp.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VsmdLib;
@@ -52,21 +44,6 @@ namespace VsmdWorkstation
             txtPosZ.Text = az.curPos.ToString();
             txtSpeedZ.Text = az.GetAttributeValue(VsmdAttribute.Spd).ToString();
             txtZsdZ.Text = az.GetAttributeValue(VsmdAttribute.Zsd).ToString();
-
-            //VsmdInfo axisX = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
-            //txtCidX.Text = axisX.Cid.ToString();
-            //txtPosX.Text = axisX.curPos.ToString();
-            //txtSpeedX.Text = axisX.curSpd.ToString();
-
-            //VsmdInfo axisY = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
-            //txtCidY.Text = axisY.Cid.ToString();
-            //txtPosY.Text = axisY.curPos.ToString();
-            //txtSpeedY.Text = axisY.curSpd.ToString();
-
-            //VsmdInfo axisZ = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
-            //txtCidZ.Text = axisZ.Cid.ToString();
-            //txtPosZ.Text = axisZ.curPos.ToString();
-            //txtSpeedZ.Text = axisZ.curSpd.ToString();
         }
         private void DisableAllControls()
         {
@@ -364,11 +341,6 @@ namespace VsmdWorkstation
         private async void btnS3Off_Click(object sender, EventArgs e)
         {
             await VsmdController.GetVsmdController().S3Off(VsmdAxis.Z);
-        }
-
-        private void btnAddCmd_Click(object sender, EventArgs e)
-        {
-            VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y).addCommand("cfg\n");
         }
     }
 }

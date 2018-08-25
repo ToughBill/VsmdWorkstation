@@ -14,34 +14,29 @@ namespace VsmdWorkstation
     public class BoardMeta
     {
         public int ID { get; set; }
+        public int Type { get; set; }
         public string Name { get; set; }
-        public int BlockCount { get; set; }
+        public int GridCount { get; set; }
+        public int SiteCount { get; set; }
         public int RowCount { get; set; }
         public int ColumnCount { get; set; }
-        /// <summary>
-        /// 第一个孔距离原点X距离
-        /// </summary>
-        public int FirstTubeX { get; set; }
-        /// <summary>
-        /// 第一个孔距离原点Y距离
-        /// </summary>
-        public int FirstTubeY { get; set; }
-        /// <summary>
-        /// 孔距X
-        /// </summary>
-        public int TubeDistanceX { get; set; }
-        /// <summary>
-        /// 孔距Y
-        /// </summary>
-        public int TubeDistanceY { get; set; }
+        
+        public int Site1FirstTubeX { get; set; }
+        
+        public int Site1FirstTubeY { get; set; }
+        
+        public int Site2FirstTubeX { get; set; }
+        
+        public int Site2FirstTubeY { get; set; }
         /// <summary>
         /// 组距
         /// </summary>
         public int BlockDistanceX { get; set; }
-        /// <summary>
-        /// 圆孔直径
-        /// </summary>
-        public int TubeDiameter { get; set; }
+
+        public int Grid1FirstTubeX { get; set; }
+        public int Grid1FirstTubeY { get; set; }
+        public int Grid2FirstTubeX { get; set; }
+        public int Grid2FirstTubeY { get; set; }
 
         public override string ToString()
         {
@@ -68,11 +63,11 @@ namespace VsmdWorkstation
             {
                 case VsmdAxis.X:
                     int blockIdx = (coord - 1) / CurrentBoard.ColumnCount;
-                    fpox = CurrentBoard.FirstTubeX + CurrentBoard.BlockDistanceX * blockIdx + CurrentBoard.TubeDistanceX * (blockIdx * (CurrentBoard.ColumnCount - 1) + (coord - 1) % CurrentBoard.ColumnCount);
+                    fpox = CurrentBoard.Site1FirstTubeX + CurrentBoard.BlockDistanceX * blockIdx + CurrentBoard.Site2FirstTubeX * (blockIdx * (CurrentBoard.ColumnCount - 1) + (coord - 1) % CurrentBoard.ColumnCount);
                     //fpox = FirstTubeX + (coord - 1) * TubeDistanceX;
                     break;
                 case VsmdAxis.Y:
-                    fpox = CurrentBoard.FirstTubeY + (coord - 1) * CurrentBoard.TubeDistanceY;
+                    fpox = CurrentBoard.Site1FirstTubeY + (coord - 1) * CurrentBoard.Site2FirstTubeY;
                     break;
                 default:
                     break;

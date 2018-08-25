@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VsmdWorkstation.Controls;
 
@@ -28,6 +21,7 @@ namespace VsmdWorkstation
             if (retVal)
             {
                 StatusBar.DisplayMessage(MessageType.Info, "设置成功！");
+                VsmdController.GetVsmdController().SetOutputCommandLogFlag(meta.OutputCommandLog);
                 this.Close();
             }
             else
@@ -39,6 +33,9 @@ namespace VsmdWorkstation
         private void GeneralSettingFrm_Load(object sender, EventArgs e)
         {
             InitFormData();
+#if DEBUG
+            ckbEnableCmdLog.Visible = true;
+#endif
         }
 
         private void InitFormData()

@@ -42,7 +42,7 @@ namespace VsmdWorkstation
             }
         }
 
-        private void mainFrm_Load(object sender, EventArgs e)
+        private void DripFrm_Load(object sender, EventArgs e)
         {
 #if DEBUG
             btnDevTools.Visible = true;
@@ -57,11 +57,6 @@ namespace VsmdWorkstation
             m_browser = new ChromiumWebBrowser(url);
             panelGrid.Controls.Add(m_browser);
             m_browser.Dock = DockStyle.Fill;
-            //m_browser.Left = 0;
-            //m_browser.Width = this.Width;
-            //m_browser.Top = toolStrip.Bottom;
-            //m_browser.Height = statusBarEx.Top - toolStrip.Bottom;
-            //m_browser.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
 
             m_externalObj = new BridgeObject(m_browser);
             m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
@@ -94,14 +89,6 @@ namespace VsmdWorkstation
             }
         }
 
-        private void InitVsmdController()
-        {
-            //bool ret = VsmdController.GetVsmdController().Init("COM3", 9600);
-            //if (!ret)
-            //{
-            //    statusBarEx.DisplayMessage(MessageType.Error, "初始化控制器失败！");
-            //}
-        }
         private void OnGridPageDomLoaded()
         {
             if(BoardSetting.GetInstance().CurrentBoard != null)
@@ -116,14 +103,8 @@ namespace VsmdWorkstation
             {
                 UpdateButtons();
             }));
-            //
         }
-        private void InitTubeGrid()
-        {
-            //BoardSettings curBoard = BoardSettings.GetCurrentBoardSetting();
-            //System.Threading.Thread.Sleep(2000);
-            //m_externalObj.BuildGrid(curBoard);
-        }
+
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
             BoardSettingFrm frm = new BoardSettingFrm();

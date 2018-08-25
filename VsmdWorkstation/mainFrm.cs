@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VsmdWorkstation.Controls;
 
@@ -52,8 +44,7 @@ namespace VsmdWorkstation
                 {
                     m_dripForm = new DripFrm();
                     m_dripForm.MdiParent = this;
-                    m_dripForm.WindowState = FormWindowState.Maximized;
-                    //frm.WindowState = FormWindowState.Maximized;
+                    //m_dripForm.WindowState = FormWindowState.Maximized;
                     //m_dripForm.Dock = DockStyle.Fill;
                     m_dripForm.Show();
                     m_connectForm.Dispose();
@@ -110,7 +101,7 @@ namespace VsmdWorkstation
                 {
                     m_dripForm = new DripFrm();
                     m_dripForm.MdiParent = this;
-                    m_dripForm.WindowState = FormWindowState.Maximized;
+                    //m_dripForm.WindowState = FormWindowState.Maximized;
                     m_dripForm.Show();
                 }
                 else

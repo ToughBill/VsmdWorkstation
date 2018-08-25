@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using VsmdLib;
-using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
@@ -33,7 +26,11 @@ namespace VsmdWorkstation
         private const int MAX_STROKE_Y = 32000;
         private string m_port;
         private int m_baudrate;
-         
+        
+        public void SetOutputCommandLogFlag(bool flag)
+        {
+            m_vsmd.OutputCommandLog = flag;
+        }
         public async Task<InitResult> Init(string port, int baudrate)
         {
             if(m_initialized && port == m_port && baudrate == m_baudrate)

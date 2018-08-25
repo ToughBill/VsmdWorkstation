@@ -1,18 +1,6 @@
-﻿using CefSharp;
-using CefSharp.WinForms;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using VsmdLib;
 using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
@@ -33,6 +21,7 @@ namespace VsmdWorkstation
 
         private void BoardSettingFrm_Load(object sender, EventArgs e)
         {
+            panelGrid.Top = panelSite.Top;
             m_curMeta = new BoardMeta();
             FillData();
             m_mode = FORM_MODE.Add;
@@ -107,24 +96,24 @@ namespace VsmdWorkstation
                 meta.ID = BoardSetting.GetInstance().GetNextBoardNum();
             }
             meta.Name = txtName.Text.Trim();
-            meta.BlockCount = int.Parse(txtBlockCnt.Text.Trim());
-            meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
-            meta.ColumnCount = int.Parse(txtColCnt.Text.Trim());
+            //meta.GridCount = int.Parse(txtBlockCnt.Text.Trim());
+            //meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
+            //meta.ColumnCount = int.Parse(txtColCnt.Text.Trim());
             int val = 0;
             int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
-            meta.FirstTubeX = val;
+            meta.Site1FirstTubeX = val;
 
             val = 0;
             int.TryParse(txtFirstTubePosY.Text.Trim(), out val);
-            meta.FirstTubeY = val;
+            meta.Site1FirstTubeY = val;
 
             val = 0;
             int.TryParse(txtTubeDistX.Text.Trim(), out val);
-            meta.TubeDistanceX = val;
+            meta.Site2FirstTubeX = val;
 
             val = 0;
             int.TryParse(txtTubeDistY.Text.Trim(), out val);
-            meta.TubeDistanceY = val;
+            meta.Site2FirstTubeY = val;
 
             val = 0;
             int.TryParse(txtBlockDist.Text.Trim(), out val);
@@ -139,30 +128,30 @@ namespace VsmdWorkstation
                 txtName.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtBlockCnt.Text))
-            {
-                ShowMessage(MessageType.Error, "规格-组不能为空！");
-                txtBlockCnt.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtRowCnt.Text))
-            {
-                ShowMessage(MessageType.Error, "规格-行不能为空！");
-                txtRowCnt.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtColCnt.Text))
-            {
-                ShowMessage(MessageType.Error, "规格-列不能为空！");
-                txtColCnt.Focus();
-                return false;
-            }
-            if (int.Parse(txtBlockCnt.Text) > 1 && string.IsNullOrWhiteSpace(txtBlockDist.Text))
-            {
-                ShowMessage(MessageType.Error, "组件不能为空！");
-                txtBlockDist.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(txtBlockCnt.Text))
+            //{
+            //    ShowMessage(MessageType.Error, "规格-组不能为空！");
+            //    txtBlockCnt.Focus();
+            //    return false;
+            //}
+            //if (string.IsNullOrWhiteSpace(txtRowCnt.Text))
+            //{
+            //    ShowMessage(MessageType.Error, "规格-行不能为空！");
+            //    txtRowCnt.Focus();
+            //    return false;
+            //}
+            //if (string.IsNullOrWhiteSpace(txtColCnt.Text))
+            //{
+            //    ShowMessage(MessageType.Error, "规格-列不能为空！");
+            //    txtColCnt.Focus();
+            //    return false;
+            //}
+            //if (int.Parse(txtBlockCnt.Text) > 1 && string.IsNullOrWhiteSpace(txtBlockDist.Text))
+            //{
+            //    ShowMessage(MessageType.Error, "组件不能为空！");
+            //    txtBlockDist.Focus();
+            //    return false;
+            //}
             if (string.IsNullOrWhiteSpace(txtFirstTubePosX.Text))
             {
                 ShowMessage(MessageType.Error, "首孔位置不能为空！");
@@ -177,13 +166,13 @@ namespace VsmdWorkstation
             }
             if (string.IsNullOrWhiteSpace(txtTubeDistX.Text))
             {
-                ShowMessage(MessageType.Error, "孔距不能为空！");
+                ShowMessage(MessageType.Error, "尾孔位置不能为空！");
                 txtTubeDistX.Focus();
                 return false;
             }
             if (string.IsNullOrWhiteSpace(txtTubeDistY.Text))
             {
-                ShowMessage(MessageType.Error, "孔距不能为空！");
+                ShowMessage(MessageType.Error, "尾孔位置不能为空！");
                 txtTubeDistY.Focus();
                 return false;
             }
@@ -239,14 +228,15 @@ namespace VsmdWorkstation
         private void FillData()
         {
             txtName.Text = m_curMeta.Name;
-            txtBlockCnt.Text = m_curMeta.BlockCount.ToString();
+            rbtGrid.Checked = m_curMeta.Type == 1;
+            //txtBlockCnt.Text = m_curMeta.GridCount.ToString();
             txtBlockDist.Text = m_curMeta.BlockDistanceX.ToString();
-            txtRowCnt.Text = m_curMeta.RowCount.ToString();
-            txtColCnt.Text = m_curMeta.ColumnCount.ToString();
-            txtFirstTubePosX.Text = m_curMeta.FirstTubeX.ToString();
-            txtFirstTubePosY.Text = m_curMeta.FirstTubeY.ToString();
-            txtTubeDistX.Text = m_curMeta.TubeDistanceX.ToString();
-            txtTubeDistY.Text = m_curMeta.TubeDistanceY.ToString();
+            //txtRowCnt.Text = m_curMeta.RowCount.ToString();
+            //txtColCnt.Text = m_curMeta.ColumnCount.ToString();
+            txtFirstTubePosX.Text = m_curMeta.Site1FirstTubeX.ToString();
+            txtFirstTubePosY.Text = m_curMeta.Site1FirstTubeY.ToString();
+            txtTubeDistX.Text = m_curMeta.Site2FirstTubeX.ToString();
+            txtTubeDistY.Text = m_curMeta.Site2FirstTubeY.ToString();
         }
 
         private void btnSetBlockDist_Click(object sender, EventArgs e)
@@ -276,6 +266,21 @@ namespace VsmdWorkstation
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             tsmiDelete.Enabled = (m_mode == FORM_MODE.Update);
+        }
+
+        private void rbtGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            SwitchPannel();
+        }
+
+        private void rbtSite_CheckedChanged(object sender, EventArgs e)
+        {
+            SwitchPannel();
+        }
+        private void SwitchPannel()
+        {
+            panelSite.Visible = rbtSite.Checked;
+            panelGrid.Visible = rbtGrid.Checked;
         }
     }
 }

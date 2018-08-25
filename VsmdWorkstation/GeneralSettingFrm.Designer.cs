@@ -53,6 +53,7 @@
             this.ckbEnableCmdLog.TabIndex = 0;
             this.ckbEnableCmdLog.Text = "输出VSMD命令日志（使用DbgView查看）";
             this.ckbEnableCmdLog.UseVisualStyleBackColor = true;
+            this.ckbEnableCmdLog.Visible = false;
             // 
             // label1
             // 
@@ -162,7 +163,7 @@
             this.txtMoveSpd.Location = new System.Drawing.Point(80, 23);
             this.txtMoveSpd.Margin = new System.Windows.Forms.Padding(2);
             this.txtMoveSpd.Name = "txtMoveSpd";
-            this.txtMoveSpd.Size = new System.Drawing.Size(94, 21);
+            this.txtMoveSpd.Size = new System.Drawing.Size(118, 21);
             this.txtMoveSpd.TabIndex = 7;
             this.txtMoveSpd.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
