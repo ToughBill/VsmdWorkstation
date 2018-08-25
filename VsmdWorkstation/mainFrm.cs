@@ -52,8 +52,9 @@ namespace VsmdWorkstation
                 {
                     m_dripForm = new DripFrm();
                     m_dripForm.MdiParent = this;
+                    m_dripForm.WindowState = FormWindowState.Maximized;
                     //frm.WindowState = FormWindowState.Maximized;
-                    m_dripForm.Dock = DockStyle.Fill;
+                    //m_dripForm.Dock = DockStyle.Fill;
                     m_dripForm.Show();
                     m_connectForm.Dispose();
                     m_connectForm = null;
@@ -99,6 +100,28 @@ namespace VsmdWorkstation
             GeneralSettingFrm frm = new GeneralSettingFrm();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void tsmDrip_Click(object sender, EventArgs e)
+        {
+            if (VsmdController.GetVsmdController().IsInitialized())
+            {
+                if (m_dripForm == null || !m_dripForm.IsOpened)
+                {
+                    m_dripForm = new DripFrm();
+                    m_dripForm.MdiParent = this;
+                    m_dripForm.WindowState = FormWindowState.Maximized;
+                    m_dripForm.Show();
+                }
+                else
+                {
+                    m_dripForm.BringToFront();
+                }
+            }
+            else
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
+            }
         }
     }
 }

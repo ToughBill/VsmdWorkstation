@@ -47,7 +47,7 @@
             // 
             this.ckbEnableCmdLog.AutoSize = true;
             this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 141);
-            this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableCmdLog.Name = "ckbEnableCmdLog";
             this.ckbEnableCmdLog.Size = new System.Drawing.Size(234, 16);
             this.ckbEnableCmdLog.TabIndex = 0;
@@ -72,7 +72,7 @@
             0,
             0});
             this.numDripInter.Location = new System.Drawing.Point(103, 17);
-            this.numDripInter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numDripInter.Margin = new System.Windows.Forms.Padding(2);
             this.numDripInter.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -100,7 +100,7 @@
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(68, 176);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
             this.btnOK.TabIndex = 4;
@@ -112,7 +112,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(165, 176);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 23);
             this.btnCancel.TabIndex = 5;
@@ -136,9 +136,9 @@
             this.groupBox1.Controls.Add(this.numDripInter);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(9, 9);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(263, 50);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -149,9 +149,9 @@
             this.groupBox2.Controls.Add(this.txtMoveSpd);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(9, 71);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(263, 55);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
@@ -160,7 +160,7 @@
             // txtMoveSpd
             // 
             this.txtMoveSpd.Location = new System.Drawing.Point(80, 23);
-            this.txtMoveSpd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMoveSpd.Margin = new System.Windows.Forms.Padding(2);
             this.txtMoveSpd.Name = "txtMoveSpd";
             this.txtMoveSpd.Size = new System.Drawing.Size(94, 21);
             this.txtMoveSpd.TabIndex = 7;
@@ -178,7 +178,9 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.ckbEnableCmdLog);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "GeneralSettingFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "通用设置";

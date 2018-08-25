@@ -1,4 +1,5 @@
-﻿using CefSharp.WinForms;
+﻿using CefSharp;
+using CefSharp.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -24,11 +25,25 @@ namespace VsmdWorkstation
         private bool m_isFromPause = false;
         private JArray m_selectedTubes;
         private int m_dripIndex;
+        private static bool m_cefInitialized;
+
+        public static void InitializeCef()
+        {
+            if (!m_cefInitialized)
+            {
+                CefSharpSettings.LegacyJavascriptBindingEnabled = true;
+                CefSettings setting = new CefSettings();
+                setting.RemoteDebuggingPort = 7073;
+                Cef.Initialize(setting);
+                m_cefInitialized = true;
+            }
+        }
 
         public BridgeObject(ChromiumWebBrowser browser)
         {
             m_browser = browser;
         }
+
         public void Move()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();

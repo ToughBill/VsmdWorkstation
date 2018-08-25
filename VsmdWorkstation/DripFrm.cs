@@ -27,10 +27,19 @@ namespace VsmdWorkstation
         private BridgeObject m_externalObj;
         private DripStatus m_dripStatus = DripStatus.Idle;
         private bool m_delayToBuildGrid = false;
+        private bool m_isOpened = true;
         public DripFrm()
         {
             InitializeComponent();
             InitBrowser();
+        }
+
+        public bool IsOpened
+        {
+            get
+            {
+                return m_isOpened;
+            }
         }
 
         private void mainFrm_Load(object sender, EventArgs e)
@@ -40,16 +49,10 @@ namespace VsmdWorkstation
 #endif
 
             InitBoardSettings();
-            //InitVsmdController();
-            
-            InitTubeGrid();
         }
         private void InitBrowser()
         {
-            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-            CefSettings setting = new CefSettings();
-            setting.RemoteDebuggingPort = 7073;
-            Cef.Initialize(setting);
+            BridgeObject.InitializeCef();
             string url = Application.StartupPath + @"\html\tubeGrid.html";
             m_browser = new ChromiumWebBrowser(url);
             panelGrid.Controls.Add(m_browser);
@@ -129,7 +132,11 @@ namespace VsmdWorkstation
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            if(m_dripStatus == DripStatus.Moving)
+            {
+                e.Cancel = true;
+            }
+            m_isOpened = false;
         }
 
         private void tsmDevTools_Click(object sender, EventArgs e)
