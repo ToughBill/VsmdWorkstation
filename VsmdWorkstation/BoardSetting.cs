@@ -11,6 +11,11 @@ using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
 {
+    public enum BoardType
+    {
+        Site = 1,
+        Grid = 2,
+    }
     public class BoardMeta
     {
         public int ID { get; set; }
@@ -24,7 +29,11 @@ namespace VsmdWorkstation
         public int Site1FirstTubeX { get; set; }
         
         public int Site1FirstTubeY { get; set; }
-        
+
+        public int Site1LastTubeX { get; set; }
+
+        public int Site1LastTubeY { get; set; }
+
         public int Site2FirstTubeX { get; set; }
         
         public int Site2FirstTubeY { get; set; }
@@ -33,10 +42,10 @@ namespace VsmdWorkstation
         /// </summary>
         public int BlockDistanceX { get; set; }
 
-        public int Grid1FirstTubeX { get; set; }
-        public int Grid1FirstTubeY { get; set; }
-        public int Grid2FirstTubeX { get; set; }
-        public int Grid2FirstTubeY { get; set; }
+        public int GridFirstTubeX { get; set; }
+        public int GridFirstTubeY { get; set; }
+        public int GridLastTubeX { get; set; }
+        public int GridLastTubeY { get; set; }
 
         public override string ToString()
         {

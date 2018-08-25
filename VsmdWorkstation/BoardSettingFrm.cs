@@ -23,6 +23,7 @@ namespace VsmdWorkstation
         {
             panelGrid.Top = panelSite.Top;
             m_curMeta = new BoardMeta();
+            m_curMeta.Type = (int)BoardType.Site;
             FillData();
             m_mode = FORM_MODE.Add;
 
@@ -228,15 +229,36 @@ namespace VsmdWorkstation
         private void FillData()
         {
             txtName.Text = m_curMeta.Name;
-            rbtGrid.Checked = m_curMeta.Type == 1;
-            //txtBlockCnt.Text = m_curMeta.GridCount.ToString();
-            txtBlockDist.Text = m_curMeta.BlockDistanceX.ToString();
-            //txtRowCnt.Text = m_curMeta.RowCount.ToString();
-            //txtColCnt.Text = m_curMeta.ColumnCount.ToString();
-            txtFirstTubePosX.Text = m_curMeta.Site1FirstTubeX.ToString();
-            txtFirstTubePosY.Text = m_curMeta.Site1FirstTubeY.ToString();
-            txtTubeDistX.Text = m_curMeta.Site2FirstTubeX.ToString();
-            txtTubeDistY.Text = m_curMeta.Site2FirstTubeY.ToString();
+            rbtGrid.Checked = m_curMeta.Type == (int)BoardType.Grid;
+            if(m_curMeta.Type == (int)BoardType.Grid)
+            {
+                txtGridCnt.Text = m_curMeta.GridCount.ToString();
+                txtGridRowCnt.Text = m_curMeta.RowCount.ToString();
+                txtGridFTX.Text = m_curMeta.GridFirstTubeX.ToString();
+                txtGridFTY.Text = m_curMeta.GridFirstTubeY.ToString();
+                txtGridLTX.Text = m_curMeta.GridLastTubeX.ToString();
+                txtGridLTY.Text = m_curMeta.GridLastTubeY.ToString();
+            }
+            else
+            {
+                txtSiteCnt.Text = m_curMeta.SiteCount.ToString();
+                txtSiteRowCnt.Text = m_curMeta.RowCount.ToString();
+                txtSiteColCnt.Text = m_curMeta.ColumnCount.ToString();
+                txtSite1FTX.Text = m_curMeta.Site1FirstTubeX.ToString();
+                txtSite1FTY.Text = m_curMeta.Site1FirstTubeY.ToString();
+                txtSite1LTX.Text = m_curMeta.Site1LastTubeX.ToString();
+                txtSite1LTY.Text = m_curMeta.Site1LastTubeY.ToString();
+                txtSite2FTX.Text = m_curMeta.Site2FirstTubeX.ToString();
+                txtSite2FTY.Text = m_curMeta.Site2FirstTubeY.ToString();
+            }
+            ////txtBlockCnt.Text = m_curMeta.GridCount.ToString();
+            //txtBlockDist.Text = m_curMeta.BlockDistanceX.ToString();
+            ////txtRowCnt.Text = m_curMeta.RowCount.ToString();
+            ////txtColCnt.Text = m_curMeta.ColumnCount.ToString();
+            //txtFirstTubePosX.Text = m_curMeta.Site1FirstTubeX.ToString();
+            //txtFirstTubePosY.Text = m_curMeta.Site1FirstTubeY.ToString();
+            //txtTubeDistX.Text = m_curMeta.Site2FirstTubeX.ToString();
+            //txtTubeDistY.Text = m_curMeta.Site2FirstTubeY.ToString();
         }
 
         private void btnSetBlockDist_Click(object sender, EventArgs e)
