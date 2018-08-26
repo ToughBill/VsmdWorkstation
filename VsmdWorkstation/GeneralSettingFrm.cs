@@ -43,6 +43,7 @@ namespace VsmdWorkstation
             GeneralSettingMeta meta = GeneralSettings.GetInstance().GetSettingMeta();
             numDripInter.Value = (decimal)meta.DripInterval;
             txtMoveSpd.Text = meta.MoveSpeed.ToString();
+            
             ckbEnableCmdLog.Checked = meta.OutputCommandLog;
         }
 

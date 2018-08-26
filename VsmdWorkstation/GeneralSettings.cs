@@ -14,6 +14,8 @@ namespace VsmdWorkstation
     {
         public int DripInterval { get; set; }
         public float MoveSpeed { get; set; }
+        public int ZTravel { get; set; }
+        public int ZDispense { get; set; }
         public bool OutputCommandLog { get; set; }
     }
     public class GeneralSettings
