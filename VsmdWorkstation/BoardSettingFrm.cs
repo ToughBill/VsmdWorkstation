@@ -97,31 +97,30 @@ namespace VsmdWorkstation
                 meta.ID = BoardSetting.GetInstance().GetNextBoardNum();
             }
             meta.Name = txtName.Text.Trim();
-            //meta.GridCount = int.Parse(txtBlockCnt.Text.Trim());
-            //meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
-            //meta.ColumnCount = int.Parse(txtColCnt.Text.Trim());
             meta.Type = rbtSite.Checked ? 1 : 2;
+            if (rbtSite.Checked)
+            {
+                meta.SiteCount = int.Parse(txtSiteCnt.Text);
+                meta.RowCount = int.Parse(txtSiteRowCnt.Text);
+                meta.ColumnCount = int.Parse(txtSiteColCnt.Text);
 
+                meta.Site1FirstTubeX = int.Parse(txtSite1FTX.Text);
+                meta.Site1FirstTubeY = int.Parse(txtSite1FTY.Text);
+                meta.Site1LastTubeX = int.Parse(txtSite1LTX.Text);
+                meta.Site1LastTubeY = int.Parse(txtSite1LTY.Text);
+                meta.Site2FirstTubeX = int.Parse(txtSite2FTX.Text);
+                meta.Site2FirstTubeX = int.Parse(txtSite2FTY.Text);
+            }
+            else
+            {
+                meta.GridCount = int.Parse(txtGridCnt.Text);
+                meta.RowCount = int.Parse(txtGridRowCnt.Text);
 
-            int val = 0;
-            int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
-            meta.Site1FirstTubeX = val;
-
-            val = 0;
-            int.TryParse(txtFirstTubePosY.Text.Trim(), out val);
-            meta.Site1FirstTubeY = val;
-
-            val = 0;
-            int.TryParse(txtTubeDistX.Text.Trim(), out val);
-            meta.Site2FirstTubeX = val;
-
-            val = 0;
-            int.TryParse(txtTubeDistY.Text.Trim(), out val);
-            meta.Site2FirstTubeY = val;
-
-            val = 0;
-            int.TryParse(txtBlockDist.Text.Trim(), out val);
-            meta.BlockDistanceX = val;
+                meta.GridFirstTubeX = int.Parse(txtGridFTX.Text);
+                meta.GridFirstTubeY = int.Parse(txtGridFTY.Text);
+                meta.GridLastTubeX = int.Parse(txtGridLTX.Text);
+                meta.GridLastTubeY = int.Parse(txtGridLTY.Text);
+            }
         }
 
         private bool ValidFormData()
@@ -237,35 +236,41 @@ namespace VsmdWorkstation
         }
         private void btnSetFX_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtFirstTubePosX, VsmdAxis.X, SetTubePositionFrm.PosType.Pos);
+            //ShowSetDlg(txtFirstTubePosX, VsmdAxis.X, SetTubePositionFrm.PosType.Pos);
         }
         private void btnSetFY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtFirstTubePosY, VsmdAxis.Y, SetTubePositionFrm.PosType.Pos);
+            //ShowSetDlg(txtFirstTubePosY, VsmdAxis.Y, SetTubePositionFrm.PosType.Pos);
         }
         private void btnSetTX_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtTubeDistX, VsmdAxis.X, SetTubePositionFrm.PosType.Dist);
+            //ShowSetDlg(txtTubeDistX, VsmdAxis.X, SetTubePositionFrm.PosType.Dist);
         }
         private void btnSetTY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtTubeDistY, VsmdAxis.Y, SetTubePositionFrm.PosType.Dist);
+            //ShowSetDlg(txtTubeDistY, VsmdAxis.Y, SetTubePositionFrm.PosType.Dist);
         }
-        private void ShowSetDlg(TextBox textbox, VsmdAxis axisType, SetTubePositionFrm.PosType posType)
+        private void ShowSetDlg(TextBox textbox, VsmdAxis axisType)
         {
-            SetTubePositionFrm frm = new SetTubePositionFrm(axisType, posType);
+            SetTubePositionFrm frm = new SetTubePositionFrm(axisType);
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                textbox.Text = frm.GetDist().ToString();
+                textbox.Text = frm.GetPos().ToString();
             }
             
         }
         private void DisableControls() {
-            btnSetBlockDist.Enabled = false;
-            btnSetFX.Enabled = false;
-            btnSetFY.Enabled = false;
-            btnSetTX.Enabled = false;
-            btnSetTY.Enabled = false;
+            btnGridFTX.Enabled = false;
+            btnGridFTY.Enabled = false;
+            btnGridLTX.Enabled = false;
+            btnGridLTY.Enabled = false;
+
+            btnSite1FTX.Enabled = false;
+            btnSite1FTY.Enabled = false;
+            btnSite1LTX.Enabled = false;
+            btnSite1LTY.Enabled = false;
+            btnSite2FTX.Enabled = false;
+            btnSite2FTY.Enabled = false;
         }
         private void btnChoose_Click(object sender, EventArgs e)
         {
@@ -302,19 +307,6 @@ namespace VsmdWorkstation
                 txtSite2FTX.Text = m_curMeta.Site2FirstTubeX.ToString();
                 txtSite2FTY.Text = m_curMeta.Site2FirstTubeY.ToString();
             }
-            ////txtBlockCnt.Text = m_curMeta.GridCount.ToString();
-            //txtBlockDist.Text = m_curMeta.BlockDistanceX.ToString();
-            ////txtRowCnt.Text = m_curMeta.RowCount.ToString();
-            ////txtColCnt.Text = m_curMeta.ColumnCount.ToString();
-            //txtFirstTubePosX.Text = m_curMeta.Site1FirstTubeX.ToString();
-            //txtFirstTubePosY.Text = m_curMeta.Site1FirstTubeY.ToString();
-            //txtTubeDistX.Text = m_curMeta.Site2FirstTubeX.ToString();
-            //txtTubeDistY.Text = m_curMeta.Site2FirstTubeY.ToString();
-        }
-
-        private void btnSetBlockDist_Click(object sender, EventArgs e)
-        {
-            ShowSetDlg(txtBlockDist, VsmdAxis.X, SetTubePositionFrm.PosType.Dist);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -354,6 +346,64 @@ namespace VsmdWorkstation
         {
             panelSite.Visible = rbtSite.Checked;
             panelGrid.Visible = rbtGrid.Checked;
+        }
+
+        private void tsmNew_Click(object sender, EventArgs e)
+        {
+            m_curMeta = new BoardMeta();
+            m_curMeta.Type = (int)BoardType.Site;
+            FillData();
+            m_mode = FORM_MODE.Add;
+        }
+
+        private void btnSite1FTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite1FTX, VsmdAxis.X);
+        }
+
+        private void btnSite1FTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite1FTY, VsmdAxis.Y);
+        }
+
+        private void btnSite1LTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite1LTX, VsmdAxis.X);
+        }
+
+        private void btnSite1LTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite1LTY, VsmdAxis.Y);
+        }
+
+        private void btnSite2FTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite2FTX, VsmdAxis.X);
+        }
+
+        private void btnSite2FTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSite2FTX, VsmdAxis.Y);
+        }
+
+        private void btnGridFTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridFTX, VsmdAxis.X);
+        }
+
+        private void btnGridFTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridFTY, VsmdAxis.Y);
+        }
+
+        private void btnGridLTX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridLTX, VsmdAxis.X);
+        }
+
+        private void btnGridLTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridLTY, VsmdAxis.Y);
         }
     }
 }
