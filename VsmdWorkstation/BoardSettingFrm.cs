@@ -100,6 +100,9 @@ namespace VsmdWorkstation
             //meta.GridCount = int.Parse(txtBlockCnt.Text.Trim());
             //meta.RowCount = int.Parse(txtRowCnt.Text.Trim());
             //meta.ColumnCount = int.Parse(txtColCnt.Text.Trim());
+            meta.Type = rbtSite.Checked ? 1 : 2;
+
+
             int val = 0;
             int.TryParse(txtFirstTubePosX.Text.Trim(), out val);
             meta.Site1FirstTubeX = val;
@@ -129,53 +132,101 @@ namespace VsmdWorkstation
                 txtName.Focus();
                 return false;
             }
-            //if (string.IsNullOrWhiteSpace(txtBlockCnt.Text))
-            //{
-            //    ShowMessage(MessageType.Error, "规格-组不能为空！");
-            //    txtBlockCnt.Focus();
-            //    return false;
-            //}
-            //if (string.IsNullOrWhiteSpace(txtRowCnt.Text))
-            //{
-            //    ShowMessage(MessageType.Error, "规格-行不能为空！");
-            //    txtRowCnt.Focus();
-            //    return false;
-            //}
-            //if (string.IsNullOrWhiteSpace(txtColCnt.Text))
-            //{
-            //    ShowMessage(MessageType.Error, "规格-列不能为空！");
-            //    txtColCnt.Focus();
-            //    return false;
-            //}
-            //if (int.Parse(txtBlockCnt.Text) > 1 && string.IsNullOrWhiteSpace(txtBlockDist.Text))
-            //{
-            //    ShowMessage(MessageType.Error, "组件不能为空！");
-            //    txtBlockDist.Focus();
-            //    return false;
-            //}
-            if (string.IsNullOrWhiteSpace(txtFirstTubePosX.Text))
+            if (rbtSite.Checked)
             {
-                ShowMessage(MessageType.Error, "首孔位置不能为空！");
-                txtFirstTubePosX.Focus();
-                return false;
+                if (string.IsNullOrWhiteSpace(txtSiteCnt.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site数量不能为空！");
+                    txtSiteCnt.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSiteRowCnt.Text))
+                {
+                    ShowMessage(MessageType.Error, "行数量不能为空！");
+                    txtSiteRowCnt.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSiteColCnt.Text))
+                {
+                    ShowMessage(MessageType.Error, "列数量不能为空！");
+                    txtSiteColCnt.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite1FTX.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site1首孔位置不能为空！");
+                    txtSite1FTX.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite1FTY.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site1首孔位置不能为空！");
+                    txtSite1FTY.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite1LTX.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site1尾孔位置不能为空！");
+                    txtSite1LTX.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite1LTY.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site1尾孔位置不能为空！");
+                    txtSite1LTY.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite2FTX.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site2首孔位置不能为空！");
+                    txtSite2FTX.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtSite2FTY.Text))
+                {
+                    ShowMessage(MessageType.Error, "Site2首孔位置不能为空！");
+                    txtSite2FTY.Focus();
+                    return false;
+                }
             }
-            if (string.IsNullOrWhiteSpace(txtFirstTubePosY.Text))
+            else
             {
-                ShowMessage(MessageType.Error, "首孔位置不能为空！");
-                txtFirstTubePosY.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtTubeDistX.Text))
-            {
-                ShowMessage(MessageType.Error, "尾孔位置不能为空！");
-                txtTubeDistX.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtTubeDistY.Text))
-            {
-                ShowMessage(MessageType.Error, "尾孔位置不能为空！");
-                txtTubeDistY.Focus();
-                return false;
+                if (string.IsNullOrWhiteSpace(txtGridCnt.Text))
+                {
+                    ShowMessage(MessageType.Error, "Grid数量不能为空！");
+                    txtGridCnt.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGridRowCnt.Text))
+                {
+                    ShowMessage(MessageType.Error, "行数量不能为空！");
+                    txtGridRowCnt.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGridFTX.Text))
+                {
+                    ShowMessage(MessageType.Error, "首孔位置不能为空！");
+                    txtGridFTX.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGridFTY.Text))
+                {
+                    ShowMessage(MessageType.Error, "首孔位置不能为空！");
+                    txtGridFTY.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGridLTX.Text))
+                {
+                    ShowMessage(MessageType.Error, "尾孔位置不能为空！");
+                    txtGridLTX.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGridLTY.Text))
+                {
+                    ShowMessage(MessageType.Error, "尾孔位置不能为空！");
+                    txtGridLTY.Focus();
+                    return false;
+                }
             }
 
             return true;
