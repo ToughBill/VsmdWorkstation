@@ -109,7 +109,7 @@ namespace VsmdWorkstation
                 meta.Site1LastTubeX = int.Parse(txtSite1LTX.Text);
                 meta.Site1LastTubeY = int.Parse(txtSite1LTY.Text);
                 meta.Site2FirstTubeX = int.Parse(txtSite2FTX.Text);
-                meta.Site2FirstTubeX = int.Parse(txtSite2FTY.Text);
+                meta.Site2FirstTubeY = int.Parse(txtSite2FTY.Text);
             }
             else
             {

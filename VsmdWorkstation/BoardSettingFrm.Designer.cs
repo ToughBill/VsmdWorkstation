@@ -35,6 +35,7 @@
             this.btnChoose = new System.Windows.Forms.Button();
             this.txtName = new VsmdWorkstation.Controls.TextBoxEx();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.label12 = new System.Windows.Forms.Label();
             this.rbtGrid = new System.Windows.Forms.RadioButton();
@@ -88,7 +89,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label22 = new System.Windows.Forms.Label();
-            this.tsmNew = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
@@ -157,10 +157,17 @@
             this.contextMenuStrip.Size = new System.Drawing.Size(101, 48);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
+            // tsmNew
+            // 
+            this.tsmNew.Name = "tsmNew";
+            this.tsmNew.Size = new System.Drawing.Size(100, 22);
+            this.tsmNew.Text = "新建";
+            this.tsmNew.Click += new System.EventHandler(this.tsmNew_Click);
+            // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDelete.Size = new System.Drawing.Size(100, 22);
             this.tsmiDelete.Text = "删除";
             this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
@@ -177,11 +184,11 @@
             // rbtGrid
             // 
             this.rbtGrid.AutoSize = true;
-            this.rbtGrid.Location = new System.Drawing.Point(184, 45);
+            this.rbtGrid.Location = new System.Drawing.Point(216, 45);
             this.rbtGrid.Name = "rbtGrid";
-            this.rbtGrid.Size = new System.Drawing.Size(47, 16);
+            this.rbtGrid.Size = new System.Drawing.Size(107, 16);
             this.rbtGrid.TabIndex = 31;
-            this.rbtGrid.Text = "grid";
+            this.rbtGrid.Text = "16孔样品管载架";
             this.rbtGrid.UseVisualStyleBackColor = true;
             this.rbtGrid.CheckedChanged += new System.EventHandler(this.rbtGrid_CheckedChanged);
             // 
@@ -191,10 +198,10 @@
             this.rbtSite.Checked = true;
             this.rbtSite.Location = new System.Drawing.Point(109, 45);
             this.rbtSite.Name = "rbtSite";
-            this.rbtSite.Size = new System.Drawing.Size(47, 16);
+            this.rbtSite.Size = new System.Drawing.Size(101, 16);
             this.rbtSite.TabIndex = 32;
             this.rbtSite.TabStop = true;
-            this.rbtSite.Text = "site";
+            this.rbtSite.Text = "3位96孔板载架";
             this.rbtSite.UseVisualStyleBackColor = true;
             this.rbtSite.CheckedChanged += new System.EventHandler(this.rbtSite_CheckedChanged);
             // 
@@ -219,7 +226,7 @@
             this.panelGrid.Controls.Add(this.label15);
             this.panelGrid.Controls.Add(this.txtGridFTX);
             this.panelGrid.Controls.Add(this.label16);
-            this.panelGrid.Location = new System.Drawing.Point(33, 34);
+            this.panelGrid.Location = new System.Drawing.Point(33, 35);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(242, 189);
             this.panelGrid.TabIndex = 33;
@@ -242,6 +249,7 @@
             this.txtGridRowCnt.Name = "txtGridRowCnt";
             this.txtGridRowCnt.Size = new System.Drawing.Size(50, 21);
             this.txtGridRowCnt.TabIndex = 35;
+            this.txtGridRowCnt.Text = "16";
             this.txtGridRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label35
@@ -261,7 +269,7 @@
             this.txtGridCnt.Name = "txtGridCnt";
             this.txtGridCnt.Size = new System.Drawing.Size(50, 21);
             this.txtGridCnt.TabIndex = 33;
-            this.txtGridCnt.Text = "1";
+            this.txtGridCnt.Text = "6";
             this.txtGridCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label36
@@ -466,6 +474,7 @@
             this.txtSiteColCnt.Name = "txtSiteColCnt";
             this.txtSiteColCnt.Size = new System.Drawing.Size(50, 21);
             this.txtSiteColCnt.TabIndex = 43;
+            this.txtSiteColCnt.Text = "12";
             this.txtSiteColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label30
@@ -485,6 +494,7 @@
             this.txtSiteRowCnt.Name = "txtSiteRowCnt";
             this.txtSiteRowCnt.Size = new System.Drawing.Size(50, 21);
             this.txtSiteRowCnt.TabIndex = 42;
+            this.txtSiteRowCnt.Text = "8";
             this.txtSiteRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label31
@@ -504,7 +514,7 @@
             this.txtSiteCnt.Name = "txtSiteCnt";
             this.txtSiteCnt.Size = new System.Drawing.Size(50, 21);
             this.txtSiteCnt.TabIndex = 40;
-            this.txtSiteCnt.Text = "1";
+            this.txtSiteCnt.Text = "3";
             this.txtSiteCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label32
@@ -727,19 +737,12 @@
             this.label22.TabIndex = 22;
             this.label22.Text = "Site1首孔位置：";
             // 
-            // tsmNew
-            // 
-            this.tsmNew.Name = "tsmNew";
-            this.tsmNew.Size = new System.Drawing.Size(152, 22);
-            this.tsmNew.Text = "新建";
-            this.tsmNew.Click += new System.EventHandler(this.tsmNew_Click);
-            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(348, 322);
+            this.ClientSize = new System.Drawing.Size(348, 320);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.panelSite);
             this.Controls.Add(this.panelGrid);

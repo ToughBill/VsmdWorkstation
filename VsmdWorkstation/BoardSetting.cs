@@ -27,20 +27,11 @@ namespace VsmdWorkstation
         public int ColumnCount { get; set; }
         
         public int Site1FirstTubeX { get; set; }
-        
         public int Site1FirstTubeY { get; set; }
-
         public int Site1LastTubeX { get; set; }
-
         public int Site1LastTubeY { get; set; }
-
         public int Site2FirstTubeX { get; set; }
-        
         public int Site2FirstTubeY { get; set; }
-        /// <summary>
-        /// 组距
-        /// </summary>
-        public int BlockDistanceX { get; set; }
 
         public int GridFirstTubeX { get; set; }
         public int GridFirstTubeY { get; set; }
@@ -56,7 +47,32 @@ namespace VsmdWorkstation
     public class BoardSetting
     {
         private List<BoardMeta> m_boardSettings = new List<BoardMeta>();
-        public BoardMeta CurrentBoard { get; set; }
+        private double m_tubeDistX, m_tubeDistY;
+        private int m_siteDistY;
+
+        private BoardMeta m_curBoard;
+        public BoardMeta CurrentBoard
+        {
+            get
+            {
+                return m_curBoard;
+            }
+            set
+            {
+                m_curBoard = value;
+                if(m_curBoard.Type == (int)BoardType.Site)
+                {
+                    m_tubeDistX = (m_curBoard.Site1LastTubeX - m_curBoard.Site1FirstTubeX) * 1.0f / (m_curBoard.ColumnCount - 1);
+                    m_tubeDistY = (m_curBoard.Site1LastTubeY - m_curBoard.Site1FirstTubeY) * 1.0f / (m_curBoard.RowCount - 1);
+                    m_siteDistY = m_curBoard.Site2FirstTubeY - m_curBoard.Site1FirstTubeY;
+                }
+                else if(m_curBoard.Type == (int)BoardType.Grid)
+                {
+                    m_tubeDistX = (m_curBoard.GridLastTubeX - m_curBoard.GridFirstTubeX) * 1.0f / (m_curBoard.ColumnCount - 1);
+                    m_tubeDistY = (m_curBoard.GridLastTubeY - m_curBoard.GridFirstTubeY) * 1.0f / (m_curBoard.RowCount - 1);
+                }
+            }
+        }
         public DelDataUpdated OnDataUpdate;
 
         /// <summary>
@@ -65,24 +81,37 @@ namespace VsmdWorkstation
         /// <param name="axis"></param>
         /// <param name="coord">start from 1</param>
         /// <returns></returns>
-        public int Convert2PhysicalPos(VsmdAxis axis, int coord)
+        public int Convert2PhysicalPos(VsmdAxis axis, int block, int coord)
         {
             int fpox = 0;
             switch (axis)
             {
                 case VsmdAxis.X:
-                    int blockIdx = (coord - 1) / CurrentBoard.ColumnCount;
-                    fpox = CurrentBoard.Site1FirstTubeX + CurrentBoard.BlockDistanceX * blockIdx + CurrentBoard.Site2FirstTubeX * (blockIdx * (CurrentBoard.ColumnCount - 1) + (coord - 1) % CurrentBoard.ColumnCount);
-                    //fpox = FirstTubeX + (coord - 1) * TubeDistanceX;
+                    if(m_curBoard.Type == (int)BoardType.Site)
+                    {
+                        fpox = m_curBoard.Site1FirstTubeX + (int)((coord - 1) * m_tubeDistX);
+                    }
+                    else
+                    {
+                        fpox = m_curBoard.GridFirstTubeX + (int)((coord - 1) * m_tubeDistX);
+                    }
                     break;
                 case VsmdAxis.Y:
-                    fpox = CurrentBoard.Site1FirstTubeY + (coord - 1) * CurrentBoard.Site2FirstTubeY;
+                    if (m_curBoard.Type == (int)BoardType.Site)
+                    {
+                        fpox = m_curBoard.Site1FirstTubeY + (coord - 1) * m_siteDistY + (int)((coord - 1) * m_tubeDistY);
+                    }
+                    else
+                    {
+                        fpox = m_curBoard.GridFirstTubeY + (int)((coord - 1) * m_tubeDistY);
+                    }
                     break;
                 default:
                     break;
             }
             return fpox;
         }
+
         public string GetBoardMetaFilePath()
         {
             return Application.StartupPath + "\\boardSettings.json";
