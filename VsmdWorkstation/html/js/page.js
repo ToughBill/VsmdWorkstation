@@ -1,7 +1,7 @@
 ﻿$(function () {
 
     var gridCtxMenu = [{
-        name: 'move2Here',
+        name: '移动到这里',
         title: '移动到这里',
         fun: function (obj, event) {
             if (window.externalObj) {
@@ -14,7 +14,7 @@
         }
     },
     {
-        name: 'drip',
+        name: '滴液',
         title: '滴液',
         fun: function (obj, event) {
             if (window.externalObj) {

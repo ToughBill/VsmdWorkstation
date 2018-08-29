@@ -139,17 +139,17 @@ namespace VsmdWorkstation
             JArray jsArr = m_selectedTubes;
             await BeforeMove();
             int dripInterval = GeneralSettings.GetInstance().DripInterval;
+            int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_dripIndex + 1; i < jsArr.Count; i++)
             {
                 if (m_dripStatus != DripStatus.Moving)
                     break;
                 JObject obj = (JObject)jsArr[i];
-                int row = int.Parse(obj["row"].ToString());
-                int col = int.Parse(obj["column"].ToString());
-                SetDrippingTube(row, col);
-                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-                await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+                GetPositionInfo(obj, out blockNum, out row, out col);
+                SetDrippingTube(blockNum, row, col);
+                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+                await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
 
                 // start drip
                 await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
@@ -167,7 +167,7 @@ namespace VsmdWorkstation
                 Thread.Sleep(1000);
                 //await Task.Delay(1000);
 
-                MoveCallBack(row, col);
+                MoveCallBack(blockNum, row, col);
                 m_dripIndex = i;
             }
             
@@ -212,20 +212,29 @@ namespace VsmdWorkstation
         public async void MoveToHere(string args)
         {
             JObject targetTube = (JObject)JsonConvert.DeserializeObject(args);
-            int row = int.Parse(targetTube["row"].ToString());
-            int col = int.Parse(targetTube["col"].ToString());
-
+            int blockNum, row, col;
+            GetPositionInfo(targetTube, out blockNum, out row, out col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
-            await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, col));
-            await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, row));
+            await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+            await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
         }
         public async void DripTube(string args)
         {
             JObject targetTube = (JObject)JsonConvert.DeserializeObject(args);
-            int row = int.Parse(targetTube["row"].ToString());
-            int col = int.Parse(targetTube["col"].ToString());
-            SetDrippingTube(row, col);
+            int type = int.Parse(targetTube["type"].ToString());
+            int blockNum, row, col = 1;
+            if (type == (int)BoardType.Site)
+            {
+                blockNum = int.Parse(targetTube["site"].ToString());
+                col = int.Parse(targetTube["column"].ToString());
+            }
+            else
+            {
+                blockNum = int.Parse(targetTube["grid"].ToString());
+            }
+            row = int.Parse(targetTube["row"].ToString());
+            SetDrippingTube(blockNum, row, col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
             await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             Thread.Sleep(500);
@@ -240,15 +249,31 @@ namespace VsmdWorkstation
             await vsmdController.S3Off(VsmdAxis.Z);
             Thread.Sleep(500);
 
-            MoveCallBack(row, col);
+            MoveCallBack(blockNum, row, col);
         }
-        private void SetDrippingTube(int row, int col)
+
+        private void GetPositionInfo(JObject jobj, out int blockNum, out int row, out int col)
         {
-            CallJS("JsExecutor.setDrippingTube(" + row + "," + col + ");");
+            blockNum = row = col = 1;
+            int type = int.Parse(jobj["type"].ToString());
+            if (type == (int)BoardType.Site)
+            {
+                blockNum = int.Parse(jobj["site"].ToString());
+                col = int.Parse(jobj["column"].ToString());
+            }
+            else
+            {
+                blockNum = int.Parse(jobj["grid"].ToString());
+            }
+            row = int.Parse(jobj["row"].ToString());
         }
-        private void MoveCallBack(int row, int col)
+        private void SetDrippingTube(int blockNum, int row, int col)
         {
-            CallJS("JsExecutor.moveCallBack(" + row + "," + col + ");");
+            CallJS("JsExecutor.setDrippingTube(" + blockNum + "," + row + "," + col + ");");
+        }
+        private void MoveCallBack(int blockNum, int row, int col)
+        {
+            CallJS("JsExecutor.moveCallBack(" + blockNum + "," + row + "," + col + ");");
         }
         public void CallJS(string jsCode)
         {

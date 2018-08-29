@@ -53,7 +53,12 @@ namespace VsmdWorkstation
         private void InitBrowser()
         {
             BridgeObject.InitializeCef();
+#if DEBUG
+            string url = Application.StartupPath + @"\..\..\..\html\tubeGrid.html";
+#else
             string url = Application.StartupPath + @"\html\tubeGrid.html";
+#endif
+
             m_browser = new ChromiumWebBrowser(url);
             panelGrid.Controls.Add(m_browser);
             m_browser.Dock = DockStyle.Fill;

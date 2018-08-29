@@ -128,6 +128,7 @@ window.TubeGrid = (function () {
             //let conWidth = this.tubeWidth * this.columnCount + parseInt($con.css('padding-left')) + parseInt($con.css('padding-right'));
             //$con.width(conWidth);
             $con.addClass("tubeGrid");
+            $con.removeClass("site grid");
             $con.addClass(this.type == Type_Site ? "site" : "grid");
             if (this.type == Type_Site) {
                 this.renderSite();
