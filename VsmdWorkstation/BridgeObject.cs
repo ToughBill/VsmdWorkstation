@@ -259,7 +259,7 @@ namespace VsmdWorkstation
             if (type == (int)BoardType.Site)
             {
                 blockNum = int.Parse(jobj["site"].ToString());
-                col = int.Parse(jobj["column"].ToString());
+                col = int.Parse(jobj["col"].ToString());
             }
             else
             {

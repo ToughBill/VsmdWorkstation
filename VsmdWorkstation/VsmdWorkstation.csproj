@@ -201,7 +201,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html\css\boardSetting.css" />
     <Content Include="html\css\bootstrap-theme.css" />
     <Content Include="html\css\bootstrap-theme.min.css" />
     <Content Include="html\css\bootstrap.min.css" />
@@ -211,7 +210,6 @@
     <Content Include="html\css\jquery-ui.theme.css" />
     <Content Include="html\css\style.css" />
     <Content Include="html\css\tubeGrid.css" />
-    <Content Include="html\js\boardSetting.js" />
     <Content Include="html\js\bootstrap.min.js" />
     <Content Include="html\js\box-selection.js" />
     <Content Include="html\js\contextMenu.js" />

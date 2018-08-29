@@ -7,8 +7,7 @@
             if (window.externalObj) {
                 let ele = window.__grid.getLastClickedTube();
                 if (ele) {
-                    console.log('move to tube, row: ', ele.row, ', column: ', ele.col);
-                    window.externalObj.MoveToHere(JSON.stringify({ row: ele.row, col: ele.col }));
+                    window.externalObj.MoveToHere(JSON.stringify(ele.coord));
                 }
             }
         }
@@ -20,8 +19,7 @@
             if (window.externalObj) {
                 let ele = window.__grid.getLastClickedTube();
                 if (ele) {
-                    console.log('drip tube, row: ', ele.row, ', column: ', ele.col);
-                    window.externalObj.DripTube(JSON.stringify({ row: ele.row, col: ele.col }));
+                    window.externalObj.DripTube(JSON.stringify(ele.coord));
                 }
             }
         }

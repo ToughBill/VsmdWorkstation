@@ -7,6 +7,7 @@ window.TubeGrid = (function () {
         tubeHeight: 20
     }
     const CHAR_CODE_A = 65;
+    const Type_Invalid = 0;
     const Type_Site = 1;
     const Type_Grid = 2;
     var GridMode = {
@@ -71,7 +72,7 @@ window.TubeGrid = (function () {
                         $row.append($numCell);
                     }
 
-                    let posClass = "r" + (i + 1) + " c1";
+                    let posClass = "g" + (blockNum + 1) + " r" + (i + 1);
                     let titleVal = "grid: " + (blockNum + 1) + ", row: " + (i + 1);
                     let $cell = $("<td><div class = 'grid-cell tube " + posClass + "' title='" + titleVal + "'></div></td>");
                     $row.append($cell);
@@ -85,7 +86,7 @@ window.TubeGrid = (function () {
                     let $numCell = $("<th  class = 'grid-row-number'>" + (String.fromCharCode(CHAR_CODE_A + i)) + "</th>");
                     $row.append($numCell);
                     for (let j = 0; j < this.columnCount; j++) {
-                        let posClass = "r" + (i + 1) + " c" + (j + 1 + blockNum * this.columnCount);
+                        let posClass = "s" + (blockNum + 1) + " r" + (i + 1) + " c" + (j + 1);
                         let titleVal = "site: " + (blockNum + 1) + ", row: " + (i + 1) + ", column: " + (j + 1);
                         let $cell = $("<td><div class = 'grid-cell tube " + posClass + "' title='" + titleVal + "'></div></td>");
                         $row.append($cell);
@@ -268,17 +269,32 @@ window.TubeGrid = (function () {
 
                 });
         }
-        this.getTubePos = function (tubeEle) {
+        this.getTubePos = function (type, tubeEle) {
             let classArr = tubeEle.className.split(' ');
-            let row, column;
-            classArr.forEach((val2, idx2) => {
-                if (val2.match(/^r\d+$/)) {
-                    row = parseInt(val2.substr(1));
-                } else if (val2.match(/^c\d+$/)) {
-                    column = parseInt(val2.substr(1));
-                }
-            });
-            return { row: row, col: column };
+            if (type == Type_Site) {
+                let site, row, column;
+                classArr.forEach((val2, idx2) => {
+                    if (val2.match(/^s\d+$/)) {
+                        site = parseInt(val2.substr(1));
+                    } else if (val2.match(/^r\d+$/)) {
+                        row = parseInt(val2.substr(1));
+                    } else if (val2.match(/^c\d+$/)) {
+                        column = parseInt(val2.substr(1));
+                    }
+                });
+                return { site: site, row: row, col: column };
+            } else if (type == Type_Grid) {
+                let grid, row;
+                classArr.forEach((val2, idx2) => {
+                    if (val2.match(/^g\d+$/)) {
+                        grid = parseInt(val2.substr(1));
+                    } else if (val2.match(/^r\d+$/)) {
+                        row = parseInt(val2.substr(1));
+                    }
+                });
+                return { grid: grid, row: row };
+            }
+            return {};
         }
         this.getLastClickedTube = function () {
             if (clickX <= 0 || clickY <= 0) {
@@ -292,11 +308,14 @@ window.TubeGrid = (function () {
                     break;
                 }
             }
-            let pos = {row: -1, col: -1};
+            
+            let pos = { element: targetEle, type: gridEditor.type };
             if (targetEle) {
-                pos = this.getTubePos(targetEle);
+                let coord = this.getTubePos(gridEditor.type, targetEle);
+                coord.type = gridEditor.type;
+                pos.coord = coord;
             }
-            return {element: targetEle, row: pos.row, col: pos.col};
+            return pos;
         }
         this.getCell= function (row, col) {
             return $(".grid-cell" + ".r" + row + ".c" + col);
