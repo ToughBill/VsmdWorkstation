@@ -34,8 +34,8 @@
 	            $('#tubesContainer').contextMenu(gridCtxMenu, { triggerOn: 'contextmenu' });
 	        }
 		},
-		moveCallBack: function(row, col) {
-		    window.__grid.moveCallBack(row, col);
+	    moveCallBack: function (blockNum, row, col) {
+	        window.__grid.moveCallBack(blockNum, row, col);
 		},
 		beforeMove: function () {
 			window.__grid.enterMoveMode();
@@ -51,8 +51,8 @@
 		        window.externalObj.StartDrip(JSON.stringify(JsExecutor.getSelectedTubes()));
 		    }
 		},
-		setDrippingTube: function(row, col){
-		    window.__grid.setDrippingTube(row, col);
+		setDrippingTube: function (blockNum, row, col) {
+		    window.__grid.setDrippingTube(blockNum, row, col);
 		},
 		pauseMove: function () {
 		    window.__grid.pauseMove();

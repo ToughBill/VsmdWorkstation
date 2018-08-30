@@ -75,7 +75,9 @@ namespace VsmdWorkstation
 
         private void ResetData()
         {
+            int preBoardType = m_curMeta.Type;
             m_curMeta = new BoardMeta();
+            m_curMeta.Type = preBoardType;
             m_mode = FORM_MODE.Add;
             FillData();
         }
@@ -286,7 +288,8 @@ namespace VsmdWorkstation
         {
             txtName.Text = m_curMeta.Name;
             rbtGrid.Checked = m_curMeta.Type == (int)BoardType.Grid;
-            if(m_curMeta.Type == (int)BoardType.Grid)
+            rbtSite.Checked = m_curMeta.Type == (int)BoardType.Site;
+            if (m_curMeta.Type == (int)BoardType.Grid)
             {
                 txtGridCnt.Text = m_curMeta.GridCount.ToString();
                 txtGridRowCnt.Text = m_curMeta.RowCount.ToString();
@@ -383,7 +386,7 @@ namespace VsmdWorkstation
 
         private void btnSite2FTY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtSite2FTX, VsmdAxis.Y);
+            ShowSetDlg(txtSite2FTY, VsmdAxis.Y);
         }
 
         private void btnGridFTX_Click(object sender, EventArgs e)

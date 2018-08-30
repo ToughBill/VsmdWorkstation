@@ -317,22 +317,26 @@ window.TubeGrid = (function () {
             }
             return pos;
         }
-        this.getCell= function (row, col) {
-            return $(".grid-cell" + ".r" + row + ".c" + col);
+        this.getCell = function (blockNum, row, col) {
+            if (gridEditor.type == Type_Site) {
+                return $(".grid-cell" + ".s" + blockNum + ".r" + row + ".c" + col);
+            } else if (gridEditor.type == Type_Grid) {
+                return $(".grid-cell" + ".g" + blockNum + ".r" + row);
+            }
         }
-        this.moveCallBack = function (row, col) {
+        this.moveCallBack = function (blockNum, row, col) {
             if (drippingTubeFlickerInterval) {
                 clearInterval(drippingTubeFlickerInterval);
-                this.getCell(row, col).removeClass('flickerColor');
+                this.getCell(blockNum, row, col).removeClass('flickerColor');
             }
-            this.getCell(row, col).addClass("moveDone");
+            this.getCell(blockNum, row, col).addClass("moveDone");
         }
-        this.setDrippingTube = function (row, col) {
+        this.setDrippingTube = function (blockNum, row, col) {
             if (drippingTubeFlickerInterval) {
                 clearInterval(drippingTubeFlickerInterval);
             }
             drippingTubeFlickerInterval = setInterval(() => {
-                this.getCell(row, col).toggleClass('flickerColor');
+                this.getCell(blockNum, row, col).toggleClass('flickerColor');
             }, 500)
         }
         this.enterMoveMode = function () {
@@ -357,16 +361,18 @@ window.TubeGrid = (function () {
         this.getSelectedTubes = function () {
 			let selectedTubes = [];
 			$.each($(gridEditor.container).find(".grid-cell.selected").not(".moveDone"), (idx, val) => {
-				let classArr = val.className.split(' ');
-				let obj = {};
-				classArr.forEach((val2, idx2) => {
-					if(val2.match(/^r\d+$/)){
-						obj.row = parseInt(val2.substr(1));
-					} else if(val2.match(/^c\d+$/)){
-						obj.column = parseInt(val2.substr(1));
-					}
-				});
-				selectedTubes.push(obj);
+			    let pos = this.getTubePos(gridEditor.type, val);
+			    pos.type = gridEditor.type;
+				//let classArr = val.className.split(' ');
+				//let obj = {};
+				//classArr.forEach((val2, idx2) => {
+				//	if(val2.match(/^r\d+$/)){
+				//		obj.row = parseInt(val2.substr(1));
+				//	} else if(val2.match(/^c\d+$/)){
+				//		obj.column = parseInt(val2.substr(1));
+				//	}
+				//});
+				selectedTubes.push(pos);
 			});
 			return selectedTubes;
         }

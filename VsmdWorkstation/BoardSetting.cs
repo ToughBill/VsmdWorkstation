@@ -99,7 +99,7 @@ namespace VsmdWorkstation
                 case VsmdAxis.Y:
                     if (m_curBoard.Type == (int)BoardType.Site)
                     {
-                        fpox = m_curBoard.Site1FirstTubeY + (coord - 1) * m_siteDistY + (int)((coord - 1) * m_tubeDistY);
+                        fpox = m_curBoard.Site1FirstTubeY + (block - 1) * m_siteDistY + (int)((coord - 1) * m_tubeDistY);
                     }
                     else
                     {

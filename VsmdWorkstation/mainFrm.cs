@@ -15,6 +15,7 @@ namespace VsmdWorkstation
 
         private void tsmVsmdSetting_Click(object sender, EventArgs e)
         {
+            SetAllSubFormState();
             VsmdSettingFrm frm = new VsmdSettingFrm();
             frm.MdiParent = this;
             frm.Show();
@@ -59,6 +60,7 @@ namespace VsmdWorkstation
 
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
+            SetAllSubFormState();
             BoardSettingFrm frm = new BoardSettingFrm();
             frm.MdiParent = this;
             frm.Show();
@@ -78,6 +80,7 @@ namespace VsmdWorkstation
         }
         private void tsmConnectVsmd_Click(object sender, EventArgs e)
         {
+            SetAllSubFormState();
             ConnectVsmd();
         }
 
@@ -88,6 +91,7 @@ namespace VsmdWorkstation
 
         private void tsmGenaralSetting_Click(object sender, EventArgs e)
         {
+            SetAllSubFormState();
             GeneralSettingFrm frm = new GeneralSettingFrm();
             frm.MdiParent = this;
             frm.Show();
@@ -95,6 +99,7 @@ namespace VsmdWorkstation
 
         private void tsmDrip_Click(object sender, EventArgs e)
         {
+            SetAllSubFormState();
             if (VsmdController.GetVsmdController().IsInitialized())
             {
                 if (m_dripForm == null || !m_dripForm.IsOpened)
@@ -112,6 +117,17 @@ namespace VsmdWorkstation
             else
             {
                 StatusBar.DisplayMessage(MessageType.Error, "设备未连接！");
+            }
+        }
+
+        private void SetAllSubFormState()
+        {
+            foreach(Form frm in this.MdiChildren)
+            {
+                if(frm.WindowState == FormWindowState.Maximized)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                }
             }
         }
     }

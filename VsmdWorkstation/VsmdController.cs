@@ -172,6 +172,10 @@ namespace VsmdWorkstation
         }
         public async Task<bool> SetSpeed(VsmdAxis axis, float speed)
         {
+            if(speed == 0.0)
+            {
+                System.Windows.Forms.MessageBox.Show("dangrous!!! speed is zero!");
+            }
             return await GetAxis(axis).cfgSpd(speed);
         }
         public async Task<bool> Dev(VsmdAxis axis)
