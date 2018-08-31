@@ -36,12 +36,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtZDispense = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMoveSpd = new VsmdWorkstation.Controls.TextBoxEx();
-            this.textBoxEx1 = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxEx2 = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numDripInter)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -137,9 +137,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBoxEx2);
+            this.groupBox1.Controls.Add(this.txtZDispense);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBoxEx1);
+            this.groupBox1.Controls.Add(this.txtZTravel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.numDripInter);
@@ -152,6 +152,44 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "滴液";
+            // 
+            // txtZDispense
+            // 
+            this.txtZDispense.Location = new System.Drawing.Point(103, 70);
+            this.txtZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.txtZDispense.Name = "txtZDispense";
+            this.txtZDispense.Size = new System.Drawing.Size(118, 21);
+            this.txtZDispense.TabIndex = 11;
+            this.txtZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 73);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Z轴滴液高度：";
+            // 
+            // txtZTravel
+            // 
+            this.txtZTravel.Location = new System.Drawing.Point(103, 44);
+            this.txtZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtZTravel.Name = "txtZTravel";
+            this.txtZTravel.Size = new System.Drawing.Size(118, 21);
+            this.txtZTravel.TabIndex = 9;
+            this.txtZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 47);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Z轴安全高度：";
             // 
             // groupBox2
             // 
@@ -174,44 +212,6 @@
             this.txtMoveSpd.Size = new System.Drawing.Size(118, 21);
             this.txtMoveSpd.TabIndex = 7;
             this.txtMoveSpd.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // textBoxEx1
-            // 
-            this.textBoxEx1.Location = new System.Drawing.Point(103, 44);
-            this.textBoxEx1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxEx1.Name = "textBoxEx1";
-            this.textBoxEx1.Size = new System.Drawing.Size(118, 21);
-            this.textBoxEx1.TabIndex = 9;
-            this.textBoxEx1.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 47);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 12);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Z轴安全高度：";
-            // 
-            // textBoxEx2
-            // 
-            this.textBoxEx2.Location = new System.Drawing.Point(103, 70);
-            this.textBoxEx2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxEx2.Name = "textBoxEx2";
-            this.textBoxEx2.Size = new System.Drawing.Size(118, 21);
-            this.textBoxEx2.TabIndex = 11;
-            this.textBoxEx2.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 73);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Z轴滴液高度：";
             // 
             // GeneralSettingFrm
             // 
@@ -254,9 +254,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.TextBoxEx txtMoveSpd;
-        private Controls.TextBoxEx textBoxEx2;
+        private Controls.TextBoxEx txtZDispense;
         private System.Windows.Forms.Label label5;
-        private Controls.TextBoxEx textBoxEx1;
+        private Controls.TextBoxEx txtZTravel;
         private System.Windows.Forms.Label label4;
     }
 }
