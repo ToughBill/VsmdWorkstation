@@ -57,6 +57,12 @@
 		pauseMove: function () {
 		    window.__grid.pauseMove();
 		},
+		selectAllTubes: function(){
+		    window.__grid.selectAllTubes();
+		},
+		reverseSelect: function(){
+		    window.__grid.reverseSelect();
+		},
 		resetTube: function(){
 		    window.__grid.resetTube();
 		},

@@ -35,6 +35,10 @@ namespace VsmdLib
 
         private Dictionary<string, VsmdAttribute> m_attrNameMap;
         private Dictionary<VsmdAttribute, float> m_vsmdAttrs;
+        /// <summary>
+        /// max wait time for move action, default is 25 seconds
+        /// </summary>
+        private int m_maxWaitTime = 25;
 
         public const int MAX_STROKE_Y = 32000;
 
@@ -543,7 +547,7 @@ namespace VsmdLib
             await Task.Delay(100);
             int curTryCnt = 0;
             //int maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
-            int maxCnt = 30 * 1000 / 20;
+            int maxCnt = m_maxWaitTime * 1000 / 20;
             while (curTryCnt < maxCnt)
             {
                 curTryCnt++;
@@ -554,7 +558,12 @@ namespace VsmdLib
                     break;
                 }
             }
-            return curTryCnt <= maxCnt;
+            return curTryCnt < maxCnt;
+        }
+
+        public void SetMaxWaitTimeForMove(int time)
+        {
+            m_maxWaitTime = time;
         }
 
         /// <summary>stop</summary>
@@ -722,12 +731,12 @@ namespace VsmdLib
                 curTryCnt++;
                 await Task.Delay(20);
                 await this.sts();
-                if (this.curSpd == 0)
+                if (this.curSpd == 0 || this.curPos <= 0)
                 {
                     break;
                 }
             }
-            return curTryCnt < maxTryCount;
+            return curTryCnt <= maxTryCount;
         }
 
         /// <summary>stop zero function</summary>

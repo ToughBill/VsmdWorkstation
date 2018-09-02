@@ -31,21 +31,34 @@ namespace VsmdLib
 
         private int recieveBufferSize;
         private bool m_isWaitingResponse;
-        private bool m_outPutCmdLog;
+        private bool m_outputCmdLog;
+        private bool m_outputStsCmdLog;
 
         public VsmdSync()
         {
-            m_outPutCmdLog = false;
+            m_outputCmdLog = false;
+            m_outputStsCmdLog = false;
         }
         public bool OutputCommandLog
         {
             get
             {
-                return m_outPutCmdLog;
+                return m_outputCmdLog;
             }
             set
             {
-                m_outPutCmdLog = value;
+                m_outputCmdLog = value;
+            }
+        }
+        public bool OutputStsCommandLog
+        {
+            get
+            {
+                return m_outputStsCmdLog;
+            }
+            set
+            {
+                m_outputStsCmdLog = value;
             }
         }
         /// <summary>
@@ -59,11 +72,11 @@ namespace VsmdLib
             }
         }
 
-        /// <summary>open serail port</summary>
+        /// <summary>open serial port</summary>
         /// <param name="port"></param>
         /// <param name="baudrate"></param>
         /// <returns></returns>
-        public bool openSerailPort(string port, int baudrate)
+        public bool openSerialPort(string port, int baudrate)
         {
             if (baudrate < 2400 || baudrate > 921600)
                 return false;
@@ -89,18 +102,9 @@ namespace VsmdLib
             return true;
         }
 
-        /// <summary>open serial port</summary>
-        /// <param name="port"></param>
-        /// <param name="baudrate"></param>
-        /// <returns></returns>
-        public bool openSerialPort(string port, int baudrate)
-        {
-            return this.openSerailPort(port, baudrate);
-        }
-
         /// <summary>close serial port</summary>
         /// <returns></returns>
-        public bool closeSerailPort()
+        public bool closeSerialPort()
         {
             bool flag = true;
             this.isSerialPortRecieveThreadRunning = false;
@@ -115,13 +119,6 @@ namespace VsmdLib
                 flag = this.comPort.IsOpen && false;
             }
             return flag;
-        }
-
-        /// <summary>close serial port</summary>
-        /// <returns></returns>
-        public bool closeSerialPort()
-        {
-            return this.closeSerailPort();
         }
 
         private bool isSerialPortRecieveThreadRunning { get; set; }
@@ -257,6 +254,10 @@ namespace VsmdLib
                 m_isWaitingResponse = false;
                 OutputLog("fail to wait response for command: " + cmd);
             }
+            else
+            {
+                OutputLog("receive response successfully.");
+            }
             return returnVal;
         }
         public async Task<bool> WaitResponse(int waitInterval = VsmdConstVars.Default_Wait_Interval, int waitCount = VsmdConstVars.Default_Wait_Count)
@@ -269,16 +270,24 @@ namespace VsmdLib
                     break;
                 }
                 curWaitCnt++;
-                OutputLog("wait for response, try " + curWaitCnt.ToString());
+                if (m_outputStsCmdLog)
+                {
+                    OutputLog("wait for response, try " + curWaitCnt.ToString());
+                }
                 await Task.Delay(waitInterval);
             }
-            
+
             return curWaitCnt < waitCount;
+        }
+
+        public void Stop()
+        {
+            m_isWaitingResponse = false;
         }
 
         public void OutputLog(string log)
         {
-            if (!m_outPutCmdLog)
+            if (!m_outputCmdLog)
             {
                 return;
             }
@@ -294,7 +303,7 @@ namespace VsmdLib
         }
         public void OutputLog(byte[] log)
         {
-            if (!m_outPutCmdLog)
+            if (!m_outputCmdLog)
             {
                 return;
             }

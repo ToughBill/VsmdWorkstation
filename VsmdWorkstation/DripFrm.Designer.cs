@@ -38,6 +38,8 @@ namespace VsmdWorkstation
             this.btnPause = new System.Windows.Forms.Button();
             this.btnRestGrid = new System.Windows.Forms.Button();
             this.btnDevTools = new System.Windows.Forms.Button();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnReverse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -109,9 +111,9 @@ namespace VsmdWorkstation
             // 
             // btnRestGrid
             // 
-            this.btnRestGrid.Location = new System.Drawing.Point(459, 10);
+            this.btnRestGrid.Location = new System.Drawing.Point(577, 10);
             this.btnRestGrid.Name = "btnRestGrid";
-            this.btnRestGrid.Size = new System.Drawing.Size(75, 23);
+            this.btnRestGrid.Size = new System.Drawing.Size(53, 23);
             this.btnRestGrid.TabIndex = 10;
             this.btnRestGrid.Text = "重置";
             this.btnRestGrid.UseVisualStyleBackColor = true;
@@ -119,7 +121,7 @@ namespace VsmdWorkstation
             // 
             // btnDevTools
             // 
-            this.btnDevTools.Location = new System.Drawing.Point(540, 10);
+            this.btnDevTools.Location = new System.Drawing.Point(636, 10);
             this.btnDevTools.Name = "btnDevTools";
             this.btnDevTools.Size = new System.Drawing.Size(101, 23);
             this.btnDevTools.TabIndex = 11;
@@ -128,11 +130,33 @@ namespace VsmdWorkstation
             this.btnDevTools.Visible = false;
             this.btnDevTools.Click += new System.EventHandler(this.btnDevTools_Click);
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(459, 10);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(53, 23);
+            this.btnSelectAll.TabIndex = 12;
+            this.btnSelectAll.Text = "全选";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnReverse
+            // 
+            this.btnReverse.Location = new System.Drawing.Point(518, 10);
+            this.btnReverse.Name = "btnReverse";
+            this.btnReverse.Size = new System.Drawing.Size(53, 23);
+            this.btnReverse.TabIndex = 13;
+            this.btnReverse.Text = "反选";
+            this.btnReverse.UseVisualStyleBackColor = true;
+            this.btnReverse.Click += new System.EventHandler(this.btnReverse_Click);
+            // 
             // DripFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(881, 545);
+            this.Controls.Add(this.btnReverse);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnDevTools);
             this.Controls.Add(this.btnRestGrid);
             this.Controls.Add(this.btnPause);
@@ -160,6 +184,8 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnRestGrid;
         private System.Windows.Forms.Button btnDevTools;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Button btnReverse;
     }
 }
 

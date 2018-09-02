@@ -42,16 +42,17 @@ namespace VsmdWorkstation
             m_baudrate = baudrate;
             if (m_initialized)
             {
-                m_vsmd.closeSerailPort();
+                m_vsmd.closeSerialPort();
             }
             
             m_vsmd = new VsmdSync();
-            bool ret = m_vsmd.openSerailPort(port, baudrate);
+            bool ret = m_vsmd.openSerialPort(port, baudrate);
             if (!ret)
             {
                 return new InitResult() { ErrorMsg="打开串口失败!", IsSuccess = false };
             }
             m_vsmd.OutputCommandLog = GeneralSettings.GetInstance().OutputCommandLog;
+            m_vsmd.OutputStsCommandLog = GeneralSettings.GetInstance().OutputStsCommandLog;
 
             List<string> errAxis = new List<string>();
             m_axisX = m_vsmd.createVsmdInfo(1);
@@ -86,6 +87,7 @@ namespace VsmdWorkstation
             {
                 await m_axisZ.enable();
                 m_axisZ.flgAutoUpdate = true;
+                m_axisZ.SetMaxWaitTimeForMove(3);
                 await m_axisZ.cfg();
             }
             else
@@ -114,7 +116,7 @@ namespace VsmdWorkstation
             }
             if (!m_initialized)
             {
-                m_vsmd.closeSerailPort();
+                m_vsmd.closeSerialPort();
                 m_vsmd = null;
             }
             
@@ -205,7 +207,19 @@ namespace VsmdWorkstation
         }
         public async Task<bool> MoveTo(VsmdAxis axis, int pos)
         {
-            return await GetAxis(axis).moveto(pos);
+            bool ret = await GetAxis(axis).moveto(pos);
+            //if(!ret && axis == VsmdAxis.Z)
+            //{
+            //    if(GetAxis(axis).curPos == 0 && pos > 0)
+            //    {
+            //        GetAxis(axis).SendCommand("3 zero start");
+            //        await Task.Delay(30);
+            //        GetAxis(axis).SendCommand("3 zero stop");
+            //        await ZeroStop(axis);
+            //        ret = await MoveTo(axis, pos);
+            //    }
+            //}
+            return ret;
         }
         public async Task<bool> ZeroStart(VsmdAxis axis)
         {
@@ -248,34 +262,10 @@ namespace VsmdWorkstation
         {
             return await GetAxis(axis).cfgS3(mode);
         }
-        //public async Task<bool> MoveSync(VsmdAxis axis)
-        //{
-        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
-        //    return await vsmdAxis.move();
-        //}
-        //public async Task<bool> MoveToSync(VsmdAxis axis, int pos)
-        //{
-        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
-        //    return await vsmdAxis.moveto(pos);
-        //}
-
-        //public async Task<bool> ZeroStartSync(VsmdAxis axis)
-        //{
-        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
-        //    await m_vsmdController.SetZsd(axis, 1200);
-
-        //    //float zsd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdAttribute.Zsd);
-        //    //int delayTime = (int)(MAX_STROKE_Y / zsd + 1) * 1000;
-        //    //int maxTryCount = delayTime / 10;
-            
-        //    return await vsmdAxis.zeroStart();
-
-        //}
-        //public async Task<bool> ZeroStopSync(VsmdAxis axis)
-        //{
-        //    VsmdInfoSync vsmdAxis = GetAxis(axis);
-        //    return await vsmdAxis.zeroStop();
-        //}
+        public void Stop()
+        {
+            m_vsmd.Stop();
+        }
         public async void MoveTo(int xpox, int ypox)
         {
             await MoveTo(VsmdAxis.X, xpox);
@@ -288,7 +278,7 @@ namespace VsmdWorkstation
                 m_axisX = null;
                 m_axisY = null;
                 m_axisZ = null;
-                m_vsmd.closeSerailPort();
+                m_vsmd.closeSerialPort();
                 m_initialized = false;
             }
         }

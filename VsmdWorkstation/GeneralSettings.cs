@@ -17,6 +17,7 @@ namespace VsmdWorkstation
         public int ZTravel { get; set; }
         public int ZDispense { get; set; }
         public bool OutputCommandLog { get; set; }
+        public bool OutputStsCommandLog { get; set; }
     }
     public class GeneralSettings
     {
@@ -64,6 +65,13 @@ namespace VsmdWorkstation
             get
             {
                 return m_settingMeta.OutputCommandLog;
+            }
+        }
+        public bool OutputStsCommandLog
+        {
+            get
+            {
+                return m_settingMeta.OutputStsCommandLog;
             }
         }
 

@@ -19,6 +19,7 @@ namespace VsmdWorkstation
             meta.ZDispense = int.Parse(txtZDispense.Text);
             meta.MoveSpeed = float.Parse(txtMoveSpd.Text.Trim());
             meta.OutputCommandLog = ckbEnableCmdLog.Checked;
+            meta.OutputStsCommandLog = ckbEnableStsCmdLog.Checked;
             bool retVal = GeneralSettings.GetInstance().Save();
             if (retVal)
             {
@@ -41,6 +42,7 @@ namespace VsmdWorkstation
             InitFormData();
 #if DEBUG
             ckbEnableCmdLog.Visible = true;
+            ckbEnableStsCmdLog.Visible = true;
 #endif
         }
 
@@ -54,12 +56,13 @@ namespace VsmdWorkstation
             txtMoveSpd.Text = meta.MoveSpeed.ToString();
             
             ckbEnableCmdLog.Checked = meta.OutputCommandLog;
-
+            ckbEnableStsCmdLog.Checked = meta.OutputStsCommandLog;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        
     }
 }

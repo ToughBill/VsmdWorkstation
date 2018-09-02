@@ -96,6 +96,7 @@ namespace VsmdWorkstation
             DripStatus preMode = m_dripStatus;
             m_dripStatus = DripStatus.Idle;
             m_selectedTubes.Clear();
+            VsmdController.GetVsmdController().Stop();
             if (preMode == DripStatus.PauseMove)
             {
                 AfterMove();
@@ -108,11 +109,18 @@ namespace VsmdWorkstation
         }
         public void ResumeMove()
         {
-            //CallJS("JsExecutor.startDrip()");
             m_isFromPause = true;
             m_dripStatus = DripStatus.Moving;
             m_moveThread = new Thread(new ThreadStart(DripThread));
             m_moveThread.Start();
+        }
+        public void SelectAllTubes()
+        {
+            CallJS("JsExecutor.selectAllTubes()");
+        }
+        public void ReverseSelect()
+        {
+            CallJS("JsExecutor.reverseSelect()");
         }
         public void ResetBoard()
         {
@@ -150,7 +158,8 @@ namespace VsmdWorkstation
                 SetDrippingTube(blockNum, row, col);
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
-                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
+                // TODO
+                //await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
 
                 // start drip
                 await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
@@ -160,7 +169,8 @@ namespace VsmdWorkstation
                 await vsmdController.S3Off(VsmdAxis.Z);
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(dripInterval);
-                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
+                // TODO
+                //await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
 
                 // change the screen to start
                 await vsmdController.S3On(VsmdAxis.Z);
@@ -192,6 +202,8 @@ namespace VsmdWorkstation
                 VsmdController vsmdController = VsmdController.GetVsmdController();
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
+                // TODO
+                //await vsmdController.ZeroStart(VsmdAxis.Z);
             }
 
             return true;
@@ -230,7 +242,7 @@ namespace VsmdWorkstation
             if (type == (int)BoardType.Site)
             {
                 blockNum = int.Parse(targetTube["site"].ToString());
-                col = int.Parse(targetTube["column"].ToString());
+                col = int.Parse(targetTube["col"].ToString());
             }
             else
             {

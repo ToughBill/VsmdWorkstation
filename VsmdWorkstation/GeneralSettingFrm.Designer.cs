@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMoveSpd = new VsmdWorkstation.Controls.TextBoxEx();
+            this.ckbEnableStsCmdLog = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numDripInter)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -50,7 +51,7 @@
             // ckbEnableCmdLog
             // 
             this.ckbEnableCmdLog.AutoSize = true;
-            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 188);
+            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 182);
             this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableCmdLog.Name = "ckbEnableCmdLog";
             this.ckbEnableCmdLog.Size = new System.Drawing.Size(234, 16);
@@ -104,7 +105,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(68, 223);
+            this.btnOK.Location = new System.Drawing.Point(68, 225);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
@@ -116,7 +117,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(160, 223);
+            this.btnCancel.Location = new System.Drawing.Point(160, 225);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 23);
@@ -213,6 +214,18 @@
             this.txtMoveSpd.TabIndex = 7;
             this.txtMoveSpd.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
+            // ckbEnableStsCmdLog
+            // 
+            this.ckbEnableStsCmdLog.AutoSize = true;
+            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(29, 203);
+            this.ckbEnableStsCmdLog.Margin = new System.Windows.Forms.Padding(2);
+            this.ckbEnableStsCmdLog.Name = "ckbEnableStsCmdLog";
+            this.ckbEnableStsCmdLog.Size = new System.Drawing.Size(114, 16);
+            this.ckbEnableStsCmdLog.TabIndex = 9;
+            this.ckbEnableStsCmdLog.Text = "输出sts命令日志";
+            this.ckbEnableStsCmdLog.UseVisualStyleBackColor = true;
+            this.ckbEnableStsCmdLog.Visible = false;
+            // 
             // GeneralSettingFrm
             // 
             this.AcceptButton = this.btnOK;
@@ -220,6 +233,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(280, 257);
+            this.Controls.Add(this.ckbEnableStsCmdLog);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
@@ -258,5 +272,6 @@
         private System.Windows.Forms.Label label5;
         private Controls.TextBoxEx txtZTravel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox ckbEnableStsCmdLog;
     }
 }

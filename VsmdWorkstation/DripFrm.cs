@@ -172,6 +172,9 @@ namespace VsmdWorkstation
             btnStop.Enabled = (m_dripStatus != DripStatus.Idle);
             btnPause.Enabled = (m_dripStatus == DripStatus.Moving || m_dripStatus == DripStatus.PauseMove);
             btnRestGrid.Enabled = (m_dripStatus == DripStatus.Idle);
+
+            btnSelectAll.Enabled = m_dripStatus == DripStatus.Idle;
+            btnReverse.Enabled = m_dripStatus == DripStatus.Idle;
         }
 
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,6 +203,16 @@ namespace VsmdWorkstation
         private async void btnResetControler_Click(object sender, EventArgs e)
         {
             await VsmdController.GetVsmdController().ResetVsmdController();
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            m_externalObj.SelectAllTubes();
+        }
+
+        private void btnReverse_Click(object sender, EventArgs e)
+        {
+            m_externalObj.ReverseSelect();
         }
     }
 
