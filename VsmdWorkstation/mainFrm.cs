@@ -50,6 +50,8 @@ namespace VsmdWorkstation
                     m_dripForm.Show();
                     m_connectForm.Dispose();
                     m_connectForm = null;
+
+                    PumpController.GetPumpController().Init("COM4");
                 }
             }
             else

@@ -143,6 +143,7 @@ namespace VsmdWorkstation
         private async void DripThread()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();
+            PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
             await BeforeMove();
@@ -159,25 +160,19 @@ namespace VsmdWorkstation
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
                 // TODO
-                //await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
+                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
 
                 // start drip
-                await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-                Thread.Sleep(500);
-                await vsmdController.S3On(VsmdAxis.Z);
-                Thread.Sleep(500);
-                await vsmdController.S3Off(VsmdAxis.Z);
+                //await vsmdController.ClickPump();
+                await pumpController.Drip();
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(dripInterval);
                 // TODO
-                //await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
+                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
 
                 // change the screen to start
-                await vsmdController.S3On(VsmdAxis.Z);
-                Thread.Sleep(500);
-                await vsmdController.S3Off(VsmdAxis.Z);
-                Thread.Sleep(1000);
-                
+                //await vsmdController.SwitchOnOff();
+                await pumpController.Drip();
                 //await Task.Delay(1000);
 
                 MoveCallBack(blockNum, row, col);
@@ -203,7 +198,7 @@ namespace VsmdWorkstation
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
                 // TODO
-                //await vsmdController.ZeroStart(VsmdAxis.Z);
+                await vsmdController.ZeroStart(VsmdAxis.Z);
             }
 
             return true;
@@ -251,20 +246,24 @@ namespace VsmdWorkstation
             row = int.Parse(targetTube["row"].ToString());
             SetDrippingTube(blockNum, row, col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
+            PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
-            await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            Thread.Sleep(500);
-            await vsmdController.S3On(VsmdAxis.Z);
-            Thread.Sleep(500);
-            await vsmdController.S3Off(VsmdAxis.Z);
+            await pumpController.Drip();
+
+            //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
+            //Thread.Sleep(500);
+            //await vsmdController.S3On(VsmdAxis.Z);
+            //Thread.Sleep(500);
+            //await vsmdController.S3Off(VsmdAxis.Z);
             Thread.Sleep(GeneralSettings.GetInstance().DripInterval);
 
+            await pumpController.Drip();
             //change the screen to start interface
-            await vsmdController.S3On(VsmdAxis.Z);
-            Thread.Sleep(500);
-            await vsmdController.S3Off(VsmdAxis.Z);
-            Thread.Sleep(500);
+            //await vsmdController.S3On(VsmdAxis.Z);
+            //Thread.Sleep(500);
+            //await vsmdController.S3Off(VsmdAxis.Z);
+            //Thread.Sleep(500);
             await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
 
             MoveCallBack(blockNum, row, col);
