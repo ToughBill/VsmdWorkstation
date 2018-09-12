@@ -177,7 +177,7 @@ namespace VsmdWorkstation
         {
             if(speed == 0.0)
             {
-                System.Windows.Forms.MessageBox.Show("dangrous!!! speed is zero!");
+                //System.Windows.Forms.MessageBox.Show("dangrous!!! set speed to zero!");
             }
             return await GetAxis(axis).cfgSpd(speed);
         }

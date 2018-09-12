@@ -167,9 +167,10 @@ namespace VsmdWorkstation
                 {
                     OnDataUpdate(m_boardSettings);
                 }
-            } catch (Exception e)
+            }
+            catch (Exception)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
                 ret = false;
             }
             return ret;
