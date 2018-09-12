@@ -97,37 +97,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardSettingFrm.cs">
+    <Compile Include="BoardSetting\BoardSettingFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BoardSettingFrm.Designer.cs">
+    <Compile Include="BoardSetting\BoardSettingFrm.Designer.cs">
       <DependentUpon>BoardSettingFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BoardSetting.cs" />
-    <Compile Include="BridgeObject.cs" />
-    <Compile Include="ConnectVsmd.cs">
+    <Compile Include="BoardSetting\BoardSetting.cs" />
+    <Compile Include="Drip\BridgeObject.cs" />
+    <Compile Include="VSMDSetting\ConnectVsmd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConnectVsmd.Designer.cs">
+    <Compile Include="VSMDSetting\ConnectVsmd.Designer.cs">
       <DependentUpon>ConnectVsmd.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneralSettingFrm.cs">
+    <Compile Include="GeneralSetting\GeneralSettingFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GeneralSettingFrm.Designer.cs">
+    <Compile Include="GeneralSetting\GeneralSettingFrm.Designer.cs">
       <DependentUpon>GeneralSettingFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneralSettings.cs" />
-    <Compile Include="ItemListFrm.cs">
+    <Compile Include="GeneralSetting\GeneralSettings.cs" />
+    <Compile Include="Utils\ItemListFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ItemListFrm.Designer.cs">
+    <Compile Include="Utils\ItemListFrm.Designer.cs">
       <DependentUpon>ItemListFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DripFrm.cs">
+    <Compile Include="Drip\DripFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DripFrm.Designer.cs">
+    <Compile Include="Drip\DripFrm.Designer.cs">
       <DependentUpon>DripFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainFrm.cs">
@@ -138,34 +138,34 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PumpController.cs" />
-    <Compile Include="SetTubePositionFrm.cs">
+    <Compile Include="Controller\PumpController.cs" />
+    <Compile Include="BoardSetting\SetTubePositionFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetTubePositionFrm.Designer.cs">
+    <Compile Include="BoardSetting\SetTubePositionFrm.Designer.cs">
       <DependentUpon>SetTubePositionFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StatusBar.cs" />
-    <Compile Include="VsmdController.cs" />
-    <Compile Include="VsmdSettingFrm.cs">
+    <Compile Include="Utils\StatusBar.cs" />
+    <Compile Include="Controller\VsmdController.cs" />
+    <Compile Include="VSMDSetting\VsmdSettingFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VsmdSettingFrm.Designer.cs">
+    <Compile Include="VSMDSetting\VsmdSettingFrm.Designer.cs">
       <DependentUpon>VsmdSettingFrm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BoardSettingFrm.resx">
+    <EmbeddedResource Include="BoardSetting\BoardSettingFrm.resx">
       <DependentUpon>BoardSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConnectVsmd.resx">
+    <EmbeddedResource Include="VSMDSetting\ConnectVsmd.resx">
       <DependentUpon>ConnectVsmd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeneralSettingFrm.resx">
+    <EmbeddedResource Include="GeneralSetting\GeneralSettingFrm.resx">
       <DependentUpon>GeneralSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ItemListFrm.resx">
+    <EmbeddedResource Include="Utils\ItemListFrm.resx">
       <DependentUpon>ItemListFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DripFrm.resx">
+    <EmbeddedResource Include="Drip\DripFrm.resx">
       <DependentUpon>DripFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
@@ -180,10 +180,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SetTubePositionFrm.resx">
+    <EmbeddedResource Include="BoardSetting\SetTubePositionFrm.resx">
       <DependentUpon>SetTubePositionFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VsmdSettingFrm.resx">
+    <EmbeddedResource Include="VSMDSetting\VsmdSettingFrm.resx">
       <DependentUpon>VsmdSettingFrm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
@@ -219,7 +219,6 @@
     <Content Include="html\js\page.js" />
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\tubeGrid.html" />
-    <Content Include="Readme.txt" />
     <Content Include="sdk\VsmdLib.dll" />
   </ItemGroup>
   <ItemGroup>
