@@ -93,7 +93,7 @@ namespace VsmdWorkstation
                     }
                     else
                     {
-                        fpox = m_curBoard.GridFirstTubeX + (int)((coord - 1) * m_tubeDistX);
+                        fpox = m_curBoard.GridFirstTubeX + (int)((block - 1) * m_tubeDistX);
                     }
                     break;
                 case VsmdAxis.Y:

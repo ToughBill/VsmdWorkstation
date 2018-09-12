@@ -70,11 +70,7 @@ namespace VsmdWorkstation
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtZsdZ = new VsmdWorkstation.Controls.TextBoxEx();
-            this.btnS3Off = new VsmdWorkstation.Controls.ButtonEx();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnS3On = new VsmdWorkstation.Controls.ButtonEx();
-            this.btnS3Output = new VsmdWorkstation.Controls.ButtonEx();
-            this.btnS3Input = new VsmdWorkstation.Controls.ButtonEx();
             this.btnOffZ = new VsmdWorkstation.Controls.ButtonEx();
             this.btnEnaZ = new VsmdWorkstation.Controls.ButtonEx();
             this.btnPosZ = new VsmdWorkstation.Controls.ButtonEx();
@@ -509,11 +505,7 @@ namespace VsmdWorkstation
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtZsdZ);
-            this.groupBox3.Controls.Add(this.btnS3Off);
             this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.btnS3On);
-            this.groupBox3.Controls.Add(this.btnS3Output);
-            this.groupBox3.Controls.Add(this.btnS3Input);
             this.groupBox3.Controls.Add(this.btnOffZ);
             this.groupBox3.Controls.Add(this.btnEnaZ);
             this.groupBox3.Controls.Add(this.btnPosZ);
@@ -532,7 +524,7 @@ namespace VsmdWorkstation
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(456, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 347);
+            this.groupBox3.Size = new System.Drawing.Size(216, 289);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Z轴";
@@ -545,17 +537,6 @@ namespace VsmdWorkstation
             this.txtZsdZ.TabIndex = 23;
             this.txtZsdZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
-            // btnS3Off
-            // 
-            this.btnS3Off.Location = new System.Drawing.Point(121, 312);
-            this.btnS3Off.Name = "btnS3Off";
-            this.btnS3Off.Size = new System.Drawing.Size(80, 23);
-            this.btnS3Off.TabIndex = 21;
-            this.btnS3Off.Text = "S3 off";
-            this.btnS3Off.ToolTip = "s3 off";
-            this.btnS3Off.UseVisualStyleBackColor = true;
-            this.btnS3Off.Click += new System.EventHandler(this.btnS3Off_Click);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -564,39 +545,6 @@ namespace VsmdWorkstation
             this.label15.Size = new System.Drawing.Size(35, 12);
             this.label15.TabIndex = 22;
             this.label15.Text = "zsd：";
-            // 
-            // btnS3On
-            // 
-            this.btnS3On.Location = new System.Drawing.Point(6, 312);
-            this.btnS3On.Name = "btnS3On";
-            this.btnS3On.Size = new System.Drawing.Size(80, 23);
-            this.btnS3On.TabIndex = 20;
-            this.btnS3On.Text = "S3 On";
-            this.btnS3On.ToolTip = "s3 on";
-            this.btnS3On.UseVisualStyleBackColor = true;
-            this.btnS3On.Click += new System.EventHandler(this.btnS3On_Click);
-            // 
-            // btnS3Output
-            // 
-            this.btnS3Output.Location = new System.Drawing.Point(121, 283);
-            this.btnS3Output.Name = "btnS3Output";
-            this.btnS3Output.Size = new System.Drawing.Size(80, 23);
-            this.btnS3Output.TabIndex = 19;
-            this.btnS3Output.Text = "S3 Output";
-            this.btnS3Output.ToolTip = "set S3 as output";
-            this.btnS3Output.UseVisualStyleBackColor = true;
-            this.btnS3Output.Click += new System.EventHandler(this.btnS3Output_Click);
-            // 
-            // btnS3Input
-            // 
-            this.btnS3Input.Location = new System.Drawing.Point(6, 283);
-            this.btnS3Input.Name = "btnS3Input";
-            this.btnS3Input.Size = new System.Drawing.Size(80, 23);
-            this.btnS3Input.TabIndex = 18;
-            this.btnS3Input.Text = "S3 Input";
-            this.btnS3Input.ToolTip = "set S3 as input";
-            this.btnS3Input.UseVisualStyleBackColor = true;
-            this.btnS3Input.Click += new System.EventHandler(this.btnS3Input_Click);
             // 
             // btnOffZ
             // 
@@ -763,7 +711,7 @@ namespace VsmdWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 369);
+            this.ClientSize = new System.Drawing.Size(683, 309);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -834,10 +782,6 @@ namespace VsmdWorkstation
         private ButtonEx btnPosX;
         private ButtonEx btnEnaX;
         private ButtonEx btnOffX;
-        private ButtonEx btnS3Output;
-        private ButtonEx btnS3Input;
-        private ButtonEx btnS3Off;
-        private ButtonEx btnS3On;
         private TextBoxEx txtZsdX;
         private System.Windows.Forms.Label label13;
         private TextBoxEx txtZsdY;

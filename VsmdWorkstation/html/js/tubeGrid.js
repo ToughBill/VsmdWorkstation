@@ -349,7 +349,7 @@ window.TubeGrid = (function () {
             gridEditor.mode = GridMode.PauseMove;
         }
         this.selectAllTubes = function () {
-            $(".grid-cell").addClass("selected");
+            $(".grid-cell").removeClass("moveDone").addClass("selected");
         }
         this.reverseSelect = function () {
             $(".grid-cell.selected").addClass("oriSelected").removeClass("selected");

@@ -167,11 +167,9 @@ namespace VsmdWorkstation
                 await pumpController.Drip();
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(dripInterval);
-                // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
 
                 // change the screen to start
-                //await vsmdController.SwitchOnOff();
                 await pumpController.Drip();
                 //await Task.Delay(1000);
 
@@ -197,7 +195,6 @@ namespace VsmdWorkstation
                 VsmdController vsmdController = VsmdController.GetVsmdController();
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
-                // TODO
                 await vsmdController.ZeroStart(VsmdAxis.Z);
             }
 
@@ -251,19 +248,9 @@ namespace VsmdWorkstation
             await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
             await pumpController.Drip();
 
-            //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            //Thread.Sleep(500);
-            //await vsmdController.S3On(VsmdAxis.Z);
-            //Thread.Sleep(500);
-            //await vsmdController.S3Off(VsmdAxis.Z);
             Thread.Sleep(GeneralSettings.GetInstance().DripInterval);
 
             await pumpController.Drip();
-            //change the screen to start interface
-            //await vsmdController.S3On(VsmdAxis.Z);
-            //Thread.Sleep(500);
-            //await vsmdController.S3Off(VsmdAxis.Z);
-            //Thread.Sleep(500);
             await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
 
             MoveCallBack(blockNum, row, col);
