@@ -212,7 +212,6 @@
     <Content Include="html\css\style.css" />
     <Content Include="html\css\tubeGrid.css" />
     <Content Include="html\js\bootstrap.min.js" />
-    <Content Include="html\js\box-selection.js" />
     <Content Include="html\js\contextMenu.js" />
     <Content Include="html\js\jquery-1.12.4.js" />
     <Content Include="html\js\jquery-ui.js" />
