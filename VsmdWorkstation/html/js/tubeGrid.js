@@ -126,8 +126,6 @@ window.TubeGrid = (function () {
                 return;
             }
             let $con = $(this.container);
-            //let conWidth = this.tubeWidth * this.columnCount + parseInt($con.css('padding-left')) + parseInt($con.css('padding-right'));
-            //$con.width(conWidth);
             $con.addClass("tubeGrid");
             $con.removeClass("site grid");
             $con.addClass(this.type == Type_Site ? "site" : "grid");
@@ -135,14 +133,7 @@ window.TubeGrid = (function () {
                 this.renderSite();
             } else if (this.type == Type_Grid) {
                 this.renderGrid();
-            }
-            //for(let i = 0; i < this.blockCount; i++){
-            //	let $table = $('<table class="table" id="block_' + i + '"></table>');
-            //	this.renderHeaders($table, i);
-            //	this.renderRows($table, i);
-            //	$con.append($table);
-            //	$table.width($table.find('tbody').width() + 20);
-            //}   
+            }  
         }
         this.enableBoxSelection = function() {
             function clearBubble(e) {
@@ -371,15 +362,6 @@ window.TubeGrid = (function () {
 			$.each($(gridEditor.container).find(".grid-cell.selected").not(".moveDone"), (idx, val) => {
 			    let pos = this.getTubePos(gridEditor.type, val);
 			    pos.type = gridEditor.type;
-				//let classArr = val.className.split(' ');
-				//let obj = {};
-				//classArr.forEach((val2, idx2) => {
-				//	if(val2.match(/^r\d+$/)){
-				//		obj.row = parseInt(val2.substr(1));
-				//	} else if(val2.match(/^c\d+$/)){
-				//		obj.column = parseInt(val2.substr(1));
-				//	}
-				//});
 				selectedTubes.push(pos);
 			});
 			return selectedTubes;

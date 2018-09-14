@@ -25,7 +25,7 @@ namespace VsmdWorkstation
 
         private void SetTubePositionFrm_Load(object sender, EventArgs e)
         {
-            m_preAxisSpeed = VsmdController.GetVsmdController().GetSpeed(m_axisType);
+            m_preAxisSpeed = VsmdController.GetVsmdController().GetAxis(m_axisType).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
             if (m_axisType == VsmdAxis.X)
             {
                 lblTip.Text = "请通过键盘上\"←\"和、\"→\"来操作。";
