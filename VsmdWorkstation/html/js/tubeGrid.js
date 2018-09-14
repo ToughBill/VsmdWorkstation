@@ -45,7 +45,6 @@ window.TubeGrid = (function () {
                     $hrow.append($numCell);
                 }
                 $header.append($hrow);
-                //let $headerCell = $("<th class='grid-header'>" + String.fromCharCode(CHAR_CODE_A + i + (blockNum * this.columnCount)) + "</th>");
                 let $headerCell = $("<th class='grid-header'>" + (blockNum + 1) + "</th>");
 			    $hrow.append($headerCell);
             } else {
@@ -53,7 +52,6 @@ window.TubeGrid = (function () {
                 $hrow.append($numCell);
                 $header.append($hrow);
 			    for (let i = 0; i < this.columnCount; i++) {
-			        //let $headerCell = $("<th class='grid-header'>" + String.fromCharCode(CHAR_CODE_A + i + (blockNum * this.columnCount)) + "</th>");
 			        let $headerCell = $("<th class='grid-header'>" + (i + 1) + "</th>");
 			        $hrow.append($headerCell);
 			    }
@@ -64,7 +62,6 @@ window.TubeGrid = (function () {
         this.renderRows = function ($table, blockNum) {
             let $rows = $("<tbody></tbody>");
             if (this.type == Type_Grid) {
-                
                 for (let i = 0; i < this.rowCount; i++) {
                     let $row = $("<tr></tr>");
                     if (blockNum == 0) {
@@ -78,8 +75,6 @@ window.TubeGrid = (function () {
                     $row.append($cell);
                     $rows.append($row);
                 }
-                
-                
             } else {
                 for (let i = 0; i < this.rowCount; i++) {
                     let $row = $("<tr></tr>");
@@ -97,7 +92,6 @@ window.TubeGrid = (function () {
             
 			$table.append($rows);
 		}
-        
         this.renderGrid = function () {
             let $con = $(this.container);
             for (let i = 0; i < this.gridCount; i++) {
@@ -178,7 +172,6 @@ window.TubeGrid = (function () {
                             colC = match2[0];
                         }
                         $(gridEditor.container).find('.grid-cell.selected,.grid-cell.moveDone').not('.' + rowC + '.' + colC).removeClass('selected moveDone');
-                        //gridEditor.resetTube();
                     }
                     let isSelect = true;
 
@@ -215,9 +208,6 @@ window.TubeGrid = (function () {
                             var elePos = val.getBoundingClientRect();
                             let cx = elePos.left + elePos.width / 2;
                             let cy = elePos.top + elePos.height / 2;
-                            //console.log($(val));
-                            //console.log(`cx: ${cx}, boxPos.left: ${boxPos.left}, boxPos.right: ${boxPos.right}`);
-                            //console.log(`cy: ${cy}, boxPos.top: ${boxPos.top}, boxPos.bottom: ${boxPos.bottom}`);
                             if((cx > boxPos.left && cx < boxPos.right) &&
                                 (cy > boxPos.top && cy < boxPos.bottom)){
                                 if(!$item.hasClass("selected")){
@@ -237,10 +227,6 @@ window.TubeGrid = (function () {
                     $(document).on('mouseup', function() {
                         $container.off('mousemove');
                         $selectBoxDashed.remove();
-
-                        // if (selectCallback) {
-                        //     selectCallback();
-                        // }
                     });
                 })
                 .on('click', '.grid-cell', function (ev) {
