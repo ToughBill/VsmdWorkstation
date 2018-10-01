@@ -34,7 +34,7 @@ namespace VsmdWorkstation
         }
         public async Task<InitResult> Init(string port, int baudrate)
         {
-            if(m_initialized && port == m_port && baudrate == m_baudrate)
+            if (m_initialized && port == m_port && baudrate == m_baudrate)
             {
                 return new InitResult() { ErrorMsg = "设备连接成功!", IsSuccess = true };
             }
