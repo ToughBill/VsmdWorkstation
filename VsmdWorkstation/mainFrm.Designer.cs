@@ -34,8 +34,8 @@
             this.tsmVsmdSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBoardSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGenaralSetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.tsmDrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,13 @@
             this.tsmGenaralSetting.Text = "通用设置";
             this.tsmGenaralSetting.Click += new System.EventHandler(this.tsmGenaralSetting_Click);
             // 
+            // tsmDrip
+            // 
+            this.tsmDrip.Name = "tsmDrip";
+            this.tsmDrip.Size = new System.Drawing.Size(44, 21);
+            this.tsmDrip.Text = "滴液";
+            this.tsmDrip.Click += new System.EventHandler(this.tsmDrip_Click);
+            // 
             // statusBarEx
             // 
             this.statusBarEx.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -98,13 +105,6 @@
             this.statusBarEx.Size = new System.Drawing.Size(829, 24);
             this.statusBarEx.TabIndex = 4;
             this.statusBarEx.Text = "statusBarEx1";
-            // 
-            // tsmDrip
-            // 
-            this.tsmDrip.Name = "tsmDrip";
-            this.tsmDrip.Size = new System.Drawing.Size(44, 21);
-            this.tsmDrip.Text = "滴液";
-            this.tsmDrip.Click += new System.EventHandler(this.tsmDrip_Click);
             // 
             // MainFrm
             // 
@@ -116,7 +116,7 @@
             this.IsMdiContainer = true;
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VSMD工作站";
+            this.Text = "移液工作站";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.menuStrip1.ResumeLayout(false);

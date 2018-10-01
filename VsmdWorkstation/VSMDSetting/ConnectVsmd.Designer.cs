@@ -36,6 +36,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblCurConn = new System.Windows.Forms.Label();
             this.lblCurInfo = new System.Windows.Forms.Label();
+            this.cmbPumpPort = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -87,7 +89,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(50, 115);
+            this.btnConnect.Location = new System.Drawing.Point(50, 141);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 4;
@@ -97,7 +99,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(131, 115);
+            this.btnCancel.Location = new System.Drawing.Point(131, 141);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -125,11 +127,31 @@
             this.lblCurInfo.Text = "label4";
             this.lblCurInfo.Visible = false;
             // 
+            // cmbPumpPort
+            // 
+            this.cmbPumpPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPumpPort.FormattingEnabled = true;
+            this.cmbPumpPort.Location = new System.Drawing.Point(87, 98);
+            this.cmbPumpPort.Name = "cmbPumpPort";
+            this.cmbPumpPort.Size = new System.Drawing.Size(137, 20);
+            this.cmbPumpPort.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "蠕动泵端口：";
+            // 
             // ConnectVsmd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 162);
+            this.ClientSize = new System.Drawing.Size(255, 181);
+            this.Controls.Add(this.cmbPumpPort);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblCurInfo);
             this.Controls.Add(this.lblCurConn);
             this.Controls.Add(this.btnCancel);
@@ -160,5 +182,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblCurConn;
         private System.Windows.Forms.Label lblCurInfo;
+        private System.Windows.Forms.ComboBox cmbPumpPort;
+        private System.Windows.Forms.Label label3;
     }
 }

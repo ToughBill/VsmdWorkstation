@@ -7,9 +7,10 @@ namespace VsmdWorkstation
     public class PumpController
     {
         private SerialPort m_port;
-        public bool Init(string port)
+        public InitResult Init(string port)
         {
-            bool retVal = true;
+            bool success = true;
+            string errMsg = string.Empty;
             try
             {
                 m_port = new SerialPort(port);
@@ -17,9 +18,10 @@ namespace VsmdWorkstation
             }
             catch (Exception)
             {
-                retVal = false;
+                success = false;
+                errMsg = "蠕动泵连接失败！";
             }
-            return retVal;
+            return new InitResult() { IsSuccess = success, ErrorMsg = errMsg };
         }
         private void On()
         {

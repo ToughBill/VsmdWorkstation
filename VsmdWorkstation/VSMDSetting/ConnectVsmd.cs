@@ -33,9 +33,11 @@ namespace VsmdWorkstation
                 lblCurInfo.Visible = false;
             }
             cmbPort.Items.AddRange(SerialPort.GetPortNames());
-            if(cmbPort.Items.Count > 0)
+            cmbPumpPort.Items.AddRange(SerialPort.GetPortNames());
+            if (cmbPort.Items.Count > 0)
             {
                 cmbPort.SelectedIndex = 0;
+                cmbPumpPort.SelectedIndex = 0;
             }
             cmbBaudrate.SelectedIndex = 2;
             IsClosed = false;
@@ -48,13 +50,17 @@ namespace VsmdWorkstation
                 return;
             }
             m_isConnecting = true;
-            InitResult initRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
-            if(m_initCB != null)
+            InitResult vsmdRet = await VsmdController.GetVsmdController().Init(cmbPort.SelectedItem.ToString(), int.Parse(cmbBaudrate.SelectedItem.ToString()));
+            InitResult pumpRet = PumpController.GetPumpController().Init(cmbPumpPort.SelectedItem.ToString());
+            if (m_initCB != null)
             {
-                m_initCB(initRet);
+                InitResult connectRet = new InitResult();
+                connectRet.IsSuccess = vsmdRet.IsSuccess && pumpRet.IsSuccess;
+                connectRet.ErrorMsg = vsmdRet.IsSuccess ? pumpRet.ErrorMsg : vsmdRet.ErrorMsg;
+                m_initCB(connectRet);
                 m_isConnecting = false;
             }
-            if (initRet.IsSuccess)
+            if (vsmdRet.IsSuccess && pumpRet.IsSuccess)
             {
                 this.Close();
             }
