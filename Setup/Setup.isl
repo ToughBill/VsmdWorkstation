@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject>Vsmd</subject>
+		<subject></subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -341,27 +341,28 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>CefSharp.BrowserSubprocess.Core.dll</td><td>{B056BA1B-9F4A-42DA-BD84-EFAB30702FAF}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.browsersubprocess.c</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CefSharp.BrowserSubprocess.exe</td><td>{80D34573-AFDC-470B-87ED-BEF628A621C3}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.browsersubprocess.e</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CefSharp.Core.dll</td><td>{283C5588-2484-4A3F-BA71-27A1F2FC43E3}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.core.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CefSharp.WinForms.dll</td><td>{29053D24-87BC-4E47-9023-01FA0692081A}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.winforms.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>CefSharp.dll</td><td>{297ED42E-8D12-4638-9A77-EC2D88910445}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CefSharp.BrowserSubprocess.Core.dll</td><td>{029A5CA8-F9A0-40A9-8B40-73AE91D3EA54}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.browsersubprocess.c1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CefSharp.BrowserSubprocess.exe</td><td>{F95B80AB-70FC-484D-B6AD-9E92B2F52E20}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.browsersubprocess.e</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CefSharp.Core.dll</td><td>{34F915B5-DDB5-4CF7-800F-7117CF783D69}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.core.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CefSharp.WinForms.dll</td><td>{F7BFDFC2-9609-4748-9C1C-DE2CF56E29D0}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.winforms.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CefSharp.dll</td><td>{8462A0C7-A139-42CB-AD20-F493E7616CD0}</td><td>INSTALLDIR</td><td>2</td><td/><td>cefsharp.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{67895A80-18B8-46D9-AF36-948C909BE50B}</td><td>HTML</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{C3A2A3AC-7AAD-4B0A-85C6-46362A9F5E77}</td><td>CSS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{FB6BE42D-5416-419C-A528-F91BDC02586F}</td><td>ICON</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{A85E359D-31D6-4EA8-916E-D98814D30D6E}</td><td>JS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td>{03CA366A-924D-48AB-8120-52CD910C3A30}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Newtonsoft.Json.dll</td><td>{1443F33B-5472-4C80-B704-C2B09AB32717}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>VsmdLib.dll</td><td>{7B9B8DDA-94F3-4D5C-A3A5-A3BB40149C01}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdlib.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>VsmdWorkstation.Controls.dll</td><td>{609F01C4-DC20-401C-AD18-E4060B3260E0}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.controls.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>VsmdWorkstation.exe</td><td>{8758A4F3-F0B0-4CD3-AAF6-70E9EE7D9FE3}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>VsmdWorkstation.vshost.exe</td><td>{8FCC2913-A073-4178-A733-9AF58E40CF58}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>chrome_elf.dll</td><td>{75A0F304-B14D-40E4-BE85-DE66993501C4}</td><td>INSTALLDIR</td><td>2</td><td/><td>chrome_elf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>d3dcompiler_47.dll</td><td>{899317E6-3521-47C8-8DAD-3146E0D2E299}</td><td>INSTALLDIR</td><td>2</td><td/><td>d3dcompiler_47.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>libEGL.dll</td><td>{31380494-23E3-4D37-AFC2-92D7BF4AFB06}</td><td>INSTALLDIR</td><td>2</td><td/><td>libegl.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>libGLESv2.dll</td><td>{F8B89B76-655E-4B1D-BD5E-554EFE26A022}</td><td>INSTALLDIR</td><td>2</td><td/><td>libglesv2.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>libcef.dll</td><td>{723AF5E8-5969-4CA7-B939-BECDCAFDAA3C}</td><td>INSTALLDIR</td><td>2</td><td/><td>libcef.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>widevinecdmadapter.dll</td><td>{CF0B9508-E467-42C9-A6C2-4C793CEC2280}</td><td>INSTALLDIR</td><td>2</td><td/><td>widevinecdmadapter.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Newtonsoft.Json.dll</td><td>{B839C90C-713E-4FC3-8125-15470BC957A8}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Pipettor.exe</td><td>{73D39EB4-F970-4A30-A50A-DEBDC27ADB98}</td><td>INSTALLDIR</td><td>2</td><td/><td>pipettor.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Pipettor.vshost.exe</td><td>{29AA1E8C-0817-4E5D-8B3B-DD74993B96FD}</td><td>INSTALLDIR</td><td>2</td><td/><td>pipettor.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>VsmdLib.dll</td><td>{2D37BCA3-3617-403C-AC92-C227785BB15E}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdlib.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>VsmdWorkstation.Controls.dll</td><td>{1A959671-5DE3-4946-B851-E2C758A9ADF8}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.controls.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>VsmdWorkstation.vshost.exe</td><td>{59FEB3A6-346B-4096-B79A-7CDEB57CE14C}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>chrome_elf.dll</td><td>{9C45CEF8-9025-4AE3-BFFE-150CC4FA422C}</td><td>INSTALLDIR</td><td>2</td><td/><td>chrome_elf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>d3dcompiler_47.dll</td><td>{99222267-726F-484F-9FFA-5703F45180FD}</td><td>INSTALLDIR</td><td>2</td><td/><td>d3dcompiler_47.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>libEGL.dll</td><td>{9113B5BA-D7FF-453E-8525-F33D67037B06}</td><td>INSTALLDIR</td><td>2</td><td/><td>libegl.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>libGLESv2.dll</td><td>{FAD181B1-BCB2-44AA-9F64-E3F045BD10F4}</td><td>INSTALLDIR</td><td>2</td><td/><td>libglesv2.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>libcef.dll</td><td>{A64A069A-0650-4B04-8C7A-4B7A20DECAE8}</td><td>INSTALLDIR</td><td>2</td><td/><td>libcef.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>widevinecdmadapter.dll</td><td>{4DB67DA1-E59D-40FD-945D-68E15DC7E139}</td><td>INSTALLDIR</td><td>2</td><td/><td>widevinecdmadapter.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1085,9 +1086,10 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>INSTALLDIR</td><td>Newtonsoft.Json.dll</td></row>
+		<row><td>INSTALLDIR</td><td>Pipettor.exe</td></row>
+		<row><td>INSTALLDIR</td><td>Pipettor.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>VsmdLib.dll</td></row>
 		<row><td>INSTALLDIR</td><td>VsmdWorkstation.Controls.dll</td></row>
-		<row><td>INSTALLDIR</td><td>VsmdWorkstation.exe</td></row>
 		<row><td>INSTALLDIR</td><td>VsmdWorkstation.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>chrome_elf.dll</td></row>
 		<row><td>INSTALLDIR</td><td>d3dcompiler_47.dll</td></row>
@@ -1223,7 +1225,7 @@
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>company_name</td><td>ProgramMenuFolder</td><td>788B~1|公司名称</td><td/><td>1</td><td/></row>
 		<row><td>company_name1</td><td>ProgramMenuFolder</td><td>DBEB~1|盈开生物</td><td/><td>1</td><td/></row>
-		<row><td>product_name</td><td>company_name1</td><td>VSMD~1|Vsmd工作站</td><td/><td>1</td><td/></row>
+		<row><td>product_name1</td><td>company_name1</td><td>3F78~1|移液工作站</td><td/><td>1</td><td/></row>
 		<row><td>setup</td><td>company_name</td><td>Setup</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -1927,9 +1929,10 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll</td></row>
+		<row><td>AlwaysInstall</td><td>Pipettor.exe</td></row>
+		<row><td>AlwaysInstall</td><td>Pipettor.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>VsmdLib.dll</td></row>
 		<row><td>AlwaysInstall</td><td>VsmdWorkstation.Controls.dll</td></row>
-		<row><td>AlwaysInstall</td><td>VsmdWorkstation.exe</td></row>
 		<row><td>AlwaysInstall</td><td>VsmdWorkstation.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>chrome_elf.dll</td></row>
 		<row><td>AlwaysInstall</td><td>d3dcompiler_47.dll</td></row>
@@ -1956,13 +1959,12 @@
 		<row><td>bootstrap.min.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>BOOTST~1.JS|bootstrap.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\bootstrap.min.js</td><td>1</td><td/></row>
 		<row><td>bootstrap_theme.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap-theme.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\bootstrap-theme.css</td><td>1</td><td/></row>
 		<row><td>bootstrap_theme.min.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap-theme.min.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\bootstrap-theme.min.css</td><td>1</td><td/></row>
-		<row><td>box_selection.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>BOX-SE~1.JS|box-selection.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\box-selection.js</td><td>1</td><td/></row>
 		<row><td>cef.pak</td><td>ISX_DEFAULTCOMPONENT4</td><td>cef.pak</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\cef.pak</td><td>1</td><td/></row>
 		<row><td>cef_100_percent.pak</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEF_10~1.PAK|cef_100_percent.pak</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\cef_100_percent.pak</td><td>1</td><td/></row>
 		<row><td>cef_200_percent.pak</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEF_20~1.PAK|cef_200_percent.pak</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\cef_200_percent.pak</td><td>1</td><td/></row>
 		<row><td>cef_extensions.pak</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEF_EX~1.PAK|cef_extensions.pak</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\cef_extensions.pak</td><td>1</td><td/></row>
-		<row><td>cefsharp.browsersubprocess.c</td><td>CefSharp.BrowserSubprocess.Core.dll</td><td>CEFSHA~1.DLL|CefSharp.BrowserSubprocess.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.dll</td><td>1</td><td/></row>
-		<row><td>cefsharp.browsersubprocess.c1</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.BrowserSubprocess.Core.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.pdb</td><td>1</td><td/></row>
+		<row><td>cefsharp.browsersubprocess.c</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.BrowserSubprocess.Core.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.pdb</td><td>1</td><td/></row>
+		<row><td>cefsharp.browsersubprocess.c1</td><td>CefSharp.BrowserSubprocess.Core.dll</td><td>CEFSHA~1.DLL|CefSharp.BrowserSubprocess.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.dll</td><td>1</td><td/></row>
 		<row><td>cefsharp.browsersubprocess.e</td><td>CefSharp.BrowserSubprocess.exe</td><td>CEFSHA~1.EXE|CefSharp.BrowserSubprocess.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.exe</td><td>1</td><td/></row>
 		<row><td>cefsharp.browsersubprocess.p</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.BrowserSubprocess.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.pdb</td><td>1</td><td/></row>
 		<row><td>cefsharp.core.dll</td><td>CefSharp.Core.dll</td><td>CEFSHA~1.DLL|CefSharp.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.Core.dll</td><td>1</td><td/></row>
@@ -1995,6 +1997,12 @@
 		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>newtonsoft.json.xml</td><td>ISX_DEFAULTCOMPONENT4</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Newtonsoft.Json.xml</td><td>1</td><td/></row>
 		<row><td>page.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>page.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\page.js</td><td>1</td><td/></row>
+		<row><td>pipettor.exe</td><td>Pipettor.exe</td><td>Pipettor.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.exe</td><td>1</td><td/></row>
+		<row><td>pipettor.exe.config</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.CON|Pipettor.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.exe.config</td><td>1</td><td/></row>
+		<row><td>pipettor.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>Pipettor.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.pdb</td><td>1</td><td/></row>
+		<row><td>pipettor.vshost.exe</td><td>Pipettor.vshost.exe</td><td>PIPETT~1.EXE|Pipettor.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe</td><td>1</td><td/></row>
+		<row><td>pipettor.vshost.exe.config</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.CON|Pipettor.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe.config</td><td>1</td><td/></row>
+		<row><td>pipettor.vshost.exe.manifest</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.MAN|Pipettor.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe.manifest</td><td>1</td><td/></row>
 		<row><td>snapshot_blob.bin</td><td>ISX_DEFAULTCOMPONENT4</td><td>SNAPSH~1.BIN|snapshot_blob.bin</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\snapshot_blob.bin</td><td>1</td><td/></row>
 		<row><td>style.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>style.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\style.css</td><td>1</td><td/></row>
 		<row><td>tubegrid.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>tubeGrid.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\tubeGrid.css</td><td>1</td><td/></row>
@@ -2005,9 +2013,6 @@
 		<row><td>vsmdlib.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>VsmdLib.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdLib.pdb</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.controls.dll</td><td>VsmdWorkstation.Controls.dll</td><td>VSMDWO~1.DLL|VsmdWorkstation.Controls.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.Controls.dll</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.controls.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.PDB|VsmdWorkstation.Controls.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.Controls.pdb</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.exe</td><td>VsmdWorkstation.exe</td><td>VSMDWO~1.EXE|VsmdWorkstation.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.exe</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.exe.config</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.CON|VsmdWorkstation.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.exe.config</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.PDB|VsmdWorkstation.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.pdb</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.vshost.exe</td><td>VsmdWorkstation.vshost.exe</td><td>VSMDWO~1.EXE|VsmdWorkstation.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.vshost.exe.c</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.CON|VsmdWorkstation.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe.config</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.vshost.exe.m</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.MAN|VsmdWorkstation.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe.manifest</td><td>1</td><td/></row>
@@ -2154,27 +2159,28 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>CefSharp.BrowserSubprocess.Core.dll</td><td/><td/><td>_2AEFD11C_2793_4571_88ED_0203C44DB659_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CefSharp.BrowserSubprocess.exe</td><td/><td/><td>_8D912155_7ED4_409D_AEB9_E20F6761701E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CefSharp.Core.dll</td><td/><td/><td>_32600DC4_F6E3_4E1C_A91A_2109F16D72F0_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CefSharp.WinForms.dll</td><td/><td/><td>_2552E8F4_537D_4700_8C8D_9FFA7A49D7B9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>CefSharp.dll</td><td/><td/><td>_A704398C_6ADA_4E7C_B8DF_F9ED2FF2CAEC_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CefSharp.BrowserSubprocess.Core.dll</td><td/><td/><td>_3B81CF9F_FF62_4F92_85BE_F89B3A792292_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CefSharp.BrowserSubprocess.exe</td><td/><td/><td>_6DC65D3B_8DD8_4582_BC4A_A5CAC48675AA_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CefSharp.Core.dll</td><td/><td/><td>_C392DEDD_6F24_4DA4_8F27_383215125332_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CefSharp.WinForms.dll</td><td/><td/><td>_B2B3B911_82E2_44E3_93F8_E7D7120A8AFC_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CefSharp.dll</td><td/><td/><td>_3629BFDD_54B4_423F_8DC0_30EA6E68013F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_96B1395F_DA59_41C5_A415_0DD29D664BD6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_955D9B84_9996_4BDB_9341_95FFB86C12D5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_628A4592_0834_4522_907A_0DFCC1FF99B9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_B3AFC353_EBDC_460B_B327_81CEF509EB0B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td/><td/><td>_CC97B0FB_E48C_4FC6_A294_FE027FA4500F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_AC7980CF_1394_4FEA_8E7F_1DFB02C7D6B4_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>VsmdLib.dll</td><td/><td/><td>_AB435131_3FCE_48D2_B9B8_BA8FBB832E10_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>VsmdWorkstation.Controls.dll</td><td/><td/><td>_55D15690_4F50_4135_942D_3D402167EE4B_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>VsmdWorkstation.exe</td><td/><td/><td>_D6944F94_4A08_4519_8579_844964E4B716_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>VsmdWorkstation.vshost.exe</td><td/><td/><td>_99100404_5885_4D25_A263_2E34FC965710_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>chrome_elf.dll</td><td/><td/><td>_B40F9DD9_E55A_44FE_9E95_8D7E02A7CEFC_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>d3dcompiler_47.dll</td><td/><td/><td>_A1FC56E9_5170_4197_9BE2_38771E2D257E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>libEGL.dll</td><td/><td/><td>_1A17C636_50B6_42AB_A2C6_11F5184CEB2B_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>libGLESv2.dll</td><td/><td/><td>_121F79BF_CA54_4A2C_8E6A_C652A5362D53_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>libcef.dll</td><td/><td/><td>_7810359B_EA40_4F34_918E_D61DDB4A3538_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>widevinecdmadapter.dll</td><td/><td/><td>_4D33E2D2_13EE_4428_A314_2EE1BA32CE04_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_11CF41B3_25F6_4749_82E3_6286AEE06B43_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Pipettor.exe</td><td/><td/><td>_E5F97C7F_FC40_4822_A2FF_31627C14EAC2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Pipettor.vshost.exe</td><td/><td/><td>_91F6A3F2_19F0_4618_BA3B_F0510C0B8A44_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>VsmdLib.dll</td><td/><td/><td>_090DB8C9_256C_45EE_81C4_85F04DFC0F05_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>VsmdWorkstation.Controls.dll</td><td/><td/><td>_E801BB21_C002_4574_AAB3_53674BD2B4FD_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>VsmdWorkstation.vshost.exe</td><td/><td/><td>_3DFE89A5_1DB6_43F0_8AA7_8F66E7215DD6_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>chrome_elf.dll</td><td/><td/><td>_A317B6E4_BD23_4667_B198_984A035366A7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>d3dcompiler_47.dll</td><td/><td/><td>_A826B90F_BB55_4B8D_9D58_FD77CCE018F2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>libEGL.dll</td><td/><td/><td>_4380F0F0_1419_4BD4_92E3_49F303628E1E_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>libGLESv2.dll</td><td/><td/><td>_22E23D48_EF91_4DD2_A02D_84168E2C5EB8_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>libcef.dll</td><td/><td/><td>_3810B8E1_F233_4078_976C_DE00F63FDE63_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>widevinecdmadapter.dll</td><td/><td/><td>_30B3EBCE_14BB_4F3D_827F_D4F12FC3E773_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2730,6 +2736,7 @@
 		<col def="I2">Order</col>
 		<col def="I2">ISSetupLocation</col>
 		<col def="S255">ISReleaseFlags</col>
+		<row><td>_0B53B224_B9B6_4EE8_B8C0_7385980BA0AA_</td><td>Microsoft .NET Framework 4.5.2 Full.prq</td><td/><td/><td/></row>
 	</table>
 
 	<table name="ISSetupType">
@@ -3585,6 +3592,16 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME11</td><td>2052</td><td>VsmdWorkstation.exe</td><td>0</td><td/><td>1957083317</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME12</td><td>1033</td><td/><td>0</td><td/><td>1822823951</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME12</td><td>2052</td><td>LAUNCH~1.EXE|Launch VsmdWorkstation.vshost.exe</td><td>0</td><td/><td>1822823951</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>1033</td><td/><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>2052</td><td>LAUNCH~1.EXE|Launch VsmdWorkstation.vshost.exe</td><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>1033</td><td/><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>2052</td><td>LAUNCH~1.EXE|Launch Pipettor.vshost.exe</td><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>1033</td><td/><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>2052</td><td>移液工作站</td><td>0</td><td/><td>220646996</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME16</td><td>1033</td><td/><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME16</td><td>2052</td><td>LAUNCH~1.EXE|Launch CefSharp.BrowserSubprocess.exe</td><td>0</td><td/><td>220632596</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME17</td><td>1033</td><td/><td>0</td><td/><td>220624500</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME17</td><td>2052</td><td>LAUNCH~1.EXE|Launch Pipettor.exe</td><td>0</td><td/><td>220624500</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td/><td>0</td><td/><td>-1004087671</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>2052</td><td>LAUNCH~1.EXE|Launch VsmdWorkstation.exe</td><td>0</td><td/><td>-1004087671</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td/><td>0</td><td/><td>-1004087671</td></row>
@@ -4008,6 +4025,7 @@
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
 		<row><td>CefSharp.BrowserSu_D9FCC4C26E834E3AAE078390DB286C6C.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>Pipettor.exe_361DA743F4E44609BA8D3466C0C00A75.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>VsmdWorkstation.ex_0B740076A1A24AA9870B381A49C20B75.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>VsmdWorkstation.ex_B9F124C691A34467AE4C9C3D38D48E5B.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>VsmdWorkstation.ex_FE59AB71AE1C4FF2A16D8EF8D1C21014.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
@@ -4144,7 +4162,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{021649FE-52F9-4ED1-96EF-0B98C45192D5}</td></row>
 		<row><td>ISUSSignature</td><td>{1B8BA500-3D2D-4C6A-B47F-0D9C49938B8B}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewUI,viewSystemSearch,viewRelease,viewServices,viewCustomActions,viewTextMessages,viewFileExtensions,viewRegistry,viewUpdateService,viewIniFiles,viewEnvironmentVariables,viewISToday</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewUI,viewSystemSearch,viewRelease,viewServices,viewCustomActions,viewTextMessages,viewFileExtensions,viewRegistry,viewUpdateService,viewIniFiles,viewEnvironmentVariables,viewISToday,viewObjects,viewAppFiles,viewShortcuts,viewUpgradePaths</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4521,7 +4539,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]VsmdWorkstation.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{11F63861-B483-4A07-8BEE-B719FCFD67D7}</td><td/></row>
-		<row><td>ProductName</td><td>Vsmd工作站</td><td/></row>
+		<row><td>ProductName</td><td>移液工作站</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -4599,7 +4617,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>VsmdWorkstation.exe</td><td>VsmdWorkstation.exe</td><td/><td>product_name</td><td>2</td></row>
+		<row><td>FileKey1</td><td>VsmdWorkstation.vshost.exe</td><td/><td>product_name1</td><td>2</td></row>
+		<row><td>Pipettor.exe</td><td>Pipettor.exe</td><td/><td>product_name1</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4685,7 +4704,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>VsmdWorkstation.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME11##</td><td>VsmdWorkstation.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>VsmdWorkstation.ex_FE59AB71AE1C4FF2A16D8EF8D1C21014.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>Pipettor.exe</td><td>product_name1</td><td>##IDS_SHORTCUT_DISPLAY_NAME15##</td><td>Pipettor.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>Pipettor.exe_361DA743F4E44609BA8D3466C0C00A75.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
