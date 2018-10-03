@@ -15,8 +15,6 @@ namespace VsmdWorkstation
         {
             GeneralSettingMeta meta = GeneralSettings.GetInstance().GetSettingMeta();
             meta.DripInterval = (int)numDripInter.Value;
-            meta.ZTravel = int.Parse(txtZTravel.Text);
-            meta.ZDispense = int.Parse(txtZDispense.Text);
             meta.MoveSpeed = float.Parse(txtMoveSpd.Text.Trim());
             meta.OutputCommandLog = ckbEnableCmdLog.Checked;
             meta.OutputStsCommandLog = ckbEnableStsCmdLog.Checked;
@@ -50,8 +48,6 @@ namespace VsmdWorkstation
         {
             GeneralSettingMeta meta = GeneralSettings.GetInstance().GetSettingMeta();
             numDripInter.Value = (decimal)meta.DripInterval;
-            txtZTravel.Text = meta.ZTravel.ToString();
-            txtZDispense.Text = meta.ZDispense.ToString();
 
             txtMoveSpd.Text = meta.MoveSpeed.ToString();
             

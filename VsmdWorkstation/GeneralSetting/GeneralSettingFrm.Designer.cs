@@ -36,10 +36,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtZDispense = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtZTravel = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMoveSpd = new VsmdWorkstation.Controls.TextBoxEx();
             this.ckbEnableStsCmdLog = new System.Windows.Forms.CheckBox();
@@ -51,7 +47,7 @@
             // ckbEnableCmdLog
             // 
             this.ckbEnableCmdLog.AutoSize = true;
-            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 182);
+            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 128);
             this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableCmdLog.Name = "ckbEnableCmdLog";
             this.ckbEnableCmdLog.Size = new System.Drawing.Size(234, 16);
@@ -80,7 +76,7 @@
             this.numDripInter.Location = new System.Drawing.Point(103, 17);
             this.numDripInter.Margin = new System.Windows.Forms.Padding(2);
             this.numDripInter.Maximum = new decimal(new int[] {
-            10000,
+            99999,
             0,
             0,
             0});
@@ -105,7 +101,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(68, 225);
+            this.btnOK.Location = new System.Drawing.Point(68, 171);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
@@ -117,7 +113,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(160, 225);
+            this.btnCancel.Location = new System.Drawing.Point(160, 171);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 23);
@@ -138,10 +134,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtZDispense);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtZTravel);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.numDripInter);
             this.groupBox1.Controls.Add(this.label2);
@@ -149,54 +141,16 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(263, 101);
+            this.groupBox1.Size = new System.Drawing.Size(263, 47);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "滴液";
-            // 
-            // txtZDispense
-            // 
-            this.txtZDispense.Location = new System.Drawing.Point(103, 70);
-            this.txtZDispense.Margin = new System.Windows.Forms.Padding(2);
-            this.txtZDispense.Name = "txtZDispense";
-            this.txtZDispense.Size = new System.Drawing.Size(118, 21);
-            this.txtZDispense.TabIndex = 11;
-            this.txtZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 73);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Z轴滴液高度：";
-            // 
-            // txtZTravel
-            // 
-            this.txtZTravel.Location = new System.Drawing.Point(103, 44);
-            this.txtZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.txtZTravel.Name = "txtZTravel";
-            this.txtZTravel.Size = new System.Drawing.Size(118, 21);
-            this.txtZTravel.TabIndex = 9;
-            this.txtZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 47);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 12);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Z轴安全高度：";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtMoveSpd);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(9, 118);
+            this.groupBox2.Location = new System.Drawing.Point(9, 64);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -217,7 +171,7 @@
             // ckbEnableStsCmdLog
             // 
             this.ckbEnableStsCmdLog.AutoSize = true;
-            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(29, 203);
+            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(29, 149);
             this.ckbEnableStsCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableStsCmdLog.Name = "ckbEnableStsCmdLog";
             this.ckbEnableStsCmdLog.Size = new System.Drawing.Size(114, 16);
@@ -232,7 +186,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(280, 257);
+            this.ClientSize = new System.Drawing.Size(280, 208);
             this.Controls.Add(this.ckbEnableStsCmdLog);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -268,10 +222,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.TextBoxEx txtMoveSpd;
-        private Controls.TextBoxEx txtZDispense;
-        private System.Windows.Forms.Label label5;
-        private Controls.TextBoxEx txtZTravel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckbEnableStsCmdLog;
     }
 }

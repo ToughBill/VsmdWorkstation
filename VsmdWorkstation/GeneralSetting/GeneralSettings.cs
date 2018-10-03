@@ -39,20 +39,6 @@ namespace VsmdWorkstation
                 return m_settingMeta.DripInterval;
             }
         }
-        public int ZTravel
-        {
-            get
-            {
-                return m_settingMeta.ZTravel;
-            }
-        }
-        public int ZDispense
-        {
-            get
-            {
-                return m_settingMeta.ZDispense;
-            }
-        }
         public float MoveSpeed
         {
             get

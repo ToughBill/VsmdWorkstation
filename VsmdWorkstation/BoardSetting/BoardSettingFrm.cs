@@ -112,6 +112,8 @@ namespace VsmdWorkstation
                 meta.Site1LastTubeY = int.Parse(txtSite1LTY.Text);
                 meta.Site2FirstTubeX = int.Parse(txtSite2FTX.Text);
                 meta.Site2FirstTubeY = int.Parse(txtSite2FTY.Text);
+                meta.ZTravel = int.Parse(txtSiteZTravel.Text);
+                meta.ZDispense = int.Parse(txtSiteZDispense.Text);
             }
             else
             {
@@ -122,6 +124,8 @@ namespace VsmdWorkstation
                 meta.GridFirstTubeY = int.Parse(txtGridFTY.Text);
                 meta.GridLastTubeX = int.Parse(txtGridLTX.Text);
                 meta.GridLastTubeY = int.Parse(txtGridLTY.Text);
+                meta.ZTravel = int.Parse(txtGridZTravel.Text);
+                meta.ZDispense = int.Parse(txtGridZDispense.Text);
             }
         }
 
@@ -297,6 +301,8 @@ namespace VsmdWorkstation
                 txtGridFTY.Text = m_curMeta.GridFirstTubeY.ToString();
                 txtGridLTX.Text = m_curMeta.GridLastTubeX.ToString();
                 txtGridLTY.Text = m_curMeta.GridLastTubeY.ToString();
+                txtGridZTravel.Text = m_curMeta.ZTravel.ToString();
+                txtGridZDispense.Text = m_curMeta.ZDispense.ToString();
             }
             else
             {
@@ -309,6 +315,8 @@ namespace VsmdWorkstation
                 txtSite1LTY.Text = m_curMeta.Site1LastTubeY.ToString();
                 txtSite2FTX.Text = m_curMeta.Site2FirstTubeX.ToString();
                 txtSite2FTY.Text = m_curMeta.Site2FirstTubeY.ToString();
+                txtSiteZTravel.Text = m_curMeta.ZTravel.ToString();
+                txtSiteZDispense.Text = m_curMeta.ZDispense.ToString();
             }
         }
 

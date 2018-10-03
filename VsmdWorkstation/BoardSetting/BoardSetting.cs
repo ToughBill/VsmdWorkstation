@@ -37,6 +37,8 @@ namespace VsmdWorkstation
         public int GridFirstTubeY { get; set; }
         public int GridLastTubeX { get; set; }
         public int GridLastTubeY { get; set; }
+        public int ZTravel { get; set; }
+        public int ZDispense { get; set; }
 
         public override string ToString()
         {

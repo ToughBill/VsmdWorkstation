@@ -32,6 +32,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.txtPos = new VsmdWorkstation.Controls.TextBoxEx();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnMove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTip
@@ -45,9 +46,9 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(186, 45);
+            this.btnOK.Location = new System.Drawing.Point(230, 46);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(90, 23);
+            this.btnOK.Size = new System.Drawing.Size(54, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -57,9 +58,9 @@
             // 
             this.txtPos.Location = new System.Drawing.Point(31, 48);
             this.txtPos.Name = "txtPos";
-            this.txtPos.Size = new System.Drawing.Size(149, 21);
+            this.txtPos.Size = new System.Drawing.Size(133, 21);
             this.txtPos.TabIndex = 9;
-            this.txtPos.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            this.txtPos.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // btnCancel
             // 
@@ -72,14 +73,25 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnMove
+            // 
+            this.btnMove.Location = new System.Drawing.Point(170, 46);
+            this.btnMove.Name = "btnMove";
+            this.btnMove.Size = new System.Drawing.Size(54, 23);
+            this.btnMove.TabIndex = 11;
+            this.btnMove.Text = "移动到";
+            this.btnMove.UseVisualStyleBackColor = true;
+            this.btnMove.Click += new System.EventHandler(this.btnMove_Click);
+            // 
             // SetTubePositionFrm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(303, 86);
+            this.ClientSize = new System.Drawing.Size(315, 86);
             this.ControlBox = false;
+            this.Controls.Add(this.btnMove);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtPos);
             this.Controls.Add(this.btnOK);
@@ -102,5 +114,6 @@
         private System.Windows.Forms.Button btnOK;
         private Controls.TextBoxEx txtPos;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnMove;
     }
 }

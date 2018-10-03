@@ -157,17 +157,22 @@ namespace VsmdWorkstation
                 JObject obj = (JObject)jsArr[i];
                 GetPositionInfo(obj, out blockNum, out row, out col);
                 SetDrippingTube(blockNum, row, col);
-                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
-                await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+                //await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+                //await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+
+                var moveXTask = vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+                var moveYTask = vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+                await Task.WhenAll(moveXTask, moveYTask);
+
                 // TODO
-                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
+                await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
 
                 // start drip
                 //await vsmdController.ClickPump();
                 await pumpController.Drip();
                 // wait 5 seconds, this time should be changed according to the volume dripped
                 Thread.Sleep(dripInterval);
-                await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
+                await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
 
                 // change the screen to start
                 await pumpController.Drip();
@@ -223,8 +228,12 @@ namespace VsmdWorkstation
             GetPositionInfo(targetTube, out blockNum, out row, out col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
-            await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
-            await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+            //await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+            //await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+
+            var moveXTask = vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+            var moveYTask = vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
+            await Task.WhenAll(moveXTask, moveYTask);
         }
         public async void DripTube(string args)
         {
@@ -245,13 +254,13 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
-            await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZDispense);
+            await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
             await pumpController.Drip();
 
             Thread.Sleep(GeneralSettings.GetInstance().DripInterval);
 
             await pumpController.Drip();
-            await vsmdController.MoveTo(VsmdAxis.Z, GeneralSettings.GetInstance().ZTravel);
+            await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
 
             MoveCallBack(blockNum, row, col);
         }

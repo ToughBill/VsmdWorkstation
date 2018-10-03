@@ -89,6 +89,14 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label22 = new System.Windows.Forms.Label();
+            this.txtSiteZDispense = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSiteZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtGridZDispense = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtGridZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label3 = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
@@ -106,7 +114,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(76, 289);
+            this.btnOK.Location = new System.Drawing.Point(83, 336);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
@@ -118,7 +126,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(189, 289);
+            this.btnCancel.Location = new System.Drawing.Point(196, 336);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
@@ -207,6 +215,10 @@
             // 
             // panelGrid
             // 
+            this.panelGrid.Controls.Add(this.txtGridZDispense);
+            this.panelGrid.Controls.Add(this.label2);
+            this.panelGrid.Controls.Add(this.txtGridZTravel);
+            this.panelGrid.Controls.Add(this.label3);
             this.panelGrid.Controls.Add(this.label34);
             this.panelGrid.Controls.Add(this.txtGridRowCnt);
             this.panelGrid.Controls.Add(this.label35);
@@ -226,16 +238,16 @@
             this.panelGrid.Controls.Add(this.label15);
             this.panelGrid.Controls.Add(this.txtGridFTX);
             this.panelGrid.Controls.Add(this.label16);
-            this.panelGrid.Location = new System.Drawing.Point(33, 35);
+            this.panelGrid.Location = new System.Drawing.Point(13, 35);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(242, 189);
+            this.panelGrid.Size = new System.Drawing.Size(284, 256);
             this.panelGrid.TabIndex = 33;
             this.panelGrid.Visible = false;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(216, 11);
+            this.label34.Location = new System.Drawing.Point(234, 10);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(17, 12);
@@ -244,7 +256,7 @@
             // 
             // txtGridRowCnt
             // 
-            this.txtGridRowCnt.Location = new System.Drawing.Point(162, 6);
+            this.txtGridRowCnt.Location = new System.Drawing.Point(180, 5);
             this.txtGridRowCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridRowCnt.Name = "txtGridRowCnt";
             this.txtGridRowCnt.Size = new System.Drawing.Size(50, 21);
@@ -255,7 +267,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(129, 10);
+            this.label35.Location = new System.Drawing.Point(147, 9);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(29, 12);
@@ -264,7 +276,7 @@
             // 
             // txtGridCnt
             // 
-            this.txtGridCnt.Location = new System.Drawing.Point(75, 6);
+            this.txtGridCnt.Location = new System.Drawing.Point(93, 5);
             this.txtGridCnt.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridCnt.Name = "txtGridCnt";
             this.txtGridCnt.Size = new System.Drawing.Size(50, 21);
@@ -275,7 +287,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(36, 11);
+            this.label36.Location = new System.Drawing.Point(54, 10);
             this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(41, 12);
@@ -284,7 +296,7 @@
             // 
             // btnGridLTX
             // 
-            this.btnGridLTX.Location = new System.Drawing.Point(170, 98);
+            this.btnGridLTX.Location = new System.Drawing.Point(200, 95);
             this.btnGridLTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnGridLTX.Name = "btnGridLTX";
             this.btnGridLTX.Size = new System.Drawing.Size(50, 21);
@@ -295,7 +307,7 @@
             // 
             // btnGridLTY
             // 
-            this.btnGridLTY.Location = new System.Drawing.Point(170, 126);
+            this.btnGridLTY.Location = new System.Drawing.Point(200, 123);
             this.btnGridLTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnGridLTY.Name = "btnGridLTY";
             this.btnGridLTY.Size = new System.Drawing.Size(50, 22);
@@ -307,7 +319,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(73, 129);
+            this.label17.Location = new System.Drawing.Point(91, 126);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(11, 12);
@@ -316,17 +328,17 @@
             // 
             // txtGridLTY
             // 
-            this.txtGridLTY.Location = new System.Drawing.Point(91, 127);
+            this.txtGridLTY.Location = new System.Drawing.Point(109, 124);
             this.txtGridLTY.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridLTY.Name = "txtGridLTY";
-            this.txtGridLTY.Size = new System.Drawing.Size(76, 21);
+            this.txtGridLTY.Size = new System.Drawing.Size(87, 21);
             this.txtGridLTY.TabIndex = 28;
             this.txtGridLTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(73, 100);
+            this.label18.Location = new System.Drawing.Point(91, 97);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(11, 12);
@@ -335,17 +347,17 @@
             // 
             // txtGridLTX
             // 
-            this.txtGridLTX.Location = new System.Drawing.Point(91, 98);
+            this.txtGridLTX.Location = new System.Drawing.Point(109, 95);
             this.txtGridLTX.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridLTX.Name = "txtGridLTX";
-            this.txtGridLTX.Size = new System.Drawing.Size(76, 21);
+            this.txtGridLTX.Size = new System.Drawing.Size(87, 21);
             this.txtGridLTX.TabIndex = 26;
             this.txtGridLTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 100);
+            this.label19.Location = new System.Drawing.Point(30, 97);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(65, 12);
@@ -354,7 +366,7 @@
             // 
             // btnGridFTX
             // 
-            this.btnGridFTX.Location = new System.Drawing.Point(170, 38);
+            this.btnGridFTX.Location = new System.Drawing.Point(200, 36);
             this.btnGridFTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnGridFTX.Name = "btnGridFTX";
             this.btnGridFTX.Size = new System.Drawing.Size(50, 21);
@@ -365,7 +377,7 @@
             // 
             // btnGridFTY
             // 
-            this.btnGridFTY.Location = new System.Drawing.Point(170, 66);
+            this.btnGridFTY.Location = new System.Drawing.Point(200, 65);
             this.btnGridFTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnGridFTY.Name = "btnGridFTY";
             this.btnGridFTY.Size = new System.Drawing.Size(50, 22);
@@ -377,7 +389,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(73, 69);
+            this.label13.Location = new System.Drawing.Point(91, 68);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(11, 12);
@@ -386,17 +398,17 @@
             // 
             // txtGridFTY
             // 
-            this.txtGridFTY.Location = new System.Drawing.Point(91, 67);
+            this.txtGridFTY.Location = new System.Drawing.Point(109, 66);
             this.txtGridFTY.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridFTY.Name = "txtGridFTY";
-            this.txtGridFTY.Size = new System.Drawing.Size(76, 21);
+            this.txtGridFTY.Size = new System.Drawing.Size(87, 21);
             this.txtGridFTY.TabIndex = 21;
             this.txtGridFTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(73, 40);
+            this.label15.Location = new System.Drawing.Point(91, 39);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(11, 12);
@@ -405,17 +417,17 @@
             // 
             // txtGridFTX
             // 
-            this.txtGridFTX.Location = new System.Drawing.Point(91, 38);
+            this.txtGridFTX.Location = new System.Drawing.Point(109, 37);
             this.txtGridFTX.Margin = new System.Windows.Forms.Padding(2);
             this.txtGridFTX.Name = "txtGridFTX";
-            this.txtGridFTX.Size = new System.Drawing.Size(76, 21);
+            this.txtGridFTX.Size = new System.Drawing.Size(87, 21);
             this.txtGridFTX.TabIndex = 19;
             this.txtGridFTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 40);
+            this.label16.Location = new System.Drawing.Point(30, 39);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(65, 12);
@@ -424,6 +436,10 @@
             // 
             // panelSite
             // 
+            this.panelSite.Controls.Add(this.txtSiteZDispense);
+            this.panelSite.Controls.Add(this.label5);
+            this.panelSite.Controls.Add(this.txtSiteZTravel);
+            this.panelSite.Controls.Add(this.label4);
             this.panelSite.Controls.Add(this.label29);
             this.panelSite.Controls.Add(this.txtSiteColCnt);
             this.panelSite.Controls.Add(this.label30);
@@ -452,9 +468,9 @@
             this.panelSite.Controls.Add(this.label21);
             this.panelSite.Controls.Add(this.txtSite1FTX);
             this.panelSite.Controls.Add(this.label22);
-            this.panelSite.Location = new System.Drawing.Point(6, 64);
+            this.panelSite.Location = new System.Drawing.Point(6, 62);
             this.panelSite.Name = "panelSite";
-            this.panelSite.Size = new System.Drawing.Size(335, 213);
+            this.panelSite.Size = new System.Drawing.Size(335, 268);
             this.panelSite.TabIndex = 34;
             // 
             // label29
@@ -529,7 +545,7 @@
             // 
             // btnSite2FTX
             // 
-            this.btnSite2FTX.Location = new System.Drawing.Point(198, 152);
+            this.btnSite2FTX.Location = new System.Drawing.Point(205, 152);
             this.btnSite2FTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite2FTX.Name = "btnSite2FTX";
             this.btnSite2FTX.Size = new System.Drawing.Size(50, 21);
@@ -540,7 +556,7 @@
             // 
             // btnSite2FTY
             // 
-            this.btnSite2FTY.Location = new System.Drawing.Point(198, 180);
+            this.btnSite2FTY.Location = new System.Drawing.Point(205, 179);
             this.btnSite2FTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite2FTY.Name = "btnSite2FTY";
             this.btnSite2FTY.Size = new System.Drawing.Size(50, 22);
@@ -564,7 +580,7 @@
             this.txtSite2FTY.Location = new System.Drawing.Point(119, 181);
             this.txtSite2FTY.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite2FTY.Name = "txtSite2FTY";
-            this.txtSite2FTY.Size = new System.Drawing.Size(76, 21);
+            this.txtSite2FTY.Size = new System.Drawing.Size(82, 21);
             this.txtSite2FTY.TabIndex = 35;
             this.txtSite2FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -583,7 +599,7 @@
             this.txtSite2FTX.Location = new System.Drawing.Point(119, 152);
             this.txtSite2FTX.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite2FTX.Name = "txtSite2FTX";
-            this.txtSite2FTX.Size = new System.Drawing.Size(76, 21);
+            this.txtSite2FTX.Size = new System.Drawing.Size(82, 21);
             this.txtSite2FTX.TabIndex = 33;
             this.txtSite2FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -599,7 +615,7 @@
             // 
             // btnSite1LTX
             // 
-            this.btnSite1LTX.Location = new System.Drawing.Point(198, 95);
+            this.btnSite1LTX.Location = new System.Drawing.Point(205, 95);
             this.btnSite1LTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite1LTX.Name = "btnSite1LTX";
             this.btnSite1LTX.Size = new System.Drawing.Size(50, 21);
@@ -610,7 +626,7 @@
             // 
             // btnSite1LTY
             // 
-            this.btnSite1LTY.Location = new System.Drawing.Point(198, 123);
+            this.btnSite1LTY.Location = new System.Drawing.Point(205, 123);
             this.btnSite1LTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite1LTY.Name = "btnSite1LTY";
             this.btnSite1LTY.Size = new System.Drawing.Size(50, 22);
@@ -634,7 +650,7 @@
             this.txtSite1LTY.Location = new System.Drawing.Point(119, 124);
             this.txtSite1LTY.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite1LTY.Name = "txtSite1LTY";
-            this.txtSite1LTY.Size = new System.Drawing.Size(76, 21);
+            this.txtSite1LTY.Size = new System.Drawing.Size(82, 21);
             this.txtSite1LTY.TabIndex = 28;
             this.txtSite1LTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -653,7 +669,7 @@
             this.txtSite1LTX.Location = new System.Drawing.Point(119, 95);
             this.txtSite1LTX.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite1LTX.Name = "txtSite1LTX";
-            this.txtSite1LTX.Size = new System.Drawing.Size(76, 21);
+            this.txtSite1LTX.Size = new System.Drawing.Size(82, 21);
             this.txtSite1LTX.TabIndex = 26;
             this.txtSite1LTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -669,7 +685,7 @@
             // 
             // btnSite1FTX
             // 
-            this.btnSite1FTX.Location = new System.Drawing.Point(198, 37);
+            this.btnSite1FTX.Location = new System.Drawing.Point(205, 37);
             this.btnSite1FTX.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite1FTX.Name = "btnSite1FTX";
             this.btnSite1FTX.Size = new System.Drawing.Size(50, 21);
@@ -680,7 +696,7 @@
             // 
             // btnSite1FTY
             // 
-            this.btnSite1FTY.Location = new System.Drawing.Point(198, 65);
+            this.btnSite1FTY.Location = new System.Drawing.Point(205, 65);
             this.btnSite1FTY.Margin = new System.Windows.Forms.Padding(2);
             this.btnSite1FTY.Name = "btnSite1FTY";
             this.btnSite1FTY.Size = new System.Drawing.Size(50, 22);
@@ -704,7 +720,7 @@
             this.txtSite1FTY.Location = new System.Drawing.Point(119, 66);
             this.txtSite1FTY.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite1FTY.Name = "txtSite1FTY";
-            this.txtSite1FTY.Size = new System.Drawing.Size(76, 21);
+            this.txtSite1FTY.Size = new System.Drawing.Size(82, 21);
             this.txtSite1FTY.TabIndex = 21;
             this.txtSite1FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -723,7 +739,7 @@
             this.txtSite1FTX.Location = new System.Drawing.Point(119, 37);
             this.txtSite1FTX.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite1FTX.Name = "txtSite1FTX";
-            this.txtSite1FTX.Size = new System.Drawing.Size(76, 21);
+            this.txtSite1FTX.Size = new System.Drawing.Size(82, 21);
             this.txtSite1FTX.TabIndex = 19;
             this.txtSite1FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
@@ -737,12 +753,88 @@
             this.label22.TabIndex = 22;
             this.label22.Text = "Site1首孔位置：";
             // 
+            // txtSiteZDispense
+            // 
+            this.txtSiteZDispense.Location = new System.Drawing.Point(100, 238);
+            this.txtSiteZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteZDispense.Name = "txtSiteZDispense";
+            this.txtSiteZDispense.Size = new System.Drawing.Size(103, 21);
+            this.txtSiteZDispense.TabIndex = 50;
+            this.txtSiteZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 241);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Z轴滴液高度：";
+            // 
+            // txtSiteZTravel
+            // 
+            this.txtSiteZTravel.Location = new System.Drawing.Point(100, 210);
+            this.txtSiteZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteZTravel.Name = "txtSiteZTravel";
+            this.txtSiteZTravel.Size = new System.Drawing.Size(103, 21);
+            this.txtSiteZTravel.TabIndex = 48;
+            this.txtSiteZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 213);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Z轴安全高度：";
+            // 
+            // txtGridZDispense
+            // 
+            this.txtGridZDispense.Location = new System.Drawing.Point(93, 181);
+            this.txtGridZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridZDispense.Name = "txtGridZDispense";
+            this.txtGridZDispense.Size = new System.Drawing.Size(104, 21);
+            this.txtGridZDispense.TabIndex = 42;
+            this.txtGridZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 184);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Z轴滴液高度：";
+            // 
+            // txtGridZTravel
+            // 
+            this.txtGridZTravel.Location = new System.Drawing.Point(93, 153);
+            this.txtGridZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridZTravel.Name = "txtGridZTravel";
+            this.txtGridZTravel.Size = new System.Drawing.Size(104, 21);
+            this.txtGridZTravel.TabIndex = 40;
+            this.txtGridZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 156);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Z轴安全高度：";
+            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(348, 320);
+            this.ClientSize = new System.Drawing.Size(348, 369);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.panelSite);
             this.Controls.Add(this.panelGrid);
@@ -830,5 +922,13 @@
         private Controls.TextBoxEx txtSiteCnt;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ToolStripMenuItem tsmNew;
+        private Controls.TextBoxEx txtGridZDispense;
+        private System.Windows.Forms.Label label2;
+        private Controls.TextBoxEx txtGridZTravel;
+        private System.Windows.Forms.Label label3;
+        private Controls.TextBoxEx txtSiteZDispense;
+        private System.Windows.Forms.Label label5;
+        private Controls.TextBoxEx txtSiteZTravel;
+        private System.Windows.Forms.Label label4;
     }
 }
