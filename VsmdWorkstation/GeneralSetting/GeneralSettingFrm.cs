@@ -16,6 +16,7 @@ namespace VsmdWorkstation
             GeneralSettingMeta meta = GeneralSettings.GetInstance().GetSettingMeta();
             meta.DripInterval = (int)numDripInter.Value;
             meta.MoveSpeed = float.Parse(txtMoveSpd.Text.Trim());
+            meta.AutoConnect = ckbAutoConnect.Checked;
             meta.OutputCommandLog = ckbEnableCmdLog.Checked;
             meta.OutputStsCommandLog = ckbEnableStsCmdLog.Checked;
             bool retVal = GeneralSettings.GetInstance().Save();
@@ -50,7 +51,7 @@ namespace VsmdWorkstation
             numDripInter.Value = (decimal)meta.DripInterval;
 
             txtMoveSpd.Text = meta.MoveSpeed.ToString();
-            
+            ckbAutoConnect.Checked = meta.AutoConnect;
             ckbEnableCmdLog.Checked = meta.OutputCommandLog;
             ckbEnableStsCmdLog.Checked = meta.OutputStsCommandLog;
         }

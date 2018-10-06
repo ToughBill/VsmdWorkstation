@@ -43,17 +43,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 50);
+            this.label1.Location = new System.Drawing.Point(26, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "端口：";
+            this.label1.Text = "电机端口：";
             // 
             // cmbPort
             // 
             this.cmbPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPort.FormattingEnabled = true;
-            this.cmbPort.Location = new System.Drawing.Point(87, 42);
+            this.cmbPort.Location = new System.Drawing.Point(87, 43);
             this.cmbPort.Name = "cmbPort";
             this.cmbPort.Size = new System.Drawing.Size(137, 20);
             this.cmbPort.TabIndex = 1;
@@ -61,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 78);
+            this.label2.Location = new System.Drawing.Point(38, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
@@ -82,7 +82,7 @@
             "230400",
             "460800",
             "921600"});
-            this.cmbBaudrate.Location = new System.Drawing.Point(87, 72);
+            this.cmbBaudrate.Location = new System.Drawing.Point(87, 73);
             this.cmbBaudrate.Name = "cmbBaudrate";
             this.cmbBaudrate.Size = new System.Drawing.Size(137, 20);
             this.cmbBaudrate.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(131, 141);
+            this.btnCancel.Location = new System.Drawing.Point(139, 141);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -114,24 +114,22 @@
             this.lblCurConn.Name = "lblCurConn";
             this.lblCurConn.Size = new System.Drawing.Size(65, 12);
             this.lblCurConn.TabIndex = 6;
-            this.lblCurConn.Text = "当前连接：";
-            this.lblCurConn.Visible = false;
+            this.lblCurConn.Text = "当前状态：";
             // 
             // lblCurInfo
             // 
             this.lblCurInfo.AutoSize = true;
-            this.lblCurInfo.Location = new System.Drawing.Point(97, 22);
+            this.lblCurInfo.Location = new System.Drawing.Point(85, 22);
             this.lblCurInfo.Name = "lblCurInfo";
             this.lblCurInfo.Size = new System.Drawing.Size(41, 12);
             this.lblCurInfo.TabIndex = 7;
             this.lblCurInfo.Text = "label4";
-            this.lblCurInfo.Visible = false;
             // 
             // cmbPumpPort
             // 
             this.cmbPumpPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPumpPort.FormattingEnabled = true;
-            this.cmbPumpPort.Location = new System.Drawing.Point(87, 98);
+            this.cmbPumpPort.Location = new System.Drawing.Point(87, 102);
             this.cmbPumpPort.Name = "cmbPumpPort";
             this.cmbPumpPort.Size = new System.Drawing.Size(137, 20);
             this.cmbPumpPort.TabIndex = 9;
@@ -139,7 +137,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 106);
+            this.label3.Location = new System.Drawing.Point(14, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 8;
@@ -165,6 +163,7 @@
             this.Name = "ConnectVsmd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "连接设备";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConnectVsmd_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectVsmd_FormClosed);
             this.Load += new System.EventHandler(this.ConnectVsmd_Load);
             this.ResumeLayout(false);

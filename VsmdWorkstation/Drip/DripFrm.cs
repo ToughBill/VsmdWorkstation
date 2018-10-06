@@ -21,7 +21,7 @@ namespace VsmdWorkstation
         Moving,
         PauseMove
     }
-    public partial class DripFrm : Form
+    public partial class DripFrm : Form, IPerference
     {
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
@@ -83,14 +83,30 @@ namespace VsmdWorkstation
 
         private void InitBoardSettings()
         {
+            cmbBoards.Items.Clear();
             BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
                 {
                     cmbBoards.Items.Add(meta);
                 }
             );
-            if(cmbBoards.Items.Count > 0)
+            Preference perfInst = Preference.GetInstace();
+            if (cmbBoards.Items.Count > 0)
             {
-                cmbBoards.SelectedIndex = 0;
+                if (perfInst.HasPreference)
+                {
+                    BoardMeta findBoardMeta = BoardSetting.GetInstance().GetAllBoardMetaes().Find((meta) =>
+                    {
+                        return meta.ID == perfInst.BoardID;
+                    });
+                    if (findBoardMeta != null)
+                    {
+                        cmbBoards.SelectedItem = findBoardMeta;
+                    }
+                }
+                else
+                {
+                    cmbBoards.SelectedIndex = 0;
+                }
             }
         }
 
@@ -122,9 +138,25 @@ namespace VsmdWorkstation
             {
                 e.Cancel = true;
             }
+            else
+            {
+                SavePref();
+            }
             m_isOpened = false;
         }
-
+        public bool SavePref()
+        {
+            bool ret = true;
+            Preference perfInst = Preference.GetInstace();
+            BoardMeta selectedBoardMeta = cmbBoards.SelectedItem as BoardMeta;
+            if(selectedBoardMeta != null && selectedBoardMeta.ID != perfInst.BoardID)
+            {
+                perfInst.BoardID = selectedBoardMeta.ID;
+                ret = perfInst.Save();
+            }
+            
+            return ret;
+        }
         private void tsmDevTools_Click(object sender, EventArgs e)
         {
             m_browser.ShowDevTools();

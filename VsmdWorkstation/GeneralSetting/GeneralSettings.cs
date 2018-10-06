@@ -18,6 +18,7 @@ namespace VsmdWorkstation
         public int ZDispense { get; set; }
         public bool OutputCommandLog { get; set; }
         public bool OutputStsCommandLog { get; set; }
+        public bool AutoConnect { get; set; }
     }
     public class GeneralSettings
     {
@@ -46,6 +47,13 @@ namespace VsmdWorkstation
                 return m_settingMeta.MoveSpeed;
             }
         }
+        public bool AutoConnect
+        {
+            get
+            {
+                return m_settingMeta.AutoConnect;
+            }
+        }
         public bool OutputCommandLog
         {
             get
@@ -71,6 +79,7 @@ namespace VsmdWorkstation
             m_settingMeta = new GeneralSettingMeta();
             m_settingMeta.DripInterval = 5000;
             m_settingMeta.MoveSpeed = 500.0f;
+            m_settingMeta.AutoConnect = false;
             m_settingMeta.OutputCommandLog = false;
         }
         public void LoadGeneralSettings()

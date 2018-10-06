@@ -6,30 +6,51 @@ namespace VsmdWorkstation
 {
     public class PumpController
     {
-        private SerialPort m_port;
+        private string m_portName;
+        private SerialPort m_comPort;
+        public string GetPort()
+        {
+            return m_portName;
+        }
         public InitResult Init(string port)
         {
             bool success = true;
             string errMsg = string.Empty;
             try
             {
-                m_port = new SerialPort(port);
-                m_port.Open();
+                m_comPort = new SerialPort(port);
+                m_comPort.Open();
+                m_portName = port;
             }
             catch (Exception)
             {
                 success = false;
                 errMsg = "蠕动泵连接失败！";
             }
-            return new InitResult() { IsSuccess = success, ErrorMsg = errMsg };
+            return new InitResult() { IsSuccess = success, Message = errMsg };
+        }
+        public bool Dispose()
+        {
+            bool ret = true;
+            try
+            {
+                m_comPort.DiscardInBuffer();
+                m_comPort.DiscardOutBuffer();
+                m_comPort.Close();
+            }
+            catch (Exception)
+            {
+                ret = false;
+            }
+            return ret;
         }
         private void On()
         {
-            m_port.Write("A");
+            m_comPort.Write("A");
         }
         private void Off()
         {
-            m_port.Write("a");
+            m_comPort.Write("a");
         }
         public async Task<bool> Drip()
         {

@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="BoardSetting\BoardSetting.cs" />
     <Compile Include="Drip\BridgeObject.cs" />
+    <Compile Include="preference\Preferences.cs" />
     <Compile Include="VSMDSetting\ConnectVsmd.cs">
       <SubType>Form</SubType>
     </Compile>

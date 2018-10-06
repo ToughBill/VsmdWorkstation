@@ -362,6 +362,7 @@ namespace VsmdWorkstation
         private void tsmNew_Click(object sender, EventArgs e)
         {
             m_curMeta = new BoardMeta();
+            m_curMeta.ID = BoardSetting.GetInstance().GetNextBoardNo();
             m_curMeta.Type = (int)BoardType.Site;
             FillData();
             m_mode = FORM_MODE.Add;

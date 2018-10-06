@@ -14,7 +14,7 @@ namespace VsmdWorkstation
     public class InitResult
     {
         public bool IsSuccess;
-        public string ErrorMsg;
+        public string Message;
     }
     public delegate void VsmdInitCallback(bool isOnline,List<string> errAxis);
     public class VsmdController
@@ -36,7 +36,7 @@ namespace VsmdWorkstation
         {
             if (m_initialized && port == m_port && baudrate == m_baudrate)
             {
-                return new InitResult() { ErrorMsg = "设备连接成功!", IsSuccess = true };
+                return new InitResult() { Message = "设备连接成功!", IsSuccess = true };
             }
             
             m_port = port;
@@ -50,7 +50,7 @@ namespace VsmdWorkstation
             bool ret = m_vsmd.openSerialPort(port, baudrate);
             if (!ret)
             {
-                return new InitResult() { ErrorMsg="打开串口失败!", IsSuccess = false };
+                return new InitResult() { Message="打开串口失败!", IsSuccess = false };
             }
             m_vsmd.OutputCommandLog = GeneralSettings.GetInstance().OutputCommandLog;
             m_vsmd.OutputStsCommandLog = GeneralSettings.GetInstance().OutputStsCommandLog;
@@ -121,7 +121,7 @@ namespace VsmdWorkstation
                 m_vsmd = null;
             }
             
-            return new InitResult() { IsSuccess = m_initialized, ErrorMsg = errMsg };
+            return new InitResult() { IsSuccess = m_initialized, Message = errMsg };
         }
         public async Task<InitResult> ResetVsmdController()
         {

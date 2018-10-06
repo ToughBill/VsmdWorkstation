@@ -39,6 +39,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMoveSpd = new VsmdWorkstation.Controls.TextBoxEx();
             this.ckbEnableStsCmdLog = new System.Windows.Forms.CheckBox();
+            this.ckbAutoConnect = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numDripInter)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -47,7 +48,7 @@
             // ckbEnableCmdLog
             // 
             this.ckbEnableCmdLog.AutoSize = true;
-            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 128);
+            this.ckbEnableCmdLog.Location = new System.Drawing.Point(9, 148);
             this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableCmdLog.Name = "ckbEnableCmdLog";
             this.ckbEnableCmdLog.Size = new System.Drawing.Size(234, 16);
@@ -101,7 +102,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(68, 171);
+            this.btnOK.Location = new System.Drawing.Point(68, 191);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
@@ -113,7 +114,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(160, 171);
+            this.btnCancel.Location = new System.Drawing.Point(160, 191);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 23);
@@ -171,7 +172,7 @@
             // ckbEnableStsCmdLog
             // 
             this.ckbEnableStsCmdLog.AutoSize = true;
-            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(29, 149);
+            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(29, 169);
             this.ckbEnableStsCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableStsCmdLog.Name = "ckbEnableStsCmdLog";
             this.ckbEnableStsCmdLog.Size = new System.Drawing.Size(114, 16);
@@ -180,13 +181,25 @@
             this.ckbEnableStsCmdLog.UseVisualStyleBackColor = true;
             this.ckbEnableStsCmdLog.Visible = false;
             // 
+            // ckbAutoConnect
+            // 
+            this.ckbAutoConnect.AutoSize = true;
+            this.ckbAutoConnect.Location = new System.Drawing.Point(9, 127);
+            this.ckbAutoConnect.Margin = new System.Windows.Forms.Padding(2);
+            this.ckbAutoConnect.Name = "ckbAutoConnect";
+            this.ckbAutoConnect.Size = new System.Drawing.Size(132, 16);
+            this.ckbAutoConnect.TabIndex = 10;
+            this.ckbAutoConnect.Text = "启动时自动连接设备";
+            this.ckbAutoConnect.UseVisualStyleBackColor = true;
+            // 
             // GeneralSettingFrm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(280, 208);
+            this.ClientSize = new System.Drawing.Size(280, 223);
+            this.Controls.Add(this.ckbAutoConnect);
             this.Controls.Add(this.ckbEnableStsCmdLog);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -223,5 +236,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.TextBoxEx txtMoveSpd;
         private System.Windows.Forms.CheckBox ckbEnableStsCmdLog;
+        private System.Windows.Forms.CheckBox ckbAutoConnect;
     }
 }

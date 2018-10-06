@@ -24,6 +24,7 @@ namespace VsmdWorkstation
         private void MainFrm_Load(object sender, EventArgs e)
         {
             InitStatusBar();
+            Preference.GetInstace().Load();
             GeneralSettings.GetInstance().LoadGeneralSettings();
             BoardSetting.GetInstance().LoadBoardSettings();
             InitVsmdConnection();
@@ -41,20 +42,18 @@ namespace VsmdWorkstation
             if (initRet.IsSuccess)
             {
                 StatusBar.DisplayMessage(MessageType.Info, "设备连接成功！");
-                if(m_dripForm == null)
+                if (m_dripForm == null)
                 {
                     m_dripForm = new DripFrm();
                     m_dripForm.MdiParent = this;
-                    //m_dripForm.WindowState = FormWindowState.Maximized;
-                    //m_dripForm.Dock = DockStyle.Fill;
                     m_dripForm.Show();
-                    m_connectForm.Dispose();
+                    m_connectForm.Close();
                     m_connectForm = null;
                 }
             }
             else
             {
-                StatusBar.DisplayMessage(MessageType.Error, initRet.ErrorMsg);
+                StatusBar.DisplayMessage(MessageType.Error, initRet.Message);
             }
         }
 

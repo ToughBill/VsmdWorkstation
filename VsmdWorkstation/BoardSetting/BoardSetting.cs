@@ -138,6 +138,15 @@ namespace VsmdWorkstation
         {
             return m_boardSettings;
         }
+        public int GetNextBoardNo()
+        {
+            int maxBoardNo = -1;
+            GetAllBoardMetaes().ForEach(meta =>
+            {
+                maxBoardNo = Math.Max(maxBoardNo, meta.ID);
+            });
+            return maxBoardNo + 1;
+        }
         public bool AddNewBoard(BoardMeta board)
         {
             m_boardSettings.Add(board);
