@@ -65,28 +65,28 @@
             // tsmConnectVsmd
             // 
             this.tsmConnectVsmd.Name = "tsmConnectVsmd";
-            this.tsmConnectVsmd.Size = new System.Drawing.Size(152, 22);
+            this.tsmConnectVsmd.Size = new System.Drawing.Size(136, 22);
             this.tsmConnectVsmd.Text = "连接控制器";
             this.tsmConnectVsmd.Click += new System.EventHandler(this.tsmConnectVsmd_Click);
             // 
             // tsmVsmdSetting
             // 
             this.tsmVsmdSetting.Name = "tsmVsmdSetting";
-            this.tsmVsmdSetting.Size = new System.Drawing.Size(152, 22);
+            this.tsmVsmdSetting.Size = new System.Drawing.Size(136, 22);
             this.tsmVsmdSetting.Text = "控制器设置";
             this.tsmVsmdSetting.Click += new System.EventHandler(this.tsmVsmdSetting_Click);
             // 
             // tsmBoardSetting
             // 
             this.tsmBoardSetting.Name = "tsmBoardSetting";
-            this.tsmBoardSetting.Size = new System.Drawing.Size(152, 22);
+            this.tsmBoardSetting.Size = new System.Drawing.Size(136, 22);
             this.tsmBoardSetting.Text = "载物架设置";
             this.tsmBoardSetting.Click += new System.EventHandler(this.tsmBoardSetting_Click);
             // 
             // tsmGenaralSetting
             // 
             this.tsmGenaralSetting.Name = "tsmGenaralSetting";
-            this.tsmGenaralSetting.Size = new System.Drawing.Size(152, 22);
+            this.tsmGenaralSetting.Size = new System.Drawing.Size(136, 22);
             this.tsmGenaralSetting.Text = "通用设置";
             this.tsmGenaralSetting.Click += new System.EventHandler(this.tsmGenaralSetting_Click);
             // 
@@ -114,6 +114,7 @@
             this.Controls.Add(this.statusBarEx);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "移液工作站";

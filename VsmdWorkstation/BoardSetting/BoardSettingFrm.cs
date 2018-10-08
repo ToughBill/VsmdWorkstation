@@ -16,6 +16,7 @@ namespace VsmdWorkstation
         private BoardMeta m_curMeta;
         public BoardSettingFrm()
         {
+            
             InitializeComponent();
         }
 
@@ -416,6 +417,104 @@ namespace VsmdWorkstation
         private void btnGridLTY_Click(object sender, EventArgs e)
         {
             ShowSetDlg(txtGridLTY, VsmdAxis.Y);
+        }
+
+        private void btnZTravelLTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridZTravel, VsmdAxis.Z);
+        }
+
+        private void btnZDispenseLTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridZDispense, VsmdAxis.Z);
+        }
+
+        private void btnZTravel_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSiteZTravel, VsmdAxis.Z);
+        }
+
+        private void btnZDispense_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSiteZDispense, VsmdAxis.Z);
+        }
+
+        private void btnMove2Site1StartX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtSite1FTX.Text));
+        }
+
+        private void btnMove2Site1StartY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtSite1FTY.Text));
+        }
+
+        private void btnMove2Site1EndX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtSite1LTX.Text));
+        }
+
+        private void btnMove2Site1EndY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtSite1LTY.Text));
+
+        }
+
+        private void btnMove2Site2StartX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtSite2FTX.Text));
+        }
+
+        private void btnMove2Site2StartY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtSite2FTY.Text));
+        }
+
+        private void btnMove2SiteZTravel_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Z, int.Parse(txtSiteZTravel.Text));
+        }
+
+        private void btnMove2SiteZDispense_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Z, int.Parse(txtSiteZDispense.Text));
+        }
+
+        private void btnMove2Grid1StartX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtGridFTX.Text));
+        }
+
+        private void btnMove2Grid1StartY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtGridFTY.Text));
+        }
+
+        private void btnMove2Grid1EndX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtGridLTX.Text));
+        }
+
+        private void btnMove2Grid1EndY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtGridLTY.Text));
+        }
+
+        private void btnMove2GridZTravel_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Z, int.Parse(txtGridZTravel.Text));
+        }
+
+        private void btnMove2GridZDispense_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Z, int.Parse(txtGridZDispense.Text));
+        }
+
+        private async void Move2Position(VsmdAxis axis, int val)
+        {
+           var spd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
+           await VsmdController.GetVsmdController().SetSpeed(axis, spd);
+           await VsmdController.GetVsmdController().MoveTo(axis, val);
         }
     }
 }

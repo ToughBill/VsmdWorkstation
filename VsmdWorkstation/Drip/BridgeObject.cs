@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VsmdWorkstation.Controls;
 
 namespace VsmdWorkstation
@@ -13,13 +14,13 @@ namespace VsmdWorkstation
     public class BridgeObject
     {
         public event GridPageDomLoaded onGridPageDomLoaded = null;
-        public event DelDripFinished onDripFinished = null;
+        public event DelDripFinished onPipettingFinished = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
-        private DripStatus m_dripStatus = DripStatus.Idle;
+        private PipettingStatus m_dripStatus = PipettingStatus.Idle;
         private bool m_isFromPause = false;
         private JArray m_selectedTubes = new JArray();
-        private int m_dripIndex;
+        private int m_pipettingIndex;
         private static bool m_cefInitialized;
 
         public static void InitializeCef()
@@ -87,17 +88,17 @@ namespace VsmdWorkstation
         public void StartDrip(string args)
         {
             m_selectedTubes = (JArray)JsonConvert.DeserializeObject(args.ToString());
-            m_dripIndex = -1;
-            m_moveThread = new Thread(new ThreadStart(DripThread));
+            m_pipettingIndex = -1;
+            m_moveThread = new Thread(new ThreadStart(PipettingThread));
             m_moveThread.Start();
         }
         public void StopMove()
         {
-            DripStatus preMode = m_dripStatus;
-            m_dripStatus = DripStatus.Idle;
+            PipettingStatus preMode = m_dripStatus;
+            m_dripStatus = PipettingStatus.Idle;
             m_selectedTubes.Clear();
             VsmdController.GetVsmdController().Stop();
-            if (preMode == DripStatus.PauseMove)
+            if (preMode == PipettingStatus.PauseMove)
             {
                 AfterMove();
             }
@@ -105,13 +106,13 @@ namespace VsmdWorkstation
         public void PauseMove()
         {
             CallJS("JsExecutor.pauseMove()");
-            m_dripStatus = DripStatus.PauseMove;
+            m_dripStatus = PipettingStatus.PauseMove;
         }
         public void ResumeMove()
         {
             m_isFromPause = true;
-            m_dripStatus = DripStatus.Moving;
-            m_moveThread = new Thread(new ThreadStart(DripThread));
+            m_dripStatus = PipettingStatus.Moving;
+            m_moveThread = new Thread(new ThreadStart(PipettingThread));
             m_moveThread.Start();
         }
         public void SelectAllTubes()
@@ -140,46 +141,41 @@ namespace VsmdWorkstation
         /// <summary>
         /// 
         /// </summary>
-        private async void DripThread()
+        private async void PipettingThread()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             JArray jsArr = m_selectedTubes;
-            await BeforeMove();
-            int dripInterval = GeneralSettings.GetInstance().DripInterval;
+
+            await BeforeMove(m_selectedTubes.Count);
+            int pipettingInterval = 5000; //GeneralSettings.GetInstance().DispenseInterval;
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            for (int i = m_dripIndex + 1; i < jsArr.Count; i++)
+            for (int i = m_pipettingIndex + 1; i < jsArr.Count; i++)
             {
-                if (m_dripStatus != DripStatus.Moving)
+                if (m_dripStatus != PipettingStatus.Moving)
                     break;
                 JObject obj = (JObject)jsArr[i];
                 GetPositionInfo(obj, out blockNum, out row, out col);
-                SetDrippingTube(blockNum, row, col);
-                //await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
-                //await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
-
-                var moveXTask = vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
-                var moveYTask = vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
-                await Task.WhenAll(moveXTask, moveYTask);
+                SetPipettingWell(blockNum, row, col);
+                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+                await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
 
                 // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
 
-                // start drip
-                //await vsmdController.ClickPump();
-                await pumpController.Drip();
-                // wait 5 seconds, this time should be changed according to the volume dripped
-                Thread.Sleep(dripInterval);
+                // start pipetting
+                await pumpController.SwitchOnOff();
+                // wait several seconds, this time should be changed according to the volume dispensed
+                Thread.Sleep(pipettingInterval);
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
-
-                // change the screen to start
-                await pumpController.Drip();
-                //await Task.Delay(1000);
+                await pumpController.SwitchOnOff();
+                // change the UI to start
+                await Task.Delay(100);
 
                 MoveCallBack(blockNum, row, col);
-                m_dripIndex = i;
+                m_pipettingIndex = i;
             }
             
             AfterMove();
@@ -191,33 +187,37 @@ namespace VsmdWorkstation
                 onGridPageDomLoaded();
             }
         }
-        private async Task<bool> BeforeMove()
+        private async Task<bool> BeforeMove(int wellCnt)
         {
-            m_dripStatus = DripStatus.Moving;
+            m_dripStatus = PipettingStatus.Moving;
             CallJS("JsExecutor.beforeMove();");
-            if (!m_isFromPause)
+            if (!m_isFromPause && wellCnt > 0)
             {
                 VsmdController vsmdController = VsmdController.GetVsmdController();
+                await vsmdController.ZeroStart(VsmdAxis.Z);
                 await vsmdController.ZeroStart(VsmdAxis.X);
                 await vsmdController.ZeroStart(VsmdAxis.Y);
-                await vsmdController.ZeroStart(VsmdAxis.Z);
+                vsmdController.Homed = true;
             }
 
             return true;
         }
         private void AfterMove()
         {
-            if (m_dripStatus != DripStatus.PauseMove)
+            //await VsmdController.GetVsmdController().Off(VsmdAxis.X);
+            //await VsmdController.GetVsmdController().Off(VsmdAxis.Y);
+            //await VsmdController.GetVsmdController().Off(VsmdAxis.Z);
+            if (m_dripStatus != PipettingStatus.PauseMove)
             {
                 CallJS("JsExecutor.afterMove();");
 
                 m_isFromPause = false;
 
-                m_dripStatus = DripStatus.Idle;
+                m_dripStatus = PipettingStatus.Idle;
                 m_selectedTubes.Clear();
-                if (onDripFinished != null)
+                if (onPipettingFinished != null)
                 {
-                    onDripFinished();
+                    onPipettingFinished();
                 }
             }
         }
@@ -250,16 +250,16 @@ namespace VsmdWorkstation
                 blockNum = int.Parse(targetTube["grid"].ToString());
             }
             row = int.Parse(targetTube["row"].ToString());
-            SetDrippingTube(blockNum, row, col);
+            SetPipettingWell(blockNum, row, col);
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
-            await pumpController.Drip();
+            await pumpController.SwitchOnOff();
 
-            Thread.Sleep(GeneralSettings.GetInstance().DripInterval);
+            Thread.Sleep(GeneralSettings.GetInstance().DispenseInterval);
 
-            await pumpController.Drip();
+            await pumpController.SwitchOnOff();
             await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
 
             MoveCallBack(blockNum, row, col);
@@ -280,7 +280,7 @@ namespace VsmdWorkstation
             }
             row = int.Parse(jobj["row"].ToString());
         }
-        private void SetDrippingTube(int blockNum, int row, int col)
+        private void SetPipettingWell(int blockNum, int row, int col)
         {
             CallJS("JsExecutor.setDrippingTube(" + blockNum + "," + row + "," + col + ");");
         }

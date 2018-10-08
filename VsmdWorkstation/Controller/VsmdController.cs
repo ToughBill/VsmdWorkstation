@@ -23,11 +23,12 @@ namespace VsmdWorkstation
         private VsmdInfoSync m_axisX = null;
         private VsmdInfoSync m_axisY = null;
         private VsmdInfoSync m_axisZ = null;
+
         private bool m_initialized = false;
         private const int MAX_STROKE_Y = 32000;
         private string m_port;
         private int m_baudrate;
-        
+        public bool Homed { get; internal set; }
         public void SetOutputCommandLogFlag(bool flag)
         {
             m_vsmd.OutputCommandLog = flag;
@@ -208,24 +209,17 @@ namespace VsmdWorkstation
         }
         public async Task<bool> MoveTo(VsmdAxis axis, int pos)
         {
-            bool ret = await GetAxis(axis).moveto(pos);
-            //if(!ret && axis == VsmdAxis.Z)
-            //{
-            //    if(GetAxis(axis).curPos == 0 && pos > 0)
-            //    {
-            //        GetAxis(axis).SendCommand("3 zero start");
-            //        await Task.Delay(30);
-            //        GetAxis(axis).SendCommand("3 zero stop");
-            //        await ZeroStop(axis);
-            //        ret = await MoveTo(axis, pos);
-            //    }
-            //}
+            bool ret = await GetAxis(axis).moveto(pos).ConfigureAwait(false);
             return ret;
         }
         public async Task<bool> ZeroStart(VsmdAxis axis)
         {
             //await m_vsmdController.SetZsd(axis, 1200);
-            return await GetAxis(axis).zeroStart();
+            if (Homed)
+                return true;
+            var ret = await GetAxis(axis).zeroStart();
+           
+            return ret;
         }
         public async Task<bool> ZeroStop(VsmdAxis axis)
         {
@@ -301,6 +295,9 @@ namespace VsmdWorkstation
         }
 
         private static VsmdController m_vsmdController = null;
+
+       
+
         public static VsmdController GetVsmdController()
         {
             if(m_vsmdController == null)

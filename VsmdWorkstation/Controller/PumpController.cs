@@ -52,7 +52,7 @@ namespace VsmdWorkstation
         {
             m_comPort.Write("a");
         }
-        public async Task<bool> Drip()
+        public async Task<bool> SwitchOnOff()
         {
             Off();
             await Task.Delay(100);
