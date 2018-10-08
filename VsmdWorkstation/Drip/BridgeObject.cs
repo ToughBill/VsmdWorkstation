@@ -149,7 +149,7 @@ namespace VsmdWorkstation
             JArray jsArr = m_selectedTubes;
 
             await BeforeMove(m_selectedTubes.Count);
-            int pipettingInterval = 0; //GeneralSettings.GetInstance().DispenseInterval;
+            int pipettingInterval = 5000; //GeneralSettings.GetInstance().DispenseInterval;
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_pipettingIndex + 1; i < jsArr.Count; i++)
@@ -169,12 +169,10 @@ namespace VsmdWorkstation
                 await pumpController.SwitchOnOff();
                 // wait several seconds, this time should be changed according to the volume dispensed
                 Thread.Sleep(pipettingInterval);
-                await pumpController.SwitchOnOff();
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
-
+                await pumpController.SwitchOnOff();
                 // change the UI to start
-               
-                //await Task.Delay(1000);
+                await Task.Delay(100);
 
                 MoveCallBack(blockNum, row, col);
                 m_pipettingIndex = i;

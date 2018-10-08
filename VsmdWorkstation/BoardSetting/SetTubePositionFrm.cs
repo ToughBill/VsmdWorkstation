@@ -139,10 +139,10 @@ namespace VsmdWorkstation
             return int.Parse(txtPos.Text.Trim());
         }
 
-        private async void btnMove_Click(object sender, EventArgs e)
-        {
-            await VsmdController.GetVsmdController().SetSpeed(m_axisType, m_preAxisSpeed);
-            await VsmdController.GetVsmdController().MoveTo(m_axisType, int.Parse(txtPos.Text));
-        }
+        //private void Move2Position()
+        //{
+        //    await VsmdController.GetVsmdController().SetSpeed(m_axisType, m_preAxisSpeed);
+        //    await VsmdController.GetVsmdController().MoveTo(m_axisType, int.Parse(txtPos.Text));
+        //}
     }
 }
