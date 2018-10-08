@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace VsmdWorkstation
 {
-    public enum DripStatus
+    public enum PipettingStatus
     {
         Idle,
         Moving,
@@ -25,7 +25,7 @@ namespace VsmdWorkstation
     {
         private ChromiumWebBrowser m_browser;
         private BridgeObject m_externalObj;
-        private DripStatus m_dripStatus = DripStatus.Idle;
+        private PipettingStatus m_pipettingStatus = PipettingStatus.Idle;
         private bool m_delayToBuildGrid = false;
         private bool m_isOpened = true;
         public DripFrm()
@@ -65,7 +65,7 @@ namespace VsmdWorkstation
 
             m_externalObj = new BridgeObject(m_browser);
             m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
-            m_externalObj.onDripFinished += OnDripFinished;
+            m_externalObj.onPipettingFinished += OnPipettingFinished;
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
@@ -117,9 +117,9 @@ namespace VsmdWorkstation
                 m_externalObj.BuildGrid(BoardSetting.GetInstance().CurrentBoard);
             }
         }
-        private void OnDripFinished()
+        private void OnPipettingFinished()
         {
-            m_dripStatus = DripStatus.Idle;
+            m_pipettingStatus = PipettingStatus.Idle;
             this.Invoke(new DelDripFinished(delegate
             {
                 UpdateButtons();
@@ -134,7 +134,7 @@ namespace VsmdWorkstation
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(m_dripStatus == DripStatus.Moving)
+            if(m_pipettingStatus == PipettingStatus.Moving)
             {
                 e.Cancel = true;
             }
@@ -171,42 +171,42 @@ namespace VsmdWorkstation
         private void btnStart_Click(object sender, EventArgs e)
         {
             m_externalObj.Move();
-            m_dripStatus = DripStatus.Moving;
+            m_pipettingStatus = PipettingStatus.Moving;
             UpdateButtons();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             m_externalObj.StopMove();
-            m_dripStatus = DripStatus.Idle;
+            m_pipettingStatus = PipettingStatus.Idle;
             UpdateButtons();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            if (m_dripStatus == DripStatus.Moving)
+            if (m_pipettingStatus == PipettingStatus.Moving)
             {
                 m_externalObj.PauseMove();
-                m_dripStatus = DripStatus.PauseMove;
+                m_pipettingStatus = PipettingStatus.PauseMove;
                 btnPause.Text = "继续滴液";
             }
-            else if(m_dripStatus == DripStatus.PauseMove)
+            else if(m_pipettingStatus == PipettingStatus.PauseMove)
             {
                 m_externalObj.ResumeMove();
-                m_dripStatus = DripStatus.Moving;
+                m_pipettingStatus = PipettingStatus.Moving;
                 btnPause.Text = "暂停滴液";
             }
             UpdateButtons();
         }
         private void UpdateButtons()
         {
-            btnStart.Enabled = (m_dripStatus == DripStatus.Idle);
-            btnStop.Enabled = (m_dripStatus != DripStatus.Idle);
-            btnPause.Enabled = (m_dripStatus == DripStatus.Moving || m_dripStatus == DripStatus.PauseMove);
-            btnRestGrid.Enabled = (m_dripStatus == DripStatus.Idle);
+            btnStart.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
+            btnStop.Enabled = (m_pipettingStatus != PipettingStatus.Idle);
+            btnPause.Enabled = (m_pipettingStatus == PipettingStatus.Moving || m_pipettingStatus == PipettingStatus.PauseMove);
+            btnRestGrid.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
 
-            btnSelectAll.Enabled = m_dripStatus == DripStatus.Idle;
-            btnReverse.Enabled = m_dripStatus == DripStatus.Idle;
+            btnSelectAll.Enabled = m_pipettingStatus == PipettingStatus.Idle;
+            btnReverse.Enabled = m_pipettingStatus == PipettingStatus.Idle;
         }
 
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)

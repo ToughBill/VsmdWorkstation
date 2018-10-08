@@ -417,5 +417,25 @@ namespace VsmdWorkstation
         {
             ShowSetDlg(txtGridLTY, VsmdAxis.Y);
         }
+
+        private void btnZTravelLTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridZTravel, VsmdAxis.Z);
+        }
+
+        private void btnZDispenseLTY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtGridZDispense, VsmdAxis.Z);
+        }
+
+        private void btnZTravel_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSiteZTravel, VsmdAxis.Z);
+        }
+
+        private void btnZDispense_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtSiteZDispense, VsmdAxis.Z);
+        }
     }
 }

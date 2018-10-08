@@ -41,6 +41,10 @@
             this.rbtGrid = new System.Windows.Forms.RadioButton();
             this.rbtSite = new System.Windows.Forms.RadioButton();
             this.panelGrid = new System.Windows.Forms.Panel();
+            this.txtGridZDispense = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtGridZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label3 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.txtGridRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label35 = new System.Windows.Forms.Label();
@@ -61,6 +65,12 @@
             this.txtGridFTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label16 = new System.Windows.Forms.Label();
             this.panelSite = new System.Windows.Forms.Panel();
+            this.btnZDispense = new System.Windows.Forms.Button();
+            this.btnZTravel = new System.Windows.Forms.Button();
+            this.txtSiteZDispense = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSiteZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label4 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.txtSiteColCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label30 = new System.Windows.Forms.Label();
@@ -89,14 +99,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtSiteZDispense = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtSiteZTravel = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtGridZDispense = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtGridZTravel = new VsmdWorkstation.Controls.TextBoxEx();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnZTravelLTY = new System.Windows.Forms.Button();
+            this.btnZDispenseLTY = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
@@ -215,6 +219,8 @@
             // 
             // panelGrid
             // 
+            this.panelGrid.Controls.Add(this.btnZDispenseLTY);
+            this.panelGrid.Controls.Add(this.btnZTravelLTY);
             this.panelGrid.Controls.Add(this.txtGridZDispense);
             this.panelGrid.Controls.Add(this.label2);
             this.panelGrid.Controls.Add(this.txtGridZTravel);
@@ -238,11 +244,49 @@
             this.panelGrid.Controls.Add(this.label15);
             this.panelGrid.Controls.Add(this.txtGridFTX);
             this.panelGrid.Controls.Add(this.label16);
-            this.panelGrid.Location = new System.Drawing.Point(13, 35);
+            this.panelGrid.Location = new System.Drawing.Point(3, 4);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(284, 256);
             this.panelGrid.TabIndex = 33;
             this.panelGrid.Visible = false;
+            // 
+            // txtGridZDispense
+            // 
+            this.txtGridZDispense.Location = new System.Drawing.Point(93, 181);
+            this.txtGridZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridZDispense.Name = "txtGridZDispense";
+            this.txtGridZDispense.Size = new System.Drawing.Size(104, 21);
+            this.txtGridZDispense.TabIndex = 42;
+            this.txtGridZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 184);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Z轴滴液高度：";
+            // 
+            // txtGridZTravel
+            // 
+            this.txtGridZTravel.Location = new System.Drawing.Point(93, 153);
+            this.txtGridZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridZTravel.Name = "txtGridZTravel";
+            this.txtGridZTravel.Size = new System.Drawing.Size(104, 21);
+            this.txtGridZTravel.TabIndex = 40;
+            this.txtGridZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 156);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Z轴安全高度：";
             // 
             // label34
             // 
@@ -436,6 +480,9 @@
             // 
             // panelSite
             // 
+            this.panelSite.Controls.Add(this.panelGrid);
+            this.panelSite.Controls.Add(this.btnZDispense);
+            this.panelSite.Controls.Add(this.btnZTravel);
             this.panelSite.Controls.Add(this.txtSiteZDispense);
             this.panelSite.Controls.Add(this.label5);
             this.panelSite.Controls.Add(this.txtSiteZTravel);
@@ -468,10 +515,70 @@
             this.panelSite.Controls.Add(this.label21);
             this.panelSite.Controls.Add(this.txtSite1FTX);
             this.panelSite.Controls.Add(this.label22);
-            this.panelSite.Location = new System.Drawing.Point(6, 62);
+            this.panelSite.Location = new System.Drawing.Point(12, 67);
             this.panelSite.Name = "panelSite";
             this.panelSite.Size = new System.Drawing.Size(335, 268);
             this.panelSite.TabIndex = 34;
+            // 
+            // btnZDispense
+            // 
+            this.btnZDispense.Location = new System.Drawing.Point(205, 238);
+            this.btnZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZDispense.Name = "btnZDispense";
+            this.btnZDispense.Size = new System.Drawing.Size(50, 22);
+            this.btnZDispense.TabIndex = 52;
+            this.btnZDispense.Text = "设置";
+            this.btnZDispense.UseVisualStyleBackColor = true;
+            this.btnZDispense.Click += new System.EventHandler(this.btnZDispense_Click);
+            // 
+            // btnZTravel
+            // 
+            this.btnZTravel.Location = new System.Drawing.Point(205, 209);
+            this.btnZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZTravel.Name = "btnZTravel";
+            this.btnZTravel.Size = new System.Drawing.Size(50, 22);
+            this.btnZTravel.TabIndex = 51;
+            this.btnZTravel.Text = "设置";
+            this.btnZTravel.UseVisualStyleBackColor = true;
+            this.btnZTravel.Click += new System.EventHandler(this.btnZTravel_Click);
+            // 
+            // txtSiteZDispense
+            // 
+            this.txtSiteZDispense.Location = new System.Drawing.Point(100, 238);
+            this.txtSiteZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteZDispense.Name = "txtSiteZDispense";
+            this.txtSiteZDispense.Size = new System.Drawing.Size(103, 21);
+            this.txtSiteZDispense.TabIndex = 50;
+            this.txtSiteZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 241);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Z轴滴液高度：";
+            // 
+            // txtSiteZTravel
+            // 
+            this.txtSiteZTravel.Location = new System.Drawing.Point(100, 210);
+            this.txtSiteZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteZTravel.Name = "txtSiteZTravel";
+            this.txtSiteZTravel.Size = new System.Drawing.Size(103, 21);
+            this.txtSiteZTravel.TabIndex = 48;
+            this.txtSiteZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 213);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 12);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Z轴安全高度：";
             // 
             // label29
             // 
@@ -753,81 +860,27 @@
             this.label22.TabIndex = 22;
             this.label22.Text = "Site1首孔位置：";
             // 
-            // txtSiteZDispense
+            // btnZTravelLTY
             // 
-            this.txtSiteZDispense.Location = new System.Drawing.Point(100, 238);
-            this.txtSiteZDispense.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteZDispense.Name = "txtSiteZDispense";
-            this.txtSiteZDispense.Size = new System.Drawing.Size(103, 21);
-            this.txtSiteZDispense.TabIndex = 50;
-            this.txtSiteZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            this.btnZTravelLTY.Location = new System.Drawing.Point(200, 152);
+            this.btnZTravelLTY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZTravelLTY.Name = "btnZTravelLTY";
+            this.btnZTravelLTY.Size = new System.Drawing.Size(50, 22);
+            this.btnZTravelLTY.TabIndex = 43;
+            this.btnZTravelLTY.Text = "设置";
+            this.btnZTravelLTY.UseVisualStyleBackColor = true;
+            this.btnZTravelLTY.Click += new System.EventHandler(this.btnZTravelLTY_Click);
             // 
-            // label5
+            // btnZDispenseLTY
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 241);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "Z轴滴液高度：";
-            // 
-            // txtSiteZTravel
-            // 
-            this.txtSiteZTravel.Location = new System.Drawing.Point(100, 210);
-            this.txtSiteZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteZTravel.Name = "txtSiteZTravel";
-            this.txtSiteZTravel.Size = new System.Drawing.Size(103, 21);
-            this.txtSiteZTravel.TabIndex = 48;
-            this.txtSiteZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 213);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 12);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Z轴安全高度：";
-            // 
-            // txtGridZDispense
-            // 
-            this.txtGridZDispense.Location = new System.Drawing.Point(93, 181);
-            this.txtGridZDispense.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridZDispense.Name = "txtGridZDispense";
-            this.txtGridZDispense.Size = new System.Drawing.Size(104, 21);
-            this.txtGridZDispense.TabIndex = 42;
-            this.txtGridZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 184);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 12);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "Z轴滴液高度：";
-            // 
-            // txtGridZTravel
-            // 
-            this.txtGridZTravel.Location = new System.Drawing.Point(93, 153);
-            this.txtGridZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridZTravel.Name = "txtGridZTravel";
-            this.txtGridZTravel.Size = new System.Drawing.Size(104, 21);
-            this.txtGridZTravel.TabIndex = 40;
-            this.txtGridZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 156);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 12);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Z轴安全高度：";
+            this.btnZDispenseLTY.Location = new System.Drawing.Point(200, 181);
+            this.btnZDispenseLTY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZDispenseLTY.Name = "btnZDispenseLTY";
+            this.btnZDispenseLTY.Size = new System.Drawing.Size(50, 22);
+            this.btnZDispenseLTY.TabIndex = 44;
+            this.btnZDispenseLTY.Text = "设置";
+            this.btnZDispenseLTY.UseVisualStyleBackColor = true;
+            this.btnZDispenseLTY.Click += new System.EventHandler(this.btnZDispenseLTY_Click);
             // 
             // BoardSettingFrm
             // 
@@ -836,9 +889,8 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(348, 369);
             this.ContextMenuStrip = this.contextMenuStrip;
-            this.Controls.Add(this.panelSite);
-            this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.rbtSite);
+            this.Controls.Add(this.panelSite);
             this.Controls.Add(this.rbtGrid);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnChoose);
@@ -930,5 +982,9 @@
         private System.Windows.Forms.Label label5;
         private Controls.TextBoxEx txtSiteZTravel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnZDispense;
+        private System.Windows.Forms.Button btnZTravel;
+        private System.Windows.Forms.Button btnZDispenseLTY;
+        private System.Windows.Forms.Button btnZTravelLTY;
     }
 }

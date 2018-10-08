@@ -12,18 +12,22 @@ namespace VsmdWorkstation
 {
     public class GeneralSettingMeta
     {
-        public int DripInterval { get; set; }
+        
         public float MoveSpeed { get; set; }
         public int ZTravel { get; set; }
         public int ZDispense { get; set; }
         public bool OutputCommandLog { get; set; }
         public bool OutputStsCommandLog { get; set; }
         public bool AutoConnect { get; set; }
+        public int DispenseInterval { get; internal set; }
+
+        public Dictionary<string, string> VolumeDelay { get; set; }
     }
     public class GeneralSettings
     {
         private GeneralSettingMeta m_settingMeta;
         public static GeneralSettings m_instance;
+      
         public static GeneralSettings GetInstance()
         {
             if(m_instance == null)
@@ -33,13 +37,21 @@ namespace VsmdWorkstation
             return m_instance;
         }
 
-        public int DripInterval
-        {
-            get
+
+        public Dictionary<string,string> VolumeDelay
+        {   get
             {
-                return m_settingMeta.DripInterval;
+                return m_settingMeta.VolumeDelay;
             }
+           
         }
+        //public int DispenseInterval
+        //{
+        //    get
+        //    {
+        //        return m_settingMeta.DispenseInterval;
+        //    }
+        //}
         public float MoveSpeed
         {
             get
@@ -69,6 +81,7 @@ namespace VsmdWorkstation
             }
         }
 
+        public int DispenseInterval { get; internal set; }
 
         public string GetSettingFilePath()
         {
@@ -77,10 +90,11 @@ namespace VsmdWorkstation
         public void InitDefaultSetting()
         {
             m_settingMeta = new GeneralSettingMeta();
-            m_settingMeta.DripInterval = 5000;
+         
             m_settingMeta.MoveSpeed = 500.0f;
             m_settingMeta.AutoConnect = false;
             m_settingMeta.OutputCommandLog = false;
+            m_settingMeta.VolumeDelay = new Dictionary<string, string>();
         }
         public void LoadGeneralSettings()
         {

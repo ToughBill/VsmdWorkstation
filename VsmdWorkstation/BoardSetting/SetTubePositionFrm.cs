@@ -34,6 +34,10 @@ namespace VsmdWorkstation
             {
                 lblTip.Text = "请通过键盘上\"↑\"和、\"↓\"来操作。";
             }
+            else
+            {
+                lblTip.Text = "请通过键盘上\"W\"和、\"S\"来操作。";
+            }
             this.KeyPreview = true;
         }
 
@@ -50,7 +54,7 @@ namespace VsmdWorkstation
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (keyData == Keys.Up || keyData == Keys.Down ||
-                keyData == Keys.Left || keyData == Keys.Right)
+                keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.W || keyData == Keys.S)
                 return false;
             else
                 return base.ProcessDialogKey(keyData);
@@ -85,6 +89,17 @@ namespace VsmdWorkstation
                     await MoveAxis(-moveSpd);
                 }
             }
+            else
+            {
+                if (e.KeyCode == Keys.W)
+                {
+                    await MoveAxis(-moveSpd);
+                }
+                else if (e.KeyCode == Keys.S)
+                {
+                    await MoveAxis(moveSpd);
+                }
+            }
         }
         private async Task<bool> MoveAxis(float speed)
         {
@@ -98,7 +113,7 @@ namespace VsmdWorkstation
             if (e.KeyCode == Keys.Left ||
                 e.KeyCode == Keys.Right ||
                 e.KeyCode == Keys.Up ||
-                e.KeyCode == Keys.Down)
+                e.KeyCode == Keys.Down || e.KeyCode == Keys.W || e.KeyCode == Keys.S)
             {
                 if (m_inMoving)
                 {

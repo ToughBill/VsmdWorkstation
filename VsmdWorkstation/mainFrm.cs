@@ -11,6 +11,16 @@ namespace VsmdWorkstation
         public MainFrm()
         {
             InitializeComponent();
+            this.KeyDown += MainFrm_KeyDown;
+        }
+
+        private void MainFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                AboutBox aboutForm = new AboutBox();
+                aboutForm.ShowDialog();
+            }
         }
 
         private void tsmVsmdSetting_Click(object sender, EventArgs e)

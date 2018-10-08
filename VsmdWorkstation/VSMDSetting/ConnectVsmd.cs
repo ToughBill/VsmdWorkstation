@@ -197,7 +197,8 @@ namespace VsmdWorkstation
 
         private void ConnectVsmd_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SavePref();
+            if (VsmdController.GetVsmdController().IsInitialized())
+                SavePref();
         }
     }
 }
