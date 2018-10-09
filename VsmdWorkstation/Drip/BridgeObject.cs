@@ -89,8 +89,9 @@ namespace VsmdWorkstation
         {
             m_selectedTubes = (JArray)JsonConvert.DeserializeObject(args.ToString());
             m_pipettingIndex = -1;
-            m_moveThread = new Thread(new ThreadStart(PipettingThread));
-            m_moveThread.Start();
+            DoPipetting();
+            //m_moveThread = new Thread(new ThreadStart(PipettingThread));
+            //m_moveThread.Start();
         }
         public void StopMove()
         {
@@ -112,7 +113,7 @@ namespace VsmdWorkstation
         {
             m_isFromPause = true;
             m_dripStatus = PipettingStatus.Moving;
-            m_moveThread = new Thread(new ThreadStart(PipettingThread));
+            m_moveThread = new Thread(new ThreadStart(DoPipetting));
             m_moveThread.Start();
         }
         public void SelectAllTubes()
@@ -141,7 +142,7 @@ namespace VsmdWorkstation
         /// <summary>
         /// 
         /// </summary>
-        private async void PipettingThread()
+        private async void DoPipetting()
         {
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
@@ -161,7 +162,6 @@ namespace VsmdWorkstation
                 SetPipettingWell(blockNum, row, col);
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
-
                 // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
 
@@ -191,14 +191,14 @@ namespace VsmdWorkstation
         {
             m_dripStatus = PipettingStatus.Moving;
             CallJS("JsExecutor.beforeMove();");
-            if (!m_isFromPause && wellCnt > 0)
-            {
-                VsmdController vsmdController = VsmdController.GetVsmdController();
-                await vsmdController.ZeroStart(VsmdAxis.Z);
-                await vsmdController.ZeroStart(VsmdAxis.X);
-                await vsmdController.ZeroStart(VsmdAxis.Y);
-                vsmdController.Homed = true;
-            }
+            //if (!m_isFromPause && wellCnt > 0)
+            //{
+            //    VsmdController vsmdController = VsmdController.GetVsmdController();
+            //    await vsmdController.ZeroStart(VsmdAxis.Z);
+            //    await vsmdController.ZeroStart(VsmdAxis.X);
+            //    await vsmdController.ZeroStart(VsmdAxis.Y);
+            //    //vsmdController.Homed = true;
+            //}
 
             return true;
         }

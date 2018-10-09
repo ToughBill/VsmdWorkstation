@@ -375,6 +375,11 @@ namespace VsmdLib
             this.addCommand("cfg s4f=" + s4f.ToString("d"));
         }
 
+        public void cfgPsr(int no)
+        {
+            this.addCommand(" cfg psr=" + no.ToString("d"));
+        }
+
         /// <summary>config s4 raising-edge function</summary>
         /// <param name="s4r"></param>
         public void cfgS4r(int s4r)
@@ -538,28 +543,7 @@ namespace VsmdLib
             this.addCommand("rmv " + distance.ToString("d"));
         }
 
-        /// <summary>position move</summary>
-        /// <param name="pos"></param>
-        public async Task<bool> moveto(int pos)
-        {
-            //this.addCommand("pos " + pos.ToString("d"));
-            SendCommandImpl("pos " + pos.ToString("d"));
-            await Task.Delay(100);
-            int curTryCnt = 0;
-            //int maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
-            int maxCnt = m_maxWaitTime * 1000 / 20;
-            while (curTryCnt < maxCnt)
-            {
-                curTryCnt++;
-                await Task.Delay(10);
-                await this.sts();
-                if (this.curPos == pos)
-                {
-                    break;
-                }
-            }
-            return curTryCnt < maxCnt;
-        }
+     
 
         public void SetMaxWaitTimeForMove(int time)
         {
@@ -731,12 +715,36 @@ namespace VsmdLib
                 curTryCnt++;
                 await Task.Delay(20);
                 await this.sts();
-                if (this.curSpd == 0 || this.curPos <= 0)
+                bool s5Off = ((curStatus >> 16) & 0x1) == 0;
+                if (this.curSpd == 0 || s5Off)
                 {
                     break;
                 }
             }
             return curTryCnt <= maxTryCount;
+        }
+
+        /// <summary>position move</summary>
+        /// <param name="pos"></param>
+        public async Task<bool> moveto(int pos)
+        {
+            //this.addCommand("pos " + pos.ToString("d"));
+            SendCommandImpl("pos " + pos.ToString("d"));
+            await Task.Delay(100);
+            int curTryCnt = 0;
+            //int maxCnt = (int)(Math.Abs(pos - this.curPos) / this.GetAttributeValue(VsmdAttribute.Spd)) + 2;
+            int maxCnt = m_maxWaitTime * 1000 / 20;
+            while (curTryCnt < maxCnt)
+            {
+                curTryCnt++;
+                await Task.Delay(10);
+                await this.sts();
+                if (this.curPos == pos)
+                {
+                    break;
+                }
+            }
+            return curTryCnt < maxCnt;
         }
 
         /// <summary>stop zero function</summary>
