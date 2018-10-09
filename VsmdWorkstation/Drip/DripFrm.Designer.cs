@@ -40,6 +40,8 @@ namespace VsmdWorkstation
             this.btnDevTools = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnReverse = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtVolume = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -76,7 +78,7 @@ namespace VsmdWorkstation
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(221, 10);
+            this.btnStart.Location = new System.Drawing.Point(352, 10);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
@@ -88,7 +90,7 @@ namespace VsmdWorkstation
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(379, 10);
+            this.btnStop.Location = new System.Drawing.Point(510, 10);
             this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
@@ -100,7 +102,7 @@ namespace VsmdWorkstation
             // btnPause
             // 
             this.btnPause.Enabled = false;
-            this.btnPause.Location = new System.Drawing.Point(300, 10);
+            this.btnPause.Location = new System.Drawing.Point(431, 10);
             this.btnPause.Margin = new System.Windows.Forms.Padding(2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
@@ -111,7 +113,7 @@ namespace VsmdWorkstation
             // 
             // btnRestGrid
             // 
-            this.btnRestGrid.Location = new System.Drawing.Point(577, 10);
+            this.btnRestGrid.Location = new System.Drawing.Point(708, 10);
             this.btnRestGrid.Name = "btnRestGrid";
             this.btnRestGrid.Size = new System.Drawing.Size(53, 23);
             this.btnRestGrid.TabIndex = 10;
@@ -121,7 +123,7 @@ namespace VsmdWorkstation
             // 
             // btnDevTools
             // 
-            this.btnDevTools.Location = new System.Drawing.Point(636, 10);
+            this.btnDevTools.Location = new System.Drawing.Point(767, 10);
             this.btnDevTools.Name = "btnDevTools";
             this.btnDevTools.Size = new System.Drawing.Size(101, 23);
             this.btnDevTools.TabIndex = 11;
@@ -132,7 +134,7 @@ namespace VsmdWorkstation
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.Location = new System.Drawing.Point(459, 10);
+            this.btnSelectAll.Location = new System.Drawing.Point(590, 10);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(53, 23);
             this.btnSelectAll.TabIndex = 12;
@@ -142,7 +144,7 @@ namespace VsmdWorkstation
             // 
             // btnReverse
             // 
-            this.btnReverse.Location = new System.Drawing.Point(518, 10);
+            this.btnReverse.Location = new System.Drawing.Point(649, 10);
             this.btnReverse.Name = "btnReverse";
             this.btnReverse.Size = new System.Drawing.Size(53, 23);
             this.btnReverse.TabIndex = 13;
@@ -150,11 +152,29 @@ namespace VsmdWorkstation
             this.btnReverse.UseVisualStyleBackColor = true;
             this.btnReverse.Click += new System.EventHandler(this.btnReverse_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(224, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "体积：";
+            // 
+            // txtVolume
+            // 
+            this.txtVolume.Location = new System.Drawing.Point(271, 12);
+            this.txtVolume.Name = "txtVolume";
+            this.txtVolume.Size = new System.Drawing.Size(76, 21);
+            this.txtVolume.TabIndex = 15;
+            // 
             // DripFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(881, 545);
+            this.Controls.Add(this.txtVolume);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnReverse);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnDevTools);
@@ -186,6 +206,8 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnDevTools;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnReverse;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtVolume;
     }
 }
 
