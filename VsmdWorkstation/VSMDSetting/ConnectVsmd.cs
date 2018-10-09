@@ -116,17 +116,19 @@ namespace VsmdWorkstation
                 return;
             }
             int baudrate = int.Parse(cmbBaudrate.SelectedItem.ToString());
-            if (vsmdPort == VsmdController.GetVsmdController().GetPort() &&
-                baudrate == VsmdController.GetVsmdController().GetBaudrate() && 
-                pumpPort == PumpController.GetPumpController().GetPort())
-            {
-                if (m_initCB != null)
-                {
-                    m_initCB(new InitResult() { Message = "设备连接成功!", IsSuccess = true });
-                }
-                this.Close();
-
-            }
+            //if (vsmdPort == VsmdController.GetVsmdController().GetPort() &&
+            //    baudrate == VsmdController.GetVsmdController().GetBaudrate() && 
+            //    pumpPort == PumpController.GetPumpController().GetPort())
+            //{
+            //    if (m_initCB != null)
+            //    {
+            //        m_initCB(new InitResult() { Message = "设备连接成功!", IsSuccess = true });
+            //        GoHome();
+            //        this.Close();
+            //        return;
+            //    }
+             
+            //}
 
             m_isConnecting = true;
             InitResult vsmdRet = await VsmdController.GetVsmdController().Init(vsmdPort, baudrate);
@@ -138,10 +140,12 @@ namespace VsmdWorkstation
                 connectRet.Message = vsmdRet.IsSuccess ? pumpRet.Message : vsmdRet.Message;
                 m_initCB(connectRet);
                 m_isConnecting = false;
+                //m_initCB = null;
             }
             if (vsmdRet.IsSuccess && pumpRet.IsSuccess)
             {
                 GoHome();
+                
                 this.Close();
             }
         }
@@ -167,9 +171,11 @@ namespace VsmdWorkstation
             VsmdController.GetVsmdController().ZeroStart(VsmdAxis.X);
 
             await VsmdController.GetVsmdController().SetZsd(VsmdAxis.Y, zsdY);
-            VsmdController.GetVsmdController().ZeroStart(VsmdAxis.Y);
-
-          
+            await VsmdController.GetVsmdController().ZeroStart(VsmdAxis.Y);
+            //set positive limit register
+            ax.cfgPsr(3);
+            ay.cfgPsr(3);
+            az.cfgPsr(3);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

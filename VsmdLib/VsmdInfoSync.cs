@@ -375,6 +375,11 @@ namespace VsmdLib
             this.addCommand("cfg s4f=" + s4f.ToString("d"));
         }
 
+        public void cfgPsr(int no)
+        {
+            this.addCommand(" cfg psr=" + no.ToString("d"));
+        }
+
         /// <summary>config s4 raising-edge function</summary>
         /// <param name="s4r"></param>
         public void cfgS4r(int s4r)
@@ -710,7 +715,8 @@ namespace VsmdLib
                 curTryCnt++;
                 await Task.Delay(20);
                 await this.sts();
-                if (this.curSpd == 0 || this.curPos <= 0)
+                bool s5Off = ((curStatus >> 16) & 0x1) == 0;
+                if (this.curSpd == 0 || s5Off)
                 {
                     break;
                 }
