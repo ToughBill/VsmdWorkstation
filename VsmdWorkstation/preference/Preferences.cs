@@ -15,6 +15,8 @@ namespace VsmdWorkstation
         public int Baudrate { get; set; }
         public string PumpPort { get; set; }
         public int BoardID { get; set; }
+
+        public int Volume { get; set; }
     }
     public interface IPerference
     {
@@ -81,9 +83,24 @@ namespace VsmdWorkstation
             }
         }
 
+        public int Volume
+        {
+            get
+            {
+                return m_perfMeta.Volume;
+            }
+            set
+            {
+                m_perfMeta.Volume = value;
+            }
+        }
+
         public void Load()
         {
             m_perfMeta = new PreferenceMeta();
+            if (m_perfMeta.Volume == 0)
+                m_perfMeta.Volume = 1000;
+
             string perfFilePath = GetPerfMetaFilePath();
             if (!File.Exists(perfFilePath))
             {

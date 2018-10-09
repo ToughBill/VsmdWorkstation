@@ -84,6 +84,7 @@ namespace VsmdWorkstation
         private void InitBoardSettings()
         {
             cmbBoards.Items.Clear();
+            txtVolume.Text = Preference.GetInstace().Volume.ToString();
             BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
                 {
                     cmbBoards.Items.Add(meta);
@@ -170,6 +171,21 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            int val = 0;
+            bool bok = int.TryParse(txtVolume.Text, out val);
+            if(!bok)
+            {
+                MessageBox.Show("体积必须为数字！");
+                return;
+            }
+            if(val == 0)
+            {
+                MessageBox.Show("体积必须大于0！");
+                return;
+            }
+            Preference.GetInstace().Volume = val;
+            Preference.GetInstace().Save();
+
             m_externalObj.Move();
             m_pipettingStatus = PipettingStatus.Moving;
             UpdateButtons();

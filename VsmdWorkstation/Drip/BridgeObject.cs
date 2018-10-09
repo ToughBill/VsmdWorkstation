@@ -149,7 +149,7 @@ namespace VsmdWorkstation
             JArray jsArr = m_selectedTubes;
 
             await BeforeMove(m_selectedTubes.Count);
-            int pipettingInterval = 5000; //GeneralSettings.GetInstance().DispenseInterval;
+            int pipettingInterval = (int)(Preference.GetInstace().Volume * GeneralSettings.GetInstance().PipettingSpeed/(1000.0));
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_pipettingIndex + 1; i < jsArr.Count; i++)

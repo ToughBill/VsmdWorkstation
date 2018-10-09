@@ -21,7 +21,7 @@ namespace VsmdWorkstation
         public bool AutoConnect { get; set; }
         public int DispenseInterval { get; internal set; }
 
-        public Dictionary<string, string> VolumeDelay { get; set; }
+        public int PipettingSpeed { get; set; }
     }
     public class GeneralSettings
     {
@@ -38,10 +38,10 @@ namespace VsmdWorkstation
         }
 
 
-        public Dictionary<string,string> VolumeDelay
+        public int PipettingSpeed
         {   get
             {
-                return m_settingMeta.VolumeDelay;
+                return m_settingMeta.PipettingSpeed;
             }
            
         }
@@ -94,7 +94,7 @@ namespace VsmdWorkstation
             m_settingMeta.MoveSpeed = 500.0f;
             m_settingMeta.AutoConnect = false;
             m_settingMeta.OutputCommandLog = false;
-            m_settingMeta.VolumeDelay = new Dictionary<string, string>();
+            m_settingMeta.PipettingSpeed = 2000;
         }
         public void LoadGeneralSettings()
         {
