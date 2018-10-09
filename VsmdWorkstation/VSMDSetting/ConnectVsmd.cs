@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO.Ports;
+using VsmdLib;
 
 namespace VsmdWorkstation
 {
@@ -140,8 +141,35 @@ namespace VsmdWorkstation
             }
             if (vsmdRet.IsSuccess && pumpRet.IsSuccess)
             {
+                GoHome();
                 this.Close();
             }
+        }
+
+        private async void  GoHome()
+        {
+            VsmdInfoSync ax = VsmdController.GetVsmdController().GetAxis(VsmdAxis.X);
+            var speedX = ax.GetAttributeValue(VsmdAttribute.Spd);
+            var zsdX = ax.GetAttributeValue(VsmdAttribute.Zsd);
+
+            VsmdInfoSync ay = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Y);
+            var speedY = ay.GetAttributeValue(VsmdAttribute.Spd);
+            var zsdY = ay.GetAttributeValue(VsmdAttribute.Zsd);
+
+            VsmdInfoSync az = VsmdController.GetVsmdController().GetAxis(VsmdAxis.Z);
+            var speedZ = az.GetAttributeValue(VsmdAttribute.Spd);
+            var zsdZ = az.GetAttributeValue(VsmdAttribute.Zsd);
+
+            await VsmdController.GetVsmdController().SetZsd(VsmdAxis.Z, zsdZ);
+            await VsmdController.GetVsmdController().ZeroStart(VsmdAxis.Z);
+
+            await VsmdController.GetVsmdController().SetZsd(VsmdAxis.X, zsdX);
+            VsmdController.GetVsmdController().ZeroStart(VsmdAxis.X);
+
+            await VsmdController.GetVsmdController().SetZsd(VsmdAxis.Y, zsdY);
+            VsmdController.GetVsmdController().ZeroStart(VsmdAxis.Y);
+
+          
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

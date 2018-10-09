@@ -209,16 +209,12 @@ namespace VsmdWorkstation
         }
         public async Task<bool> MoveTo(VsmdAxis axis, int pos)
         {
-            bool ret = await GetAxis(axis).moveto(pos).ConfigureAwait(false);
+            bool ret = await GetAxis(axis).moveto(pos);
             return ret;
         }
         public async Task<bool> ZeroStart(VsmdAxis axis)
         {
-            //await m_vsmdController.SetZsd(axis, 1200);
-            if (Homed)
-                return true;
             var ret = await GetAxis(axis).zeroStart();
-           
             return ret;
         }
         public async Task<bool> ZeroStop(VsmdAxis axis)
