@@ -120,6 +120,10 @@ namespace VsmdWorkstation
         {
             CallJS("JsExecutor.selectAllTubes()");
         }
+        public void SelectTubes(int count)
+        {
+            CallJS("JsExecutor.selectTubes(" + count.ToString() + ")");
+        }
         public void ReverseSelect()
         {
             CallJS("JsExecutor.reverseSelect()");

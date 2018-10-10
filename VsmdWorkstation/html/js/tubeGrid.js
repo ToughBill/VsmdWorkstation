@@ -211,20 +211,21 @@ window.TubeGrid = (function () {
                             if((cx > boxPos.left && cx < boxPos.right) &&
                                 (cy > boxPos.top && cy < boxPos.bottom)){
                                 if(!$item.hasClass("selected")){
-                                    $item.addClass('selected');
+                                    $item.addClass('selected newSelected');
                                 }
-                            } else {
-                                if($item.hasClass("selected")){
-                                    $item.removeClass('selected');
+                            } else if (eventDown.ctrlKey) {
+                                if($item.hasClass("selected newSelected")){
+                                    $item.removeClass('selected newSelected');
                                 }
 
                             }
                         });
-
+						
                         clearBubble(eventMove);
                     });
 
                     $(document).on('mouseup', function() {
+						$container.find('.selected.newSelected').removeClass("newSelected");
                         $container.off('mousemove');
                         $selectBoxDashed.remove();
                     });
@@ -327,6 +328,36 @@ window.TubeGrid = (function () {
         }
         this.selectAllTubes = function () {
             $(".grid-cell").removeClass("moveDone").addClass("selected");
+        }
+        this.selectTubes = function (count) {
+            $(".grid-cell.selected").removeClass("selected");
+            if (gridEditor.type == Type_Site) {
+                let siteCnt = parseInt(count / (gridEditor.rowCount * gridEditor.columnCount));
+                for (let i = 1; i <= siteCnt; i++) {
+                    $(".grid-cell.s" + i).addClass("selected");
+                }
+                let leftTubes = count - (gridEditor.rowCount * gridEditor.columnCount * siteCnt);
+                if (leftTubes <= 0) {
+                    return;
+                }
+                let colCnt = parseInt(leftTubes / gridEditor.rowCount);
+                for (let i = 1; i <= colCnt; i++) {
+                    $(".grid-cell.s" + (siteCnt + 1) + ".c" + i).addClass("selected");
+                }
+                let tubeCnt = leftTubes % gridEditor.rowCount;
+                for (let i = 1; i <= tubeCnt; i++) {
+                    $(".grid-cell.s" + (siteCnt + 1) + ".c" + (colCnt + 1) + ".r" + i).addClass("selected");
+                }
+            } else if (gridEditor.type == Type_Grid) {
+                let gridCnt = parseInt(count / gridEditor.rowCount);
+                for (let i = 1; i <= gridCnt; i++) {
+                    $(".grid-cell.g" + i).addClass("selected");
+                }
+                let tubeCnt = count % gridEditor.rowCount;
+                for (let i = 1; i <= tubeCnt; i++) {
+                    $(".grid-cell.g" + (gridCnt + 1) + ".r" + i).addClass("selected");
+                }
+            }
         }
         this.reverseSelect = function () {
             $(".grid-cell.selected").addClass("oriSelected").removeClass("selected");

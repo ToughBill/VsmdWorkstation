@@ -60,6 +60,9 @@
 		selectAllTubes: function(){
 		    window.__grid.selectAllTubes();
 		},
+		selectTubes: function(count){
+		    window.__grid.selectTubes(count);
+		},
 		reverseSelect: function(){
 		    window.__grid.reverseSelect();
 		},

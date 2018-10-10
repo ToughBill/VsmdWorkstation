@@ -262,6 +262,16 @@ namespace VsmdWorkstation
         {
             m_externalObj.ReverseSelect();
         }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            int count = int.Parse(txtExCount.Text);
+            if (count <= 0)
+            {
+                return;
+            }
+            m_externalObj.SelectTubes(count);
+        }
     }
 
     public class CEFMenuHandler : CefSharp.IContextMenuHandler
