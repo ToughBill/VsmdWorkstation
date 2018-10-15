@@ -183,7 +183,21 @@ namespace VsmdWorkstation
                 MessageBox.Show("体积必须大于0！");
                 return;
             }
+
             Preference.GetInstace().Volume = val;
+
+            bok = int.TryParse(txtSampleCnt.Text, out val);
+            if (!bok)
+            {
+                MessageBox.Show("样本数必须为数字！");
+                return;
+            }
+            if (val == 0)
+            {
+                MessageBox.Show("样本数必须大于0！");
+                return;
+            }
+            m_externalObj.SelectTubes(val);
             Preference.GetInstace().Save();
 
             m_externalObj.Move();
@@ -219,10 +233,10 @@ namespace VsmdWorkstation
             btnStart.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
             btnStop.Enabled = (m_pipettingStatus != PipettingStatus.Idle);
             btnPause.Enabled = (m_pipettingStatus == PipettingStatus.Moving || m_pipettingStatus == PipettingStatus.PauseMove);
-            btnRestGrid.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
+            //btnRestGrid.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
 
-            btnSelectAll.Enabled = m_pipettingStatus == PipettingStatus.Idle;
-            btnReverse.Enabled = m_pipettingStatus == PipettingStatus.Idle;
+            //btnSelectAll.Enabled = m_pipettingStatus == PipettingStatus.Idle;
+            //btnReverse.Enabled = m_pipettingStatus == PipettingStatus.Idle;
         }
 
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,15 +277,6 @@ namespace VsmdWorkstation
             m_externalObj.ReverseSelect();
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            int count = int.Parse(txtExCount.Text);
-            if (count <= 0)
-            {
-                return;
-            }
-            m_externalObj.SelectTubes(count);
-        }
     }
 
     public class CEFMenuHandler : CefSharp.IContextMenuHandler

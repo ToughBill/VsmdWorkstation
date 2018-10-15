@@ -358,6 +358,14 @@ namespace VsmdWorkstation
         {
             panelSite.Visible = rbtSite.Checked;
             panelGrid.Visible = rbtGrid.Checked;
+            if(rbtGrid.Checked)
+            {
+                panelGrid.BringToFront();
+            }
+            else
+            {
+                panelSite.BringToFront();
+            }
         }
 
         private void tsmNew_Click(object sender, EventArgs e)
