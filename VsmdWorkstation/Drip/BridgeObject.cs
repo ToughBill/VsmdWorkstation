@@ -2,6 +2,7 @@
 using CefSharp.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace VsmdWorkstation
         private PipettingStatus m_dripStatus = PipettingStatus.Idle;
         private bool m_isFromPause = false;
         private JArray m_selectedTubes = new JArray();
+        private JToken[] m_sortedTubesArr = null;
         private int m_pipettingIndex;
         private static bool m_cefInitialized;
 
@@ -88,6 +90,58 @@ namespace VsmdWorkstation
         public void StartDrip(string args)
         {
             m_selectedTubes = (JArray)JsonConvert.DeserializeObject(args.ToString());
+            m_sortedTubesArr = new JToken[m_selectedTubes.Count];
+            m_selectedTubes.CopyTo(m_sortedTubesArr, 0);
+            Array.Sort(m_sortedTubesArr, (token1, token2) =>
+            {
+                int ret = 1;
+                JObject obj1 = (JObject)token1;
+                JObject obj2 = (JObject)token2;
+                int type = int.Parse(obj1["type"].ToString());
+                if (type == (int)BoardType.Site)
+                {
+                    int site1, site2, row1, row2, col1, col2;
+                    site1 = int.Parse(obj1["site"].ToString());
+                    site2 = int.Parse(obj2["site"].ToString());
+                    row1 = int.Parse(obj1["row"].ToString());
+                    row2 = int.Parse(obj2["row"].ToString());
+                    col1 = int.Parse(obj1["col"].ToString());
+                    col2 = int.Parse(obj2["col"].ToString());
+                    if (col1 < col2)
+                    {
+                        ret = -1;
+                    }
+                    else if (col1 == col2)
+                    {
+                        ret = ((site1 - 1) * BoardSetting.GetInstance().CurrentBoard.RowCount + row1) < ((site2 - 1) * BoardSetting.GetInstance().CurrentBoard.RowCount + row2) ? -1 : 1;
+                    }
+                    else
+                    {
+                        ret = 1;
+                    }
+                }
+                else
+                {
+                    int grid1, grid2, row1, row2;
+                    grid1 = int.Parse(obj1["grid"].ToString());
+                    grid2 = int.Parse(obj2["grid"].ToString());
+                    row1 = int.Parse(obj1["row"].ToString());
+                    row2 = int.Parse(obj2["row"].ToString());
+                    if (grid1 < grid2)
+                    {
+                        ret = -1;
+                    }
+                    else if (grid1 == grid2)
+                    {
+                        ret = row1 < row2 ? -1 : 1;
+                    }
+                    else
+                    {
+                        ret = 1;
+                    }
+                }
+                return ret;
+            });
             m_pipettingIndex = -1;
             DoPipetting();
             //m_moveThread = new Thread(new ThreadStart(PipettingThread));
@@ -151,17 +205,15 @@ namespace VsmdWorkstation
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
-            JArray jsArr = m_selectedTubes;
-
             await BeforeMove(m_selectedTubes.Count);
             int pipettingInterval = (int)(Preference.GetInstace().Volume * GeneralSettings.GetInstance().PipettingSpeed/(1000.0));
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            for (int i = m_pipettingIndex + 1; i < jsArr.Count; i++)
+            for (int i = m_pipettingIndex + 1; i < m_sortedTubesArr.Length; i++)
             {
                 if (m_dripStatus != PipettingStatus.Moving)
                     break;
-                JObject obj = (JObject)jsArr[i];
+                JObject obj = (JObject)m_sortedTubesArr[i];
                 GetPositionInfo(obj, out blockNum, out row, out col);
                 SetPipettingWell(blockNum, row, col);
                 await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
