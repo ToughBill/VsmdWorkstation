@@ -115,6 +115,14 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label22 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTouchPlateEdgeOffset = new VsmdWorkstation.Controls.TextBoxEx();
+            this.btnPlateMoveTouchOffset = new System.Windows.Forms.Button();
+            this.btnTubeMoveTouchEdgeOffset = new System.Windows.Forms.Button();
+            this.txtTubeTouchEdgeOffset = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnPlateTouchEdgeOffset = new System.Windows.Forms.Button();
+            this.btnSetTubeTouchEdgeOffset = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
@@ -132,7 +140,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(198, 340);
+            this.btnOK.Location = new System.Drawing.Point(198, 365);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
@@ -144,7 +152,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(270, 340);
+            this.btnCancel.Location = new System.Drawing.Point(270, 365);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
@@ -234,6 +242,10 @@
             // panelGrid
             // 
             this.panelGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGrid.Controls.Add(this.btnTubeMoveTouchEdgeOffset);
+            this.panelGrid.Controls.Add(this.btnSetTubeTouchEdgeOffset);
+            this.panelGrid.Controls.Add(this.txtTubeTouchEdgeOffset);
+            this.panelGrid.Controls.Add(this.label7);
             this.panelGrid.Controls.Add(this.btnMove2GridZDispense);
             this.panelGrid.Controls.Add(this.btnMove2GridZTravel);
             this.panelGrid.Controls.Add(this.btnMove2Grid1EndY);
@@ -267,7 +279,7 @@
             this.panelGrid.Controls.Add(this.label16);
             this.panelGrid.Location = new System.Drawing.Point(18, 67);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(311, 211);
+            this.panelGrid.Size = new System.Drawing.Size(311, 256);
             this.panelGrid.TabIndex = 33;
             this.panelGrid.Visible = false;
             // 
@@ -590,6 +602,10 @@
             // panelSite
             // 
             this.panelSite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSite.Controls.Add(this.btnPlateMoveTouchOffset);
+            this.panelSite.Controls.Add(this.btnPlateTouchEdgeOffset);
+            this.panelSite.Controls.Add(this.txtTouchPlateEdgeOffset);
+            this.panelSite.Controls.Add(this.label6);
             this.panelSite.Controls.Add(this.btnMove2SiteZDispense);
             this.panelSite.Controls.Add(this.btnMove2SiteZTravel);
             this.panelSite.Controls.Add(this.btnMove2Site2StartY);
@@ -634,7 +650,7 @@
             this.panelSite.Controls.Add(this.label22);
             this.panelSite.Location = new System.Drawing.Point(18, 67);
             this.panelSite.Name = "panelSite";
-            this.panelSite.Size = new System.Drawing.Size(327, 268);
+            this.panelSite.Size = new System.Drawing.Size(327, 293);
             this.panelSite.TabIndex = 34;
             // 
             // btnMove2SiteZDispense
@@ -1065,12 +1081,95 @@
             this.label22.TabIndex = 22;
             this.label22.Text = "Site1首孔位置：";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(31, 267);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 61;
+            this.label6.Text = "靠壁距离：";
+            // 
+            // txtTouchPlateEdgeOffset
+            // 
+            this.txtTouchPlateEdgeOffset.Location = new System.Drawing.Point(95, 262);
+            this.txtTouchPlateEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTouchPlateEdgeOffset.Name = "txtTouchPlateEdgeOffset";
+            this.txtTouchPlateEdgeOffset.Size = new System.Drawing.Size(103, 21);
+            this.txtTouchPlateEdgeOffset.TabIndex = 62;
+            this.txtTouchPlateEdgeOffset.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // btnPlateMoveTouchOffset
+            // 
+            this.btnPlateMoveTouchOffset.Location = new System.Drawing.Point(254, 262);
+            this.btnPlateMoveTouchOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPlateMoveTouchOffset.Name = "btnPlateMoveTouchOffset";
+            this.btnPlateMoveTouchOffset.Size = new System.Drawing.Size(50, 21);
+            this.btnPlateMoveTouchOffset.TabIndex = 64;
+            this.btnPlateMoveTouchOffset.Text = "移动";
+            this.btnPlateMoveTouchOffset.UseVisualStyleBackColor = true;
+            this.btnPlateMoveTouchOffset.Click += new System.EventHandler(this.btnPlateMoveTouchOffset_Click);
+            // 
+            // btnTubeMoveTouchEdgeOffset
+            // 
+            this.btnTubeMoveTouchEdgeOffset.Location = new System.Drawing.Point(253, 211);
+            this.btnTubeMoveTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTubeMoveTouchEdgeOffset.Name = "btnTubeMoveTouchEdgeOffset";
+            this.btnTubeMoveTouchEdgeOffset.Size = new System.Drawing.Size(50, 21);
+            this.btnTubeMoveTouchEdgeOffset.TabIndex = 68;
+            this.btnTubeMoveTouchEdgeOffset.Text = "移动";
+            this.btnTubeMoveTouchEdgeOffset.UseVisualStyleBackColor = true;
+            this.btnTubeMoveTouchEdgeOffset.Click += new System.EventHandler(this.btnTubeMoveTouchEdgeOffset_Click);
+            // 
+            // txtTubeTouchEdgeOffset
+            // 
+            this.txtTubeTouchEdgeOffset.Location = new System.Drawing.Point(94, 211);
+            this.txtTubeTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTubeTouchEdgeOffset.Name = "txtTubeTouchEdgeOffset";
+            this.txtTubeTouchEdgeOffset.Size = new System.Drawing.Size(103, 21);
+            this.txtTubeTouchEdgeOffset.TabIndex = 66;
+            this.txtTubeTouchEdgeOffset.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(30, 217);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "靠壁距离：";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnPlateTouchEdgeOffset
+            // 
+            this.btnPlateTouchEdgeOffset.Location = new System.Drawing.Point(201, 261);
+            this.btnPlateTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPlateTouchEdgeOffset.Name = "btnPlateTouchEdgeOffset";
+            this.btnPlateTouchEdgeOffset.Size = new System.Drawing.Size(50, 22);
+            this.btnPlateTouchEdgeOffset.TabIndex = 63;
+            this.btnPlateTouchEdgeOffset.Text = "设置";
+            this.btnPlateTouchEdgeOffset.UseVisualStyleBackColor = true;
+            this.btnPlateTouchEdgeOffset.Click += new System.EventHandler(this.btnPlateTouchEdgeOffset_Click);
+            // 
+            // btnSetTubeTouchEdgeOffset
+            // 
+            this.btnSetTubeTouchEdgeOffset.Location = new System.Drawing.Point(200, 210);
+            this.btnSetTubeTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetTubeTouchEdgeOffset.Name = "btnSetTubeTouchEdgeOffset";
+            this.btnSetTubeTouchEdgeOffset.Size = new System.Drawing.Size(50, 22);
+            this.btnSetTubeTouchEdgeOffset.TabIndex = 67;
+            this.btnSetTubeTouchEdgeOffset.Text = "设置";
+            this.btnSetTubeTouchEdgeOffset.UseVisualStyleBackColor = true;
+            this.btnSetTubeTouchEdgeOffset.Click += new System.EventHandler(this.btnSetTubeTouchEdgeOffset_Click);
+            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(370, 375);
+            this.ClientSize = new System.Drawing.Size(351, 401);
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.rbtSite);
             this.Controls.Add(this.panelSite);
@@ -1184,5 +1283,13 @@
         private System.Windows.Forms.Button btnMove2Site1EndX;
         private System.Windows.Forms.Button btnMove2Site1StartY;
         private System.Windows.Forms.Button btnMove2Site1StartX;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnTubeMoveTouchEdgeOffset;
+        private Controls.TextBoxEx txtTubeTouchEdgeOffset;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnPlateMoveTouchOffset;
+        private Controls.TextBoxEx txtTouchPlateEdgeOffset;
+        private System.Windows.Forms.Button btnSetTubeTouchEdgeOffset;
+        private System.Windows.Forms.Button btnPlateTouchEdgeOffset;
     }
 }

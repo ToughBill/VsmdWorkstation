@@ -115,6 +115,7 @@ namespace VsmdWorkstation
                 meta.Site2FirstTubeY = int.Parse(txtSite2FTY.Text);
                 meta.ZTravel = int.Parse(txtSiteZTravel.Text);
                 meta.ZDispense = int.Parse(txtSiteZDispense.Text);
+                meta.TouchEdgeOffset = Math.Abs(meta.Site1FirstTubeX - int.Parse(txtTouchPlateEdgeOffset.Text));
             }
             else
             {
@@ -127,6 +128,7 @@ namespace VsmdWorkstation
                 meta.GridLastTubeY = int.Parse(txtGridLTY.Text);
                 meta.ZTravel = int.Parse(txtGridZTravel.Text);
                 meta.ZDispense = int.Parse(txtGridZDispense.Text);
+                meta.TouchEdgeOffset = Math.Abs(meta.GridFirstTubeX - int.Parse(txtTubeTouchEdgeOffset.Text));
             }
         }
 
@@ -194,6 +196,14 @@ namespace VsmdWorkstation
                     txtSite2FTY.Focus();
                     return false;
                 }
+
+                if(string.IsNullOrWhiteSpace(txtTouchPlateEdgeOffset.Text))
+                {
+                    ShowMessage(MessageType.Error, "靠边距离不能为空！");
+                    txtTouchPlateEdgeOffset.Focus();
+                    return false;
+                }
+
             }
             else
             {
@@ -231,6 +241,13 @@ namespace VsmdWorkstation
                 {
                     ShowMessage(MessageType.Error, "尾孔位置不能为空！");
                     txtGridLTY.Focus();
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtTubeTouchEdgeOffset.Text))
+                {
+                    ShowMessage(MessageType.Error, "靠边距离不能为空！");
+                    txtTubeTouchEdgeOffset.Focus();
                     return false;
                 }
             }
@@ -523,6 +540,26 @@ namespace VsmdWorkstation
            var spd = VsmdController.GetVsmdController().GetAxis(axis).GetAttributeValue(VsmdLib.VsmdAttribute.Spd);
            await VsmdController.GetVsmdController().SetSpeed(axis, spd);
            await VsmdController.GetVsmdController().MoveTo(axis, val);
+        }
+
+        private void btnSetTubeTouchEdgeOffset_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtTubeTouchEdgeOffset, VsmdAxis.X);
+        }
+
+        private void btnPlateTouchEdgeOffset_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtTouchPlateEdgeOffset, VsmdAxis.X);
+        }
+
+        private void btnPlateMoveTouchOffset_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtTouchPlateEdgeOffset.Text));
+        }
+
+        private void btnTubeMoveTouchEdgeOffset_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtTubeTouchEdgeOffset.Text));
         }
     }
 }

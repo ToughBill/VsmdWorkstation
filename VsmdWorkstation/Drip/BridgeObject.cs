@@ -216,7 +216,9 @@ namespace VsmdWorkstation
                 JObject obj = (JObject)m_sortedTubesArr[i];
                 GetPositionInfo(obj, out blockNum, out row, out col);
                 SetPipettingWell(blockNum, row, col);
-                await vsmdController.MoveTo(VsmdAxis.X, curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col));
+                int xPos = curBoardSetting.Convert2PhysicalPos(VsmdAxis.X, blockNum, col);
+                int offset = curBoardSetting.CurrentBoard.TouchEdgeOffset;
+                await vsmdController.MoveTo(VsmdAxis.X, xPos);
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
                 // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
@@ -225,6 +227,7 @@ namespace VsmdWorkstation
                 await pumpController.SwitchOnOff();
                 // wait several seconds, this time should be changed according to the volume dispensed
                 Thread.Sleep(pipettingInterval);
+                await vsmdController.MoveTo(VsmdAxis.X, xPos-offset);
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
                 await pumpController.SwitchOnOff();
                 // change the UI to start

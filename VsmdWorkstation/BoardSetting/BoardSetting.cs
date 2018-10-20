@@ -39,6 +39,7 @@ namespace VsmdWorkstation
         public int GridLastTubeY { get; set; }
         public int ZTravel { get; set; }
         public int ZDispense { get; set; }
+        public int TouchEdgeOffset { get; internal set; }
 
         public override string ToString()
         {

@@ -353,10 +353,8 @@
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td>{03CA366A-924D-48AB-8120-52CD910C3A30}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Newtonsoft.Json.dll</td><td>{B839C90C-713E-4FC3-8125-15470BC957A8}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Pipettor.exe</td><td>{73D39EB4-F970-4A30-A50A-DEBDC27ADB98}</td><td>INSTALLDIR</td><td>2</td><td/><td>pipettor.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Pipettor.vshost.exe</td><td>{29AA1E8C-0817-4E5D-8B3B-DD74993B96FD}</td><td>INSTALLDIR</td><td>2</td><td/><td>pipettor.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>VsmdLib.dll</td><td>{2D37BCA3-3617-403C-AC92-C227785BB15E}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdlib.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>VsmdWorkstation.Controls.dll</td><td>{1A959671-5DE3-4946-B851-E2C758A9ADF8}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.controls.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>VsmdWorkstation.vshost.exe</td><td>{59FEB3A6-346B-4096-B79A-7CDEB57CE14C}</td><td>INSTALLDIR</td><td>2</td><td/><td>vsmdworkstation.vshost.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>chrome_elf.dll</td><td>{9C45CEF8-9025-4AE3-BFFE-150CC4FA422C}</td><td>INSTALLDIR</td><td>2</td><td/><td>chrome_elf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>d3dcompiler_47.dll</td><td>{99222267-726F-484F-9FFA-5703F45180FD}</td><td>INSTALLDIR</td><td>2</td><td/><td>d3dcompiler_47.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>libEGL.dll</td><td>{9113B5BA-D7FF-453E-8525-F33D67037B06}</td><td>INSTALLDIR</td><td>2</td><td/><td>libegl.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1087,10 +1085,8 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>INSTALLDIR</td><td>Newtonsoft.Json.dll</td></row>
 		<row><td>INSTALLDIR</td><td>Pipettor.exe</td></row>
-		<row><td>INSTALLDIR</td><td>Pipettor.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>VsmdLib.dll</td></row>
 		<row><td>INSTALLDIR</td><td>VsmdWorkstation.Controls.dll</td></row>
-		<row><td>INSTALLDIR</td><td>VsmdWorkstation.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>chrome_elf.dll</td></row>
 		<row><td>INSTALLDIR</td><td>d3dcompiler_47.dll</td></row>
 		<row><td>INSTALLDIR</td><td>libEGL.dll</td></row>
@@ -1930,10 +1926,8 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll</td></row>
 		<row><td>AlwaysInstall</td><td>Pipettor.exe</td></row>
-		<row><td>AlwaysInstall</td><td>Pipettor.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>VsmdLib.dll</td></row>
 		<row><td>AlwaysInstall</td><td>VsmdWorkstation.Controls.dll</td></row>
-		<row><td>AlwaysInstall</td><td>VsmdWorkstation.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>chrome_elf.dll</td></row>
 		<row><td>AlwaysInstall</td><td>d3dcompiler_47.dll</td></row>
 		<row><td>AlwaysInstall</td><td>libEGL.dll</td></row>
@@ -1966,7 +1960,6 @@
 		<row><td>cefsharp.browsersubprocess.c</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.BrowserSubprocess.Core.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.pdb</td><td>1</td><td/></row>
 		<row><td>cefsharp.browsersubprocess.c1</td><td>CefSharp.BrowserSubprocess.Core.dll</td><td>CEFSHA~1.DLL|CefSharp.BrowserSubprocess.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.Core.dll</td><td>1</td><td/></row>
 		<row><td>cefsharp.browsersubprocess.e</td><td>CefSharp.BrowserSubprocess.exe</td><td>CEFSHA~1.EXE|CefSharp.BrowserSubprocess.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.exe</td><td>1</td><td/></row>
-		<row><td>cefsharp.browsersubprocess.p</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.BrowserSubprocess.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.BrowserSubprocess.pdb</td><td>1</td><td/></row>
 		<row><td>cefsharp.core.dll</td><td>CefSharp.Core.dll</td><td>CEFSHA~1.DLL|CefSharp.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.Core.dll</td><td>1</td><td/></row>
 		<row><td>cefsharp.core.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.PDB|CefSharp.Core.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.Core.pdb</td><td>1</td><td/></row>
 		<row><td>cefsharp.core.xml</td><td>ISX_DEFAULTCOMPONENT4</td><td>CEFSHA~1.XML|CefSharp.Core.xml</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\CefSharp.Core.xml</td><td>1</td><td/></row>
@@ -1981,7 +1974,6 @@
 		<row><td>contextmenu.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>CONTEX~1.CSS|contextMenu.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\contextMenu.css</td><td>1</td><td/></row>
 		<row><td>contextmenu.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>CONTEX~1.JS|contextMenu.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\contextMenu.js</td><td>1</td><td/></row>
 		<row><td>d3dcompiler_47.dll</td><td>d3dcompiler_47.dll</td><td>D3DCOM~1.DLL|d3dcompiler_47.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\d3dcompiler_47.dll</td><td>1</td><td/></row>
-		<row><td>debug.log</td><td>ISX_DEFAULTCOMPONENT4</td><td>debug.log</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\debug.log</td><td>1</td><td/></row>
 		<row><td>devtools_resources.pak</td><td>ISX_DEFAULTCOMPONENT4</td><td>DEVTOO~1.PAK|devtools_resources.pak</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\devtools_resources.pak</td><td>1</td><td/></row>
 		<row><td>generalsetting.json</td><td>ISX_DEFAULTCOMPONENT4</td><td>GENERA~1.JSO|generalSetting.json</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\generalSetting.json</td><td>1</td><td/></row>
 		<row><td>icudtl.dat</td><td>ISX_DEFAULTCOMPONENT4</td><td>icudtl.dat</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\icudtl.dat</td><td>1</td><td/></row>
@@ -1999,10 +1991,6 @@
 		<row><td>page.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>page.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\page.js</td><td>1</td><td/></row>
 		<row><td>pipettor.exe</td><td>Pipettor.exe</td><td>Pipettor.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.exe</td><td>1</td><td/></row>
 		<row><td>pipettor.exe.config</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.CON|Pipettor.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.exe.config</td><td>1</td><td/></row>
-		<row><td>pipettor.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>Pipettor.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.pdb</td><td>1</td><td/></row>
-		<row><td>pipettor.vshost.exe</td><td>Pipettor.vshost.exe</td><td>PIPETT~1.EXE|Pipettor.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe</td><td>1</td><td/></row>
-		<row><td>pipettor.vshost.exe.config</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.CON|Pipettor.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe.config</td><td>1</td><td/></row>
-		<row><td>pipettor.vshost.exe.manifest</td><td>ISX_DEFAULTCOMPONENT4</td><td>PIPETT~1.MAN|Pipettor.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\Pipettor.vshost.exe.manifest</td><td>1</td><td/></row>
 		<row><td>snapshot_blob.bin</td><td>ISX_DEFAULTCOMPONENT4</td><td>SNAPSH~1.BIN|snapshot_blob.bin</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\snapshot_blob.bin</td><td>1</td><td/></row>
 		<row><td>style.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>style.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\style.css</td><td>1</td><td/></row>
 		<row><td>tubegrid.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>tubeGrid.css</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\css\tubeGrid.css</td><td>1</td><td/></row>
@@ -2010,12 +1998,7 @@
 		<row><td>tubegrid.js</td><td>ISX_DEFAULTCOMPONENT3</td><td>tubeGrid.js</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\html\js\tubeGrid.js</td><td>1</td><td/></row>
 		<row><td>v8_context_snapshot.bin</td><td>ISX_DEFAULTCOMPONENT4</td><td>V8_CON~1.BIN|v8_context_snapshot.bin</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\v8_context_snapshot.bin</td><td>1</td><td/></row>
 		<row><td>vsmdlib.dll</td><td>VsmdLib.dll</td><td>VsmdLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdLib.dll</td><td>1</td><td/></row>
-		<row><td>vsmdlib.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>VsmdLib.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdLib.pdb</td><td>1</td><td/></row>
 		<row><td>vsmdworkstation.controls.dll</td><td>VsmdWorkstation.Controls.dll</td><td>VSMDWO~1.DLL|VsmdWorkstation.Controls.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.Controls.dll</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.controls.pdb</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.PDB|VsmdWorkstation.Controls.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.Controls.pdb</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.vshost.exe</td><td>VsmdWorkstation.vshost.exe</td><td>VSMDWO~1.EXE|VsmdWorkstation.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.vshost.exe.c</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.CON|VsmdWorkstation.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe.config</td><td>1</td><td/></row>
-		<row><td>vsmdworkstation.vshost.exe.m</td><td>ISX_DEFAULTCOMPONENT4</td><td>VSMDWO~1.MAN|VsmdWorkstation.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\VsmdWorkstation.vshost.exe.manifest</td><td>1</td><td/></row>
 		<row><td>widevinecdmadapter.dll</td><td>widevinecdmadapter.dll</td><td>WIDEVI~1.DLL|widevinecdmadapter.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Data\code\VsmdWorkstation\trunk\VsmdWorkstation\bin\x86\Release\widevinecdmadapter.dll</td><td>1</td><td/></row>
 	</table>
 
@@ -2171,10 +2154,8 @@
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td/><td/><td>_CC97B0FB_E48C_4FC6_A294_FE027FA4500F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_11CF41B3_25F6_4749_82E3_6286AEE06B43_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Pipettor.exe</td><td/><td/><td>_E5F97C7F_FC40_4822_A2FF_31627C14EAC2_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Pipettor.vshost.exe</td><td/><td/><td>_91F6A3F2_19F0_4618_BA3B_F0510C0B8A44_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>VsmdLib.dll</td><td/><td/><td>_090DB8C9_256C_45EE_81C4_85F04DFC0F05_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>VsmdWorkstation.Controls.dll</td><td/><td/><td>_E801BB21_C002_4574_AAB3_53674BD2B4FD_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>VsmdWorkstation.vshost.exe</td><td/><td/><td>_3DFE89A5_1DB6_43F0_8AA7_8F66E7215DD6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>chrome_elf.dll</td><td/><td/><td>_A317B6E4_BD23_4667_B198_984A035366A7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>d3dcompiler_47.dll</td><td/><td/><td>_A826B90F_BB55_4B8D_9D58_FD77CCE018F2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>libEGL.dll</td><td/><td/><td>_4380F0F0_1419_4BD4_92E3_49F303628E1E_FILTER</td><td/><td/><td/><td/></row>
@@ -4162,7 +4143,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{021649FE-52F9-4ED1-96EF-0B98C45192D5}</td></row>
 		<row><td>ISUSSignature</td><td>{1B8BA500-3D2D-4C6A-B47F-0D9C49938B8B}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewUI,viewSystemSearch,viewRelease,viewServices,viewCustomActions,viewTextMessages,viewFileExtensions,viewRegistry,viewUpdateService,viewIniFiles,viewEnvironmentVariables,viewISToday,viewObjects,viewAppFiles,viewShortcuts,viewUpgradePaths</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewUI,viewSystemSearch,viewRelease,viewServices,viewCustomActions,viewTextMessages,viewFileExtensions,viewRegistry,viewUpdateService,viewIniFiles,viewEnvironmentVariables,viewISToday,viewObjects,viewAppFiles,viewShortcuts,viewUpgradePaths,viewLearnMore</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4617,7 +4598,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>VsmdWorkstation.vshost.exe</td><td/><td>product_name1</td><td>2</td></row>
 		<row><td>Pipettor.exe</td><td>Pipettor.exe</td><td/><td>product_name1</td><td>2</td></row>
 	</table>
 
