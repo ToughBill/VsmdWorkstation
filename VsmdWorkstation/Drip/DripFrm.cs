@@ -28,6 +28,7 @@ namespace VsmdWorkstation
         private PipettingStatus m_pipettingStatus = PipettingStatus.Idle;
         private bool m_delayToBuildGrid = false;
         private bool m_isOpened = true;
+        private bool m_manuallySelect = false;
         public DripFrm()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace VsmdWorkstation
             m_externalObj = new BridgeObject(m_browser);
             m_externalObj.onGridPageDomLoaded += OnGridPageDomLoaded;
             m_externalObj.onPipettingFinished += OnPipettingFinished;
+            m_externalObj.onGridTubeSelected += OnGridTubeSelected;
             BindingOptions opt = new BindingOptions();
             opt.CamelCaseJavascriptNames = false;
             m_browser.RegisterJsObject("externalObj", m_externalObj, opt);
@@ -127,6 +129,14 @@ namespace VsmdWorkstation
             }));
         }
 
+        private void OnGridTubeSelected(int count)
+        {
+            this.Invoke(new Action(delegate() {
+                txtSampleCnt.Text = count.ToString();
+                txtSampleCnt.BackColor = Color.FromArgb(0x99, 0xCC, 0xFF);
+                m_manuallySelect = true;
+            }));
+        }
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
             BoardSettingFrm frm = new BoardSettingFrm();
@@ -197,7 +207,10 @@ namespace VsmdWorkstation
                 MessageBox.Show("样本数必须大于0！");
                 return;
             }
-            m_externalObj.SelectTubes(val);
+            if (!m_manuallySelect)
+            {
+                m_externalObj.SelectTubes(val);
+            }
             Preference.GetInstace().Save();
 
             m_externalObj.Move();
@@ -277,6 +290,11 @@ namespace VsmdWorkstation
             m_externalObj.ReverseSelect();
         }
 
+        private void txtSampleCnt_TextChanged(object sender, EventArgs e)
+        {
+            txtSampleCnt.BackColor = Color.Yellow;
+            m_manuallySelect = false;
+        }
     }
 
     public class CEFMenuHandler : CefSharp.IContextMenuHandler

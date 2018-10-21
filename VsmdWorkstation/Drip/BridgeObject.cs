@@ -11,10 +11,12 @@ using VsmdWorkstation.Controls;
 namespace VsmdWorkstation
 {
     public delegate void GridPageDomLoaded();
+    public delegate void GridTubeSelected(int totalSelectedCount);
     public delegate void DelDripFinished();
     public class BridgeObject
     {
         public event GridPageDomLoaded onGridPageDomLoaded = null;
+        public event GridTubeSelected onGridTubeSelected = null;
         public event DelDripFinished onPipettingFinished = null;
         private ChromiumWebBrowser m_browser;
         private Thread m_moveThread;
@@ -169,6 +171,13 @@ namespace VsmdWorkstation
             m_dripStatus = PipettingStatus.Moving;
             m_moveThread = new Thread(new ThreadStart(DoPipetting));
             m_moveThread.Start();
+        }
+        public void OnTubeSelected(int totalCount)
+        {
+            if(onGridTubeSelected != null)
+            {
+                onGridTubeSelected(totalCount);
+            }
         }
         public void SelectAllTubes()
         {

@@ -23,6 +23,8 @@ window.TubeGrid = (function () {
         let clickX, clickY;
         let drippingTubeFlickerInterval;
 
+        this.onSelected;
+
         function initOptions(options_) {
             gridEditor.options = options_ || {};
             gridEditor.tubeWidth = options_.tubeWidth || defaultSettings.tubeWidth;
@@ -161,17 +163,31 @@ window.TubeGrid = (function () {
                         return;
                     }
                     if (!eventDown.ctrlKey) {
-                        let rowC, colC;
                         let className = eventDown.target.className
-                        let match1 = className.match(/\S*(r\d+)/);
-                        if (match1 && match1.length > 0) {
-                            rowC = match1[0];
+                        if (gridEditor.type == Type_Site) {
+                            let rowC, colC;
+                            let match1 = className.match(/\S*(r\d+)/);
+                            if (match1 && match1.length > 0) {
+                                rowC = match1[0];
+                            }
+                            let match2 = className.match(/\S*(c\d+)/);
+                            if (match2 && match2.length > 0) {
+                                colC = match2[0];
+                            }
+                            $(gridEditor.container).find('.grid-cell.selected,.grid-cell.moveDone').not('.' + rowC + '.' + colC).removeClass('selected moveDone');
+                        } else if (gridEditor.type == Type_Grid) {
+                            let gridC, rowC;
+                            let match1 = className.match(/\S*(g\d+)/);
+                            if (match1 && match1.length > 0) {
+                                gridC = match1[0];
+                            }
+                            let match2 = className.match(/\S*(r\d+)/);
+                            if (match2 && match2.length > 0) {
+                                rowC = match2[0];
+                            }
+                            $(gridEditor.container).find('.grid-cell.selected,.grid-cell.moveDone').not('.' + gridC + '.' + rowC).removeClass('selected moveDone');
                         }
-                        let match2 = className.match(/\S*(c\d+)/);
-                        if (match2 && match2.length > 0) {
-                            colC = match2[0];
-                        }
-                        $(gridEditor.container).find('.grid-cell.selected,.grid-cell.moveDone').not('.' + rowC + '.' + colC).removeClass('selected moveDone');
+                        
                     }
                     let isSelect = true;
 
@@ -213,11 +229,8 @@ window.TubeGrid = (function () {
                                 if(!$item.hasClass("selected")){
                                     $item.addClass('selected newSelected');
                                 }
-                            } else if (eventDown.ctrlKey) {
-                                if($item.hasClass("selected newSelected")){
-                                    $item.removeClass('selected newSelected');
-                                }
-
+                            } else if ($item.hasClass("selected newSelected")) {
+                                $item.removeClass('selected newSelected');
                             }
                         });
 						
@@ -228,6 +241,9 @@ window.TubeGrid = (function () {
 						$container.find('.selected.newSelected').removeClass("newSelected");
                         $container.off('mousemove');
                         $selectBoxDashed.remove();
+                        if (gridEditor.onSelected) {
+                            gridEditor.onSelected(gridEditor.getSelectedTubes().length);
+                        }
                     });
                 })
                 .on('click', '.grid-cell', function (ev) {
@@ -244,7 +260,9 @@ window.TubeGrid = (function () {
                             $(this).addClass('selected');
                         }
                     }
-
+                    if (gridEditor.onSelected) {
+                        gridEditor.onSelected(gridEditor.getSelectedTubes().length);
+                    }
                 });
         }
         this.getTubePos = function (type, tubeEle) {

@@ -40,7 +40,7 @@ namespace VsmdWorkstation
             this.label2 = new System.Windows.Forms.Label();
             this.txtVolume = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSampleCnt = new System.Windows.Forms.TextBox();
+            this.txtSampleCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.SuspendLayout();
             // 
             // panelGrid
@@ -153,6 +153,8 @@ namespace VsmdWorkstation
             this.txtSampleCnt.Size = new System.Drawing.Size(76, 21);
             this.txtSampleCnt.TabIndex = 17;
             this.txtSampleCnt.Text = "1";
+            this.txtSampleCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            this.txtSampleCnt.TextChanged += new System.EventHandler(this.txtSampleCnt_TextChanged);
             // 
             // DripFrm
             // 
@@ -191,7 +193,7 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtVolume;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSampleCnt;
+        private TextBoxEx txtSampleCnt;
     }
 }
 

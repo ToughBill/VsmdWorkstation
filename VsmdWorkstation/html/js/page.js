@@ -32,6 +32,11 @@
 	        } else {
 	            window.__grid = new TubeGrid(document.getElementById("tubesContainer"), options);
 	            $('#tubesContainer').contextMenu(gridCtxMenu, { triggerOn: 'contextmenu' });
+	            window.__grid.onSelected = function (totalCount) {
+	                if (window.externalObj && window.externalObj.OnTubeSelected) {
+	                    window.externalObj.OnTubeSelected(totalCount);
+	                }
+	            };
 	        }
 		},
 	    moveCallBack: function (blockNum, row, col) {
@@ -45,6 +50,9 @@
 		},
 		getSelectedTubes: function () {
 			return window.__grid.getSelectedTubes();
+		},
+		getSelectedTubeCount:function(){
+		    return window.__grid.getSelectedTubes().length;
 		},
 		startDrip: function () {
 		    if (window.externalObj) {
