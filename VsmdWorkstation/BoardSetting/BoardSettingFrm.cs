@@ -113,9 +113,8 @@ namespace VsmdWorkstation
                 meta.Site1LastTubeY = int.Parse(txtSite1LTY.Text);
                 meta.Site2FirstTubeX = int.Parse(txtSite2FTX.Text);
                 meta.Site2FirstTubeY = int.Parse(txtSite2FTY.Text);
-                meta.ZTravel = int.Parse(txtSiteZTravel.Text);
-                meta.ZDispense = int.Parse(txtSiteZDispense.Text);
-                meta.TouchEdgeOffset = Math.Abs(meta.Site1FirstTubeX - int.Parse(txtTouchPlateEdgeOffset.Text));
+              
+                meta.TouchEdgeOffset = int.Parse(txtTouchPosition.Text) - meta.Site1FirstTubeX ;
             }
             else
             {
@@ -126,10 +125,13 @@ namespace VsmdWorkstation
                 meta.GridFirstTubeY = int.Parse(txtGridFTY.Text);
                 meta.GridLastTubeX = int.Parse(txtGridLTX.Text);
                 meta.GridLastTubeY = int.Parse(txtGridLTY.Text);
-                meta.ZTravel = int.Parse(txtGridZTravel.Text);
-                meta.ZDispense = int.Parse(txtGridZDispense.Text);
-                meta.TouchEdgeOffset = Math.Abs(meta.GridFirstTubeX - int.Parse(txtTubeTouchEdgeOffset.Text));
+               
+                meta.TouchEdgeOffset = int.Parse(txtTouchPosition.Text)- meta.GridFirstTubeX;
             }
+
+            meta.ZTravel = int.Parse(txtZTravel.Text);
+            meta.ZDispense = int.Parse(txtZDispense.Text);
+            meta.DelaySeconds = float.Parse(txtTouchDelaySeconds.Text);
         }
 
         private bool ValidFormData()
@@ -138,6 +140,13 @@ namespace VsmdWorkstation
             {
                 ShowMessage(MessageType.Error, "名称不能为空！");
                 txtName.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTouchPosition.Text))
+            {
+                ShowMessage(MessageType.Error, "靠边距离不能为空！");
+                txtTouchPosition.Focus();
                 return false;
             }
             if (rbtSite.Checked)
@@ -197,12 +206,7 @@ namespace VsmdWorkstation
                     return false;
                 }
 
-                if(string.IsNullOrWhiteSpace(txtTouchPlateEdgeOffset.Text))
-                {
-                    ShowMessage(MessageType.Error, "靠边距离不能为空！");
-                    txtTouchPlateEdgeOffset.Focus();
-                    return false;
-                }
+               
 
             }
             else
@@ -244,12 +248,6 @@ namespace VsmdWorkstation
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtTubeTouchEdgeOffset.Text))
-                {
-                    ShowMessage(MessageType.Error, "靠边距离不能为空！");
-                    txtTubeTouchEdgeOffset.Focus();
-                    return false;
-                }
             }
 
             return true;
@@ -319,8 +317,7 @@ namespace VsmdWorkstation
                 txtGridFTY.Text = m_curMeta.GridFirstTubeY.ToString();
                 txtGridLTX.Text = m_curMeta.GridLastTubeX.ToString();
                 txtGridLTY.Text = m_curMeta.GridLastTubeY.ToString();
-                txtGridZTravel.Text = m_curMeta.ZTravel.ToString();
-                txtGridZDispense.Text = m_curMeta.ZDispense.ToString();
+                txtTouchPosition.Text = (m_curMeta.GridFirstTubeX + m_curMeta.TouchEdgeOffset).ToString();
             }
             else
             {
@@ -333,9 +330,12 @@ namespace VsmdWorkstation
                 txtSite1LTY.Text = m_curMeta.Site1LastTubeY.ToString();
                 txtSite2FTX.Text = m_curMeta.Site2FirstTubeX.ToString();
                 txtSite2FTY.Text = m_curMeta.Site2FirstTubeY.ToString();
-                txtSiteZTravel.Text = m_curMeta.ZTravel.ToString();
-                txtSiteZDispense.Text = m_curMeta.ZDispense.ToString();
+                txtTouchPosition.Text = (m_curMeta.Site1FirstTubeX + m_curMeta.TouchEdgeOffset).ToString();
             }
+            txtZTravel.Text = m_curMeta.ZTravel.ToString();
+            txtZDispense.Text = m_curMeta.ZDispense.ToString();
+            txtTouchDelaySeconds.Text = m_curMeta.DelaySeconds.ToString();
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -446,23 +446,14 @@ namespace VsmdWorkstation
 
         private void btnZTravelLTY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtGridZTravel, VsmdAxis.Z);
+            ShowSetDlg(txtZTravel, VsmdAxis.Z);
         }
 
         private void btnZDispenseLTY_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtGridZDispense, VsmdAxis.Z);
+            ShowSetDlg(txtZDispense, VsmdAxis.Z);
         }
 
-        private void btnZTravel_Click(object sender, EventArgs e)
-        {
-            ShowSetDlg(txtSiteZTravel, VsmdAxis.Z);
-        }
-
-        private void btnZDispense_Click(object sender, EventArgs e)
-        {
-            ShowSetDlg(txtSiteZDispense, VsmdAxis.Z);
-        }
 
         private void btnMove2Site1StartX_Click(object sender, EventArgs e)
         {
@@ -497,12 +488,12 @@ namespace VsmdWorkstation
 
         private void btnMove2SiteZTravel_Click(object sender, EventArgs e)
         {
-            Move2Position(VsmdAxis.Z, int.Parse(txtSiteZTravel.Text));
+            Move2Position(VsmdAxis.Z, int.Parse(txtZTravel.Text));
         }
 
         private void btnMove2SiteZDispense_Click(object sender, EventArgs e)
         {
-            Move2Position(VsmdAxis.Z, int.Parse(txtSiteZDispense.Text));
+            Move2Position(VsmdAxis.Z, int.Parse(txtZDispense.Text));
         }
 
         private void btnMove2Grid1StartX_Click(object sender, EventArgs e)
@@ -527,12 +518,12 @@ namespace VsmdWorkstation
 
         private void btnMove2GridZTravel_Click(object sender, EventArgs e)
         {
-            Move2Position(VsmdAxis.Z, int.Parse(txtGridZTravel.Text));
+            Move2Position(VsmdAxis.Z, int.Parse(txtZTravel.Text));
         }
 
         private void btnMove2GridZDispense_Click(object sender, EventArgs e)
         {
-            Move2Position(VsmdAxis.Z, int.Parse(txtGridZDispense.Text));
+            Move2Position(VsmdAxis.Z, int.Parse(txtZDispense.Text));
         }
 
         private async void Move2Position(VsmdAxis axis, int val)
@@ -544,22 +535,17 @@ namespace VsmdWorkstation
 
         private void btnSetTubeTouchEdgeOffset_Click(object sender, EventArgs e)
         {
-            ShowSetDlg(txtTubeTouchEdgeOffset, VsmdAxis.X);
-        }
-
-        private void btnPlateTouchEdgeOffset_Click(object sender, EventArgs e)
-        {
-            ShowSetDlg(txtTouchPlateEdgeOffset, VsmdAxis.X);
-        }
-
-        private void btnPlateMoveTouchOffset_Click(object sender, EventArgs e)
-        {
-            Move2Position(VsmdAxis.X, int.Parse(txtTouchPlateEdgeOffset.Text));
+            ShowSetDlg(txtTouchPosition, VsmdAxis.X);
         }
 
         private void btnTubeMoveTouchEdgeOffset_Click(object sender, EventArgs e)
         {
-            Move2Position(VsmdAxis.X, int.Parse(txtTubeTouchEdgeOffset.Text));
+            Move2Position(VsmdAxis.X, int.Parse(txtTouchPosition.Text));
+        }
+
+        private void btnMove2TouchPosition_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtTouchPosition.Text));
         }
     }
 }

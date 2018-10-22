@@ -26,6 +26,7 @@ namespace VsmdWorkstation
         public int RowCount { get; set; }
         public int ColumnCount { get; set; }
         
+        public float DelaySeconds { get; set; }
         public int Site1FirstTubeX { get; set; }
         public int Site1FirstTubeY { get; set; }
         public int Site1LastTubeX { get; set; }
@@ -39,7 +40,7 @@ namespace VsmdWorkstation
         public int GridLastTubeY { get; set; }
         public int ZTravel { get; set; }
         public int ZDispense { get; set; }
-        public int TouchEdgeOffset { get; internal set; }
+        public int TouchEdgeOffset { get; set; }
 
         public override string ToString()
         {

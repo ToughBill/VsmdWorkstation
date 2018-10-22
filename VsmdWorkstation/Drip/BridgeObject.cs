@@ -237,8 +237,11 @@ namespace VsmdWorkstation
                 // wait several seconds, this time should be changed according to the volume dispensed
                 Thread.Sleep(pipettingInterval);
                 await vsmdController.MoveTo(VsmdAxis.X, xPos-offset);
+                //touch edge.
+                await Task.Delay((int)(curBoardSetting.CurrentBoard.DelaySeconds * 1000));
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
                 await pumpController.SwitchOnOff();
+                
                 // change the UI to start
                 await Task.Delay(100);
 
