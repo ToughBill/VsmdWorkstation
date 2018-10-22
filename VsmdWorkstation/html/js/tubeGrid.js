@@ -118,7 +118,7 @@ window.TubeGrid = (function () {
             }
         }
         this.render = function () {
-            if (!this.rowCount || !this.columnCount) {
+            if (!this.rowCount) {
                 return;
             }
             let $con = $(this.container);
