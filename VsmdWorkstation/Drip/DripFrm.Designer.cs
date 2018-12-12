@@ -38,7 +38,7 @@ namespace VsmdWorkstation
             this.btnPause = new System.Windows.Forms.Button();
             this.btnDevTools = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtVolume = new System.Windows.Forms.TextBox();
+            this.txtDelaySeconds = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSampleCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.SuspendLayout();
@@ -51,7 +51,7 @@ namespace VsmdWorkstation
             this.panelGrid.Location = new System.Drawing.Point(9, 38);
             this.panelGrid.Margin = new System.Windows.Forms.Padding(2);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(863, 498);
+            this.panelGrid.Size = new System.Drawing.Size(894, 498);
             this.panelGrid.TabIndex = 4;
             // 
             // label1
@@ -77,7 +77,7 @@ namespace VsmdWorkstation
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(481, 11);
+            this.btnStart.Location = new System.Drawing.Point(564, 10);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
@@ -89,7 +89,7 @@ namespace VsmdWorkstation
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(639, 11);
+            this.btnStop.Location = new System.Drawing.Point(722, 10);
             this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
@@ -101,7 +101,7 @@ namespace VsmdWorkstation
             // btnPause
             // 
             this.btnPause.Enabled = false;
-            this.btnPause.Location = new System.Drawing.Point(560, 11);
+            this.btnPause.Location = new System.Drawing.Point(643, 10);
             this.btnPause.Margin = new System.Windows.Forms.Padding(2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
@@ -112,7 +112,7 @@ namespace VsmdWorkstation
             // 
             // btnDevTools
             // 
-            this.btnDevTools.Location = new System.Drawing.Point(767, 10);
+            this.btnDevTools.Location = new System.Drawing.Point(802, 11);
             this.btnDevTools.Name = "btnDevTools";
             this.btnDevTools.Size = new System.Drawing.Size(101, 23);
             this.btnDevTools.TabIndex = 11;
@@ -126,16 +126,16 @@ namespace VsmdWorkstation
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(353, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(101, 12);
             this.label2.TabIndex = 14;
-            this.label2.Text = "体积：";
+            this.label2.Text = "两孔延时（秒）：";
             // 
-            // txtVolume
+            // txtDelaySeconds
             // 
-            this.txtVolume.Location = new System.Drawing.Point(400, 12);
-            this.txtVolume.Name = "txtVolume";
-            this.txtVolume.Size = new System.Drawing.Size(76, 21);
-            this.txtVolume.TabIndex = 15;
+            this.txtDelaySeconds.Location = new System.Drawing.Point(450, 11);
+            this.txtDelaySeconds.Name = "txtDelaySeconds";
+            this.txtDelaySeconds.Size = new System.Drawing.Size(109, 21);
+            this.txtDelaySeconds.TabIndex = 15;
             // 
             // label3
             // 
@@ -160,10 +160,10 @@ namespace VsmdWorkstation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 545);
+            this.ClientSize = new System.Drawing.Size(912, 545);
             this.Controls.Add(this.txtSampleCnt);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtVolume);
+            this.Controls.Add(this.txtDelaySeconds);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnDevTools);
             this.Controls.Add(this.btnPause);
@@ -191,7 +191,7 @@ namespace VsmdWorkstation
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnDevTools;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtVolume;
+        private System.Windows.Forms.TextBox txtDelaySeconds;
         private System.Windows.Forms.Label label3;
         private TextBoxEx txtSampleCnt;
     }

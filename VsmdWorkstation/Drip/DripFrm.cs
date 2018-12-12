@@ -86,7 +86,7 @@ namespace VsmdWorkstation
         private void InitBoardSettings()
         {
             cmbBoards.Items.Clear();
-            txtVolume.Text = Preference.GetInstace().Volume.ToString();
+            txtDelaySeconds.Text = Preference.GetInstace().DelaySeconds.ToString();
             BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
                 {
                     cmbBoards.Items.Add(meta);
@@ -181,8 +181,8 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            int val = 0;
-            bool bok = int.TryParse(txtVolume.Text, out val);
+            double val = 0;
+            bool bok = double.TryParse(txtDelaySeconds.Text, out val);
             if(!bok)
             {
                 MessageBox.Show("体积必须为数字！");
@@ -194,9 +194,10 @@ namespace VsmdWorkstation
                 return;
             }
 
-            Preference.GetInstace().Volume = val;
+            Preference.GetInstace().DelaySeconds = val;
 
-            bok = int.TryParse(txtSampleCnt.Text, out val);
+            int cnt = 0;
+            bok = int.TryParse(txtSampleCnt.Text, out cnt);
             if (!bok)
             {
                 MessageBox.Show("样本数必须为数字！");
@@ -209,7 +210,7 @@ namespace VsmdWorkstation
             }
             if (!m_manuallySelect)
             {
-                m_externalObj.SelectTubes(val);
+                m_externalObj.SelectTubes(cnt);
             }
             Preference.GetInstace().Save();
 

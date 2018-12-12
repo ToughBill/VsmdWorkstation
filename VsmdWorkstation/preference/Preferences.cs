@@ -16,7 +16,7 @@ namespace VsmdWorkstation
         public string PumpPort { get; set; }
         public int BoardID { get; set; }
 
-        public int Volume { get; set; }
+        public double DelaySeconds { get; set; }
     }
     public interface IPerference
     {
@@ -83,23 +83,23 @@ namespace VsmdWorkstation
             }
         }
 
-        public int Volume
+        public double DelaySeconds
         {
             get
             {
-                return m_perfMeta.Volume;
+                return m_perfMeta.DelaySeconds;
             }
             set
             {
-                m_perfMeta.Volume = value;
+                m_perfMeta.DelaySeconds = value;
             }
         }
 
         public void Load()
         {
             m_perfMeta = new PreferenceMeta();
-            if (m_perfMeta.Volume == 0)
-                m_perfMeta.Volume = 1000;
+            if (m_perfMeta.DelaySeconds == 0)
+                m_perfMeta.DelaySeconds = 1;
 
             string perfFilePath = GetPerfMetaFilePath();
             if (!File.Exists(perfFilePath))

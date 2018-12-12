@@ -72,7 +72,7 @@ namespace VsmdWorkstation
                 }
                 else if(m_curBoard.Type == (int)BoardType.Grid)
                 {
-                    m_tubeDistX = (m_curBoard.GridLastTubeX - m_curBoard.GridFirstTubeX) * 1.0f / (m_curBoard.ColumnCount - 1);
+                    m_tubeDistX = (m_curBoard.GridLastTubeX - m_curBoard.GridFirstTubeX) * 1.0f / (m_curBoard.GridCount - 1);
                     m_tubeDistY = (m_curBoard.GridLastTubeY - m_curBoard.GridFirstTubeY) * 1.0f / (m_curBoard.RowCount - 1);
                 }
             }

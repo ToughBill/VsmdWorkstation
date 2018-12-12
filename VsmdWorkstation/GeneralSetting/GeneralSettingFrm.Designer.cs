@@ -33,12 +33,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtPipettingSpeed = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMoveSpd = new VsmdWorkstation.Controls.TextBoxEx();
             this.ckbEnableStsCmdLog = new System.Windows.Forms.CheckBox();
             this.ckbAutoConnect = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +46,7 @@
             // ckbEnableCmdLog
             // 
             this.ckbEnableCmdLog.AutoSize = true;
-            this.ckbEnableCmdLog.Location = new System.Drawing.Point(11, 157);
+            this.ckbEnableCmdLog.Location = new System.Drawing.Point(11, 90);
             this.ckbEnableCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableCmdLog.Name = "ckbEnableCmdLog";
             this.ckbEnableCmdLog.Size = new System.Drawing.Size(234, 16);
@@ -57,7 +57,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(129, 200);
+            this.btnOK.Location = new System.Drawing.Point(131, 136);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
@@ -69,7 +69,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(189, 200);
+            this.btnCancel.Location = new System.Drawing.Point(189, 136);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 23);
@@ -92,7 +92,7 @@
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPipettingSpeed);
-            this.groupBox1.Location = new System.Drawing.Point(11, 9);
+            this.groupBox1.Location = new System.Drawing.Point(26, 163);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -100,6 +100,17 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "滴液速度";
+            this.groupBox1.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(135, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "毫秒/毫升";
             // 
             // txtPipettingSpeed
             // 
@@ -112,7 +123,7 @@
             // 
             this.groupBox2.Controls.Add(this.txtMoveSpd);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(11, 66);
+            this.groupBox2.Location = new System.Drawing.Point(11, 11);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -133,7 +144,7 @@
             // ckbEnableStsCmdLog
             // 
             this.ckbEnableStsCmdLog.AutoSize = true;
-            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(31, 178);
+            this.ckbEnableStsCmdLog.Location = new System.Drawing.Point(11, 110);
             this.ckbEnableStsCmdLog.Margin = new System.Windows.Forms.Padding(2);
             this.ckbEnableStsCmdLog.Name = "ckbEnableStsCmdLog";
             this.ckbEnableStsCmdLog.Size = new System.Drawing.Size(114, 16);
@@ -145,7 +156,7 @@
             // ckbAutoConnect
             // 
             this.ckbAutoConnect.AutoSize = true;
-            this.ckbAutoConnect.Location = new System.Drawing.Point(11, 136);
+            this.ckbAutoConnect.Location = new System.Drawing.Point(11, 70);
             this.ckbAutoConnect.Margin = new System.Windows.Forms.Padding(2);
             this.ckbAutoConnect.Name = "ckbAutoConnect";
             this.ckbAutoConnect.Size = new System.Drawing.Size(132, 16);
@@ -153,23 +164,13 @@
             this.ckbAutoConnect.Text = "启动时自动连接设备";
             this.ckbAutoConnect.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(135, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "毫秒/毫升";
-            // 
             // GeneralSettingFrm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(258, 239);
+            this.ClientSize = new System.Drawing.Size(258, 162);
             this.Controls.Add(this.ckbAutoConnect);
             this.Controls.Add(this.ckbEnableStsCmdLog);
             this.Controls.Add(this.groupBox2);

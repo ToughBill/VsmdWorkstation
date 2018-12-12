@@ -215,7 +215,7 @@ namespace VsmdWorkstation
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             await BeforeMove(m_selectedTubes.Count);
-            int pipettingInterval = (int)(Preference.GetInstace().Volume * GeneralSettings.GetInstance().PipettingSpeed/(1000.0));
+            int pipettingInterval = (int)(Preference.GetInstace().DelaySeconds * 1000);
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_pipettingIndex + 1; i < m_sortedTubesArr.Length; i++)
@@ -231,19 +231,18 @@ namespace VsmdWorkstation
                 await vsmdController.MoveTo(VsmdAxis.Y, curBoardSetting.Convert2PhysicalPos(VsmdAxis.Y, blockNum, row));
                 // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
-
                 // start pipetting
                 await pumpController.SwitchOnOff();
                 // wait several seconds, this time should be changed according to the volume dispensed
                 Thread.Sleep(pipettingInterval);
-                await vsmdController.MoveTo(VsmdAxis.X, xPos-offset);
-                //touch edge.
-                await Task.Delay((int)(curBoardSetting.CurrentBoard.DelaySeconds * 1000));
+                Thread.Sleep(500);
+                await vsmdController.MoveTo(VsmdAxis.X, xPos+offset);
+                //touch edge.wait 1 second for liquid drop
+                Thread.Sleep(1000);
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
-                await pumpController.SwitchOnOff();
-                
+
                 // change the UI to start
-                await Task.Delay(100);
+                Thread.Sleep(100);
 
                 MoveCallBack(blockNum, row, col);
                 m_pipettingIndex = i;
@@ -262,15 +261,6 @@ namespace VsmdWorkstation
         {
             m_dripStatus = PipettingStatus.Moving;
             CallJS("JsExecutor.beforeMove();");
-            //if (!m_isFromPause && wellCnt > 0)
-            //{
-            //    VsmdController vsmdController = VsmdController.GetVsmdController();
-            //    await vsmdController.ZeroStart(VsmdAxis.Z);
-            //    await vsmdController.ZeroStart(VsmdAxis.X);
-            //    await vsmdController.ZeroStart(VsmdAxis.Y);
-            //    //vsmdController.Homed = true;
-            //}
-
             return true;
         }
         private void AfterMove()
