@@ -146,6 +146,7 @@ namespace VsmdWorkstation
             });
             m_pipettingIndex = -1;
             DoPipetting();
+            m_selectedTubes.Clear();
             //m_moveThread = new Thread(new ThreadStart(PipettingThread));
             //m_moveThread.Start();
         }

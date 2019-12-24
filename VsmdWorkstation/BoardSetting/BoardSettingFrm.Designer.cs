@@ -40,19 +40,10 @@
             this.rbtGrid = new System.Windows.Forms.RadioButton();
             this.rbtSite = new System.Windows.Forms.RadioButton();
             this.panelGrid = new System.Windows.Forms.Panel();
-            this.btnTubeMoveTouchEdgeOffset = new System.Windows.Forms.Button();
-            this.btnSetTouchPosition = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnMove2GridZDispense = new System.Windows.Forms.Button();
-            this.btnMove2GridZTravel = new System.Windows.Forms.Button();
             this.btnMove2Grid1EndY = new System.Windows.Forms.Button();
             this.btnMove2Grid1EndX = new System.Windows.Forms.Button();
             this.btnMove2Grid1StartY = new System.Windows.Forms.Button();
             this.btnMove2Grid1StartX = new System.Windows.Forms.Button();
-            this.btnZDispenseLTY = new System.Windows.Forms.Button();
-            this.btnZTravelLTY = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -66,9 +57,16 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnTubeMoveTouchEdgeOffset = new System.Windows.Forms.Button();
+            this.btnSetTouchPosition = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnMove2GridZDispense = new System.Windows.Forms.Button();
+            this.btnMove2GridZTravel = new System.Windows.Forms.Button();
+            this.btnZDispenseLTY = new System.Windows.Forms.Button();
+            this.btnZTravelLTY = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelSite = new System.Windows.Forms.Panel();
-            this.btnMove2ZDispense = new System.Windows.Forms.Button();
-            this.btnMove2ZTravel = new System.Windows.Forms.Button();
             this.btnMove2Site2StartY = new System.Windows.Forms.Button();
             this.btnMove2Site2StartX = new System.Windows.Forms.Button();
             this.btnMove2Site1EndY = new System.Windows.Forms.Button();
@@ -94,6 +92,12 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.btnMove2ZDispense = new System.Windows.Forms.Button();
+            this.btnMove2ZTravel = new System.Windows.Forms.Button();
+            this.btnMove2TouchPosition = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTouchDelaySeconds = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtTouchPosition = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtSiteColCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtSiteRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtSiteCnt = new VsmdWorkstation.Controls.TextBoxEx();
@@ -103,9 +107,7 @@
             this.txtSite1LTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtSite1FTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtTouchPosition = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtZDispense = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtZTravel = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtGridRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtGridCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtGridLTY = new VsmdWorkstation.Controls.TextBoxEx();
@@ -113,9 +115,7 @@
             this.txtGridFTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtGridFTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtName = new VsmdWorkstation.Controls.TextBoxEx();
-            this.btnMove2TouchPosition = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtTouchDelaySeconds = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtZTravel = new VsmdWorkstation.Controls.TextBoxEx();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
@@ -255,61 +255,6 @@
             this.panelGrid.TabIndex = 33;
             this.panelGrid.Visible = false;
             // 
-            // btnTubeMoveTouchEdgeOffset
-            // 
-            this.btnTubeMoveTouchEdgeOffset.Location = new System.Drawing.Point(582, 398);
-            this.btnTubeMoveTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTubeMoveTouchEdgeOffset.Name = "btnTubeMoveTouchEdgeOffset";
-            this.btnTubeMoveTouchEdgeOffset.Size = new System.Drawing.Size(50, 21);
-            this.btnTubeMoveTouchEdgeOffset.TabIndex = 68;
-            this.btnTubeMoveTouchEdgeOffset.Text = "移动到";
-            this.btnTubeMoveTouchEdgeOffset.UseVisualStyleBackColor = true;
-            this.btnTubeMoveTouchEdgeOffset.Click += new System.EventHandler(this.btnTubeMoveTouchEdgeOffset_Click);
-            // 
-            // btnSetTouchPosition
-            // 
-            this.btnSetTouchPosition.Location = new System.Drawing.Point(212, 127);
-            this.btnSetTouchPosition.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSetTouchPosition.Name = "btnSetTouchPosition";
-            this.btnSetTouchPosition.Size = new System.Drawing.Size(50, 22);
-            this.btnSetTouchPosition.TabIndex = 67;
-            this.btnSetTouchPosition.Text = "设置";
-            this.btnSetTouchPosition.UseVisualStyleBackColor = true;
-            this.btnSetTouchPosition.Click += new System.EventHandler(this.btnSetTubeTouchEdgeOffset_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 132);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
-            this.label7.TabIndex = 65;
-            this.label7.Text = "靠壁位置：";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnMove2GridZDispense
-            // 
-            this.btnMove2GridZDispense.Location = new System.Drawing.Point(583, 368);
-            this.btnMove2GridZDispense.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMove2GridZDispense.Name = "btnMove2GridZDispense";
-            this.btnMove2GridZDispense.Size = new System.Drawing.Size(50, 21);
-            this.btnMove2GridZDispense.TabIndex = 50;
-            this.btnMove2GridZDispense.Text = "移动到";
-            this.btnMove2GridZDispense.UseVisualStyleBackColor = true;
-            this.btnMove2GridZDispense.Click += new System.EventHandler(this.btnMove2GridZDispense_Click);
-            // 
-            // btnMove2GridZTravel
-            // 
-            this.btnMove2GridZTravel.Location = new System.Drawing.Point(583, 339);
-            this.btnMove2GridZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMove2GridZTravel.Name = "btnMove2GridZTravel";
-            this.btnMove2GridZTravel.Size = new System.Drawing.Size(50, 21);
-            this.btnMove2GridZTravel.TabIndex = 49;
-            this.btnMove2GridZTravel.Text = "移动到";
-            this.btnMove2GridZTravel.UseVisualStyleBackColor = true;
-            this.btnMove2GridZTravel.Click += new System.EventHandler(this.btnMove2GridZTravel_Click);
-            // 
             // btnMove2Grid1EndY
             // 
             this.btnMove2Grid1EndY.Location = new System.Drawing.Point(254, 124);
@@ -353,48 +298,6 @@
             this.btnMove2Grid1StartX.Text = "移动到";
             this.btnMove2Grid1StartX.UseVisualStyleBackColor = true;
             this.btnMove2Grid1StartX.Click += new System.EventHandler(this.btnMove2Grid1StartX_Click);
-            // 
-            // btnZDispenseLTY
-            // 
-            this.btnZDispenseLTY.Location = new System.Drawing.Point(212, 98);
-            this.btnZDispenseLTY.Margin = new System.Windows.Forms.Padding(2);
-            this.btnZDispenseLTY.Name = "btnZDispenseLTY";
-            this.btnZDispenseLTY.Size = new System.Drawing.Size(50, 22);
-            this.btnZDispenseLTY.TabIndex = 44;
-            this.btnZDispenseLTY.Text = "设置";
-            this.btnZDispenseLTY.UseVisualStyleBackColor = true;
-            this.btnZDispenseLTY.Click += new System.EventHandler(this.btnZDispenseLTY_Click);
-            // 
-            // btnZTravelLTY
-            // 
-            this.btnZTravelLTY.Location = new System.Drawing.Point(212, 69);
-            this.btnZTravelLTY.Margin = new System.Windows.Forms.Padding(2);
-            this.btnZTravelLTY.Name = "btnZTravelLTY";
-            this.btnZTravelLTY.Size = new System.Drawing.Size(50, 22);
-            this.btnZTravelLTY.TabIndex = 43;
-            this.btnZTravelLTY.Text = "设置";
-            this.btnZTravelLTY.UseVisualStyleBackColor = true;
-            this.btnZTravelLTY.Click += new System.EventHandler(this.btnZTravelLTY_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 101);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 12);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "Z轴滴液高度：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 73);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 12);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Z轴安全高度：";
             // 
             // label34
             // 
@@ -530,6 +433,103 @@
             this.label16.TabIndex = 22;
             this.label16.Text = "首孔位置：";
             // 
+            // btnTubeMoveTouchEdgeOffset
+            // 
+            this.btnTubeMoveTouchEdgeOffset.Location = new System.Drawing.Point(582, 398);
+            this.btnTubeMoveTouchEdgeOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTubeMoveTouchEdgeOffset.Name = "btnTubeMoveTouchEdgeOffset";
+            this.btnTubeMoveTouchEdgeOffset.Size = new System.Drawing.Size(50, 21);
+            this.btnTubeMoveTouchEdgeOffset.TabIndex = 68;
+            this.btnTubeMoveTouchEdgeOffset.Text = "移动到";
+            this.btnTubeMoveTouchEdgeOffset.UseVisualStyleBackColor = true;
+            this.btnTubeMoveTouchEdgeOffset.Click += new System.EventHandler(this.btnTubeMoveTouchEdgeOffset_Click);
+            // 
+            // btnSetTouchPosition
+            // 
+            this.btnSetTouchPosition.Location = new System.Drawing.Point(212, 127);
+            this.btnSetTouchPosition.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetTouchPosition.Name = "btnSetTouchPosition";
+            this.btnSetTouchPosition.Size = new System.Drawing.Size(50, 22);
+            this.btnSetTouchPosition.TabIndex = 67;
+            this.btnSetTouchPosition.Text = "设置";
+            this.btnSetTouchPosition.UseVisualStyleBackColor = true;
+            this.btnSetTouchPosition.Click += new System.EventHandler(this.btnSetTubeTouchEdgeOffset_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 132);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "试管半径：";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnMove2GridZDispense
+            // 
+            this.btnMove2GridZDispense.Location = new System.Drawing.Point(583, 368);
+            this.btnMove2GridZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2GridZDispense.Name = "btnMove2GridZDispense";
+            this.btnMove2GridZDispense.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2GridZDispense.TabIndex = 50;
+            this.btnMove2GridZDispense.Text = "移动到";
+            this.btnMove2GridZDispense.UseVisualStyleBackColor = true;
+            this.btnMove2GridZDispense.Click += new System.EventHandler(this.btnMove2GridZDispense_Click);
+            // 
+            // btnMove2GridZTravel
+            // 
+            this.btnMove2GridZTravel.Location = new System.Drawing.Point(583, 339);
+            this.btnMove2GridZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2GridZTravel.Name = "btnMove2GridZTravel";
+            this.btnMove2GridZTravel.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2GridZTravel.TabIndex = 49;
+            this.btnMove2GridZTravel.Text = "移动到";
+            this.btnMove2GridZTravel.UseVisualStyleBackColor = true;
+            this.btnMove2GridZTravel.Click += new System.EventHandler(this.btnMove2GridZTravel_Click);
+            // 
+            // btnZDispenseLTY
+            // 
+            this.btnZDispenseLTY.Location = new System.Drawing.Point(212, 98);
+            this.btnZDispenseLTY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZDispenseLTY.Name = "btnZDispenseLTY";
+            this.btnZDispenseLTY.Size = new System.Drawing.Size(50, 22);
+            this.btnZDispenseLTY.TabIndex = 44;
+            this.btnZDispenseLTY.Text = "设置";
+            this.btnZDispenseLTY.UseVisualStyleBackColor = true;
+            this.btnZDispenseLTY.Click += new System.EventHandler(this.btnZDispenseLTY_Click);
+            // 
+            // btnZTravelLTY
+            // 
+            this.btnZTravelLTY.Location = new System.Drawing.Point(212, 69);
+            this.btnZTravelLTY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnZTravelLTY.Name = "btnZTravelLTY";
+            this.btnZTravelLTY.Size = new System.Drawing.Size(50, 22);
+            this.btnZTravelLTY.TabIndex = 43;
+            this.btnZTravelLTY.Text = "设置";
+            this.btnZTravelLTY.UseVisualStyleBackColor = true;
+            this.btnZTravelLTY.Click += new System.EventHandler(this.btnZTravelLTY_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 101);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 12);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Z轴滴液高度：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 73);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 12);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Z轴安全高度：";
+            // 
             // panelSite
             // 
             this.panelSite.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -571,28 +571,6 @@
             this.panelSite.Name = "panelSite";
             this.panelSite.Size = new System.Drawing.Size(331, 212);
             this.panelSite.TabIndex = 34;
-            // 
-            // btnMove2ZDispense
-            // 
-            this.btnMove2ZDispense.Location = new System.Drawing.Point(267, 99);
-            this.btnMove2ZDispense.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMove2ZDispense.Name = "btnMove2ZDispense";
-            this.btnMove2ZDispense.Size = new System.Drawing.Size(50, 21);
-            this.btnMove2ZDispense.TabIndex = 60;
-            this.btnMove2ZDispense.Text = "移动到";
-            this.btnMove2ZDispense.UseVisualStyleBackColor = true;
-            this.btnMove2ZDispense.Click += new System.EventHandler(this.btnMove2SiteZDispense_Click);
-            // 
-            // btnMove2ZTravel
-            // 
-            this.btnMove2ZTravel.Location = new System.Drawing.Point(266, 69);
-            this.btnMove2ZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMove2ZTravel.Name = "btnMove2ZTravel";
-            this.btnMove2ZTravel.Size = new System.Drawing.Size(50, 21);
-            this.btnMove2ZTravel.TabIndex = 59;
-            this.btnMove2ZTravel.Text = "移动到";
-            this.btnMove2ZTravel.UseVisualStyleBackColor = true;
-            this.btnMove2ZTravel.Click += new System.EventHandler(this.btnMove2SiteZTravel_Click);
             // 
             // btnMove2Site2StartY
             // 
@@ -856,6 +834,68 @@
             this.label22.TabIndex = 22;
             this.label22.Text = "Site1首孔位置：";
             // 
+            // btnMove2ZDispense
+            // 
+            this.btnMove2ZDispense.Location = new System.Drawing.Point(267, 99);
+            this.btnMove2ZDispense.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2ZDispense.Name = "btnMove2ZDispense";
+            this.btnMove2ZDispense.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2ZDispense.TabIndex = 60;
+            this.btnMove2ZDispense.Text = "移动到";
+            this.btnMove2ZDispense.UseVisualStyleBackColor = true;
+            this.btnMove2ZDispense.Click += new System.EventHandler(this.btnMove2SiteZDispense_Click);
+            // 
+            // btnMove2ZTravel
+            // 
+            this.btnMove2ZTravel.Location = new System.Drawing.Point(266, 69);
+            this.btnMove2ZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2ZTravel.Name = "btnMove2ZTravel";
+            this.btnMove2ZTravel.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2ZTravel.TabIndex = 59;
+            this.btnMove2ZTravel.Text = "移动到";
+            this.btnMove2ZTravel.UseVisualStyleBackColor = true;
+            this.btnMove2ZTravel.Click += new System.EventHandler(this.btnMove2SiteZTravel_Click);
+            // 
+            // btnMove2TouchPosition
+            // 
+            this.btnMove2TouchPosition.Location = new System.Drawing.Point(266, 127);
+            this.btnMove2TouchPosition.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2TouchPosition.Name = "btnMove2TouchPosition";
+            this.btnMove2TouchPosition.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2TouchPosition.TabIndex = 69;
+            this.btnMove2TouchPosition.Text = "移动到";
+            this.btnMove2TouchPosition.UseVisualStyleBackColor = true;
+            this.btnMove2TouchPosition.Click += new System.EventHandler(this.btnMove2TouchPosition_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(31, 156);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 12);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "靠壁延时(秒）：";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtTouchDelaySeconds
+            // 
+            this.txtTouchDelaySeconds.Location = new System.Drawing.Point(106, 153);
+            this.txtTouchDelaySeconds.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTouchDelaySeconds.Name = "txtTouchDelaySeconds";
+            this.txtTouchDelaySeconds.Size = new System.Drawing.Size(103, 21);
+            this.txtTouchDelaySeconds.TabIndex = 71;
+            this.txtTouchDelaySeconds.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            // 
+            // txtTouchPosition
+            // 
+            this.txtTouchPosition.Location = new System.Drawing.Point(106, 128);
+            this.txtTouchPosition.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTouchPosition.Name = "txtTouchPosition";
+            this.txtTouchPosition.Size = new System.Drawing.Size(103, 21);
+            this.txtTouchPosition.TabIndex = 66;
+            this.txtTouchPosition.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
             // txtSiteColCnt
             // 
             this.txtSiteColCnt.Location = new System.Drawing.Point(256, 8);
@@ -940,15 +980,6 @@
             this.txtSite1FTX.TabIndex = 19;
             this.txtSite1FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
-            // txtTouchPosition
-            // 
-            this.txtTouchPosition.Location = new System.Drawing.Point(106, 128);
-            this.txtTouchPosition.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTouchPosition.Name = "txtTouchPosition";
-            this.txtTouchPosition.Size = new System.Drawing.Size(103, 21);
-            this.txtTouchPosition.TabIndex = 66;
-            this.txtTouchPosition.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
             // txtZDispense
             // 
             this.txtZDispense.Location = new System.Drawing.Point(105, 98);
@@ -957,15 +988,6 @@
             this.txtZDispense.Size = new System.Drawing.Size(104, 21);
             this.txtZDispense.TabIndex = 42;
             this.txtZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // txtZTravel
-            // 
-            this.txtZTravel.Location = new System.Drawing.Point(105, 70);
-            this.txtZTravel.Margin = new System.Windows.Forms.Padding(2);
-            this.txtZTravel.Name = "txtZTravel";
-            this.txtZTravel.Size = new System.Drawing.Size(104, 21);
-            this.txtZTravel.TabIndex = 40;
-            this.txtZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
             // txtGridRowCnt
             // 
@@ -1032,36 +1054,14 @@
             this.txtName.TabIndex = 1;
             this.txtName.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
-            // btnMove2TouchPosition
+            // txtZTravel
             // 
-            this.btnMove2TouchPosition.Location = new System.Drawing.Point(266, 127);
-            this.btnMove2TouchPosition.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMove2TouchPosition.Name = "btnMove2TouchPosition";
-            this.btnMove2TouchPosition.Size = new System.Drawing.Size(50, 21);
-            this.btnMove2TouchPosition.TabIndex = 69;
-            this.btnMove2TouchPosition.Text = "移动到";
-            this.btnMove2TouchPosition.UseVisualStyleBackColor = true;
-            this.btnMove2TouchPosition.Click += new System.EventHandler(this.btnMove2TouchPosition_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 156);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 12);
-            this.label4.TabIndex = 70;
-            this.label4.Text = "靠壁延时(秒）：";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtTouchDelaySeconds
-            // 
-            this.txtTouchDelaySeconds.Location = new System.Drawing.Point(106, 153);
-            this.txtTouchDelaySeconds.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTouchDelaySeconds.Name = "txtTouchDelaySeconds";
-            this.txtTouchDelaySeconds.Size = new System.Drawing.Size(103, 21);
-            this.txtTouchDelaySeconds.TabIndex = 71;
-            this.txtTouchDelaySeconds.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
+            this.txtZTravel.Location = new System.Drawing.Point(105, 70);
+            this.txtZTravel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtZTravel.Name = "txtZTravel";
+            this.txtZTravel.Size = new System.Drawing.Size(104, 21);
+            this.txtZTravel.TabIndex = 40;
+            this.txtZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
             // BoardSettingFrm
             // 

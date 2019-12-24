@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO.Ports;
 using VsmdLib;
+using System.Configuration;
 
 namespace VsmdWorkstation
 {
@@ -103,36 +104,33 @@ namespace VsmdWorkstation
                 StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "电机端口不能为空！");
                 return;
             }
-            if (cmbPumpPort.SelectedItem == null)
-            {
-                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "蠕动泵端口不能为空！");
-                return;
-            }
             string vsmdPort = cmbPort.SelectedItem.ToString();
-            string pumpPort = cmbPumpPort.SelectedItem.ToString();
-            if (vsmdPort == pumpPort)
-            {
-                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "电机端口与蠕动泵端口不能相同！");
-                return;
-            }
-            int baudrate = int.Parse(cmbBaudrate.SelectedItem.ToString());
-            //if (vsmdPort == VsmdController.GetVsmdController().GetPort() &&
-            //    baudrate == VsmdController.GetVsmdController().GetBaudrate() && 
-            //    pumpPort == PumpController.GetPumpController().GetPort())
-            //{
-            //    if (m_initCB != null)
-            //    {
-            //        m_initCB(new InitResult() { Message = "设备连接成功!", IsSuccess = true });
-            //        GoHome();
-            //        this.Close();
-            //        return;
-            //    }
-             
-            //}
 
+            bool pumpExist = PumpController.GetPumpController().PumpExist;
+            InitResult pumpRet = new InitResult();
+            pumpRet.IsSuccess = true;
+            pumpRet.Message = "";
+            if (pumpExist)
+            {
+                if (cmbPumpPort.SelectedItem == null)
+                {
+                    StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "蠕动泵端口不能为空！");
+                    return;
+                }
+                string pumpPort = cmbPumpPort.SelectedItem.ToString();
+                if (vsmdPort == pumpPort)
+                {
+                    StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "电机端口与蠕动泵端口不能相同！");
+                    return;
+                }
+                pumpRet = PumpController.GetPumpController().Init(pumpPort);
+            }
+            
+            
+            int baudrate = int.Parse(cmbBaudrate.SelectedItem.ToString());
             m_isConnecting = true;
             InitResult vsmdRet = await VsmdController.GetVsmdController().Init(vsmdPort, baudrate);
-            InitResult pumpRet = PumpController.GetPumpController().Init(pumpPort);
+           
             if (m_initCB != null)
             {
                 InitResult connectRet = new InitResult();
@@ -145,7 +143,6 @@ namespace VsmdWorkstation
             if (vsmdRet.IsSuccess && pumpRet.IsSuccess)
             {
                 GoHome();
-                
                 this.Close();
             }
         }
@@ -214,7 +211,10 @@ namespace VsmdWorkstation
             Preference perfInst = Preference.GetInstace();
             string curVsmdPort = cmbPort.SelectedItem.ToString();
             int curBaudrate = int.Parse(cmbBaudrate.SelectedItem.ToString());
-            string pumpPort = cmbPumpPort.SelectedItem.ToString();
+            bool pumpExist = bool.Parse( ConfigurationManager.AppSettings["PumpExist"]);
+            string pumpPort = perfInst.PumpPort;
+            if( pumpExist)
+                cmbPumpPort.SelectedItem.ToString();
             if (perfInst.VsmdPort != curVsmdPort ||
                 perfInst.Baudrate != curBaudrate ||
                 perfInst.PumpPort != pumpPort)

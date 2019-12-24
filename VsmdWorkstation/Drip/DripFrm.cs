@@ -181,6 +181,10 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+
+
+          
+
             double val = 0;
             bool bok = double.TryParse(txtDelaySeconds.Text, out val);
             if(!bok)
@@ -210,6 +214,7 @@ namespace VsmdWorkstation
             }
             if (!m_manuallySelect)
             {
+                m_externalObj.ResetBoard();
                 m_externalObj.SelectTubes(cnt);
             }
             Preference.GetInstace().Save();

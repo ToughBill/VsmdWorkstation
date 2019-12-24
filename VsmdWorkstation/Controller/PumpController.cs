@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO.Ports;
 using System.Threading.Tasks;
 
@@ -8,12 +9,16 @@ namespace VsmdWorkstation
     {
         private string m_portName;
         private SerialPort m_comPort;
+        bool pumpExist;
         public string GetPort()
         {
             return m_portName;
         }
         public InitResult Init(string port)
         {
+            pumpExist = bool.Parse(ConfigurationManager.AppSettings["PumpExist"]);
+            if(!pumpExist)
+                return new InitResult() { IsSuccess = true, Message = "" };
             bool success = true;
             string errMsg = string.Empty;
             try
@@ -31,6 +36,8 @@ namespace VsmdWorkstation
         }
         public bool Dispose()
         {
+            if (!pumpExist)
+                return true;
             bool ret = true;
             try
             {
@@ -46,10 +53,14 @@ namespace VsmdWorkstation
         }
         private void On()
         {
+            if (!pumpExist)
+                return;
             m_comPort.Write("A");
         }
         private void Off()
         {
+            if (!pumpExist)
+                return;
             m_comPort.Write("a");
         }
         public async Task<bool> SwitchOnOff()
@@ -61,6 +72,15 @@ namespace VsmdWorkstation
         }
 
         private static PumpController m_instance;
+
+        public bool PumpExist
+        {
+            get
+            {
+                return pumpExist;
+            }
+        }
+
         public static PumpController GetPumpController()
         {
             if(m_instance == null)

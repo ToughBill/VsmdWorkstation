@@ -720,7 +720,7 @@ namespace VsmdLib
                 {
                     break;
                 }
-            }
+            } 
             return curTryCnt <= maxTryCount;
         }
 
