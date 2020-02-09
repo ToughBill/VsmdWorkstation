@@ -26,7 +26,7 @@ namespace VsmdWorkstation
         private JToken[] m_sortedTubesArr = null;
         private int m_pipettingIndex;
         private static bool m_cefInitialized;
-
+       
         public static void InitializeCef()
         {
             if (!m_cefInitialized)
@@ -212,11 +212,13 @@ namespace VsmdWorkstation
         /// </summary>
         private async void DoPipetting()
         {
+            Logger.Instance.Write("DoPipetting");
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             await BeforeMove(m_selectedTubes.Count);
-            int pipettingInterval = (int)(Preference.GetInstace().DelaySeconds * 1000);
+            int touchDelaySeconds = (int)(1000*curBoardSetting.CurrentBoard.DelaySeconds);
+            int delayMicroSecondsBetweenSamples = (int)(Preference.GetInstace().DelaySeconds * 1000);
             int blockNum, row, col = 1;
             //await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
             for (int i = m_pipettingIndex + 1; i < m_sortedTubesArr.Length; i++)
@@ -235,11 +237,9 @@ namespace VsmdWorkstation
                 // start pipetting
                 await pumpController.SwitchOnOff();
                 // wait several seconds, this time should be changed according to the volume dispensed
-                Thread.Sleep(pipettingInterval);
-                Thread.Sleep(500);
+                Thread.Sleep(delayMicroSecondsBetweenSamples);
                 await vsmdController.MoveTo(VsmdAxis.X, xPos+offset);
-                //touch edge.wait 1 second for liquid drop
-                Thread.Sleep(1000);
+                Thread.Sleep(touchDelaySeconds);
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
 
                 // change the UI to start

@@ -124,6 +124,10 @@ namespace VsmdWorkstation
                     return;
                 }
                 pumpRet = PumpController.GetPumpController().Init(pumpPort);
+                if(pumpRet.IsSuccess)
+                {
+                    Preference.GetInstace().PumpPort = pumpPort;
+                }
             }
             
             
@@ -142,6 +146,7 @@ namespace VsmdWorkstation
             }
             if (vsmdRet.IsSuccess && pumpRet.IsSuccess)
             {
+                Preference.GetInstace().VsmdPort = vsmdPort;
                 GoHome();
                 this.Close();
             }

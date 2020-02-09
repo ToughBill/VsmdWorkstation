@@ -181,10 +181,6 @@ namespace VsmdWorkstation
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
-
-          
-
             double val = 0;
             bool bok = double.TryParse(txtDelaySeconds.Text, out val);
             if(!bok)
@@ -218,7 +214,7 @@ namespace VsmdWorkstation
                 m_externalObj.SelectTubes(cnt);
             }
             Preference.GetInstace().Save();
-
+            Logger.Instance.Write("about to start pipetting");
             m_externalObj.Move();
             m_pipettingStatus = PipettingStatus.Moving;
             UpdateButtons();

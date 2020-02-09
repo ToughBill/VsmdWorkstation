@@ -10,13 +10,21 @@ namespace VsmdWorkstation
         private string m_portName;
         private SerialPort m_comPort;
         bool pumpExist;
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public string GetPort()
         {
             return m_portName;
         }
-        public InitResult Init(string port)
+
+
+        private PumpController()
         {
             pumpExist = bool.Parse(ConfigurationManager.AppSettings["PumpExist"]);
+        }
+        public InitResult Init(string port)
+        {
+           
+            Logger.Instance.Write(string.Format("pump exist: {0}", pumpExist.ToString()));
             if(!pumpExist)
                 return new InitResult() { IsSuccess = true, Message = "" };
             bool success = true;
@@ -55,16 +63,19 @@ namespace VsmdWorkstation
         {
             if (!pumpExist)
                 return;
+            Logger.Instance.Write("write A");
             m_comPort.Write("A");
         }
         private void Off()
         {
             if (!pumpExist)
                 return;
+            Logger.Instance.Write("write a");
             m_comPort.Write("a");
         }
         public async Task<bool> SwitchOnOff()
         {
+            Logger.Instance.Write("switch On Off");
             Off();
             await Task.Delay(100);
             On();
@@ -85,6 +96,7 @@ namespace VsmdWorkstation
         {
             if(m_instance == null)
             {
+               
                 m_instance = new PumpController();
             }
             return m_instance;

@@ -33,6 +33,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,6 +83,9 @@
     <ApplicationIcon>drip.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -114,6 +118,7 @@
     </Compile>
     <Compile Include="BoardSetting\BoardSetting.cs" />
     <Compile Include="Drip\BridgeObject.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="preference\Preferences.cs" />
     <Compile Include="VSMDSetting\ConnectVsmd.cs">
       <SubType>Form</SubType>
@@ -192,6 +197,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="BoardSetting\SetTubePositionFrm.resx">
       <DependentUpon>SetTubePositionFrm.cs</DependentUpon>
@@ -233,6 +239,9 @@
     <Content Include="html\js\page.js" />
     <Content Include="html\js\tubeGrid.js" />
     <Content Include="html\tubeGrid.html" />
+    <Content Include="log4net.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sdk\VsmdLib.dll" />
   </ItemGroup>
   <ItemGroup>
