@@ -235,7 +235,7 @@ namespace VsmdWorkstation
                 // TODO
                 await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
                 // start pipetting
-                await pumpController.SwitchOnOff();
+                await pumpController.SwitchOnOff(i);
                 // wait several seconds, this time should be changed according to the volume dispensed
                 Thread.Sleep(delayMicroSecondsBetweenSamples);
                 await vsmdController.MoveTo(VsmdAxis.X, xPos+offset);
@@ -317,11 +317,11 @@ namespace VsmdWorkstation
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
             await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZDispense);
-            await pumpController.SwitchOnOff();
+            //pumpController.SwitchOnOff();
 
             Thread.Sleep(GeneralSettings.GetInstance().DispenseInterval);
 
-            await pumpController.SwitchOnOff();
+         
             await vsmdController.MoveTo(VsmdAxis.Z, curBoardSetting.CurrentBoard.ZTravel);
 
             MoveCallBack(blockNum, row, col);

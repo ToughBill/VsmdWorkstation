@@ -59,26 +59,51 @@ namespace VsmdWorkstation
             }
             return ret;
         }
-        private void On()
+
+
+        static void OpenPort(int portNum, SerialPort comPort)
+        {
+            string s = string.Format("0XA{0}", portNum);
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(0xA0 + portNum);
+            comPort.Write(buffer, 0, 1);
+        }
+
+
+        static void ClosePort(int portNum, SerialPort comPort)
+        {
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(0xB0 + portNum);
+            comPort.Write(buffer, 0, 1);
+        }
+        private void OnOff(int portNum,bool on)
         {
             if (!pumpExist)
                 return;
-            Logger.Instance.Write("write A");
-            m_comPort.Write("A");
+
+            string s = on ? string.Format("0XA{0}", portNum) : string.Format("0XB{0}", portNum);
+            Logger.Instance.Write(s);
+            byte val = on ? (byte)0xA0 : (byte)0XB0;
+            byte[] buffer = new byte[1];
+            buffer[0] = (byte)(val + portNum);
+            m_comPort.Write(buffer, 0, 1);
         }
-        private void Off()
+
+        public void On(int portNum)
         {
-            if (!pumpExist)
-                return;
-            Logger.Instance.Write("write a");
-            m_comPort.Write("a");
+            OnOff(portNum, true);
         }
-        public async Task<bool> SwitchOnOff()
+        public void Off(int portNum)
         {
+            OnOff(portNum, false);
+        }
+        public async Task<bool> SwitchOnOff(int i)
+        {
+            int portNum = i % 4 + 1;
             Logger.Instance.Write("switch On Off");
-            Off();
+            On(portNum);
             await Task.Delay(100);
-            On();
+            Off(portNum);
             return true;
         }
 
