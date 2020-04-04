@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using VsmdWorkstation.Controls;
+using VsmdWorkstation.Record;
 
 namespace VsmdWorkstation
 {
@@ -138,6 +139,18 @@ namespace VsmdWorkstation
                     frm.WindowState = FormWindowState.Normal;
                 }
             }
+        }
+
+        private void tsmSetProjectNames_Click(object sender, EventArgs e)
+        {
+            SetProject setProjectWindow = new SetProject();
+            setProjectWindow.ShowDialog();
+        }
+
+        private void tsmStatistic_Click(object sender, EventArgs e)
+        {
+            RunHistory runHistory = new RunHistory();
+            runHistory.ShowDialog();
         }
     }
 }

@@ -35,6 +35,9 @@
             this.tsmBoardSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGenaralSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSetProjectNames = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStatistic = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarEx = new VsmdWorkstation.Controls.StatusBarEx();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +47,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.tsmDrip});
+            this.tsmDrip,
+            this.tsmRecord});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(829, 25);
@@ -97,6 +101,29 @@
             this.tsmDrip.Text = "滴液";
             this.tsmDrip.Click += new System.EventHandler(this.tsmDrip_Click);
             // 
+            // tsmRecord
+            // 
+            this.tsmRecord.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmSetProjectNames,
+            this.tsmStatistic});
+            this.tsmRecord.Name = "tsmRecord";
+            this.tsmRecord.Size = new System.Drawing.Size(44, 21);
+            this.tsmRecord.Text = "记录";
+            // 
+            // tsmSetProjectNames
+            // 
+            this.tsmSetProjectNames.Name = "tsmSetProjectNames";
+            this.tsmSetProjectNames.Size = new System.Drawing.Size(180, 22);
+            this.tsmSetProjectNames.Text = "设置项目名";
+            this.tsmSetProjectNames.Click += new System.EventHandler(this.tsmSetProjectNames_Click);
+            // 
+            // tsmStatistic
+            // 
+            this.tsmStatistic.Name = "tsmStatistic";
+            this.tsmStatistic.Size = new System.Drawing.Size(180, 22);
+            this.tsmStatistic.Text = "项目统计";
+            this.tsmStatistic.Click += new System.EventHandler(this.tsmStatistic_Click);
+            // 
             // statusBarEx
             // 
             this.statusBarEx.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -137,5 +164,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmConnectVsmd;
         private System.Windows.Forms.ToolStripMenuItem tsmGenaralSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmDrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmRecord;
+        private System.Windows.Forms.ToolStripMenuItem tsmSetProjectNames;
+        private System.Windows.Forms.ToolStripMenuItem tsmStatistic;
     }
 }

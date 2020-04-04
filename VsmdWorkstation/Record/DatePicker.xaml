@@ -1,0 +1,15 @@
+﻿<Window x:Class="VsmdWorkstation.Record.DatePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VsmdWorkstation.Record"
+             mc:Ignorable="d" 
+               Title="选择时间" Height="260" Width="220">
+    <Grid>
+        <StackPanel>
+            <Calendar Margin="0,3,0,0" Name="calendarCtl"/>
+            <Button Name="btnConfirm" IsDefault="True" HorizontalAlignment="Right" Margin="0,5,15,0" Width="60" Height="30" Click="btnConfirm_Click">确定</Button>
+        </StackPanel>
+    </Grid>
+</Window>

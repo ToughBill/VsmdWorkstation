@@ -249,7 +249,8 @@ namespace VsmdWorkstation
                 m_pipettingIndex = i;
             }
             
-            AfterMove();
+            bool bok = await AfterMove();
+            Logger.Instance.Write("error happened in afterMove");
         }
         public void DomLoaded()
         {
@@ -264,11 +265,12 @@ namespace VsmdWorkstation
             CallJS("JsExecutor.beforeMove();");
             return true;
         }
-        private void AfterMove()
+        private async Task<bool> AfterMove()
         {
             //await VsmdController.GetVsmdController().Off(VsmdAxis.X);
             //await VsmdController.GetVsmdController().Off(VsmdAxis.Y);
-            //await VsmdController.GetVsmdController().Off(VsmdAxis.Z);
+            bool bok = await VsmdController.GetVsmdController().MoveTo(VsmdAxis.Y, 100);
+            
             if (m_dripStatus != PipettingStatus.PauseMove)
             {
                 CallJS("JsExecutor.afterMove();");
@@ -282,6 +284,7 @@ namespace VsmdWorkstation
                     onPipettingFinished();
                 }
             }
+            return bok;
         }
         public async void MoveToHere(string args)
         {

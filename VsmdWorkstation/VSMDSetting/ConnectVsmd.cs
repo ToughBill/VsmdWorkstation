@@ -80,7 +80,7 @@ namespace VsmdWorkstation
 
             if (GeneralSettings.GetInstance().AutoConnect)
             {
-                btnConnect_Click(null, null);
+                btnConnect.PerformClick();
             }
         }
 

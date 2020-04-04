@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsmdWorkstation", "VsmdWorkstation\VsmdWorkstation.csproj", "{C0AD8F4E-C6AD-4666-A2CA-892FA8B83109}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{1FADB2AD-2AB8-494E-BE82-CB09EADAF671}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPumpControl", "TestPumpControl\TestPumpControl.csproj", "{F9BC0EFA-A75B-47C6-B432-328BE193261D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunInfoManager", "RunInfoManager\RunInfoManager.csproj", "{DC84484A-DBED-468D-A931-7AA762E4CBEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunInfoManager", "TestRunInfoManager\TestRunInfoManager.csproj", "{CB10A06F-5BB0-4B13-9565-571A4324B11F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,8 +131,51 @@ Global
 		{F9BC0EFA-A75B-47C6-B432-328BE193261D}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{F9BC0EFA-A75B-47C6-B432-328BE193261D}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{F9BC0EFA-A75B-47C6-B432-328BE193261D}.SingleImage|x86.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.CD_ROM|x86.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.DVD-5|x86.Build.0 = Debug|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.Release|x86.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{DC84484A-DBED-468D-A931-7AA762E4CBEA}.SingleImage|x86.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.CD_ROM|x86.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Debug|x86.Build.0 = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.DVD-5|x86.Build.0 = Debug|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Release|x86.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.Release|x86.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{CB10A06F-5BB0-4B13-9565-571A4324B11F}.SingleImage|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A381E14-BAB3-4651-80D1-C74072CB467E}
 	EndGlobalSection
 EndGlobal

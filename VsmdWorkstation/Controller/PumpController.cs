@@ -10,6 +10,7 @@ namespace VsmdWorkstation
         private string m_portName;
         private SerialPort m_comPort;
         bool pumpExist;
+        string relayType;
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public string GetPort()
         {
@@ -20,6 +21,7 @@ namespace VsmdWorkstation
         private PumpController()
         {
             pumpExist = bool.Parse(ConfigurationManager.AppSettings["PumpExist"]);
+            relayType = ConfigurationManager.AppSettings["RelayType"];
         }
         public InitResult Init(string port)
         {
@@ -80,13 +82,26 @@ namespace VsmdWorkstation
         {
             if (!pumpExist)
                 return;
+            if(relayType == "LH") //latest on
+            {
+                string onOff = on ? "ON" : "OFF";
+                string s = string.Format("AT+OUT{0}+1={1}{2}", portNum, onOff, Environment.NewLine);
+                byte[] buffer = System.Text.Encoding.Default.GetBytes(s);
+                m_comPort.Write(buffer, 0, buffer.Length);
+            }//old one,only works in 重庆
+            else
+            {
+                string s = on ? string.Format("0XA{0}", portNum) : string.Format("0XB{0}", portNum);
+                Logger.Instance.Write(s);
+                byte val = on ? (byte)0xA0 : (byte)0XB0;
+                byte[] buffer = new byte[1];
+                buffer[0] = (byte)(val + portNum);
+                m_comPort.Write(buffer, 0, 1);
+            }
 
-            string s = on ? string.Format("0XA{0}", portNum) : string.Format("0XB{0}", portNum);
-            Logger.Instance.Write(s);
-            byte val = on ? (byte)0xA0 : (byte)0XB0;
-            byte[] buffer = new byte[1];
-            buffer[0] = (byte)(val + portNum);
-            m_comPort.Write(buffer, 0, 1);
+
+
+
         }
 
         public void On(int portNum)
@@ -97,6 +112,7 @@ namespace VsmdWorkstation
         {
             OnOff(portNum, false);
         }
+
         public async Task<bool> SwitchOnOff(int i)
         {
             int portNum = i % 4 + 1;
