@@ -42,7 +42,7 @@ namespace VsmdWorkstation
         {
             if(listView.SelectedItems.Count <= 0)
             {
-                StatusBar.DisplayMessage(MessageType.Warming, "请先选择一项！");
+                StatusBar.DisplayMessage(MessageType.Warning, "请先选择一项！");
                 return;
             }
             SelectedObject = listView.SelectedItems[0].Tag;

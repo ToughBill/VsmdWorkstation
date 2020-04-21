@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using VsmdWorkstation.Utils;
 
 namespace VsmdWorkstation.Record
 {
@@ -59,7 +60,6 @@ namespace VsmdWorkstation.Record
         public ProjectInfoCollection()
         {
             ProjectInfos = new ObservableCollection<ProjectInfo>();
-            
         }
 
         static public string GetExeFolder()
@@ -84,7 +84,7 @@ namespace VsmdWorkstation.Record
             }
             prjInfoCollection = JsonConvert.DeserializeObject<ProjectInfoCollection>(str);
             var name = prjInfoCollection.SelectedProjectInfo.Name;
-            if(name != "")
+            if (name != "")
                 prjInfoCollection.SelectedProjectInfo = prjInfoCollection.ProjectInfos.Where(x => x.Name == name).First();
             return prjInfoCollection;
         }
@@ -99,6 +99,8 @@ namespace VsmdWorkstation.Record
           
             if (ProjectInfos.Count > 0)
                 SelectedProjectInfo = ProjectInfos.Last();
+
+            
         }
 
         internal void Add()

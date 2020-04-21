@@ -56,9 +56,24 @@ namespace VsmdWorkstation.Record
             string errMsg = "";
             databseHelper.Add(runInfo, ref errMsg);
         }
+        public void DeleteRunInfo(RunInfoTable runInfoTable)
+        {
+            databseHelper.Delete(runInfoTable);
+            AllRunInfos.Remove(runInfoTable);
+        }
 
-     
-
-      
+        public Dictionary<string,int>  Statistic()
+        {
+            Dictionary<string, int> eachProjectCnt = new Dictionary<string, int>();
+            foreach (var runInfo in allRunInfos)
+            {
+                int cnt = runInfo.SampleCount == null ? 0 : (int)runInfo.SampleCount;
+                if (eachProjectCnt.ContainsKey(runInfo.ProjectName))
+                    eachProjectCnt[runInfo.ProjectName] += cnt;
+                else
+                    eachProjectCnt[runInfo.ProjectName] = cnt;
+            }
+            return eachProjectCnt;
+        }
     }
 }

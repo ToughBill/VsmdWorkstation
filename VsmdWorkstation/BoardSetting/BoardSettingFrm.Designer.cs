@@ -45,17 +45,23 @@
             this.btnMove2Grid1StartY = new System.Windows.Forms.Button();
             this.btnMove2Grid1StartX = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
+            this.txtGridRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label35 = new System.Windows.Forms.Label();
+            this.txtGridCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label36 = new System.Windows.Forms.Label();
             this.btnGridLTX = new System.Windows.Forms.Button();
             this.btnGridLTY = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.txtGridLTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtGridLTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label19 = new System.Windows.Forms.Label();
             this.btnGridFTX = new System.Windows.Forms.Button();
             this.btnGridFTY = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtGridFTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label15 = new System.Windows.Forms.Label();
+            this.txtGridFTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label16 = new System.Windows.Forms.Label();
             this.btnTubeMoveTouchEdgeOffset = new System.Windows.Forms.Button();
             this.btnSetTouchPosition = new System.Windows.Forms.Button();
@@ -74,23 +80,32 @@
             this.btnMove2Site1StartY = new System.Windows.Forms.Button();
             this.btnMove2Site1StartX = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
+            this.txtSiteColCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label30 = new System.Windows.Forms.Label();
+            this.txtSiteRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label31 = new System.Windows.Forms.Label();
+            this.txtSiteCnt = new VsmdWorkstation.Controls.TextBoxEx();
             this.label32 = new System.Windows.Forms.Label();
             this.btnSite2FTX = new System.Windows.Forms.Button();
             this.btnSite2FTY = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
+            this.txtSite2FTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label27 = new System.Windows.Forms.Label();
+            this.txtSite2FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label28 = new System.Windows.Forms.Label();
             this.btnSite1LTX = new System.Windows.Forms.Button();
             this.btnSite1LTY = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
+            this.txtSite1LTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label24 = new System.Windows.Forms.Label();
+            this.txtSite1LTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label25 = new System.Windows.Forms.Label();
             this.btnSite1FTX = new System.Windows.Forms.Button();
             this.btnSite1FTY = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.txtSite1FTY = new VsmdWorkstation.Controls.TextBoxEx();
             this.label21 = new System.Windows.Forms.Label();
+            this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.label22 = new System.Windows.Forms.Label();
             this.btnMove2ZDispense = new System.Windows.Forms.Button();
             this.btnMove2ZTravel = new System.Windows.Forms.Button();
@@ -98,27 +113,31 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtTouchDelaySeconds = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtTouchPosition = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSiteColCnt = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSiteRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSiteCnt = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite2FTY = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite2FTX = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite1LTY = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite1LTX = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite1FTY = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtSite1FTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtZDispense = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridRowCnt = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridCnt = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridLTY = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridLTX = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridFTY = new VsmdWorkstation.Controls.TextBoxEx();
-            this.txtGridFTX = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtName = new VsmdWorkstation.Controls.TextBoxEx();
             this.txtZTravel = new VsmdWorkstation.Controls.TextBoxEx();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtWashX = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtWashY = new VsmdWorkstation.Controls.TextBoxEx();
+            this.btnSetWashX = new System.Windows.Forms.Button();
+            this.btnSetWashY = new System.Windows.Forms.Button();
+            this.btnMove2WashX = new System.Windows.Forms.Button();
+            this.btnMove2WashY = new System.Windows.Forms.Button();
+            this.btnMoveWashZ = new System.Windows.Forms.Button();
+            this.btnSetWashZ = new System.Windows.Forms.Button();
+            this.txtWashZ = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtWashTimes = new VsmdWorkstation.Controls.TextBoxEx();
+            this.txtWashDelaySeconds = new VsmdWorkstation.Controls.TextBoxEx();
+            this.label11 = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.panelGrid.SuspendLayout();
             this.panelSite.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -133,7 +152,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(197, 431);
+            this.btnOK.Location = new System.Drawing.Point(199, 586);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(68, 25);
@@ -145,7 +164,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(269, 431);
+            this.btnCancel.Location = new System.Drawing.Point(271, 586);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 25);
@@ -249,7 +268,7 @@
             this.panelGrid.Controls.Add(this.label15);
             this.panelGrid.Controls.Add(this.txtGridFTX);
             this.panelGrid.Controls.Add(this.label16);
-            this.panelGrid.Location = new System.Drawing.Point(10, 191);
+            this.panelGrid.Location = new System.Drawing.Point(21, 378);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Size = new System.Drawing.Size(311, 165);
             this.panelGrid.TabIndex = 33;
@@ -309,6 +328,16 @@
             this.label34.TabIndex = 38;
             this.label34.Text = "孔";
             // 
+            // txtGridRowCnt
+            // 
+            this.txtGridRowCnt.Location = new System.Drawing.Point(180, 5);
+            this.txtGridRowCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridRowCnt.Name = "txtGridRowCnt";
+            this.txtGridRowCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtGridRowCnt.TabIndex = 35;
+            this.txtGridRowCnt.Text = "16";
+            this.txtGridRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
             // label35
             // 
             this.label35.AutoSize = true;
@@ -318,6 +347,16 @@
             this.label35.Size = new System.Drawing.Size(29, 12);
             this.label35.TabIndex = 37;
             this.label35.Text = "grid";
+            // 
+            // txtGridCnt
+            // 
+            this.txtGridCnt.Location = new System.Drawing.Point(93, 5);
+            this.txtGridCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridCnt.Name = "txtGridCnt";
+            this.txtGridCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtGridCnt.TabIndex = 33;
+            this.txtGridCnt.Text = "6";
+            this.txtGridCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label36
             // 
@@ -361,6 +400,15 @@
             this.label17.TabIndex = 32;
             this.label17.Text = "Y";
             // 
+            // txtGridLTY
+            // 
+            this.txtGridLTY.Location = new System.Drawing.Point(109, 124);
+            this.txtGridLTY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridLTY.Name = "txtGridLTY";
+            this.txtGridLTY.Size = new System.Drawing.Size(87, 21);
+            this.txtGridLTY.TabIndex = 28;
+            this.txtGridLTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -370,6 +418,15 @@
             this.label18.Size = new System.Drawing.Size(11, 12);
             this.label18.TabIndex = 31;
             this.label18.Text = "X";
+            // 
+            // txtGridLTX
+            // 
+            this.txtGridLTX.Location = new System.Drawing.Point(109, 95);
+            this.txtGridLTX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridLTX.Name = "txtGridLTX";
+            this.txtGridLTX.Size = new System.Drawing.Size(87, 21);
+            this.txtGridLTX.TabIndex = 26;
+            this.txtGridLTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label19
             // 
@@ -413,6 +470,15 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "Y";
             // 
+            // txtGridFTY
+            // 
+            this.txtGridFTY.Location = new System.Drawing.Point(109, 66);
+            this.txtGridFTY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridFTY.Name = "txtGridFTY";
+            this.txtGridFTY.Size = new System.Drawing.Size(87, 21);
+            this.txtGridFTY.TabIndex = 21;
+            this.txtGridFTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -422,6 +488,15 @@
             this.label15.Size = new System.Drawing.Size(11, 12);
             this.label15.TabIndex = 24;
             this.label15.Text = "X";
+            // 
+            // txtGridFTX
+            // 
+            this.txtGridFTX.Location = new System.Drawing.Point(109, 37);
+            this.txtGridFTX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGridFTX.Name = "txtGridFTX";
+            this.txtGridFTX.Size = new System.Drawing.Size(87, 21);
+            this.txtGridFTX.TabIndex = 19;
+            this.txtGridFTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label16
             // 
@@ -567,7 +642,7 @@
             this.panelSite.Controls.Add(this.label21);
             this.panelSite.Controls.Add(this.txtSite1FTX);
             this.panelSite.Controls.Add(this.label22);
-            this.panelSite.Location = new System.Drawing.Point(16, 182);
+            this.panelSite.Location = new System.Drawing.Point(27, 369);
             this.panelSite.Name = "panelSite";
             this.panelSite.Size = new System.Drawing.Size(331, 212);
             this.panelSite.TabIndex = 34;
@@ -648,6 +723,16 @@
             this.label29.TabIndex = 46;
             this.label29.Text = "列";
             // 
+            // txtSiteColCnt
+            // 
+            this.txtSiteColCnt.Location = new System.Drawing.Point(256, 8);
+            this.txtSiteColCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteColCnt.Name = "txtSiteColCnt";
+            this.txtSiteColCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtSiteColCnt.TabIndex = 43;
+            this.txtSiteColCnt.Text = "12";
+            this.txtSiteColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -658,6 +743,16 @@
             this.label30.TabIndex = 45;
             this.label30.Text = "行";
             // 
+            // txtSiteRowCnt
+            // 
+            this.txtSiteRowCnt.Location = new System.Drawing.Point(182, 8);
+            this.txtSiteRowCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteRowCnt.Name = "txtSiteRowCnt";
+            this.txtSiteRowCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtSiteRowCnt.TabIndex = 42;
+            this.txtSiteRowCnt.Text = "8";
+            this.txtSiteRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -667,6 +762,16 @@
             this.label31.Size = new System.Drawing.Size(29, 12);
             this.label31.TabIndex = 44;
             this.label31.Text = "site";
+            // 
+            // txtSiteCnt
+            // 
+            this.txtSiteCnt.Location = new System.Drawing.Point(95, 8);
+            this.txtSiteCnt.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteCnt.Name = "txtSiteCnt";
+            this.txtSiteCnt.Size = new System.Drawing.Size(50, 21);
+            this.txtSiteCnt.TabIndex = 40;
+            this.txtSiteCnt.Text = "3";
+            this.txtSiteCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
             // label32
             // 
@@ -710,6 +815,15 @@
             this.label26.TabIndex = 39;
             this.label26.Text = "Y";
             // 
+            // txtSite2FTY
+            // 
+            this.txtSite2FTY.Location = new System.Drawing.Point(114, 183);
+            this.txtSite2FTY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite2FTY.Name = "txtSite2FTY";
+            this.txtSite2FTY.Size = new System.Drawing.Size(82, 21);
+            this.txtSite2FTY.TabIndex = 35;
+            this.txtSite2FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -719,6 +833,15 @@
             this.label27.Size = new System.Drawing.Size(11, 12);
             this.label27.TabIndex = 38;
             this.label27.Text = "X";
+            // 
+            // txtSite2FTX
+            // 
+            this.txtSite2FTX.Location = new System.Drawing.Point(114, 154);
+            this.txtSite2FTX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite2FTX.Name = "txtSite2FTX";
+            this.txtSite2FTX.Size = new System.Drawing.Size(82, 21);
+            this.txtSite2FTX.TabIndex = 33;
+            this.txtSite2FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label28
             // 
@@ -762,6 +885,15 @@
             this.label23.TabIndex = 32;
             this.label23.Text = "Y";
             // 
+            // txtSite1LTY
+            // 
+            this.txtSite1LTY.Location = new System.Drawing.Point(114, 126);
+            this.txtSite1LTY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite1LTY.Name = "txtSite1LTY";
+            this.txtSite1LTY.Size = new System.Drawing.Size(82, 21);
+            this.txtSite1LTY.TabIndex = 28;
+            this.txtSite1LTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -771,6 +903,15 @@
             this.label24.Size = new System.Drawing.Size(11, 12);
             this.label24.TabIndex = 31;
             this.label24.Text = "X";
+            // 
+            // txtSite1LTX
+            // 
+            this.txtSite1LTX.Location = new System.Drawing.Point(114, 97);
+            this.txtSite1LTX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite1LTX.Name = "txtSite1LTX";
+            this.txtSite1LTX.Size = new System.Drawing.Size(82, 21);
+            this.txtSite1LTX.TabIndex = 26;
+            this.txtSite1LTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label25
             // 
@@ -814,6 +955,15 @@
             this.label20.TabIndex = 25;
             this.label20.Text = "Y";
             // 
+            // txtSite1FTY
+            // 
+            this.txtSite1FTY.Location = new System.Drawing.Point(114, 68);
+            this.txtSite1FTY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite1FTY.Name = "txtSite1FTY";
+            this.txtSite1FTY.Size = new System.Drawing.Size(82, 21);
+            this.txtSite1FTY.TabIndex = 21;
+            this.txtSite1FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -823,6 +973,15 @@
             this.label21.Size = new System.Drawing.Size(11, 12);
             this.label21.TabIndex = 24;
             this.label21.Text = "X";
+            // 
+            // txtSite1FTX
+            // 
+            this.txtSite1FTX.Location = new System.Drawing.Point(114, 39);
+            this.txtSite1FTX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSite1FTX.Name = "txtSite1FTX";
+            this.txtSite1FTX.Size = new System.Drawing.Size(82, 21);
+            this.txtSite1FTX.TabIndex = 19;
+            this.txtSite1FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // label22
             // 
@@ -896,90 +1055,6 @@
             this.txtTouchPosition.TabIndex = 66;
             this.txtTouchPosition.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
             // 
-            // txtSiteColCnt
-            // 
-            this.txtSiteColCnt.Location = new System.Drawing.Point(256, 8);
-            this.txtSiteColCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteColCnt.Name = "txtSiteColCnt";
-            this.txtSiteColCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtSiteColCnt.TabIndex = 43;
-            this.txtSiteColCnt.Text = "12";
-            this.txtSiteColCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // txtSiteRowCnt
-            // 
-            this.txtSiteRowCnt.Location = new System.Drawing.Point(182, 8);
-            this.txtSiteRowCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteRowCnt.Name = "txtSiteRowCnt";
-            this.txtSiteRowCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtSiteRowCnt.TabIndex = 42;
-            this.txtSiteRowCnt.Text = "8";
-            this.txtSiteRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // txtSiteCnt
-            // 
-            this.txtSiteCnt.Location = new System.Drawing.Point(95, 8);
-            this.txtSiteCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteCnt.Name = "txtSiteCnt";
-            this.txtSiteCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtSiteCnt.TabIndex = 40;
-            this.txtSiteCnt.Text = "3";
-            this.txtSiteCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // txtSite2FTY
-            // 
-            this.txtSite2FTY.Location = new System.Drawing.Point(114, 183);
-            this.txtSite2FTY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite2FTY.Name = "txtSite2FTY";
-            this.txtSite2FTY.Size = new System.Drawing.Size(82, 21);
-            this.txtSite2FTY.TabIndex = 35;
-            this.txtSite2FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSite2FTX
-            // 
-            this.txtSite2FTX.Location = new System.Drawing.Point(114, 154);
-            this.txtSite2FTX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite2FTX.Name = "txtSite2FTX";
-            this.txtSite2FTX.Size = new System.Drawing.Size(82, 21);
-            this.txtSite2FTX.TabIndex = 33;
-            this.txtSite2FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSite1LTY
-            // 
-            this.txtSite1LTY.Location = new System.Drawing.Point(114, 126);
-            this.txtSite1LTY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite1LTY.Name = "txtSite1LTY";
-            this.txtSite1LTY.Size = new System.Drawing.Size(82, 21);
-            this.txtSite1LTY.TabIndex = 28;
-            this.txtSite1LTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSite1LTX
-            // 
-            this.txtSite1LTX.Location = new System.Drawing.Point(114, 97);
-            this.txtSite1LTX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite1LTX.Name = "txtSite1LTX";
-            this.txtSite1LTX.Size = new System.Drawing.Size(82, 21);
-            this.txtSite1LTX.TabIndex = 26;
-            this.txtSite1LTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSite1FTY
-            // 
-            this.txtSite1FTY.Location = new System.Drawing.Point(114, 68);
-            this.txtSite1FTY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite1FTY.Name = "txtSite1FTY";
-            this.txtSite1FTY.Size = new System.Drawing.Size(82, 21);
-            this.txtSite1FTY.TabIndex = 21;
-            this.txtSite1FTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtSite1FTX
-            // 
-            this.txtSite1FTX.Location = new System.Drawing.Point(114, 39);
-            this.txtSite1FTX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSite1FTX.Name = "txtSite1FTX";
-            this.txtSite1FTX.Size = new System.Drawing.Size(82, 21);
-            this.txtSite1FTX.TabIndex = 19;
-            this.txtSite1FTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
             // txtZDispense
             // 
             this.txtZDispense.Location = new System.Drawing.Point(105, 98);
@@ -988,62 +1063,6 @@
             this.txtZDispense.Size = new System.Drawing.Size(104, 21);
             this.txtZDispense.TabIndex = 42;
             this.txtZDispense.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
-            // 
-            // txtGridRowCnt
-            // 
-            this.txtGridRowCnt.Location = new System.Drawing.Point(180, 5);
-            this.txtGridRowCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridRowCnt.Name = "txtGridRowCnt";
-            this.txtGridRowCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtGridRowCnt.TabIndex = 35;
-            this.txtGridRowCnt.Text = "16";
-            this.txtGridRowCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // txtGridCnt
-            // 
-            this.txtGridCnt.Location = new System.Drawing.Point(93, 5);
-            this.txtGridCnt.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridCnt.Name = "txtGridCnt";
-            this.txtGridCnt.Size = new System.Drawing.Size(50, 21);
-            this.txtGridCnt.TabIndex = 33;
-            this.txtGridCnt.Text = "6";
-            this.txtGridCnt.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.UnsignedInterge;
-            // 
-            // txtGridLTY
-            // 
-            this.txtGridLTY.Location = new System.Drawing.Point(109, 124);
-            this.txtGridLTY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridLTY.Name = "txtGridLTY";
-            this.txtGridLTY.Size = new System.Drawing.Size(87, 21);
-            this.txtGridLTY.TabIndex = 28;
-            this.txtGridLTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtGridLTX
-            // 
-            this.txtGridLTX.Location = new System.Drawing.Point(109, 95);
-            this.txtGridLTX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridLTX.Name = "txtGridLTX";
-            this.txtGridLTX.Size = new System.Drawing.Size(87, 21);
-            this.txtGridLTX.TabIndex = 26;
-            this.txtGridLTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtGridFTY
-            // 
-            this.txtGridFTY.Location = new System.Drawing.Point(109, 66);
-            this.txtGridFTY.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridFTY.Name = "txtGridFTY";
-            this.txtGridFTY.Size = new System.Drawing.Size(87, 21);
-            this.txtGridFTY.TabIndex = 21;
-            this.txtGridFTY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
-            // 
-            // txtGridFTX
-            // 
-            this.txtGridFTX.Location = new System.Drawing.Point(109, 37);
-            this.txtGridFTX.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGridFTX.Name = "txtGridFTX";
-            this.txtGridFTX.Size = new System.Drawing.Size(87, 21);
-            this.txtGridFTX.TabIndex = 19;
-            this.txtGridFTX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
             // 
             // txtName
             // 
@@ -1063,13 +1082,213 @@
             this.txtZTravel.TabIndex = 40;
             this.txtZTravel.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.String;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.txtWashDelaySeconds);
+            this.groupBox1.Controls.Add(this.txtWashTimes);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.btnMoveWashZ);
+            this.groupBox1.Controls.Add(this.btnSetWashZ);
+            this.groupBox1.Controls.Add(this.txtWashZ);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.btnMove2WashY);
+            this.groupBox1.Controls.Add(this.btnMove2WashX);
+            this.groupBox1.Controls.Add(this.btnSetWashY);
+            this.groupBox1.Controls.Add(this.btnSetWashX);
+            this.groupBox1.Controls.Add(this.txtWashY);
+            this.groupBox1.Controls.Add(this.txtWashX);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Location = new System.Drawing.Point(21, 188);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(337, 175);
+            this.groupBox1.TabIndex = 72;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "洗站定义";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 27);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(11, 12);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "X";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 59);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(11, 12);
+            this.label6.TabIndex = 59;
+            this.label6.Text = "Y";
+            // 
+            // txtWashX
+            // 
+            this.txtWashX.Location = new System.Drawing.Point(32, 23);
+            this.txtWashX.Margin = new System.Windows.Forms.Padding(2);
+            this.txtWashX.Name = "txtWashX";
+            this.txtWashX.Size = new System.Drawing.Size(82, 21);
+            this.txtWashX.TabIndex = 59;
+            this.txtWashX.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtWashY
+            // 
+            this.txtWashY.Location = new System.Drawing.Point(33, 55);
+            this.txtWashY.Margin = new System.Windows.Forms.Padding(2);
+            this.txtWashY.Name = "txtWashY";
+            this.txtWashY.Size = new System.Drawing.Size(82, 21);
+            this.txtWashY.TabIndex = 60;
+            this.txtWashY.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // btnSetWashX
+            // 
+            this.btnSetWashX.Location = new System.Drawing.Point(119, 23);
+            this.btnSetWashX.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetWashX.Name = "btnSetWashX";
+            this.btnSetWashX.Size = new System.Drawing.Size(50, 21);
+            this.btnSetWashX.TabIndex = 59;
+            this.btnSetWashX.Text = "设置";
+            this.btnSetWashX.UseVisualStyleBackColor = true;
+            this.btnSetWashX.Click += new System.EventHandler(this.btnSetWashX_Click);
+            // 
+            // btnSetWashY
+            // 
+            this.btnSetWashY.Location = new System.Drawing.Point(119, 55);
+            this.btnSetWashY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetWashY.Name = "btnSetWashY";
+            this.btnSetWashY.Size = new System.Drawing.Size(50, 21);
+            this.btnSetWashY.TabIndex = 61;
+            this.btnSetWashY.Text = "设置";
+            this.btnSetWashY.UseVisualStyleBackColor = true;
+            this.btnSetWashY.Click += new System.EventHandler(this.btnSetWashY_Click);
+            // 
+            // btnMove2WashX
+            // 
+            this.btnMove2WashX.Location = new System.Drawing.Point(173, 23);
+            this.btnMove2WashX.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2WashX.Name = "btnMove2WashX";
+            this.btnMove2WashX.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2WashX.TabIndex = 59;
+            this.btnMove2WashX.Text = "移动到";
+            this.btnMove2WashX.UseVisualStyleBackColor = true;
+            this.btnMove2WashX.Click += new System.EventHandler(this.btnMove2WashX_Click);
+            // 
+            // btnMove2WashY
+            // 
+            this.btnMove2WashY.Location = new System.Drawing.Point(173, 55);
+            this.btnMove2WashY.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMove2WashY.Name = "btnMove2WashY";
+            this.btnMove2WashY.Size = new System.Drawing.Size(50, 21);
+            this.btnMove2WashY.TabIndex = 62;
+            this.btnMove2WashY.Text = "移动到";
+            this.btnMove2WashY.UseVisualStyleBackColor = true;
+            this.btnMove2WashY.Click += new System.EventHandler(this.btnMove2WashY_Click);
+            // 
+            // btnMoveWashZ
+            // 
+            this.btnMoveWashZ.Location = new System.Drawing.Point(173, 83);
+            this.btnMoveWashZ.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMoveWashZ.Name = "btnMoveWashZ";
+            this.btnMoveWashZ.Size = new System.Drawing.Size(50, 21);
+            this.btnMoveWashZ.TabIndex = 66;
+            this.btnMoveWashZ.Text = "移动到";
+            this.btnMoveWashZ.UseVisualStyleBackColor = true;
+            this.btnMoveWashZ.Click += new System.EventHandler(this.btnMoveWashZ_Click);
+            // 
+            // btnSetWashZ
+            // 
+            this.btnSetWashZ.Location = new System.Drawing.Point(119, 83);
+            this.btnSetWashZ.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSetWashZ.Name = "btnSetWashZ";
+            this.btnSetWashZ.Size = new System.Drawing.Size(50, 21);
+            this.btnSetWashZ.TabIndex = 65;
+            this.btnSetWashZ.Text = "设置";
+            this.btnSetWashZ.UseVisualStyleBackColor = true;
+            this.btnSetWashZ.Click += new System.EventHandler(this.btnSetWashZ_Click);
+            // 
+            // txtWashZ
+            // 
+            this.txtWashZ.Location = new System.Drawing.Point(33, 83);
+            this.txtWashZ.Margin = new System.Windows.Forms.Padding(2);
+            this.txtWashZ.Name = "txtWashZ";
+            this.txtWashZ.Size = new System.Drawing.Size(82, 21);
+            this.txtWashZ.TabIndex = 64;
+            this.txtWashZ.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 87);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 12);
+            this.label8.TabIndex = 63;
+            this.label8.Text = "Z";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 118);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 67;
+            this.label9.Text = "冲洗次数：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 145);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 68;
+            this.label10.Text = "时间间隔：";
+            // 
+            // txtWashTimes
+            // 
+            this.txtWashTimes.Location = new System.Drawing.Point(79, 114);
+            this.txtWashTimes.Margin = new System.Windows.Forms.Padding(2);
+            this.txtWashTimes.Name = "txtWashTimes";
+            this.txtWashTimes.Size = new System.Drawing.Size(82, 21);
+            this.txtWashTimes.TabIndex = 69;
+            this.txtWashTimes.Text = "3";
+            this.txtWashTimes.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // txtWashDelaySeconds
+            // 
+            this.txtWashDelaySeconds.Location = new System.Drawing.Point(79, 141);
+            this.txtWashDelaySeconds.Margin = new System.Windows.Forms.Padding(2);
+            this.txtWashDelaySeconds.Name = "txtWashDelaySeconds";
+            this.txtWashDelaySeconds.Size = new System.Drawing.Size(82, 21);
+            this.txtWashDelaySeconds.TabIndex = 70;
+            this.txtWashDelaySeconds.Text = "1";
+            this.txtWashDelaySeconds.ValueType = VsmdWorkstation.Controls.TextBoxEx.TextBoxValueType.Interge;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(165, 144);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 12);
+            this.label11.TabIndex = 71;
+            this.label11.Text = "秒";
+            // 
             // BoardSettingFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(580, 467);
+            this.ClientSize = new System.Drawing.Size(484, 683);
             this.ContextMenuStrip = this.contextMenuStrip;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtTouchDelaySeconds);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnMove2TouchPosition);
@@ -1107,6 +1326,8 @@
             this.panelGrid.PerformLayout();
             this.panelSite.ResumeLayout(false);
             this.panelSite.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1200,5 +1421,23 @@
         private System.Windows.Forms.Button btnMove2TouchPosition;
         private System.Windows.Forms.Label label4;
         private Controls.TextBoxEx txtTouchDelaySeconds;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnMove2WashY;
+        private System.Windows.Forms.Button btnMove2WashX;
+        private System.Windows.Forms.Button btnSetWashY;
+        private System.Windows.Forms.Button btnSetWashX;
+        private Controls.TextBoxEx txtWashY;
+        private Controls.TextBoxEx txtWashX;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnMoveWashZ;
+        private System.Windows.Forms.Button btnSetWashZ;
+        private Controls.TextBoxEx txtWashZ;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private Controls.TextBoxEx txtWashDelaySeconds;
+        private Controls.TextBoxEx txtWashTimes;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }

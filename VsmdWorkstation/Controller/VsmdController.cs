@@ -259,25 +259,12 @@ namespace VsmdWorkstation
         }
         public async void MoveTo(int xpox, int ypox)
         {
+
             await MoveTo(VsmdAxis.X, xpox);
             await MoveTo(VsmdAxis.Y, ypox);
         }
-        public async Task<bool> PumpDrip()
-        {
-            VsmdController vsmdController = VsmdController.GetVsmdController();
-            await vsmdController.SetS3Mode(VsmdAxis.Z, 1);
-            await SwitchS3OnOff();
-            return true;
-        }
-        public async Task<bool> SwitchS3OnOff()
-        {
-            VsmdController vsmdController = VsmdController.GetVsmdController();
-            Thread.Sleep(500);
-            await vsmdController.S3On(VsmdAxis.Z);
-            Thread.Sleep(500);
-            await vsmdController.S3Off(VsmdAxis.Z);
-            return true;
-        }
+       
+      
         public void Dispose()
         {
             if (m_vsmd != null)

@@ -4,25 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VsmdWorkstation.Record"
+             xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="850">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
 
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,2,0,2">
             <Label VerticalAlignment="Center">项目名：</Label>
-            <ComboBox Name="cmbProjects" Width="120" DisplayMemberPath="Name"  ItemsSource="{Binding ProjectInfos}" SelectedItem="{Binding SelectedProjectInfo}">
+            <ComboBox Name="cmbProjects" Width="100" DisplayMemberPath="Name"  ItemsSource="{Binding ProjectInfos}" SelectedItem="{Binding SelectedProjectInfo}">
                
             </ComboBox>
-
-            <Label VerticalAlignment="Center">时间精度：</Label>
-            <ComboBox Name="cmbDegree" Width="120"  ItemsSource="{Binding Degrees}" SelectedItem="{Binding SelectedDegree,Mode=TwoWay}"></ComboBox>
+            <CheckBox Name="chkAllProjects" VerticalAlignment="Center">所有项目</CheckBox>
+            <Label VerticalAlignment="Center" Margin="20,0,0,0">时间精度：</Label>
+            <ComboBox Name="cmbDegree" Width="50"  ItemsSource="{Binding Degrees}" SelectedItem="{Binding SelectedDegree,Mode=TwoWay}"></ComboBox>
 
             <Label VerticalAlignment="Center" Margin="50,0,0,0">当前日期：</Label>
             <TextBlock VerticalAlignment="Center" Width="150" Name="txtCurrentDate"></TextBlock>
@@ -63,7 +66,27 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <StackPanel Grid.Row="3">
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+           
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <oxy:PlotView x:Name="oxyPlotPieChart" Model="{Binding PieChartModel}"/>
+            
+            <StackPanel Grid.Column="2">
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalAlignment="Center">总数：</Label>
+                    <TextBlock VerticalAlignment="Center" Name="txtTotalCnt" Width="100"></TextBlock>
+                    <Button Margin="5,0,0,0" Width="80" Name="btnExport" Click="BtnExport_Click">导出</Button>
+                    <Button Margin="5,0,0,0" Width="80" x:Name="btnOpenFolder" Click="BtnOpenFolder_Click" Content="打开文件夹"/>
+                </StackPanel>
+                
+                
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel Grid.Row="4">
             <Label>提示：</Label>
             <TextBox Name="txtHint" Height="50"></TextBox>
         </StackPanel>

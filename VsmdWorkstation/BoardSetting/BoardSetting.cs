@@ -28,6 +28,13 @@ namespace VsmdWorkstation
         
         public float DelaySeconds { get; set; }
         public int Site1FirstTubeX { get; set; }
+
+        public int WashX { get; set; }
+        public int WashY { get; set; }
+
+        public int WashZ { get; set; }
+        public int WashTimes { get; set; }
+        public int WashDelaySeconds { get; set; }
         public int Site1FirstTubeY { get; set; }
         public int Site1LastTubeX { get; set; }
         public int Site1LastTubeY { get; set; }
@@ -131,7 +138,7 @@ namespace VsmdWorkstation
             string str = File.ReadAllText(configFile);
             if (string.IsNullOrWhiteSpace(str.Trim()))
             {
-                StatusBar.DisplayMessage(MessageType.Warming, "载物架配置文件为空！");
+                StatusBar.DisplayMessage(MessageType.Warning, "载物架配置文件为空！");
                 return;
             }
             m_boardSettings = JsonConvert.DeserializeObject<List<BoardMeta>>(str);

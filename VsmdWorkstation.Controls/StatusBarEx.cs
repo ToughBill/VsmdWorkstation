@@ -12,7 +12,7 @@ namespace VsmdWorkstation.Controls
     public enum MessageType
     {
         Info,
-        Warming,
+        Warning,
         Error
     }
     public partial class StatusBarEx : StatusStrip
@@ -52,7 +52,7 @@ namespace VsmdWorkstation.Controls
                 case MessageType.Info:
                     o = Color.Green;
                     break;
-                case MessageType.Warming:
+                case MessageType.Warning:
                     o = Color.Yellow;
                     break;
                 case MessageType.Error:

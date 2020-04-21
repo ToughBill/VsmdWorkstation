@@ -83,18 +83,26 @@
     <ApplicationIcon>drip.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\lib\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -122,11 +130,12 @@
     </Compile>
     <Compile Include="BoardSetting\BoardSetting.cs" />
     <Compile Include="Drip\BridgeObject.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Drip\WashController.cs" />
     <Compile Include="preference\Preferences.cs" />
     <Compile Include="Record\DatePicker.xaml.cs">
       <DependentUpon>DatePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Record\MainViewModel.cs" />
     <Compile Include="Record\ProjectInfoCollection.cs" />
     <Compile Include="Record\RunHistory.xaml.cs">
       <DependentUpon>RunHistory.xaml</DependentUpon>
@@ -136,6 +145,8 @@
     <Compile Include="Record\SetProject.xaml.cs">
       <DependentUpon>SetProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\FolderHelper.cs" />
+    <Compile Include="Utils\GlobalVars.cs" />
     <Compile Include="VSMDSetting\ConnectVsmd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="drip.ico" />
+    <Content Include="history.txt" />
     <Content Include="ico\drip.ico" />
     <Content Include="html\css\bootstrap-theme.css" />
     <Content Include="html\css\bootstrap-theme.min.css" />

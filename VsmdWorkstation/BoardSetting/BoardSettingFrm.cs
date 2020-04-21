@@ -100,6 +100,11 @@ namespace VsmdWorkstation
                 meta.ID = BoardSetting.GetInstance().GetNextBoardNum();
             }
             meta.Name = txtName.Text.Trim();
+            meta.WashTimes = int.Parse(txtWashTimes.Text);
+            meta.WashDelaySeconds = int.Parse(txtWashDelaySeconds.Text);
+            meta.WashX = int.Parse(txtWashX.Text);
+            meta.WashY = int.Parse(txtWashY.Text);
+            meta.WashZ = int.Parse(txtWashZ.Text);
             meta.Type = rbtSite.Checked ? 1 : 2;
             if (rbtSite.Checked)
             {
@@ -136,7 +141,41 @@ namespace VsmdWorkstation
 
         private bool ValidFormData()
         {
-            if(string.IsNullOrWhiteSpace(txtName.Text))
+            if (string.IsNullOrWhiteSpace(txtWashX.Text))
+            {
+                ShowMessage(MessageType.Error, "冲洗X不能为空！");
+                txtWashX.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtWashY.Text))
+            {
+                ShowMessage(MessageType.Error, "冲洗Y不能为空！");
+                txtWashY.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtWashZ.Text))
+            {
+                ShowMessage(MessageType.Error, "冲洗Z不能为空！");
+                txtWashZ.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtWashTimes.Text))
+            {
+                ShowMessage(MessageType.Error, "冲洗次数不能为空！");
+                txtWashTimes.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtWashDelaySeconds.Text))
+            {
+                ShowMessage(MessageType.Error, "冲洗延时不能为空！");
+                txtWashDelaySeconds.Focus();
+                return false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 ShowMessage(MessageType.Error, "名称不能为空！");
                 txtName.Focus();
@@ -309,6 +348,11 @@ namespace VsmdWorkstation
             txtName.Text = m_curMeta.Name;
             rbtGrid.Checked = m_curMeta.Type == (int)BoardType.Grid;
             rbtSite.Checked = m_curMeta.Type == (int)BoardType.Site;
+            txtWashX.Text = m_curMeta.WashX.ToString();
+            txtWashY.Text = m_curMeta.WashY.ToString();
+            txtWashZ.Text = m_curMeta.WashZ.ToString();
+            txtWashTimes.Text = m_curMeta.WashTimes.ToString();
+            txtWashDelaySeconds.Text = m_curMeta.WashDelaySeconds.ToString();
             if (m_curMeta.Type == (int)BoardType.Grid)
             {
                 txtGridCnt.Text = m_curMeta.GridCount.ToString();
@@ -335,8 +379,8 @@ namespace VsmdWorkstation
             txtZTravel.Text = m_curMeta.ZTravel.ToString();
             txtZDispense.Text = m_curMeta.ZDispense.ToString();
             txtTouchDelaySeconds.Text = m_curMeta.DelaySeconds.ToString();
-            
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -538,6 +582,22 @@ namespace VsmdWorkstation
             ShowSetDlg(txtTouchPosition, VsmdAxis.X);
         }
 
+        private void btnSetWashX_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtWashX, VsmdAxis.X);
+        }
+
+        private void btnSetWashY_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtWashY, VsmdAxis.Y);
+        }
+
+        private void btnSetWashZ_Click(object sender, EventArgs e)
+        {
+            ShowSetDlg(txtWashZ, VsmdAxis.Z);
+        }
+
+
         private void btnTubeMoveTouchEdgeOffset_Click(object sender, EventArgs e)
         {
             Move2Position(VsmdAxis.X, int.Parse(txtTouchPosition.Text));
@@ -547,5 +607,22 @@ namespace VsmdWorkstation
         {
             Move2Position(VsmdAxis.X, int.Parse(txtTouchPosition.Text));
         }
+
+        private void btnMove2WashX_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.X, int.Parse(txtWashX.Text));
+        }
+
+        private void btnMove2WashY_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Y, int.Parse(txtWashY.Text));
+        }
+
+        private void btnMoveWashZ_Click(object sender, EventArgs e)
+        {
+            Move2Position(VsmdAxis.Z, int.Parse(txtWashZ.Text));
+        }
+
+       
     }
 }

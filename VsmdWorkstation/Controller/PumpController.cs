@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading.Tasks;
 
@@ -25,8 +27,8 @@ namespace VsmdWorkstation
         }
         public InitResult Init(string port)
         {
-           
-            Logger.Instance.Write(string.Format("pump exist: {0}", pumpExist.ToString()));
+            log.InfoFormat("pump exist: {0}", pumpExist);
+            //Logger.Instance.Write(string.Format("pump exist: {0}", pumpExist.ToString()));
             if(!pumpExist)
                 return new InitResult() { IsSuccess = true, Message = "" };
             bool success = true;
@@ -82,17 +84,10 @@ namespace VsmdWorkstation
         {
             if (!pumpExist)
                 return;
-            if(relayType == "LH") //latest on
-            {
-                string onOff = on ? "ON" : "OFF";
-                string s = string.Format("AT+OUT{0}+1={1}{2}", portNum, onOff, Environment.NewLine);
-                byte[] buffer = System.Text.Encoding.Default.GetBytes(s);
-                m_comPort.Write(buffer, 0, buffer.Length);
-            }//old one,only works in 重庆
-            else
+            
             {
                 string s = on ? string.Format("0XA{0}", portNum) : string.Format("0XB{0}", portNum);
-                Logger.Instance.Write(s);
+                //Logger.Instance.Write(s);
                 byte val = on ? (byte)0xA0 : (byte)0XB0;
                 byte[] buffer = new byte[1];
                 buffer[0] = (byte)(val + portNum);
@@ -115,12 +110,36 @@ namespace VsmdWorkstation
 
         public async Task<bool> SwitchOnOff(int i)
         {
-            int portNum = i % 4 + 1;
-            Logger.Instance.Write("switch On Off");
-            On(portNum);
-            await Task.Delay(100);
-            Off(portNum);
+            byte portNum = (byte)(i % 4 + 1);
+            if (relayType == "LH")
+            {
+                SwitchOnOffQuick(portNum);
+            }
+            else// old one,only works in 重庆
+            {
+                On(portNum);
+                await Task.Delay(100);
+                Off(portNum);
+            }
+            
             return true;
+        }
+
+        private void SwitchOnOffQuick(byte portNum)
+        {
+            byte[] buffer1 = new byte[] { 0x01, 0x34, 0xF0, 0x00, 0x00, 0x01, 0x42, 0xCE };
+            byte[] buffer2 = new byte[] { 0x01, 0x34, 0xF0, 0x01, 0x00, 0x01, 0x13, 0x0E };
+            byte[] buffer3 = new byte[] { 0x01, 0x34, 0xF0, 0x02, 0x00, 0x01, 0xE3, 0x0E };
+            byte[] buffer4 = new byte[] { 0x01, 0x34, 0xF0, 0x03, 0x00, 0x01, 0xB2, 0xCE };
+            Dictionary<byte, byte[]> port_buffer = new Dictionary<byte, byte[]>();
+            port_buffer.Add(1, buffer1);
+            port_buffer.Add(2, buffer2);
+            port_buffer.Add(3, buffer3);
+            port_buffer.Add(4, buffer4);
+            portNum = (byte)((portNum - 1) % 4 + 1);
+            log.InfoFormat("port number:{0}", portNum);
+            byte[] buffer = port_buffer[portNum];
+            m_comPort.Write(buffer, 0, buffer.Length);
         }
 
         private static PumpController m_instance;

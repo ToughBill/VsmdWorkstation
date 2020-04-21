@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VsmdWorkstation.Utils;
 
 namespace VsmdWorkstation.Record
 {
@@ -20,7 +21,6 @@ namespace VsmdWorkstation.Record
     /// </summary>
     public partial class SetProject : Window
     {
-        ProjectInfoCollection prjInfoCollection;
         public SetProject()
         {
             InitializeComponent();
@@ -29,24 +29,24 @@ namespace VsmdWorkstation.Record
 
         private void SetProject_Loaded(object sender, RoutedEventArgs e)
         {
-            prjInfoCollection = ProjectInfoCollection.Load();
-            this.DataContext = prjInfoCollection;
+           
+            this.DataContext = GlobalVars.Instance.PrjInfoCollection;
         }
 
         private void BtnAddName_Click(object sender, RoutedEventArgs e)
         {
-            prjInfoCollection.Add();
+            GlobalVars.Instance.PrjInfoCollection.Add();
         }
 
         private void BtnRemoveName_Click(object sender, RoutedEventArgs e)
         {
-            prjInfoCollection.Remove();
+            GlobalVars.Instance.PrjInfoCollection.Remove();
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("保存成功！");
-            prjInfoCollection.Save();
+            GlobalVars.Instance.PrjInfoCollection.Save();
             this.Close();
         }
     }

@@ -9,11 +9,15 @@ namespace VsmdWorkstation
     {
         private ConnectVsmd m_connectForm;
         private DripFrm m_dripForm;
+        bool connected = false;
         public MainFrm()
         {
             InitializeComponent();
             this.KeyDown += MainFrm_KeyDown;
+            
         }
+
+      
 
         private void MainFrm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -52,6 +56,7 @@ namespace VsmdWorkstation
         {
             if (initRet.IsSuccess)
             {
+                connected = true;
                 StatusBar.DisplayMessage(MessageType.Info, "设备连接成功！");
                 if (m_dripForm == null)
                 {
@@ -70,6 +75,12 @@ namespace VsmdWorkstation
 
         private void tsmBoardSetting_Click(object sender, EventArgs e)
         {
+            if (!connected)
+            {
+                StatusBar.DisplayMessage(MessageType.Error, "请先连接设备！");
+                return;
+            }
+                
             SetAllSubFormState();
             BoardSettingFrm frm = new BoardSettingFrm();
             frm.MdiParent = this;
@@ -96,6 +107,16 @@ namespace VsmdWorkstation
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
+            if (m_dripForm != null)
+            {
+                if(m_dripForm.PipettingStatus != PipettingStatus.Idle)
+                {
+                    e.Cancel = true;
+                    StatusBar.DisplayMessage(MessageType.Warning, "正在运行，请勿关闭！");
+                    return;
+                }
+            }
             VsmdController.GetVsmdController().Dispose();
         }
 

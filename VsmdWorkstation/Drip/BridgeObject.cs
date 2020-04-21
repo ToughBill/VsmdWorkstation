@@ -15,6 +15,7 @@ namespace VsmdWorkstation
     public delegate void DelDripFinished();
     public class BridgeObject
     {
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public event GridPageDomLoaded onGridPageDomLoaded = null;
         public event GridTubeSelected onGridTubeSelected = null;
         public event DelDripFinished onPipettingFinished = null;
@@ -212,7 +213,8 @@ namespace VsmdWorkstation
         /// </summary>
         private async void DoPipetting()
         {
-            Logger.Instance.Write("DoPipetting");
+            //Logger.Instance.Write("DoPipetting");
+            log.Info("Do Pipetting");
             VsmdController vsmdController = VsmdController.GetVsmdController();
             PumpController pumpController = PumpController.GetPumpController();
             BoardSetting curBoardSetting = BoardSetting.GetInstance();
@@ -250,7 +252,8 @@ namespace VsmdWorkstation
             }
             
             bool bok = await AfterMove();
-            Logger.Instance.Write("error happened in afterMove");
+            log.InfoFormat("finished pipetting, result is: {0}", bok);
+            //Logger.Instance.Write("error happened in afterMove");
         }
         public void DomLoaded()
         {

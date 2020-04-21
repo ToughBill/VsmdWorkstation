@@ -12,6 +12,9 @@ using CefSharp;
 using CefSharp.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VsmdWorkstation.Drip;
+using VsmdWorkstation.Record;
+using VsmdWorkstation.Utils;
 
 namespace VsmdWorkstation
 {
@@ -29,11 +32,34 @@ namespace VsmdWorkstation
         private bool m_delayToBuildGrid = false;
         private bool m_isOpened = true;
         private bool m_manuallySelect = false;
+        RunInfoModel runInfoModel = new RunInfoModel();
         public DripFrm()
         {
             InitializeComponent();
             InitBrowser();
+            GlobalVars.Instance.onPrjectInfoChanged += Instance_onPrjectInfoChanged;
         }
+
+
+        public PipettingStatus PipettingStatus
+        {
+            get
+            {
+                return m_pipettingStatus;
+            }
+
+        }
+
+        private void Instance_onPrjectInfoChanged(object sender, bool e)
+        {
+            cmbProjectName.Items.Clear();
+            foreach (var prjInfo in GlobalVars.Instance.PrjInfoCollection.ProjectInfos)
+            {
+                cmbProjectName.Items.Add(prjInfo.Name);
+            }
+        }
+
+      
 
         public bool IsOpened
         {
@@ -48,7 +74,11 @@ namespace VsmdWorkstation
 #if DEBUG
             btnDevTools.Visible = true;
 #endif
-
+            
+            foreach(var prjInfo in GlobalVars.Instance.PrjInfoCollection.ProjectInfos)
+            {
+                cmbProjectName.Items.Add(prjInfo.Name);
+            }
             InitBoardSettings();
         }
         private void InitBrowser()
@@ -152,8 +182,9 @@ namespace VsmdWorkstation
             else
             {
                 SavePref();
+                m_isOpened = false;
             }
-            m_isOpened = false;
+      
         }
         public bool SavePref()
         {
@@ -182,6 +213,7 @@ namespace VsmdWorkstation
         private void btnStart_Click(object sender, EventArgs e)
         {
             double val = 0;
+            
             bool bok = double.TryParse(txtDelaySeconds.Text, out val);
             if(!bok)
             {
@@ -214,10 +246,12 @@ namespace VsmdWorkstation
                 m_externalObj.SelectTubes(cnt);
             }
             Preference.GetInstace().Save();
-            Logger.Instance.Write("about to start pipetting");
+            //Logger.Instance.Write("about to start pipetting");
             m_externalObj.Move();
             m_pipettingStatus = PipettingStatus.Moving;
+            runInfoModel.AddRunInfo(cmbProjectName.SelectedItem.ToString(), int.Parse(txtSampleCnt.Text));
             UpdateButtons();
+     
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -245,13 +279,14 @@ namespace VsmdWorkstation
         }
         private void UpdateButtons()
         {
-            btnStart.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
-            btnStop.Enabled = (m_pipettingStatus != PipettingStatus.Idle);
-            btnPause.Enabled = (m_pipettingStatus == PipettingStatus.Moving || m_pipettingStatus == PipettingStatus.PauseMove);
-            //btnRestGrid.Enabled = (m_pipettingStatus == PipettingStatus.Idle);
-
-            //btnSelectAll.Enabled = m_pipettingStatus == PipettingStatus.Idle;
-            //btnReverse.Enabled = m_pipettingStatus == PipettingStatus.Idle;
+            bool isIdel = m_pipettingStatus == PipettingStatus.Idle;
+            btnStart.Enabled = isIdel;
+            btnWash.Enabled = isIdel;
+            btnPause.Enabled = !isIdel;
+            btnStop.Enabled = !isIdel;
+            cmbProjectName.Enabled = isIdel;
+            txtSampleCnt.Enabled = isIdel;
+            txtDelaySeconds.Enabled = isIdel;
         }
 
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,6 +331,26 @@ namespace VsmdWorkstation
         {
             txtSampleCnt.BackColor = Color.Yellow;
             m_manuallySelect = false;
+        }
+
+        private void cmbProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnWash.Enabled = cmbProjectName.SelectedIndex != -1;
+        }
+
+       
+
+        private async void btnWash_Click(object sender, EventArgs e)
+        {
+            await  DoWash();
+            btnStart.Enabled = true;
+        }
+
+        private async Task<bool> DoWash()
+        {
+            await WashController.DoWash();
+            StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Info, "冲洗完成!");
+            return true;
         }
     }
 
