@@ -122,6 +122,12 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BoardSetting\AdjustOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BoardSetting\AdjustOrder.Designer.cs">
+      <DependentUpon>AdjustOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="BoardSetting\BoardSettingFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BoardSetting\AdjustOrder.resx">
+      <DependentUpon>AdjustOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BoardSetting\BoardSettingFrm.resx">
       <DependentUpon>BoardSettingFrm.cs</DependentUpon>

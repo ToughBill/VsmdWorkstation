@@ -86,6 +86,7 @@ namespace VsmdWorkstation
 
         private async void btnConnect_Click(object sender, EventArgs e)
         {
+            
             if (VsmdController.GetVsmdController().IsInitialized())
             {
                 VsmdController.GetVsmdController().Dispose();

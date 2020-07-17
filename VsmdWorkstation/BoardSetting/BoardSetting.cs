@@ -60,7 +60,7 @@ namespace VsmdWorkstation
         private List<BoardMeta> m_boardSettings = new List<BoardMeta>();
         private double m_tubeDistX, m_tubeDistY;
         private int m_siteDistY;
-
+        private List<string> namesOrder = new List<string>();
         private BoardMeta m_curBoard;
         public BoardMeta CurrentBoard
         {
@@ -86,6 +86,17 @@ namespace VsmdWorkstation
         }
         public DelDataUpdated OnDataUpdate;
 
+        public List<string> NamesOrder
+        {
+            get
+            {
+                return namesOrder;
+            }
+            set
+            {
+                namesOrder = value;
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -127,8 +138,22 @@ namespace VsmdWorkstation
         {
             return Application.StartupPath + "\\boardSettings.json";
         }
+
+        public string GetOrderFilePath()
+        {
+            return Application.StartupPath + "\\order.txt";
+        }
         public void LoadBoardSettings()
         {
+            string orderFile = GetOrderFilePath();
+            if(File.Exists(orderFile))
+            {
+                namesOrder = File.ReadAllLines(orderFile).ToList();
+            }
+            else
+            {
+                namesOrder = new List<string>();
+            }
             string configFile = GetBoardMetaFilePath();
             if (!File.Exists(configFile))
             {
@@ -168,6 +193,11 @@ namespace VsmdWorkstation
         }
         public bool Save()
         {
+            string orderFile = GetOrderFilePath();
+            if (namesOrder.Count > 0)
+            {
+                File.WriteAllLines(orderFile, namesOrder);
+            }
             string configFile = GetBoardMetaFilePath();
             bool ret = true;
             try

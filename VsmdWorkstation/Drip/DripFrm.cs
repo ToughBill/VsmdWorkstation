@@ -117,11 +117,28 @@ namespace VsmdWorkstation
         {
             cmbBoards.Items.Clear();
             txtDelaySeconds.Text = Preference.GetInstace().DelaySeconds.ToString();
-            BoardSetting.GetInstance().GetAllBoardMetaes().ForEach((meta) =>
+            var allMetas = BoardSetting.GetInstance().GetAllBoardMetaes();
+            List<BoardMeta> sortedMetas = new List<BoardMeta>();
+            if(BoardSetting.GetInstance().NamesOrder.Count > 0)
+            {
+                foreach(var boardName in BoardSetting.GetInstance().NamesOrder)
                 {
-                    cmbBoards.Items.Add(meta);
+                    var validNameMetas= allMetas.Where(x => x.Name == boardName);
+                    if(validNameMetas.Count() > 0)
+                    {
+                        sortedMetas.Add(validNameMetas.First());
+                        //allMetas.Remove(validNameMetas.First());
+                    }
                 }
-            );
+            }
+
+            foreach(var meta in allMetas) //add remaining
+            {
+                if(!sortedMetas.Contains(meta))
+                    sortedMetas.Add(meta);
+            }
+            sortedMetas.ForEach(x => cmbBoards.Items.Add(x));
+
             Preference perfInst = Preference.GetInstace();
             if (cmbBoards.Items.Count > 0)
             {
@@ -287,6 +304,10 @@ namespace VsmdWorkstation
             cmbProjectName.Enabled = isIdel;
             txtSampleCnt.Enabled = isIdel;
             txtDelaySeconds.Enabled = isIdel;
+            btnSelectAll.Enabled = isIdel;
+            btnClearAll.Enabled = isIdel;
+            btnMoveFront.Enabled = isIdel;
+            btnMoveToBack.Enabled = isIdel;
         }
 
         private void cmbBoards_SelectedIndexChanged(object sender, EventArgs e)
@@ -335,7 +356,10 @@ namespace VsmdWorkstation
 
         private void cmbProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnWash.Enabled = cmbProjectName.SelectedIndex != -1;
+            bool prjSelected = cmbProjectName.SelectedIndex != -1;
+            btnWash.Enabled = prjSelected;
+            
+
         }
 
        
@@ -352,6 +376,38 @@ namespace VsmdWorkstation
             StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Info, "冲洗完成!");
             return true;
         }
+
+        private async void btnMoveFront_Click(object sender, EventArgs e)
+        {
+
+            bool bok = await VsmdController.GetVsmdController().MoveTo(VsmdAxis.Y, 100);
+            if(bok)
+            {
+                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Info, "移动到最前端!");
+            }
+            else
+            {
+                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "未能移动到最前端!");
+            }
+        }
+
+        private async void btnMoveToBack_Click(object sender, EventArgs e)
+        {
+            BoardSetting curBoardSetting = BoardSetting.GetInstance();
+            bool bok = await VsmdController.GetVsmdController().MoveTo(VsmdAxis.Y, 30500);
+            if (bok)
+            {
+                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Info, "移动到后端!");
+            }
+            else
+            {
+                StatusBar.DisplayMessage(VsmdWorkstation.Controls.MessageType.Error, "未能移动到后端!");
+            }
+        }
+
+       
+
+       
     }
 
     public class CEFMenuHandler : CefSharp.IContextMenuHandler

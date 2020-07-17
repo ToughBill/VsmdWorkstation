@@ -14,7 +14,8 @@ namespace VsmdWorkstation
     // to be a general choose form, now is only for board setting
     public partial class ItemListFrm : Form
     {
-        public Object SelectedObject { get; set; }
+        public Object SelectedObject
+        { get; set; }
         public ItemListFrm()
         {
             InitializeComponent();

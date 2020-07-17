@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using VsmdWorkstation.Controls;
-
+using System.Linq;
 namespace VsmdWorkstation
 {
     public partial class BoardSettingFrm : Form
@@ -623,6 +623,12 @@ namespace VsmdWorkstation
             Move2Position(VsmdAxis.Z, int.Parse(txtWashZ.Text));
         }
 
-       
+        private void btnAdjustOrder_Click(object sender, EventArgs e)
+        {
+            var boardMetas = BoardSetting.GetInstance().GetAllBoardMetaes();
+            var names = boardMetas.Select(x => x.Name).ToList();
+            AdjustOrder adjustOrder = new AdjustOrder(names);
+            adjustOrder.ShowDialog();
+        }
     }
 }
