@@ -341,6 +341,7 @@ namespace VsmdWorkstation
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             m_externalObj.SelectAllTubes();
+            
         }
 
         private void btnReverse_Click(object sender, EventArgs e)
