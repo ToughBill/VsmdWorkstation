@@ -66,13 +66,24 @@
 		    window.__grid.pauseMove();
 		},
 		selectAllTubes: function(){
-		    window.__grid.selectAllTubes();
+            window.__grid.selectAllTubes();
+            if (__grid.onSelected) {
+               
+                __grid.onSelected(__grid.getSelectedTubes().length);
+            }
+
+           
+        
 		},
 		selectTubes: function(count){
 		    window.__grid.selectTubes(count);
 		},
 		reverseSelect: function(){
-		    window.__grid.reverseSelect();
+            window.__grid.reverseSelect();
+            if (__grid.onSelected) {
+
+                __grid.onSelected(__grid.getSelectedTubes().length);
+            }
 		},
 		resetTube: function(){
 		    window.__grid.resetTube();

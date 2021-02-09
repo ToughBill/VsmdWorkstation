@@ -23,6 +23,7 @@ namespace VsmdWorkstation
         {
             cmbPort.Items.AddRange(SerialPort.GetPortNames());
             cmbPumpPort.Items.AddRange(SerialPort.GetPortNames());
+            bool pumpExist = PumpController.GetPumpController().PumpExist;
             if (VsmdController.GetVsmdController().IsInitialized())
             {
                 //lblCurInfo.Text = VsmdController.GetVsmdController().GetPort() + ", " + VsmdController.GetVsmdController().GetBaudrate() + ", " + PumpController.GetPumpController().GetPort();
@@ -36,11 +37,17 @@ namespace VsmdWorkstation
                 {
                     cmbBaudrate.SelectedIndex = idx;
                 }
-                idx = cmbPumpPort.Items.IndexOf(PumpController.GetPumpController().GetPort());
-                if (idx > -1)
+
+                
+                if(pumpExist)
                 {
-                    cmbPumpPort.SelectedIndex = idx;
+                    idx = cmbPumpPort.Items.IndexOf(PumpController.GetPumpController().GetPort());
+                    if (idx > -1)
+                    {
+                        cmbPumpPort.SelectedIndex = idx;
+                    }
                 }
+                
                 UpdateControlState();
                 return;
             }
@@ -51,7 +58,12 @@ namespace VsmdWorkstation
             
             if (Preference.GetInstace().HasPreference)
             {
-                int idx = cmbPort.Items.IndexOf(Preference.GetInstace().VsmdPort);
+                int idx = -1;
+                if (Preference.GetInstace().VsmdPort != null)
+                {
+                    idx = cmbPort.Items.IndexOf(Preference.GetInstace().VsmdPort);
+                }
+                  
                 if(idx > -1)
                 {
                     cmbPort.SelectedIndex = idx;
@@ -61,11 +73,20 @@ namespace VsmdWorkstation
                 {
                     cmbBaudrate.SelectedIndex = idx;
                 }
-                idx = cmbPumpPort.Items.IndexOf(Preference.GetInstace().PumpPort);
-                if (idx > -1)
+                if (pumpExist)
                 {
-                    cmbPumpPort.SelectedIndex = idx;
+                    string pumpPort = Preference.GetInstace().PumpPort;
+                    if (pumpPort != null)
+                    {
+                        idx = cmbPumpPort.Items.IndexOf(Preference.GetInstace().PumpPort);
+                        if (idx > -1)
+                        {
+                            cmbPumpPort.SelectedIndex = idx;
+                        }
+                    }
+                  
                 }
+                  
             }
             else
             {
@@ -129,6 +150,7 @@ namespace VsmdWorkstation
                 {
                     Preference.GetInstace().PumpPort = pumpPort;
                 }
+                Preference.GetInstace().Save();
             }
             
             

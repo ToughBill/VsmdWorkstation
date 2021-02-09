@@ -1,7 +1,7 @@
 #define use_dotnetfx40
 
 #define MyAppSetupName 'PPPipettor'
-#define MyAppVersion '1.16'
+#define MyAppVersion '1.17'
 
 [Setup]
 AppName={#MyAppSetupName}
